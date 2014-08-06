@@ -284,7 +284,7 @@ public class Edifact {
 			ArrayList<org.bollore.edi.Element> elements=segment.elements;
 			
 			for (int i = 0; i < elements.size(); i++) {
-				System.out.println(i+"   "+((org.bollore.edi.Element)elements.get(i)).type_ref);
+				//System.out.println(i+"   "+((org.bollore.edi.Element)elements.get(i)).type_ref);
 				result.put(((org.bollore.edi.Element)elements.get(i)).type_ref, i);
 			}
 		
@@ -292,29 +292,40 @@ public class Edifact {
 		
 	}
 	
-	public org.bollore.edi.Element getElement(String segment_name,String element_name) throws EDIException{
-		ArrayList<org.bollore.edi.Segment> structure=this.structure;
-		org.bollore.edi.Element result=new org.bollore.edi.Element();
-		HashMap<String, Integer> hash_element=this.buildHashElement(segment_name);
-		
-		if(element_name==null){
-		throw new EDIException("L'élément a récupérer doit avoir un nom non null");
-		}
 
-		
-		else if(!hash_element.containsKey(element_name)){
-			throw new EDIException("L'élément "+element_name+" dans le segment "+segment_name+" n'existe pas dans la définition du "+this.edi_type+" "+this.edi_year_version+this.edi_letter_version);
-		} else{
-			//result= 
-					
-			result=((org.bollore.edi.Segment)this.getSegment(segment_name)).elements.get(hash_element.get(element_name));
-	
-		}
-		
-		return result;				
-	
+	public void setValue(String element_path,String value) throws EDIException{
+		this.getElement(element_path).value=value;
 	}
 	
+
+	public org.bollore.edi.Element getElement(String segment_name,String element_name) throws EDIException{
+	ArrayList<org.bollore.edi.Segment> structure=this.structure;
+	org.bollore.edi.Element result=new org.bollore.edi.Element();
+	HashMap<String, Integer> hash_element=this.buildHashElement(segment_name);
+	
+	if(element_name==null){
+	throw new EDIException("L'élément a récupérer doit avoir un nom non null");
+	}
+
+	
+	else if(!hash_element.containsKey(element_name)){
+		throw new EDIException("L'élément "+element_name+" dans le segment "+segment_name+" n'existe pas dans la définition du "+this.edi_type+" "+this.edi_year_version+this.edi_letter_version);
+	} else{
+				
+		result=((org.bollore.edi.Segment)this.getSegment(segment_name)).elements.get(hash_element.get(element_name));
+
+	}
+	
+	return result;		
+
+}
+	
+	public org.bollore.edi.Element getElement(String element_path) throws EDIException{
+		
+		String[] split=element_path.split("/");
+		
+		return getElement(split[0],split[1]);
+	}
 	
 	
 	
@@ -354,9 +365,11 @@ public class Edifact {
 		
 		edi_cuscar.buildHashElement("BGM");
 		
-		org.bollore.edi.Element element=edi_cuscar.getElement("BGM","1004");
-		
+		//org.bollore.edi.Element element=edi_cuscar.getElement("BGM","1004");
+		org.bollore.edi.Element element=edi_cuscar.getElement("BGM/1004");
+		edi_cuscar.setValue("BGM/1004", "Tata");
 		System.out.println(element.type_ref);
 		System.out.println(element.label);
+		System.out.println(element.value);
 	}	
 }
