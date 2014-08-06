@@ -10,7 +10,7 @@ public class Element {
 	Boolean truncatable;
 	String label;
 	String documentation;
-	//String value;
+	String value;
 	ArrayList<Component> components;
 
 	//
@@ -18,6 +18,17 @@ public class Element {
 	// Il peut s'agir d'un élément simple si components est vide ou un group si des composants 
 	// Exemple d'élément simple dans le CUSCAR 95B: 3035 PARTY QUALIFIER dans le segment NAD
 	// Exemple d'élément groupe dans le CUSCAR 95B: C002 dans le segment BGM
+	
+	public Element(){
+		super();
+		this.type_ref = null;
+		this.required = null;
+		this.truncatable = null;
+		this.label = null;
+		this.documentation = null;
+		this.components = null;
+		
+	}
 	
 	public Element(String type_ref, Boolean required, Boolean truncatable,
 			String label, String documentation,ArrayList<Component> components) {
@@ -27,9 +38,11 @@ public class Element {
 		this.truncatable = truncatable;
 		this.label = label;
 		this.documentation = documentation;
-		//this.value = value;
 		this.components = components;
 	}
+	
+	
+
 	
 	
 

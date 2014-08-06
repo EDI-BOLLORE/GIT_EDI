@@ -17,9 +17,9 @@ public class Edifact {
 	
 	
 	public String filepath;
-	String edi_type;
-	String edi_year_version;
-	String edi_letter_version;
+	public String edi_type;
+	public String edi_year_version;
+	public String edi_letter_version;
 	public PrintWriter printwriter;	
 	public Character component_separator;
 	public Character element_separator;
@@ -27,30 +27,18 @@ public class Edifact {
 	public Character escape_character;
 	public static Character space_character=' ';
 	public Character segment_separator;
-	public Integer nb_segments;
 	public String message_reference;
-	public String message_reference_number;
+	public ArrayList<org.bollore.edi.Segment> structure;
 	public ArrayList<org.bollore.edi.Segment> segments;
 	
+/*********************************************
+ * 
+ *  Constructeurs de la classe Edifact
+ *  
+ * *******************************************/
 	
-	
-	public ArrayList<Segment> getSegments() {
-		return segments;
-	}
-
-	public void setSegments(ArrayList<Segment> segments) {
-		this.segments = segments;
-	}
-
-	public void increments_nbsegments(){
-		this.nb_segments=this.nb_segments+1;
-	}
-	
-	public Edifact(String filepath,String edi_type,String edi_year_version,String edi_letter_version,Character element_separator,Character subsegment_separator,
-			Character decimal_separator,Character escape_character,Character segment_separator,String message_reference,
-			String message_reference_number
-			 
-			)  {
+	public Edifact(String filepath,String edi_type,String edi_year_version,String edi_letter_version,Character element_separator,Character component_separator,
+			Character decimal_separator,Character escape_character,Character segment_separator,String message_reference)  {
 		
 		super();
 		try {
@@ -61,29 +49,29 @@ public class Edifact {
 			this.printwriter=new PrintWriter(new File(filepath));
 			if(element_separator==null){this.element_separator='+';} else {this.element_separator = element_separator;}
 			if(decimal_separator==null){this.decimal_separator='.';} else {this.decimal_separator = decimal_separator;}
-			if(subsegment_separator==null){this.component_separator=':';} else {this.component_separator = decimal_separator;}
+			if(component_separator==null){this.component_separator=':';} else {this.component_separator = component_separator;}
 			if(escape_character==null){this.escape_character='?';} else {this.escape_character = decimal_separator;}
 			if(segment_separator==null){this.segment_separator='\'';} else {this.segment_separator = segment_separator;}
-			this.nb_segments=0;
 			this.message_reference=message_reference;
-			this.message_reference_number=message_reference_number;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public Edifact(String filepath,String message_reference,String message_reference_number)  {
+	public Edifact(String filepath,String edi_type,String edi_year_version,String edi_letter_version,String message_reference)  {
 		try{
+			
 		this.filepath = filepath;
+		this.edi_type=edi_type;
+		this.edi_year_version=edi_year_version;
+		this.edi_letter_version=edi_letter_version;
 		this.printwriter=new PrintWriter(new File(filepath));
 		this.element_separator='+';
 		this.decimal_separator='.';
 		this.component_separator=':';
 		this.escape_character='?';
 		this.segment_separator='\'';
-		this.nb_segments=0;
 		this.message_reference=message_reference;
-		this.message_reference_number=message_reference_number;
 		
 		} catch(FileNotFoundException fnfe){ fnfe.printStackTrace();}
 		}
@@ -93,11 +81,11 @@ public class Edifact {
 	}
 	
 	
-	public void printfooter(){
-		this.printwriter.append("UNT"+this.element_separator+this.nb_segments+this.element_separator+this.message_reference+this.message_reference_number+this.segment_separator+"\n");
-		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.message_reference_number+this.segment_separator+"\n");
-		
-	}
+//	public void printfooter(){
+//		this.printwriter.append("UNT"+this.element_separator+this.nb_segments+this.element_separator+this.message_reference+this.message_reference_number+this.segment_separator+"\n");
+//		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.message_reference_number+this.segment_separator+"\n");
+//		
+//	}
 	
 	public void close(){
 		this.printwriter.close();
@@ -105,26 +93,24 @@ public class Edifact {
 	
 	public void printStructure(){
 		
-		for (int i = 0; i < this.segments.size(); i++) {
-			((org.bollore.edi.Segment)this.segments.get(i)).printSegment();
+		for (int i = 0; i < this.structure.size(); i++) {
+			((org.bollore.edi.Segment)this.structure.get(i)).printSegment();
 		}
 		
 	}
 	
 
 	
-	public static HashMap<String, org.bollore.edi.Segment> buildEDISegmentDefinition(){
+	public static HashMap<String, org.bollore.edi.Segment> buildEDISegmentDefinition(String edi_year_version,String edi_letter_version){
 	SAXBuilder sxb = new SAXBuilder();
 	Document document;
 	org.jdom2.Element racine;
 	
 	HashMap<String, org.bollore.edi.Segment> segments=new HashMap<String, org.bollore.edi.Segment>();
 	
-	
 	try
     {
-       document = sxb.build("EDI_Definitions/D95B/__modelset_definitions.xml");
-       
+       document = sxb.build("EDI_Definitions/D"+edi_year_version+edi_letter_version+"/__modelset_definitions.xml");       
        
        racine = document.getRootElement();
        List<org.jdom2.Element> nodes=racine.getChildren("segments");
@@ -179,7 +165,6 @@ public class Edifact {
 				 
 			 }
 			 
-			//System.out.println(((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode")+" "+((org.jdom2.Element)segts.get(j)).getAttributeValue("xmltag")+" "+((org.jdom2.Element)segts.get(j)).getAttributeValue("minOccurs")+" "+((org.jdom2.Element)segts.get(j)).getAttributeValue("maxOccurs")+" "+((org.jdom2.Element)segts.get(j)).getAttributeValue("description"));
 			segments.put(((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode"),
 					new org.bollore.edi.Segment(((org.jdom2.Element)segts.get(j)).getAttributeValue("xmltag"),
 							((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode"),
@@ -187,9 +172,7 @@ public class Edifact {
 							Integer.parseInt(((org.jdom2.Element)segts.get(j)).getAttributeValue("maxOccurs")),
 							((org.jdom2.Element)segts.get(j)).getAttributeValue("description"),
 							elements,null)					
-					);
-			 
-			 
+					);		 
 			 
     	   }
 
@@ -207,35 +190,34 @@ public class Edifact {
 	
 	}
 	
-	public static void BuildEdifact(String edi_type,String edi_year_version,String edi_letter_version)
+	public void BuildEdifactSegments()
 	{
 		SAXBuilder sxb = new SAXBuilder();
 		Document document;
 		org.jdom2.Element racine;
 		org.bollore.edi.Edifact edi;
+		ArrayList<org.bollore.edi.Segment> result 	= new ArrayList<org.bollore.edi.Segment>();
+		ArrayList<org.bollore.edi.Segment> segments = new ArrayList<org.bollore.edi.Segment>();
 		
 		try 
-		{
-			ArrayList<org.bollore.edi.Segment> result 	= new ArrayList<org.bollore.edi.Segment>();
-			ArrayList<org.bollore.edi.Segment> segments = new ArrayList<org.bollore.edi.Segment>();
+		{			
+			HashMap<String,org.bollore.edi.Segment> segments_definition = Edifact.buildEDISegmentDefinition(this.edi_year_version,this.edi_letter_version);
 			
-			HashMap<String,org.bollore.edi.Segment> segments_definition = Edifact.buildEDISegmentDefinition();
-			
-			document = sxb.build("EDI_Definitions/D"+edi_year_version+edi_letter_version+"/"+edi_type+".xml");
+			document = sxb.build("EDI_Definitions/D"+this.edi_year_version+this.edi_letter_version+"/"+this.edi_type+".xml");
 			
 			racine = document.getRootElement();
 			List<org.jdom2.Element> nodes = racine.getChildren("segments");
 			
 			for (int i = 0; i < nodes.size(); i++)
 			{
-				segments = buildSegment(new ArrayList<org.bollore.edi.Segment>(), nodes.get(i));
+				segments = buildSegment(new ArrayList<org.bollore.edi.Segment>(), nodes.get(i),this.edi_year_version,this.edi_letter_version);
 				
 				for (int j = 0; j < segments.size(); j++) 
 					result.add(segments.get(j));		
 			}
 			
-			for (int k = 0; k < result.size(); k++) 
-				((org.bollore.edi.Segment) result.get(k)).printSegment();
+//			for (int k = 0; k < result.size(); k++) 
+//				((org.bollore.edi.Segment) result.get(k)).printSegment();
 			
 		}  
 		catch(JDOMException  jdome)
@@ -246,14 +228,16 @@ public class Edifact {
 		{
 			ioe.printStackTrace();
 		}
+		
+		this.structure=result;
 	}
 	
 	
-	public static ArrayList<org.bollore.edi.Segment> buildSegment( ArrayList<org.bollore.edi.Segment> segments, org.jdom2.Element node)
+	public static ArrayList<org.bollore.edi.Segment> buildSegment( ArrayList<org.bollore.edi.Segment> segments, org.jdom2.Element node,String edi_year_version,String edi_letter_version)
 	{
 		//ArrayList<org.bollore.edi.Segment> result = new ArrayList<org.bollore.edi.Segment>();
 		
-		HashMap<String,org.bollore.edi.Segment> segments_definition=Edifact.buildEDISegmentDefinition();
+		HashMap<String,org.bollore.edi.Segment> segments_definition=Edifact.buildEDISegmentDefinition(edi_year_version,edi_letter_version);
 		List<org.jdom2.Element> nodes = node.getChildren();
 		
 		for (int i = 0; i < nodes.size(); i++) 
@@ -265,18 +249,114 @@ public class Edifact {
 					segments.add(segments_definition.get(nodes.get(i).getAttributeValue("segcode")));
 				
 				if("segmentGroup".equals(nodes.get(i).getName()))
-					buildSegment(segments, nodes.get(i));
+					buildSegment(segments, nodes.get(i),edi_year_version,edi_letter_version);
 			}
 		}
 
 		return segments;
 	}
+	
+	public void setValue(String segment_name,String element_name,ArrayList<String> values){
+		ArrayList<org.bollore.edi.Segment> structure=this.structure;
+		
+	}
+	
+	public HashMap<String, Integer> buildHashSegment(){
+		
+		HashMap<String, Integer> result=new HashMap<String, Integer>();
+		ArrayList<org.bollore.edi.Segment> structure=this.structure;
+		
+		for (int i = 0; i < structure.size(); i++) {
+			//System.out.println(i+"   "+((org.bollore.edi.Segment)structure.get(i)).name);
+			result.put(((org.bollore.edi.Segment)structure.get(i)).code, i);
+		}
+		
+		return result;
+		
+	}
+	
+	public HashMap<String, Integer> buildHashElement (String segment_name) throws EDIException{
+		
+		HashMap<String, Integer> result=new HashMap<String, Integer>();
 		
 
-	public static void main(String[] args) throws JDOMException, IOException
-	{
-		BuildEdifact("CUSCAR", "95","B");
+			org.bollore.edi.Segment segment=getSegment(segment_name);
+			ArrayList<org.bollore.edi.Element> elements=segment.elements;
+			
+			for (int i = 0; i < elements.size(); i++) {
+				System.out.println(i+"   "+((org.bollore.edi.Element)elements.get(i)).type_ref);
+				result.put(((org.bollore.edi.Element)elements.get(i)).type_ref, i);
+			}
+		
+		return result;
+		
+	}
+	
+	public org.bollore.edi.Element getElement(String segment_name,String element_name) throws EDIException{
+		ArrayList<org.bollore.edi.Segment> structure=this.structure;
+		org.bollore.edi.Element result=new org.bollore.edi.Element();
+		HashMap<String, Integer> hash_element=this.buildHashElement(segment_name);
+		
+		if(element_name==null){
+		throw new EDIException("L'élément a récupérer doit avoir un nom non null");
+		}
+
+		
+		else if(!hash_element.containsKey(element_name)){
+			throw new EDIException("L'élément "+element_name+" dans le segment "+segment_name+" n'existe pas dans la définition du "+this.edi_type+" "+this.edi_year_version+this.edi_letter_version);
+		} else{
+			//result= 
+					
+			result=((org.bollore.edi.Segment)this.getSegment(segment_name)).elements.get(hash_element.get(element_name));
+	
+		}
+		
+		return result;				
+	
 	}
 	
 	
+	
+	
+	public org.bollore.edi.Segment getSegment(String segment_name) throws EDIException{
+		ArrayList<org.bollore.edi.Segment> structure=this.structure;
+		org.bollore.edi.Segment result=new Segment();
+		HashMap<String, Integer> hash_segment=this.buildHashSegment();
+		
+		if(segment_name==null){
+		throw new EDIException("Le segment a récupérer doit avoir un nom non null");
+		}
+		else if(structure.size()==0){
+		throw new EDIException("L'EDI "+this.edi_type+this.edi_letter_version+" ne contient pas de segments "+segment_name);
+		}
+		
+		else if(!hash_segment.containsKey(segment_name)){
+			throw new EDIException("Le segment "+segment_name+" n'existe pas dans la définition du "+this.edi_type+" "+this.edi_year_version+this.edi_letter_version);
+		} else{
+			result=this.structure.get(this.buildHashSegment().get(segment_name));
+		}
+		
+		return result;				
+	
+	}
+		
+
+	public static void main(String[] args) throws JDOMException, IOException, EDIException
+	{
+		Edifact edi_cuscar=new Edifact("C:/Temp/Cuscar_Test.edi","CUSCAR","95","B","MOL32");
+		
+		edi_cuscar.BuildEdifactSegments();
+//		edi_cuscar.printStructure();
+		
+		
+		edi_cuscar.buildHashSegment();
+		//System.out.println(edi_cuscar.getSegment("Tata").name);
+		
+		edi_cuscar.buildHashElement("BGM");
+		
+		org.bollore.edi.Element element=edi_cuscar.getElement("BGM","1004");
+		
+		System.out.println(element.type_ref);
+		System.out.println(element.label);
+	}	
 }
