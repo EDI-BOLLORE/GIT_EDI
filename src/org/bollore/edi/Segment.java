@@ -21,6 +21,7 @@ public class Segment {
 	Integer min_occurence;
 	Integer max_occurence;
 	String description;
+	//Integer order;
 	ArrayList<org.bollore.edi.Element> elements;
 	ArrayList<org.bollore.edi.Segment> segments;
 	
@@ -37,6 +38,19 @@ public class Segment {
 	}
 
 	public Segment(String name, String code, Integer min_occurence,
+			Integer max_occurence, String description) 
+	{
+		super();
+		this.name = name;	
+		this.code = code;
+		this.min_occurence = min_occurence;
+		this.max_occurence = max_occurence;
+		this.description = description;
+		this.elements = new ArrayList<org.bollore.edi.Element>();
+		this.segments = new ArrayList<org.bollore.edi.Segment>();
+	}
+	
+	public Segment(String name, String code, Integer min_occurence,
 			Integer max_occurence, String description,
 			ArrayList<org.bollore.edi.Element> elements,
 			ArrayList<Segment> segments) {
@@ -52,14 +66,14 @@ public class Segment {
 
 
 
-	static{
-		HashMap<String, Segment> segments=new HashMap<String, Segment>();
-	}
+//	static{
+//		HashMap<String, Segment> segments=new HashMap<String, Segment>();
+//	}
 	
 
 	public org.bollore.edi.Element getElement_Xav(String _CodeElement)
 	{
-		org.bollore.edi.Element element = null;
+		org.bollore.edi.Element element = new org.bollore.edi.Element();
 		for (int i = 0; i < this.elements.size(); i++) 
 		{
 			if (this.elements.get(i).type_ref.equals(_CodeElement))
@@ -70,16 +84,21 @@ public class Segment {
 	}
 	
 	
-	public void printSegment(){
+	public void printSegment()
+	{
+		System.out.println(this.code + " - Le segment possède les éléments suivants : ");
 		
-	System.out.println(this.code + " - Le segment possède les éléments suivants : ");
+		if (this.segments.size() > 0)
+		{
+			for (int i = 0; i < this.segments.size(); i++) 
+				this.segments.get(i).printSegment();
+		}
 		
 		for (int i = 0; i < this.elements.size(); i++) {
 			((org.bollore.edi.Element)this.elements.get(i)).printElement();
 			
 		}
 	}
-	
 	
 	public static void main(String[] args) throws XPathExpressionException, JDOMException, IOException{
 		

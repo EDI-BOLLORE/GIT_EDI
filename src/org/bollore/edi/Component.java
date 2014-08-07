@@ -36,7 +36,10 @@ public class Component {
 		this.documentation = documentation;
 	}
 	
-
+	public void setValue(String _Value)
+	{
+		this.value = _Value;		
+	}
 	
 	public void printComponent(){
 		

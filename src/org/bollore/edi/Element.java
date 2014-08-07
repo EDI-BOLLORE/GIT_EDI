@@ -11,6 +11,7 @@ public class Element {
 	String label;
 	String documentation;
 	String value;
+	ArrayList<String> values;
 	ArrayList<org.bollore.edi.Component> components;
 
 	//
@@ -26,7 +27,7 @@ public class Element {
 		this.truncatable = null;
 		this.label = null;
 		this.documentation = null;
-		this.components = null;
+		this.components = new ArrayList<Component>();
 		
 	}
 	
@@ -69,6 +70,20 @@ public class Element {
 		}
 	}
 	
+	
+	public void setValue(String _Value)
+	{
+		this.value = _Value;		
+	}
+	
+	public void addValue(ArrayList<String> _Values)
+	{
+		for (int i = 0; i < this.components.size(); i++) 
+		{
+			this.components.get(i).setValue(_Values.get(i));
+		}
+		this.values = _Values;		
+	}
 
 	
 	
