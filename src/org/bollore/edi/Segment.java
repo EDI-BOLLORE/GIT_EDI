@@ -32,8 +32,8 @@ public class Segment {
 		this.min_occurence = 0;
 		this.max_occurence = 0;
 		this.description = "";
-		this.elements = null;
-		this.segments = null;
+		this.elements = new ArrayList<org.bollore.edi.Element>();
+		this.segments = new ArrayList<org.bollore.edi.Segment>();
 	}
 
 	public Segment(String name, String code, Integer min_occurence,

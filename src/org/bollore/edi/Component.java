@@ -16,12 +16,8 @@ public class Component {
 	Boolean truncatable;
 	String label;
     String documentation;
+    String value;
     
-    
-    static{
-    	
-    	
-    }
     //
     // Cette classe permet de modéliser la notion de composant à savoir ce qui compose un élément de groupe d'un segment
     //
@@ -44,7 +40,7 @@ public class Component {
 	
 	public void printComponent(){
 		
-		System.out.println("\t\tlabel = "+this.label + "\n");
+		System.out.println("\t\tlabel = "+this.label + "  valeur "+this.value+"\n");
 	}
 
 	public static void main(String[] args){

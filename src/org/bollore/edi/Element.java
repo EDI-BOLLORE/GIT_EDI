@@ -11,7 +11,7 @@ public class Element {
 	String label;
 	String documentation;
 	String value;
-	ArrayList<Component> components;
+	ArrayList<org.bollore.edi.Component> components;
 
 	//
 	// Cette classe permet de modéliser la notion d'élément qui constitue les segments
@@ -49,7 +49,7 @@ public class Element {
 	
 	public void printElement(){
 		
-		System.out.println("\n\ttype_ref ="+this.type_ref+" label = "+this.label);
+		System.out.println("\n\ttype_ref ="+this.type_ref+" label = "+this.label+" value = "+this.value);
 		
 		System.out.println("\tL'élément possède les composants suivants : \n");
 		
