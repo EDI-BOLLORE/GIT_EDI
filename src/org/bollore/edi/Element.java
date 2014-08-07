@@ -43,7 +43,17 @@ public class Element {
 	
 	
 
-	
+	public org.bollore.edi.Component getComponent_Xav(String _LabelComponent)
+	{
+		org.bollore.edi.Component component = null;
+		for (int i = 0; i < this.components.size(); i++) 
+		{
+			if (this.components.get(i).label.equals(_LabelComponent))
+				component = this.components.get(i);
+		}
+		
+		return component;
+	}
 	
 
 	

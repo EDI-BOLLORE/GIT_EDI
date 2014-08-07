@@ -57,6 +57,18 @@ public class Segment {
 	}
 	
 
+	public org.bollore.edi.Element getElement_Xav(String _CodeElement)
+	{
+		org.bollore.edi.Element element = null;
+		for (int i = 0; i < this.elements.size(); i++) 
+		{
+			if (this.elements.get(i).type_ref.equals(_CodeElement))
+				element = this.elements.get(i);
+		}
+		
+		return element;
+	}
+	
 	
 	public void printSegment(){
 		

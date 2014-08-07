@@ -75,23 +75,74 @@ public class Edifact {
 		this.message_reference=message_reference;
 		
 		} catch(FileNotFoundException fnfe){ fnfe.printStackTrace();}
+	}
+	
+	
+	
+	public static void main(String[] args) throws JDOMException, IOException, EDIException
+	{
+		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi","CUSCAR","95","B","MOL32");
+		
+		edi_cuscar.BuildEdifactSegments();
+		//edi_cuscar.printStructure();
+		
+		
+		edi_cuscar.buildHashSegment();
+//		System.out.println(edi_cuscar.getSegment("Tata").name);
+		
+//		edi_cuscar.buildHashElement("BGM");
+		
+		org.bollore.edi.Element element=edi_cuscar.getElement("DTM/C507");
+		ArrayList<String> values=new ArrayList<>();
+		values.add("3");
+		values.add("20140101");
+		values.add("102");
+		edi_cuscar.setValue("DTM/C507", values);
+		
+		org.bollore.edi.Element element2=edi_cuscar.getElement("DTM/C507");
+		ArrayList<String> values2=new ArrayList<>();
+		values2.add("4");
+		values2.add("20130101");
+		values2.add("107");
+		edi_cuscar.setValue("DTM/C507", values2);
+		
+		System.out.println(element.type_ref);
+		System.out.println(element.label);
+		System.out.println(element.value);
+		
+		
+		//edi_cuscar.InstantiateSegment("BGM/1004");
+		
+		System.out.println(edi_cuscar.segments.size());
+		for (int i = 0; i < edi_cuscar.segments.size(); i++) {
+			//edi_cuscar.segments.get(i).printSegment();
 		}
+		
+		edi_cuscar.printEDI();
+	}
+	
+	public void printEDI()
+	{	
+		this.printHeader();
+		this.printSegment();
+		this.printfooter();
+		this.close();
+	}
 	
 	
-	public void printHeader(){
+	public void printHeader()
+	{
 		this.printwriter.append("UNA"+this.element_separator+this.component_separator+this.decimal_separator+this.escape_character+this.space_character+this.segment_separator+"\n");
 	}
 	
-	public void printSegment(){
-		
-		
-		for (int i = 0; i < this.segments.size(); i++) {
+	public void printSegment()
+	{
+		for (int i = 0; i < this.segments.size(); i++) 
+		{
 			org.bollore.edi.Segment segment=this.segments.get(i);
 			this.printwriter.append(segment.code);
 			ArrayList<org.bollore.edi.Element> elements=segment.elements;
-			
-		
-			
+				
 			for (int j = 0; j < elements.size(); j++) {
 				org.bollore.edi.Element element=elements.get(j);
 				
@@ -115,119 +166,125 @@ public class Edifact {
 		
 	}
 	
-	public void printEDI(){
-		
-		this.printHeader();
-		this.printSegment();
-		this.printfooter();
-		this.close();
-	}
 	
-	
-	public void printfooter(){
+	public void printfooter()
+	{
 		this.printwriter.append("UNT"+this.element_separator+this.nb_segment+this.element_separator+this.message_reference+this.segment_separator+"\n");
-		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.segment_separator+"\n");
-		
+		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.segment_separator+"\n");	
 	}
 	
-	public void close(){
+	public void close()
+	{
 		this.printwriter.close();
 	}
 	
-	public void printStructure(){
-		
+
+	public void printStructure()
+	{	
 		for (int i = 0; i < this.structure.size(); i++) {
 			((org.bollore.edi.Segment)this.structure.get(i)).printSegment();
 		}
 		
 	}
-	
 
 	
-	public static HashMap<String, org.bollore.edi.Segment> buildEDISegmentDefinition(String edi_year_version,String edi_letter_version){
-	SAXBuilder sxb = new SAXBuilder();
-	Document document;
-	org.jdom2.Element racine;
-	
-	HashMap<String, org.bollore.edi.Segment> segments=new HashMap<String, org.bollore.edi.Segment>();
-	
-	try
-    {
-       document = sxb.build("EDI_Definitions/D"+edi_year_version+edi_letter_version+"/__modelset_definitions.xml");       
-       
-       racine = document.getRootElement();
-       List<org.jdom2.Element> nodes=racine.getChildren("segments");
-
-
-       for (int i = 0; i < nodes.size(); i++) {    	   
-    	   
-    	  // On récupère la liste de tous les segments
-    	   List<org.jdom2.Element> segts=((org.jdom2.Element)nodes.get(i)).getChildren("segment");
-    	   
-    	  for (int j = 0; j < segts.size(); j++) {		
-			
-    		 //Pour chaque segments on récupère la liste des éléments
-    		   List<org.jdom2.Element> field=((org.jdom2.Element)segts.get(j)).getChildren("field");
-    		   
-    		 ArrayList<org.bollore.edi.Element> elements = new ArrayList<org.bollore.edi.Element>();  
-			 
-    		 for (int l = 0; l < field.size(); l++) {
-				 
-				 List<org.jdom2.Element> documentation=((org.jdom2.Element)field.get(l)).getChildren("documentation");
-				 				 
-				 String doc=(documentation.size()>0)?documentation.get(0).getText():null;
-				 
-					 // Je récupère la doc de l'élément
-					 
-					 List<org.jdom2.Element> component=((org.jdom2.Element)field.get(l)).getChildren("component");
-					 ArrayList<Component> components=new ArrayList<Component>();
-					 // On travaille avec un élément qui possède des composants
-					 if(component.size()>0){						 
-						 
-						 for (int m = 0; m < component.size(); m++) {
-							 
-							 components.add(new Component(((org.jdom2.Element)component.get(m)).getAttributeValue("dataType"), ((org.jdom2.Element)component.get(m)).getAttributeValue("maxLength"),((org.jdom2.Element)component.get(m)).getAttributeValue("minLength"),
-									 "true".equals(((org.jdom2.Element)component.get(m)).getAttributeValue("required")),"true".equals(((org.jdom2.Element)component.get(m)).getAttributeValue("truncatable")), ((org.jdom2.Element)component.get(m)).getAttributeValue("xmltag"),
-									 (String)((org.jdom2.Element)component.get(m)).getChildren("documentation").get(0).getText()));							
-						}						 
-						 
-						// On travaille avec un élément qui ne possède pas de composants 
-					 } else {
-					 
-					 
-					 }					 
-
-					 elements.add(new org.bollore.edi.Element(((org.jdom2.Element)field.get(l)).getAttributeValue("nodeTypeRef"),
-							 "true".equals(((org.jdom2.Element)field.get(l)).getAttributeValue("required")),
-							 "true".equals(((org.jdom2.Element)field.get(l)).getAttributeValue("truncatable")),
-							 ((org.jdom2.Element)field.get(l)).getAttributeValue("xmltag"),
-							 doc,
-							 components));	
-			 }
-			 
-			segments.put(((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode"),
-					new org.bollore.edi.Segment(((org.jdom2.Element)segts.get(j)).getAttributeValue("xmltag"),
-							((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode"),
-							Integer.parseInt(((org.jdom2.Element)segts.get(j)).getAttributeValue("minOccurs")),
-							Integer.parseInt(((org.jdom2.Element)segts.get(j)).getAttributeValue("maxOccurs")),
-							((org.jdom2.Element)segts.get(j)).getAttributeValue("description"),
-							elements,new ArrayList<Segment>())					
-					);		 
-			 
-    	   }
-
-
-       }        
-    }
-    catch(JDOMException  jdome){
-    	jdome.printStackTrace();
-		} 
-	catch(IOException ioe){
-		ioe.printStackTrace();
+	public org.bollore.edi.Segment getSegment_Xav(String _CodeSegment)
+	{
+		org.bollore.edi.Segment segment = null;
+		for (int i = 0; i < this.segments.size(); i++) 
+		{
+			if (this.segments.get(i).code.equals(_CodeSegment))
+				segment = this.segments.get(i);
+		}
+		
+		return segment;
 	}
-
-		return segments;
 	
+
+	public HashMap<String, org.bollore.edi.Segment> buildEDISegmentDefinition(String edi_year_version,String edi_letter_version)
+	{
+		SAXBuilder sxb = new SAXBuilder();
+		Document document;
+		org.jdom2.Element racine;
+	
+		HashMap<String, org.bollore.edi.Segment> segments=new HashMap<String, org.bollore.edi.Segment>();
+	
+		try
+		{
+			document = sxb.build("EDI_Definitions/D"+edi_year_version+edi_letter_version+"/__modelset_definitions.xml");       
+       
+	       racine = document.getRootElement();
+	       List<org.jdom2.Element> nodes=racine.getChildren("segments");
+	
+	
+	       for (int i = 0; i < nodes.size(); i++) {    	   
+	    	   
+	    	  // On récupère la liste de tous les segments
+	    	   List<org.jdom2.Element> segts=((org.jdom2.Element)nodes.get(i)).getChildren("segment");
+	    	   
+	    	  for (int j = 0; j < segts.size(); j++) {		
+				
+	    		 //Pour chaque segments on récupère la liste des éléments
+	    		   List<org.jdom2.Element> field=((org.jdom2.Element)segts.get(j)).getChildren("field");
+	    		   
+	    		 ArrayList<org.bollore.edi.Element> elements = new ArrayList<org.bollore.edi.Element>();  
+				 
+	    		 for (int l = 0; l < field.size(); l++) {
+					 
+					 List<org.jdom2.Element> documentation=((org.jdom2.Element)field.get(l)).getChildren("documentation");
+					 				 
+					 String doc=(documentation.size()>0)?documentation.get(0).getText():null;
+					 
+						 // Je récupère la doc de l'élément
+						 
+						 List<org.jdom2.Element> component=((org.jdom2.Element)field.get(l)).getChildren("component");
+						 ArrayList<Component> components=new ArrayList<Component>();
+						 // On travaille avec un élément qui possède des composants
+						 if(component.size()>0){						 
+							 
+							 for (int m = 0; m < component.size(); m++) {
+								 
+								 components.add(new Component(((org.jdom2.Element)component.get(m)).getAttributeValue("dataType"), ((org.jdom2.Element)component.get(m)).getAttributeValue("maxLength"),((org.jdom2.Element)component.get(m)).getAttributeValue("minLength"),
+										 "true".equals(((org.jdom2.Element)component.get(m)).getAttributeValue("required")),"true".equals(((org.jdom2.Element)component.get(m)).getAttributeValue("truncatable")), ((org.jdom2.Element)component.get(m)).getAttributeValue("xmltag"),
+										 (String)((org.jdom2.Element)component.get(m)).getChildren("documentation").get(0).getText()));							
+							}						 
+							 
+							// On travaille avec un élément qui ne possède pas de composants 
+						 } else {
+						 
+						 
+						 }					 
+	
+						 elements.add(new org.bollore.edi.Element(((org.jdom2.Element)field.get(l)).getAttributeValue("nodeTypeRef"),
+								 "true".equals(((org.jdom2.Element)field.get(l)).getAttributeValue("required")),
+								 "true".equals(((org.jdom2.Element)field.get(l)).getAttributeValue("truncatable")),
+								 ((org.jdom2.Element)field.get(l)).getAttributeValue("xmltag"),
+								 doc,
+								 components));	
+				 }
+				 
+				segments.put(((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode"),
+						new org.bollore.edi.Segment(((org.jdom2.Element)segts.get(j)).getAttributeValue("xmltag"),
+								((org.jdom2.Element)segts.get(j)).getAttributeValue("segcode"),
+								Integer.parseInt(((org.jdom2.Element)segts.get(j)).getAttributeValue("minOccurs")),
+								Integer.parseInt(((org.jdom2.Element)segts.get(j)).getAttributeValue("maxOccurs")),
+								((org.jdom2.Element)segts.get(j)).getAttributeValue("description"),
+								elements,new ArrayList<Segment>())					
+						);		 
+				 
+	    	   }
+	
+	
+	       }        
+	    }
+	    catch(JDOMException  jdome){
+	    	jdome.printStackTrace();
+			} 
+		catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+		
+		return segments;		
 	}
 	
 	public void BuildEdifactSegments()
@@ -237,11 +294,11 @@ public class Edifact {
 		org.jdom2.Element racine;
 		org.bollore.edi.Edifact edi;
 		ArrayList<org.bollore.edi.Segment> result 	= new ArrayList<org.bollore.edi.Segment>();
-		ArrayList<org.bollore.edi.Segment> segments = new ArrayList<org.bollore.edi.Segment>();
+		ArrayList<org.bollore.edi.Segment> structures = new ArrayList<org.bollore.edi.Segment>();
 		
 		try 
 		{			
-			HashMap<String,org.bollore.edi.Segment> segments_definition = Edifact.buildEDISegmentDefinition(this.edi_year_version,this.edi_letter_version);
+			HashMap<String, org.bollore.edi.Segment> segments = this.buildEDISegmentDefinition(this.edi_year_version, this.edi_letter_version);
 			
 			document = sxb.build("EDI_Definitions/D"+this.edi_year_version+this.edi_letter_version+"/"+this.edi_type+".xml");
 			
@@ -250,10 +307,10 @@ public class Edifact {
 			
 			for (int i = 0; i < nodes.size(); i++)
 			{
-				segments = buildSegment(new ArrayList<org.bollore.edi.Segment>(), nodes.get(i),this.edi_year_version,this.edi_letter_version);
+				structures = buildSegment(new ArrayList<org.bollore.edi.Segment>(), nodes.get(i),this.edi_year_version,this.edi_letter_version);
 				
-				for (int j = 0; j < segments.size(); j++) 
-					result.add(segments.get(j));		
+				for (int j = 0; j < structures.size(); j++) 
+					result.add(structures.get(j));		
 			}
 			
 //			for (int k = 0; k < result.size(); k++) 
@@ -273,11 +330,11 @@ public class Edifact {
 	}
 	
 	
-	public static ArrayList<org.bollore.edi.Segment> buildSegment( ArrayList<org.bollore.edi.Segment> segments, org.jdom2.Element node,String edi_year_version,String edi_letter_version)
+	public ArrayList<org.bollore.edi.Segment> buildSegment( ArrayList<org.bollore.edi.Segment> segments, org.jdom2.Element node,String edi_year_version,String edi_letter_version)
 	{
 		//ArrayList<org.bollore.edi.Segment> result = new ArrayList<org.bollore.edi.Segment>();
 		
-		HashMap<String,org.bollore.edi.Segment> segments_definition=Edifact.buildEDISegmentDefinition(edi_year_version,edi_letter_version);
+		HashMap<String,org.bollore.edi.Segment> segments_definition=Edifact.buildEDISegmentDefinition(edi_year_version, edi_letter_version);
 		List<org.jdom2.Element> nodes = node.getChildren();
 		
 		for (int i = 0; i < nodes.size(); i++) 
@@ -295,6 +352,7 @@ public class Edifact {
 
 		return segments;
 	}
+
 	
 	public void setValue(String element_path,ArrayList<String> values) throws EDIException{
 
@@ -418,45 +476,5 @@ public class Edifact {
 	}
 		
 
-	public static void main(String[] args) throws JDOMException, IOException, EDIException
-	{
-		Edifact edi_cuscar=new Edifact("C:/Temp/Cuscar_Test.edi","CUSCAR","95","B","MOL32");
 		
-		edi_cuscar.BuildEdifactSegments();
-		//edi_cuscar.printStructure();
-		
-		
-		edi_cuscar.buildHashSegment();
-//		System.out.println(edi_cuscar.getSegment("Tata").name);
-		
-//		edi_cuscar.buildHashElement("BGM");
-		
-		org.bollore.edi.Element element=edi_cuscar.getElement("DTM/C507");
-		ArrayList<String> values=new ArrayList<>();
-		values.add("3");
-		values.add("20140101");
-		values.add("102");
-		edi_cuscar.setValue("DTM/C507", values);
-		
-		org.bollore.edi.Element element2=edi_cuscar.getElement("DTM/C507");
-		ArrayList<String> values2=new ArrayList<>();
-		values2.add("4");
-		values2.add("20130101");
-		values2.add("107");
-		edi_cuscar.setValue("DTM/C507", values2);
-		
-		System.out.println(element.type_ref);
-		System.out.println(element.label);
-		System.out.println(element.value);
-		
-		
-		//edi_cuscar.InstantiateSegment("BGM/1004");
-		
-		System.out.println(edi_cuscar.segments.size());
-		for (int i = 0; i < edi_cuscar.segments.size(); i++) {
-			//edi_cuscar.segments.get(i).printSegment();
-		}
-		
-		edi_cuscar.printEDI();
-	}	
 }
