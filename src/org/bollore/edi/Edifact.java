@@ -445,16 +445,16 @@ public class Edifact {
 		values2.add("107");
 		edi_cuscar.setValue("DTM/C507", values2);
 		
-//		System.out.println(element.type_ref);
-//		System.out.println(element.label);
-//		System.out.println(element.value);
+		System.out.println(element.type_ref);
+		System.out.println(element.label);
+		System.out.println(element.value);
 		
 		
 		//edi_cuscar.InstantiateSegment("BGM/1004");
 		
 		System.out.println(edi_cuscar.segments.size());
 		for (int i = 0; i < edi_cuscar.segments.size(); i++) {
-			edi_cuscar.segments.get(i).printSegment();
+			//edi_cuscar.segments.get(i).printSegment();
 		}
 		
 		edi_cuscar.printEDI();
