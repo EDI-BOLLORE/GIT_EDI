@@ -201,7 +201,7 @@ public class Edifact {
 	}
 	
 
-	public HashMap<String, org.bollore.edi.Segment> buildEDISegmentDefinition(String edi_year_version,String edi_letter_version)
+	public static HashMap<String, org.bollore.edi.Segment> buildEDISegmentDefinition(String edi_year_version,String edi_letter_version)
 	{
 		SAXBuilder sxb = new SAXBuilder();
 		Document document;
@@ -478,3 +478,4 @@ public class Edifact {
 
 		
 }
+
