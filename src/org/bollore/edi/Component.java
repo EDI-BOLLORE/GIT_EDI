@@ -7,7 +7,7 @@ import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-public class Component {
+public class Component implements Cloneable{
 	
 	String dataType;
 	String maxLength; 
@@ -39,6 +39,21 @@ public class Component {
 	public void setValue(String _Value)
 	{
 		this.value = _Value;		
+	}
+	
+	public Component clone() {
+		Component o = null;
+		try {
+			// On récupère l'instance à renvoyer par l'appel de la 
+			// méthode super.clone()
+			o = (Component)super.clone();
+		} catch(CloneNotSupportedException cnse) {
+			// Ne devrait jamais arriver car nous implémentons 
+			// l'interface Cloneable
+			cnse.printStackTrace(System.err);
+		}
+		// on renvoie le clone
+		return o;
 	}
 	
 	public void printComponent(){

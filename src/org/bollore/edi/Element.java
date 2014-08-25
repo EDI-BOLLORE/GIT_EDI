@@ -3,7 +3,7 @@ package org.bollore.edi;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Element {
+public class Element implements Cloneable{
 	
 	String type_ref;
 	Boolean required;
@@ -40,6 +40,21 @@ public class Element {
 		this.label = label;
 		this.documentation = documentation;
 		this.components = components;
+	}
+	
+	public Element clone() {
+		Element o = null;
+		try {
+			// On récupère l'instance à renvoyer par l'appel de la 
+			// méthode super.clone()
+			o = (Element)super.clone();
+		} catch(CloneNotSupportedException cnse) {
+			// Ne devrait jamais arriver car nous implémentons 
+			// l'interface Cloneable
+			cnse.printStackTrace(System.err);
+		}
+		// on renvoie le clone
+		return o;
 	}
 	
 	
