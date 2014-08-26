@@ -345,7 +345,12 @@ public class Edifact {
 						
 						String value2=(component.value==null)?"":component.value;
 				
-						this.printwriter.append(this.component_separator +value2 );
+						if(k==0){
+							this.printwriter.append(this.element_separator +value2 );
+						} else {
+							this.printwriter.append(this.component_separator +value2 );
+						}
+						
 
 					}
 				
