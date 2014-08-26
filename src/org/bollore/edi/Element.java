@@ -11,7 +11,6 @@ public class Element implements Cloneable{
 	String label;
 	String documentation;
 	String value;
-	ArrayList<String> values;
 	ArrayList<org.bollore.edi.Component> components;
 
 	//
@@ -42,30 +41,13 @@ public class Element implements Cloneable{
 		this.components = components;
 	}
 	
-	public Element clone() {
-		Element o = null;
-		try {
-			// On récupère l'instance à renvoyer par l'appel de la 
-			// méthode super.clone()
-			o = (Element)super.clone();
-		} catch(CloneNotSupportedException cnse) {
-			// Ne devrait jamais arriver car nous implémentons 
-			// l'interface Cloneable
-			cnse.printStackTrace(System.err);
-		}
-		// on renvoie le clone
-		return o;
-	}
-	
-	
-
-	public org.bollore.edi.Component getComponent_Xav(String _LabelComponent)
+	public org.bollore.edi.Component getComponent(String _LabelComponent)
 	{
 		org.bollore.edi.Component component = null;
 		for (int i = 0; i < this.components.size(); i++) 
 		{
 			if (this.components.get(i).label.equals(_LabelComponent))
-				component = this.components.get(i);
+				component = (org.bollore.edi.Component)this.components.get(i).clone();
 		}
 		
 		return component;
@@ -91,14 +73,81 @@ public class Element implements Cloneable{
 		this.value = _Value;		
 	}
 	
-	public void addValue(ArrayList<String> _Values)
+	public void addValue(ArrayList<String> _Values) throws EDIException
 	{
+		if(_Values.size()!=this.components.size()){
+			
+			throw new EDIException("Le nombre de valeurs à affecter à l'élément ("+this.components.size()+") ne correspond pas au nombre de composants ("+_Values.size()+")");
+		} else{
+		
 		for (int i = 0; i < this.components.size(); i++) 
 		{
-			this.components.get(i).setValue(_Values.get(i));
+			((org.bollore.edi.Component)this.components.get(i)).setValue(_Values.get(i));
 		}
-		this.values = _Values;		
+		
+		}
+		//this.values = _Values;		
 	}
+	
+	public org.bollore.edi.Element clone() {
+		org.bollore.edi.Element result=null;
+		
+		try {
+			
+			ArrayList<Component> components=new ArrayList<Component>();
+			result=(org.bollore.edi.Element)super.clone();
+			
+			result.type_ref=this.type_ref;
+			result.required=this.required;
+			result.truncatable=this.truncatable;
+			result.label=this.label;
+			result.documentation=this.documentation;
+			result.value=this.value;
+			
+			for (int i = 0; i < this.components.size(); i++) {
+				components.add(this.components.get(i).clone());
+			}
+			
+			result.components=components;
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static void main(String[] args){
+		
+		ArrayList<Component> components = new ArrayList<Component>();
+		
+		Component c1=new Component("datatype", "1", "2", true, true, "label", "documentation","value1");
+		Component c2=new Component("datatype2", "1", "2", false, false, "label2", "documentation2","value2");
+		
+		components.add(c1);
+		components.add(c2);
+				
+		Element original=new Element("type_ref",true,true,"label","documentation", components);
+		
+		Element cloned=(Element)original.clone();
+		
+//		System.out.println(cloned.type_ref);
+//		
+//		System.out.println(original!=cloned); // doit renvoyer true
+//		System.out.println(original.getClass() == cloned.getClass()); // doit renvoyer true
+//		System.out.println(original.equals(cloned)); // doit renvoyer false
+		
+		ArrayList<Component> original_components=original.components;
+		ArrayList<Component> cloned_components=cloned.components;
+		
+		for (int i = 0; i < original_components.size(); i++) {
+			System.out.println(original_components.get(i)!=cloned_components.get(i));
+			System.out.println(original_components.get(i).getClass() == cloned_components.get(i).getClass());
+			System.out.println(original_components.get(i).equals(cloned_components.get(i)));
+		}
+		
+		
+	}
+	
+
 
 	
 	

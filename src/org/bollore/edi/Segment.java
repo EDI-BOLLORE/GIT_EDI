@@ -1,20 +1,12 @@
 package org.bollore.edi;
 
+import org.jdom2.JDOMException;
 
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.xml.xpath.XPathExpressionException;
-
-import org.jdom2.Attribute;
-import org.jdom2.Document;
-import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
 
 public class Segment implements Cloneable{
 
@@ -23,11 +15,21 @@ public class Segment implements Cloneable{
 	Integer min_occurence;
 	Integer max_occurence;
 	String description;
-	//Integer order;
 	ArrayList<org.bollore.edi.Element> elements;
 	ArrayList<org.bollore.edi.Segment> segments;
 	
-
+	//Constructeur par copie
+//	public Segment(Segment segment) {
+//		super();
+//		this.name = segment.name;
+//		this.code = segment.code;
+//		this.min_occurence = segment.min_occurence;
+//		this.max_occurence = segment.max_occurence;
+//		this.description = segment.description;
+//		this.elements = segment.elements;
+//		this.segments = segment.segments;
+//	}
+	
 	public Segment() {
 		super();
 		this.name = "";
@@ -67,63 +69,84 @@ public class Segment implements Cloneable{
 	}
 	
 	
-	public Segment clone() {
-		Segment o = new Segment();
+	public org.bollore.edi.Segment clone() {
+		org.bollore.edi.Segment result=null;
+		
 		try {
-			// On récupère l'instance à renvoyer par l'appel de la 
-			// méthode super.clone()
-			o = (Segment)super.clone();
+			ArrayList<org.bollore.edi.Element> elements=new ArrayList<org.bollore.edi.Element>();
+			ArrayList<org.bollore.edi.Segment> segments=new ArrayList<org.bollore.edi.Segment>();
 			
-			//ArrayList<org.bollore.edi.Element> cur_elements=this.elements;
-			//ArrayList<org.bollore.edi.Segment> cur_segments=this.segments;
+			result=(org.bollore.edi.Segment)super.clone();
+			result.code=this.code;
+			result.min_occurence=this.min_occurence;
+			result.max_occurence=this.max_occurence;
+			result.description=this.description;
 			
-			for (int i = 0; i < this.segments.size(); i++) {
-				o.segments.add(this.segments.get(i).clone());
-				//=this.segments.get(i).clone();
-				
-				//(Segment)cur_segments.get(i)=o.segments.get(i).clone();
-				
+			//On clone les éléments
+			for (int i = 0; i < this.elements.size(); i++) {
+				elements.add(this.elements.get(i).clone());
 			}
 			
-			for (int j = 0; j < this.elements.size(); j++) {
-				o.elements.add(this.elements.get(j).clone());
-				
+			//On clone les segments
+			for (int j = 0; j < this.segments.size(); j++) {
+				segments.add(this.segments.get(j).clone());
 			}
+			result.elements=elements;
+			result.segments=segments;
 			
-			
-			
-			/**
-			 * 	String name;
-	String code;
-	Integer min_occurence;
-	Integer max_occurence;
-	String description;
-	//Integer order;
-	ArrayList<org.bollore.edi.Element> elements;
-	ArrayList<org.bollore.edi.Segment> segments;
-			 * 
-			 */
-		} catch(CloneNotSupportedException cnse) {
-			// Ne devrait jamais arriver car nous implémentons 
-			// l'interface Cloneable
-			cnse.printStackTrace(System.err);
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
 		}
-		// on renvoie le clone
-		return o;
+		return result;
 	}
 	
-
-	public org.bollore.edi.Element getElement_Xav(String _CodeElement)
+	public org.bollore.edi.Segment setValue(ArrayList<String> values) throws EDIException{
+		
+		
+		// Si le segment ne possède que des éléments simples
+		
+		// Si le segment possède des éléments		
+		if(this.elements.size()>0){
+			// L'élément possède des composants
+			for (int i = 0; i < this.elements.size(); i++) {
+				org.bollore.edi.Element element=this.elements.get(i);
+				
+				for (int j = 0; j < element.components.size(); j++) {
+					element.components.get(j).value=values.get(j);
+				}
+				//this.elements.get(i).value=values.get(i);
+				
+			}
+		}
+			return this;
+	}
+	
+	
+	public org.bollore.edi.Element getElement(String _CodeElement)
 	{
 		org.bollore.edi.Element element = new org.bollore.edi.Element();
 		for (int i = 0; i < this.elements.size(); i++) 
 		{
-			if (this.elements.get(i).type_ref.equals(_CodeElement))
-				element = this.elements.get(i).clone();
+			if (this.elements.get(i).label.equals(_CodeElement))
+				System.out.println("OK");
+				element = (org.bollore.edi.Element)this.elements.get(i).clone();
 		}
 		
 		return element;
 	}
+
+//	public org.bollore.edi.Element getElement(String _CodeElement)
+//	{
+//		org.bollore.edi.Element element = new org.bollore.edi.Element();
+//		for (int i = 0; i < this.elements.size(); i++) 
+//		{
+//			if (this.elements.get(i).label.equals(_CodeElement))
+//				System.out.println("OK");
+//				element = (org.bollore.edi.Element)this.elements.get(i).clone();
+//		}
+//		
+//		return element;
+//	}
 	
 	
 	public void printSegment()
@@ -144,9 +167,14 @@ public class Segment implements Cloneable{
 	
 	public static void main(String[] args) throws XPathExpressionException, JDOMException, IOException{
 		
-
+		Segment original=new Segment("name","code",1,2,"description");
+		Segment cloned=(Segment)original.clone();
 		
+		System.out.println(original.name+"   "+cloned.name);
 		
+		System.out.println(original!=cloned); // doit renvoyer true
+		System.out.println(original.getClass() == cloned.getClass()); // doit renvoyer true
+		System.out.println(original.equals(cloned)); // doit renvoyer false
 
 	}
  
