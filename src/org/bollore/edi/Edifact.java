@@ -96,79 +96,108 @@ public class Edifact {
 	public static void main(String[] args) throws JDOMException, IOException, EDIException
 	{
 		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", "CUSCAR", "95", "B", "MOL32");
-		
-//		System.out.println("structure "+edi_cuscar.structure.size());
-//		
-//		for (int i = 0; i < edi_cuscar.structure.size(); i++) {
-//			System.out.println(((org.bollore.edi.Segment)edi_cuscar.structure.get(i)).code);
-//		}
 
-		ArrayList<String> input=new ArrayList<String>();
+		ArrayList<String> rff1=new ArrayList<String>();
 		
-		input.add("A");
-		input.add("B");
-		input.add("C");
-		input.add("D");
+		rff1.add("A");
+		rff1.add("B");
+		rff1.add("C");
+		rff1.add("D");
 		
-		ArrayList<String> input2=new ArrayList<String>();
+		ArrayList<String> rff2=new ArrayList<String>();
 		
-		input2.add("E");
-		input2.add("F");
-		input2.add("G");
-		input2.add("H");
+		rff2.add("E");
+		rff2.add("F");
+		rff2.add("G");
+		rff2.add("H");
 
-		ArrayList<String> input3=new ArrayList<String>();
+		ArrayList<String> dtm=new ArrayList<String>();
 		
-		input3.add("I");
-		input3.add("J");
-		input3.add("K");
+		dtm.add("I");
+		dtm.add("J");
+		dtm.add("K");
 		
-		// On récupère le segment depuis la structure
-		org.bollore.edi.Segment segment = edi_cuscar.getSegment("DTM").clone();
-		// On affecte les valeurs à ce segment
-		segment=segment.setValue(input3);
-		// On ajoute ce segment à l'edifact
-		edi_cuscar.segments.add(segment);
+		ArrayList<String> nad1=new ArrayList<String>();
 		
-		// On récupère le segment depuis la structure
-		org.bollore.edi.Segment segment2 = edi_cuscar.getSegment("RFF").clone();
-		// On affecte les valeurs à ce segment
-		segment2=segment2.setValue(input);
-		// On ajoute ce segment à l'edifact
-		edi_cuscar.segments.add(segment2);
+		nad1.add("NAD1");
 		
-		// On récupère le segment depuis la structure
-		org.bollore.edi.Segment segment3 = edi_cuscar.getSegment("RFF").clone();
-		// On affecte les valeurs à ce segment
-		segment3=segment3.setValue(input2);
-		// On ajoute ce segment à l'edifact
-		edi_cuscar.segments.add(segment3);
+
+		ArrayList<String> nad2=new ArrayList<String>();
 		
+		nad2.add("NAD21");
+		nad2.add("NAD22");
+		nad2.add("NAD23");
 		
+		edi_cuscar.setValueSegment(1,"DTM", dtm, true);
+		edi_cuscar.setValueSegment(1,"RFF", rff1, true);
+		edi_cuscar.setValueSegment(1,"RFF", rff2, true);
+		edi_cuscar.setValueSegment(1,"NAD", nad1, true);
+		edi_cuscar.setValueSegment(2,"NAD", nad2, false);
 		
-		
-		
-//		org.bollore.edi.Segment segment3 = edi_cuscar.getSegment("DTM");
-//		edi_cuscar.segments.add(segment3.clone());
-//		
-//		org.bollore.edi.Segment segment2 = edi_cuscar.getSegment("RFF");
-//		edi_cuscar.segments.add(segment2);
-		
-		
-		
-		
-//		segment.getElement("C506").addValue(input);
-//		segment2.getElement("C506").addValue(input2);
-//		segment3.getElement("C507").addValue(input3);
-		
-		
-		
-//		segment.printSegment();
-//		segment2.printSegment();
-//		segment3.printSegment();
-//		
-//		
 		edi_cuscar.print();
+	}
+	
+	public void setValueSegment(Integer element_rank,String segment_name,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
+		
+		// On récupère le segment à traiter
+		org.bollore.edi.Segment segment=null;
+		
+		// Si l'on doit créer un nouveau segment
+		if(create_new_segment){
+			segment = this.getSegment(segment_name).clone();
+		// Sinon on récupère le segment depuis la structure que l'on ajoutera ensuite à l'instance
+		} else {
+			segment=this.segments.get(segments.size()-1);
+		}
+		
+		/**
+		 * On réalise des tests sur la cohérence des paramètres en entrée
+		 */
+		
+		
+		if(element_rank<=0){
+				throw new EDIException("Le rang de l'élément ("+element_rank+") d'un segment doit être strictement positif");
+			}
+			
+			else if(element_rank>segment.elements.size()){
+				throw new EDIException("Le rang de l'élément ("+element_rank+") est supérieur au nombre d'élément du segment");
+			}
+			
+			else {
+
+				
+				org.bollore.edi.Element element=segment.elements.get(element_rank-1);
+				
+				// Si l'arraylist ne comporte qu'un seul élément, on doit affecter la valeur à l'élément et non au composant
+				if(values.size()==1&&element.components.size()==0){
+					element.value=values.get(0);
+				}
+				
+				else if(element.components.size()!=values.size()){
+					throw new EDIException("Le nombre de valeur ("+values.size()+") à affecter au segment "+segment.code+"pour le "+element_rank+"ème élément ne correspond pas au nombre de composants "+element.components.size());
+				}
+				else{
+					
+					// Si l'élément est simple et non composé de composants
+					if(element.components.size()==0){
+						
+						// Catcher le fait que l'arraylist puisse contenir plusieurs éléments
+						element.value=values.get(0);
+					} else {
+						for (int j = 0; j < element.components.size(); j++) {
+							element.components.get(j).value=values.get(j);
+						}		
+					}				
+				}
+				
+				if(create_new_segment){
+					this.segments.add(segment);
+				} else {
+					
+				}
+				
+			}
+	
 	}
 	
 	public org.bollore.edi.Element getElement(String element_path) throws EDIException{
@@ -302,7 +331,10 @@ public class Edifact {
 					{
 						org.bollore.edi.Component component = components.get(k);
 						
+						if(component.value!=null){						
 						this.printwriter.append(this.component_separator + component.value);
+						//this.printwriter.append("\n");
+							}
 					}
 				
 				}

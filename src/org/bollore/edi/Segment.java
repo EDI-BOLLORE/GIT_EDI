@@ -100,26 +100,47 @@ public class Segment implements Cloneable{
 		return result;
 	}
 	
-	public org.bollore.edi.Segment setValue(ArrayList<String> values) throws EDIException{
-		
-		
-		// Si le segment ne possède que des éléments simples
-		
-		// Si le segment possède des éléments		
-		if(this.elements.size()>0){
-			// L'élément possède des composants
-			for (int i = 0; i < this.elements.size(); i++) {
-				org.bollore.edi.Element element=this.elements.get(i);
-				
-				for (int j = 0; j < element.components.size(); j++) {
-					element.components.get(j).value=values.get(j);
-				}
-				//this.elements.get(i).value=values.get(i);
-				
-			}
-		}
-			return this;
-	}
+//	public org.bollore.edi.Segment setValue(Integer element_rank,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
+//		
+//		
+//		
+//		if(element_rank<=0){
+//			throw new EDIException("Le rang de l'élément ("+element_rank+") d'un segment doit être strictement positif");
+//		}
+//		
+//		else if(element_rank>this.elements.size()){
+//			throw new EDIException("Le rang de l'élément ("+element_rank+") est supérieur au nombre d'élément du segment");
+//		}
+//		
+//		else {
+//			
+//			org.bollore.edi.Element element=this.elements.get(element_rank-1);
+//			
+//			// Si l'arraylist ne comporte qu'un seul élément, on doit affecter la valeur à l'élément et non au composant
+//			if(values.size()==1&&element.components.size()==0){
+//				element.value=values.get(0);
+//			}
+//			
+//			else if(element.components.size()!=values.size()){
+//				throw new EDIException("Le nombre de valeur ("+values.size()+") à affecter au segment "+this.code+"pour le "+element_rank+"ème élément ne correspond pas au nombre de composants "+element.components.size());
+//			}
+//			else{
+//				
+//				// Si l'élément est simple et non composé de composants
+//				if(element.components.size()==0){
+//					
+//					// Catcher le fait que l'arraylist puisse contenir plusieurs éléments
+//					element.value=values.get(0);
+//				} else {
+//					for (int j = 0; j < element.components.size(); j++) {
+//						element.components.get(j).value=values.get(j);
+//					}		
+//				}				
+//			}
+//			
+//		}
+//			return this;
+//	}
 	
 	
 	public org.bollore.edi.Element getElement(String _CodeElement)
