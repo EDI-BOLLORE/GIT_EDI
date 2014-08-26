@@ -128,23 +128,24 @@ public class Edifact {
 		nad2.add("NAD22");
 		nad2.add("NAD23");
 		
-		edi_cuscar.setValueSegment(1,"DTM", dtm, true);
-		edi_cuscar.setValueSegment(1,"RFF", rff1, true);
-		edi_cuscar.setValueSegment(1,"RFF", rff2, true);
-		edi_cuscar.setValueSegment(1,"NAD", nad1, true);
-		edi_cuscar.setValueSegment(2,"NAD", nad2, false);
+		edi_cuscar.setValueSegment("DTM/C507", dtm, true);
+		edi_cuscar.setValueSegment("RFF/C506", rff1, true);
+		edi_cuscar.setValueSegment("RFF/C506", rff2, true);
+		edi_cuscar.setValueSegment("NAD/3035", nad1, true);
+		edi_cuscar.setValueSegment("NAD/C082", nad2, false);
 		
 		edi_cuscar.print();
+		
 	}
 	
-	public void setValueSegment(Integer element_rank,String segment_name,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
+	public void setValueSegment(String element_path,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
 		
 		// On récupère le segment à traiter
 		org.bollore.edi.Segment segment=null;
 		
 		// Si l'on doit créer un nouveau segment
 		if(create_new_segment){
-			segment = this.getSegment(segment_name).clone();
+			segment = this.getSegment(element_path.split("/")[0]).clone();
 		// Sinon on récupère le segment depuis la structure que l'on ajoutera ensuite à l'instance
 		} else {
 			segment=this.segments.get(segments.size()-1);
@@ -155,18 +156,11 @@ public class Edifact {
 		 */
 		
 		
-		if(element_rank<=0){
-				throw new EDIException("Le rang de l'élément ("+element_rank+") d'un segment doit être strictement positif");
-			}
-			
-			else if(element_rank>segment.elements.size()){
-				throw new EDIException("Le rang de l'élément ("+element_rank+") est supérieur au nombre d'élément du segment");
-			}
-			
-			else {
-
-				
-				org.bollore.edi.Element element=segment.elements.get(element_rank-1);
+				/**
+				 * Il faut implémenter une méthode permettant de récupérer un élément à partir de son nom
+				 */
+				System.out.println(segment.code+"  "+element_path.split("/")[1]);
+				org.bollore.edi.Element element=segment.elements.get(this.getElementRank(segment.code, element_path.split("/")[1]));
 				
 				// Si l'arraylist ne comporte qu'un seul élément, on doit affecter la valeur à l'élément et non au composant
 				if(values.size()==1&&element.components.size()==0){
@@ -174,7 +168,7 @@ public class Edifact {
 				}
 				
 				else if(element.components.size()!=values.size()){
-					throw new EDIException("Le nombre de valeur ("+values.size()+") à affecter au segment "+segment.code+"pour le "+element_rank+"ème élément ne correspond pas au nombre de composants "+element.components.size());
+					throw new EDIException("Le nombre de valeur ("+values.size()+") à affecter à l'élément "+element.code+"pour le segment "+segment.code+" ne correspond pas au nombre de composants "+element.components.size());
 				}
 				else{
 					
@@ -196,8 +190,25 @@ public class Edifact {
 					
 				}
 				
-			}
+			
 	
+	}
+	
+	public Integer getElementRank(String segment_name,String element_code){
+		Integer result=null;
+		
+		org.bollore.edi.Segment segment=this.structure.get(segments_rank.get(segment_name));
+		
+		ArrayList<org.bollore.edi.Element> elements=segment.elements;
+		
+		for (int i = 0; i < elements.size(); i++) {
+			if(elements.get(i).code.equals(element_code)){
+				result=i;
+			}
+		}		
+		
+		return result;
+		
 	}
 	
 	public org.bollore.edi.Element getElement(String element_path) throws EDIException{
@@ -322,26 +333,28 @@ public class Edifact {
 				//S'il s'agit d'un élément simple on l'écrit dans le fichier
 				if(components.size() == 0)
 				{
-					this.printwriter.append(element_separator + element.value);
+					String value=(element.value==null)?"":element.value;
+					this.printwriter.append(element_separator + value);
 				}
 				// L'élément possède des composants
 				else 
 				{
-					for (int k = 0; k < components.size(); k++) 
+					for (int k = 0; k < components.size(); k++)
 					{
 						org.bollore.edi.Component component = components.get(k);
 						
-						if(component.value!=null){						
-						this.printwriter.append(this.component_separator + component.value);
-						//this.printwriter.append("\n");
-							}
+						String value2=(component.value==null)?"":component.value;
+				
+						this.printwriter.append(this.component_separator +value2 );
+
 					}
 				
 				}
 				
-				this.printwriter.append("\n");
-				this.nb_segment++;
+				
 			}
+			this.printwriter.append(this.segment_separator+"\n");
+			this.nb_segment++;
 		}
 	}
 	
@@ -481,7 +494,7 @@ public class Edifact {
 			
 			for (int i = 0; i < elements.size(); i++) {
 				//System.out.println(i+"   "+((org.bollore.edi.Element)elements.get(i)).type_ref);
-				result.put(((org.bollore.edi.Element)elements.get(i)).type_ref, i);
+				result.put(((org.bollore.edi.Element)elements.get(i)).code, i);
 				//result.put(((org.bollore.edi.Element)elements.get(i)).clone().type_ref, i);
 			}
 		

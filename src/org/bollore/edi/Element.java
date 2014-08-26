@@ -5,7 +5,7 @@ import java.util.HashSet;
 
 public class Element implements Cloneable{
 	
-	String type_ref;
+	String code;
 	Boolean required;
 	Boolean truncatable;
 	String label;
@@ -21,7 +21,7 @@ public class Element implements Cloneable{
 	
 	public Element(){
 		super();
-		this.type_ref = null;
+		this.code = null;
 		this.required = null;
 		this.truncatable = null;
 		this.label = null;
@@ -30,10 +30,10 @@ public class Element implements Cloneable{
 		
 	}
 	
-	public Element(String type_ref, Boolean required, Boolean truncatable,
+	public Element(String code, Boolean required, Boolean truncatable,
 			String label, String documentation,ArrayList<Component> components) {
 		super();
-		this.type_ref = type_ref;
+		this.code = code;
 		this.required = required;
 		this.truncatable = truncatable;
 		this.label = label;
@@ -57,7 +57,7 @@ public class Element implements Cloneable{
 	
 	public void printElement(){
 		
-		System.out.println("\n\ttype_ref ="+this.type_ref+" label = "+this.label+" value = "+this.value);
+		System.out.println("\n\ttype_ref ="+this.code+" label = "+this.label+" value = "+this.value);
 		
 		System.out.println("\tL'élément possède les composants suivants : \n");
 		
@@ -97,7 +97,7 @@ public class Element implements Cloneable{
 			ArrayList<Component> components=new ArrayList<Component>();
 			result=(org.bollore.edi.Element)super.clone();
 			
-			result.type_ref=this.type_ref;
+			result.code=this.code;
 			result.required=this.required;
 			result.truncatable=this.truncatable;
 			result.label=this.label;
