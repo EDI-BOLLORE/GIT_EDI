@@ -159,7 +159,7 @@ public class Edifact {
 				/**
 				 * Il faut implémenter une méthode permettant de récupérer un élément à partir de son nom
 				 */
-				System.out.println(segment.code+"  "+element_path.split("/")[1]);
+				
 				org.bollore.edi.Element element=segment.elements.get(this.getElementRank(segment.code, element_path.split("/")[1]));
 				
 				// Si l'arraylist ne comporte qu'un seul élément, on doit affecter la valeur à l'élément et non au composant
