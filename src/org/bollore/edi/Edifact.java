@@ -135,12 +135,36 @@ public class Edifact {
 		edi_cuscar.setValueElement("NAD/C082", nad2, false);
 		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", nad2, true);
 		
-		//edi_cuscar.printEDI();
+		edi_cuscar.printEDI();
 		
 		edi_cuscar.print();
 		
 		
 		//System.out.println(edi_cuscar.getElement("GRP2/GRP3/RNG/C280",null).code);	
+	}
+	
+	
+	public void setValueElement(String element_path,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
+		// On récupère le segment à traiter
+		org.bollore.edi.Segment segment=null;
+		
+		// Si l'on doit créer un nouveau segment
+		if(create_new_segment){
+			// Si l'on doit créé le segment, on l'importe depuis la structure et on le met dans segments
+			this.segments.add(this.getSegment(element_path.split("/")[0]).clone());
+		} 
+		// Sinon on récupère le segment depuis la structure que l'on ajoutera ensuite à l'instance
+		
+		// On récupère le dernier segment en cours de traitement de l'EDI
+		segment=this.segments.get(segments.size()-1);
+		
+		// On récupère l'élément que l'on souhaite instancier
+		org.bollore.edi.Element element=this.getElement(element_path,null);
+		
+		for (int i = 0; i < element.components.size(); i++) {
+			element.components.get(i).value=values.get(i);
+		}
+		segment.elements.add(element);
 	}
 	
 	
@@ -197,36 +221,7 @@ public class Edifact {
 			}
 		return result;
 		
-	}
-	
-	public void setValueElement(String element_path,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
-		// On récupère le segment à traiter
-		org.bollore.edi.Segment segment=null;
-		
-		// Si l'on doit créer un nouveau segment
-		if(create_new_segment){
-			// Si l'on doit créé le segment, on l'importe depuis la structure et on le met dans segments
-			this.segments.add(this.getSegment(element_path.split("/")[0]).clone());
-		} 
-		// Sinon on récupère le segment depuis la structure que l'on ajoutera ensuite à l'instance
-		
-		// On récupère le dernier segment en cours de traitement de l'EDI
-		segment=this.segments.get(segments.size()-1);
-		
-		// On récupère l'élément que l'on souhaite instancier
-		org.bollore.edi.Element element=this.getElement(element_path,null);
-		
-		for (int i = 0; i < element.components.size(); i++) {
-			element.components.get(i).value=values.get(i);
-			
-			//System.out.println("element.components.get(i).value = "+element.components.get(i).value);
-
-		}
-		
-	
-	}
-	
-	
+	}	
 
 	public void BuildStructureSegment()
 	{
