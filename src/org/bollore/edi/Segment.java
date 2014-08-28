@@ -60,6 +60,22 @@ public class Segment implements Cloneable{
 		this.segments = segments;
 	}
 	
+	public Boolean isEmpty(){
+		Boolean result=true;
+		
+		for (int i = 0; i < this.elements.size(); i++) {
+			if(this.elements.get(i).value!=null){
+				result=false;
+			}
+		}
+		for (int j = 0; j < this.segments.size(); j++) {
+			//return
+		}
+		
+		return result;
+		
+	}
+	
 	
 	public org.bollore.edi.Segment clone() {
 		org.bollore.edi.Segment result=null;
