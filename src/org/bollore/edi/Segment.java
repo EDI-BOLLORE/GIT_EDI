@@ -1,5 +1,7 @@
 package org.bollore.edi;
 
+
+
 import org.jdom2.JDOMException;
 
 import java.io.IOException;
@@ -17,18 +19,8 @@ public class Segment implements Cloneable{
 	String description;
 	ArrayList<org.bollore.edi.Element> elements;
 	ArrayList<org.bollore.edi.Segment> segments;
-	
-	//Constructeur par copie
-//	public Segment(Segment segment) {
-//		super();
-//		this.name = segment.name;
-//		this.code = segment.code;
-//		this.min_occurence = segment.min_occurence;
-//		this.max_occurence = segment.max_occurence;
-//		this.description = segment.description;
-//		this.elements = segment.elements;
-//		this.segments = segment.segments;
-//	}
+
+
 	
 	public Segment() {
 		super();
@@ -100,48 +92,6 @@ public class Segment implements Cloneable{
 		return result;
 	}
 	
-//	public org.bollore.edi.Segment setValue(Integer element_rank,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
-//		
-//		
-//		
-//		if(element_rank<=0){
-//			throw new EDIException("Le rang de l'élément ("+element_rank+") d'un segment doit être strictement positif");
-//		}
-//		
-//		else if(element_rank>this.elements.size()){
-//			throw new EDIException("Le rang de l'élément ("+element_rank+") est supérieur au nombre d'élément du segment");
-//		}
-//		
-//		else {
-//			
-//			org.bollore.edi.Element element=this.elements.get(element_rank-1);
-//			
-//			// Si l'arraylist ne comporte qu'un seul élément, on doit affecter la valeur à l'élément et non au composant
-//			if(values.size()==1&&element.components.size()==0){
-//				element.value=values.get(0);
-//			}
-//			
-//			else if(element.components.size()!=values.size()){
-//				throw new EDIException("Le nombre de valeur ("+values.size()+") à affecter au segment "+this.code+"pour le "+element_rank+"ème élément ne correspond pas au nombre de composants "+element.components.size());
-//			}
-//			else{
-//				
-//				// Si l'élément est simple et non composé de composants
-//				if(element.components.size()==0){
-//					
-//					// Catcher le fait que l'arraylist puisse contenir plusieurs éléments
-//					element.value=values.get(0);
-//				} else {
-//					for (int j = 0; j < element.components.size(); j++) {
-//						element.components.get(j).value=values.get(j);
-//					}		
-//				}				
-//			}
-//			
-//		}
-//			return this;
-//	}
-	
 	
 	public org.bollore.edi.Element getElement(String _CodeElement)
 	{
@@ -155,19 +105,6 @@ public class Segment implements Cloneable{
 		
 		return element;
 	}
-
-//	public org.bollore.edi.Element getElement(String _CodeElement)
-//	{
-//		org.bollore.edi.Element element = new org.bollore.edi.Element();
-//		for (int i = 0; i < this.elements.size(); i++) 
-//		{
-//			if (this.elements.get(i).label.equals(_CodeElement))
-//				System.out.println("OK");
-//				element = (org.bollore.edi.Element)this.elements.get(i).clone();
-//		}
-//		
-//		return element;
-//	}
 	
 	
 	public void printSegment()
@@ -191,7 +128,7 @@ public class Segment implements Cloneable{
 		Segment original=new Segment("name","code",1,2,"description");
 		Segment cloned=(Segment)original.clone();
 		
-		System.out.println(original.name+"   "+cloned.name);
+		//System.out.println(original.name+"   "+cloned.name);
 		
 		System.out.println(original!=cloned); // doit renvoyer true
 		System.out.println(original.getClass() == cloned.getClass()); // doit renvoyer true

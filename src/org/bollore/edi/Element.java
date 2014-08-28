@@ -68,26 +68,22 @@ public class Element implements Cloneable{
 	}
 	
 	
-	public void setValue(String _Value)
-	{
-		this.value = _Value;		
-	}
 	
-	public void addValue(ArrayList<String> _Values) throws EDIException
-	{
-		if(_Values.size()!=this.components.size()){
-			
-			throw new EDIException("Le nombre de valeurs à affecter à l'élément ("+this.components.size()+") ne correspond pas au nombre de composants ("+_Values.size()+")");
-		} else{
-		
-		for (int i = 0; i < this.components.size(); i++) 
-		{
-			((org.bollore.edi.Component)this.components.get(i)).setValue(_Values.get(i));
-		}
-		
-		}
-		//this.values = _Values;		
-	}
+//	public void addValue(ArrayList<String> _Values) throws EDIException
+//	{
+//		if(_Values.size()!=this.components.size()){
+//			
+//			throw new EDIException("Le nombre de valeurs à affecter à l'élément ("+this.components.size()+") ne correspond pas au nombre de composants ("+_Values.size()+")");
+//		} else{
+//		
+//		for (int i = 0; i < this.components.size(); i++) 
+//		{
+//			((org.bollore.edi.Component)this.components.get(i)).setValue(_Values.get(i));
+//		}
+//		
+//		}
+//		//this.values = _Values;		
+//	}
 	
 	public org.bollore.edi.Element clone() {
 		org.bollore.edi.Element result=null;
