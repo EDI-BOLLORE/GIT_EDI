@@ -65,10 +65,6 @@ public class Component implements Cloneable{
 		this.value=component.value;
 	}
 	
-	
-
-
-	
 	public String getValue() {
 		return value;
 	}
@@ -78,11 +74,6 @@ public class Component implements Cloneable{
 	}
 
 	public org.bollore.edi.Component clone() {
-		/*(String dataType, String maxLength, String minLength,
-				Boolean required, Boolean truncatable, String label,
-				String documentation,String value)*/
-				
-		
 		org.bollore.edi.Component result=null;
 		
 		try {
@@ -98,24 +89,6 @@ public class Component implements Cloneable{
 			result.label=this.label;
 			result.documentation=this.documentation;
 			result.value=this.value;
-			
-			
-			
-//			result=new org.bollore.edi.Component(this.dataType,this.maxLength,this.minLength,this.required,this.truncatable,
-//			this.label,this.documentation,this.value);
-			
-			
-//			result.dataType=new String(this.dataType);
-//			result.maxLength=new String(this.maxLength);
-//			result.minLength=new String(this.minLength);
-//			result.required=new Boolean(this.required);
-//			result.truncatable=new Boolean(this.truncatable);
-//			result.label=new String(this.label);
-//			result.documentation=new String(this.documentation);
-//			result.value=(this.value==null)?this.value:new String(this.value);
-
-					
-					
 			
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();

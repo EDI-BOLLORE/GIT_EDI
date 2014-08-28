@@ -237,8 +237,7 @@ public class Edifact {
 				// Dès qu'on le trouve, on sort de la boucle
 				if(segments.get(j).code.equals(split[0])){
 					
-					elements=segments.get(j).elements;
-					
+					elements=segments.get(j).elements;					
 					break;					
 					}
 				}			
@@ -253,8 +252,7 @@ public class Edifact {
 					}
 				}
 			}
-		return result;
-		
+		return result;		
 	}
 	
 	
@@ -289,15 +287,12 @@ public class Edifact {
 		
 		try 
 		{			
-			//HashMap<String, org.bollore.edi.Segment> segments = this.buildEDISegmentDefinition();
-			
 			document = sxb.build("EDI_Definitions/D" + this.edi_year_version + this.edi_letter_version + "/" + this.edi_type + ".xml");
 			
 			racine = document.getRootElement();
 			List<org.jdom2.Element> nodes = racine.getChildren("segments");
 			
 			for (int i = 0; i < nodes.size(); i++){
-				//BuildStructureSegmentRecursive(new ArrayList<org.bollore.edi.Segment>(), (nodes.get(i)).clone());
 				BuildStructureSegmentRecursive(new ArrayList<org.bollore.edi.Segment>(), (nodes.get(i)));
 
 			}
@@ -316,7 +311,6 @@ public class Edifact {
 	
 	public void BuildStructureSegmentRecursive(ArrayList<org.bollore.edi.Segment> _Segments, org.jdom2.Element _Node)
 	{
-		//HashMap<String,org.bollore.edi.Segment> segments_definition = this.buildStructureSegmentDefinition();
 		HashMap<String,org.bollore.edi.Segment> segments_definition = this.buildStructureSegmentDefinition();
 		
 		List<org.jdom2.Element> nodes = _Node.getChildren();
@@ -379,25 +373,20 @@ public class Edifact {
 	
 	public void printSegments(ArrayList<org.bollore.edi.Segment> segments){
 		
-		
-		//System.out.println("Il y a "+segments.size()+" segments à imprimer");
 		// On boucle sur tous les segments à imprimer dans le fichier
 		for (int i = 0; i < segments.size(); i++) 
 		{
 			org.bollore.edi.Segment segment=segments.get(i);
 			
-			
 			// Si le segment est un segment de groupe
 			if(segment.code.substring(0,3).equals("GRP")){
-				//System.out.println("Appel récursif de printSegments");
-				//this.printwriter.flush();
+
 				printSegments(segment.segments);			
 			} 
 			// Il s'agit d'un segment simple
 			else {
-				//System.out.println("Impression du segment "+segment.code);
+
 				this.printwriter.append(segment.code);
-				//this.printwriter.flush();
 				
 				ArrayList<org.bollore.edi.Element> elements=segment.elements;	
 				for (int j = 0; j < elements.size(); j++) 
@@ -410,7 +399,6 @@ public class Edifact {
 					{
 						String value=(element.value==null)?"":element.value;
 						this.printwriter.append(element_separator + value);
-						//this.printwriter.flush();
 					}
 					// L'élément possède des composants
 					else 
@@ -434,17 +422,13 @@ public class Edifact {
 				this.printwriter.append(this.segment_separator+"\n");
 				this.nb_segment++;
 			}
-		}
-
-		
+		}	
 	}
 	
 	public void printfooter()
 	{
-		System.out.println("Execution du footer");
 		this.printwriter.append("UNT"+this.element_separator+this.nb_segment+this.element_separator+this.message_reference+this.segment_separator+"\n");
 		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.segment_separator+"\n");
-		System.out.println("Fin execution du footer");
 	}
 	
 	public void printEDIStructure()
@@ -481,10 +465,8 @@ public class Edifact {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
-		}
-		
-	}
-	
+		}		
+	}	
 
 	public HashMap<String, org.bollore.edi.Segment> buildStructureSegmentDefinition()
 	{
@@ -532,7 +514,7 @@ public class Edifact {
 										 (String)((org.jdom2.Element)component.get(m)).getChildren("documentation").get(0).getText()));							
 							}						 
 							 
-							// On travaille avec un élément qui ne possède pas de composants 
+						// On travaille avec un élément qui ne possède pas de composants 
 						 } else {
 						 
 						 
@@ -595,17 +577,6 @@ public class Edifact {
 			}
 		
 		return result;
-		
 	}
-	
-//	public org.bollore.edi.Segment(String segment_path) throws EDIException{
-//		org.bollore.edi.Segment result=new org.bollore.edi.Segment();
-//		
-//	}
-	
-
-		
-
-		
 }
 
