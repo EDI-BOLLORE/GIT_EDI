@@ -92,6 +92,7 @@ public class Segment implements Cloneable{
 			
 			//On clone les éléments
 			for (int i = 0; i < this.elements.size(); i++) {
+				
 				elements.add(this.elements.get(i).clone());
 			}
 			
