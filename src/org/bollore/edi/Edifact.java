@@ -396,9 +396,11 @@ public class Edifact {
 				System.out.println("Ecriture du code "+segment.code);
 				this.printwriter.append(segment.code);
 				
+
 				ArrayList<org.bollore.edi.Element> elements=segment.elements;
 				// On part de j=1 car on n'imprime pas l'élément instantié à nul provenant de la structure
 				for (int j = 1; j < elements.size(); j++) 
+
 				{
 					org.bollore.edi.Element element = elements.get(j);
 					ArrayList<org.bollore.edi.Component> components = element.components;
