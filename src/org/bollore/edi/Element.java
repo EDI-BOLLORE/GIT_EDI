@@ -41,6 +41,16 @@ public class Element implements Cloneable{
 		this.components = components;
 	}
 	
+	Element(String code, Boolean required, Boolean truncatable,
+			String label, String documentation){
+		super();
+		this.code = code;
+		this.required = required;
+		this.truncatable = truncatable;
+		this.label = label;
+		this.documentation = documentation;
+	}
+	
 	public org.bollore.edi.Component getComponent(String _LabelComponent)
 	{
 		org.bollore.edi.Component component = null;
@@ -75,12 +85,14 @@ public class Element implements Cloneable{
 			ArrayList<Component> components=new ArrayList<Component>();
 			result=(org.bollore.edi.Element)super.clone();
 			
-			result.code=this.code;
-			result.required=this.required;
-			result.truncatable=this.truncatable;
-			result.label=this.label;
-			result.documentation=this.documentation;
-			result.value=this.value;
+			result=new Element(this.code, this.required, this.truncatable, this.label, this.documentation);
+			
+//			result.code=this.code;
+//			result.required=this.required;
+//			result.truncatable=this.truncatable;
+//			result.label=this.label;
+//			result.documentation=this.documentation;
+//			result.value=this.value;
 			
 			for (int i = 0; i < this.components.size(); i++) {
 				components.add(this.components.get(i).clone());

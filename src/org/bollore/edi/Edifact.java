@@ -32,7 +32,6 @@ public class Edifact {
 	public ArrayList<org.bollore.edi.Segment> structure;
 	public ArrayList<org.bollore.edi.Segment> segments;
 	public HashMap<String, Integer> segments_rank;
-	public Integer nb_segment=0;
 	
 /*********************************************
  * 
@@ -96,7 +95,10 @@ public class Edifact {
 	public static void main(String[] args) throws JDOMException, IOException, EDIException
 	{
 		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", "CUSCAR", "95", "B", "MOL32");
-		//System.out.println(edi_cuscar.segments.size());
+		//System.out.println(edi_cuscar.getElement("DTM/C507", null));
+		
+		System.out.println(edi_cuscar.getSegment("DTM", null)==null);
+		
 		ArrayList<String> rff1=new ArrayList<String>();
 		
 		rff1.add("A");
@@ -128,49 +130,56 @@ public class Edifact {
 		nad2.add("NAD22");
 		nad2.add("NAD23");
 		
+		ArrayList<String> rng=new ArrayList<String>();
+		
+		rng.add("RNG1");
+		rng.add("RNG2");
+		rng.add("RNG3");
+
 		edi_cuscar.setValueElement("DTM/C507", dtm, true);
 		edi_cuscar.setValueElement("RFF/C506", rff1, true);
 		edi_cuscar.setValueElement("RFF/C506", rff2, true);
 		edi_cuscar.setValueElement("NAD/3035", nad1, true);
 		edi_cuscar.setValueElement("NAD/C082", nad2, false);
-		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", nad2, true);
+		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng, true);
+
 		
-		//edi_cuscar.printEDI();
+		edi_cuscar.printEDI();
 		
-		edi_cuscar.print();
+		edi_cuscar.print();	
+
 	}
 	
 	public void setValueElement(String element_path,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
 		// On récupère le segment à traiter
 		org.bollore.edi.Segment segment=null;
 		//System.out.println("setValueElement on a "+this.segments);
-		
 		// Si l'on doit créer un nouveau segment
+		
+		//System.out.println(this.segments.get(0).elements.size());
 		if(create_new_segment){
 			// Si l'on doit créé le segment, on l'importe depuis la structure et on le met dans segments
-			this.segments.add(this.getSegmentStructure(element_path.split("/")[0]).clone());
-			System.out.println("On a maintenant "+this.segments.size()+" segments");
+			this.segments.add(this.getSegmentStructure(element_path.split("/")[0]));
+
 		}
+
 		// Sinon on récupère le segment depuis la structure que l'on ajoutera ensuite à l'instance
 		
 		// On récupère le dernier segment en cours de traitement de l'EDI
 		segment=this.segments.get(segments.size()-1);
-		System.out.println("A  "+segment.elements.size());
-		System.out.println("Le dernier segment ajouté est "+segment.code);
-		System.out.println("Il possède "+segment.elements.size()+" éléments");
-		System.out.println(segment.elements.size());
 		// On récupère l'élément que l'on souhaite instancier
-		org.bollore.edi.Element element=this.getElement(element_path,null);
-		System.out.println("Element à instantier "+element.code);
-		System.out.println("A  "+segment.elements.size());
-		for (int i = 0; i < element.components.size(); i++) {
-			element.components.get(i).value=values.get(i);
-		}		
-		//A.substring(0,A.lastIndexOf("/"))
-		//this.getSegment(element_path.substring(0,element_path.lastIndexOf("/")), null).elements.add(element);
-		System.out.println("A  "+segment.elements.size());
-		segment.elements.add(element);
-		System.out.println("A  "+segment.elements.size());
+		org.bollore.edi.Element element=this.getElement(element_path);
+		//L'élément n'a pas de composants
+		if((element.components==null||element.components.size()<=0)&&values.size()==1){
+			
+			element.value=values.get(0);
+
+		} else {
+			for (int i = 0; i<element.components.size() ; i++) {				
+
+				element.components.get(i).value=values.get(i);
+			}
+		}
 	}
 	
 	public org.bollore.edi.Segment getSegment(String segment_path,ArrayList<org.bollore.edi.Segment> segments) throws EDIException{
@@ -181,7 +190,6 @@ public class Edifact {
 		
 		// Si les segments ne sont pas renseignés, il s'agit de la première exécution
 		if(segments==null){	
-			//segments=this.structure;
 			segments=this.segments;
 		}
 		
@@ -212,6 +220,10 @@ public class Edifact {
 		return result;		
 	}
 	
+	public org.bollore.edi.Element getElement(String element_path) throws EDIException{
+		return getElement(element_path,null);
+	}
+	
 	public org.bollore.edi.Element getElement(String element_path,ArrayList<org.bollore.edi.Segment> segments) throws EDIException{
 		// Instantiation du retour de la méthode
 		org.bollore.edi.Element result=null;		
@@ -220,15 +232,38 @@ public class Edifact {
 		String[] split=element_path.split("/");
 		
 		// Si les segments ne sont pas renseignés, il s'agit de la première exécution
-		if(segments==null){	
-			//segments=this.structure;
+		if(segments==null){
 			segments=this.segments;
 		}
 		
-		// Si le chemin possède au moins 2 segments
-		if(split.length>2){
+		// Le chemin ne comporte pas a minima SEGMENT/ELEMENT
+		if(split.length<2){
+			throw new EDIException("Pour récupérer un élément la structure minimale est SEGMENT/ELEMENT. Au moins un '/' doit apparaître dans le chemin.");
+		}
+		// Le chemin est de la forme SEGMENT/ELEMENT
+		else if(split.length==2){
+
 			// On cherche le segment correspondant
-			for (int i = 0; i < segments.size(); i++) {
+			for (int i = 0; i<segments.size(); i++) {	
+				if(segments.get(i).code.equals(split[0])){
+					org.bollore.edi.Segment segment=segments.get(i);
+					
+					ArrayList<org.bollore.edi.Element> elements=segment.elements;
+					
+					// Si la partie droite correspond à un élément:
+					for (int j = elements.size()-1; j>=0; j--) {
+						
+						if(elements.get(j).code.equals(split[1])){
+							
+						result = elements.get(j);
+						}
+					}			
+				}
+			}
+		// Cas ou split.length>2 on itère sur la fonction
+		} else {
+			// On cherche le segment correspondant
+			for (int i = segments.size()-1; i>=0; i--) {
 				// On a trouvé le bon segment on itere sur l'arraylist du segment correspondant en rappelant la méthode en tronquant le chemin du composant GRP2/GRP3/RNG/C280 devient GRP3/RNG/C280
 				// et en passant en paramètre l'arraylist de segments du segment trouvé
 				if(segments.get(i).code.equals(split[0])){
@@ -236,30 +271,11 @@ public class Edifact {
 					return this.getElement(element_path.substring(element_path.indexOf("/")+1),segments.get(i).segments);
 				}
 			}
-		// Le chemin possède 2 segments et un élément: On récupère le segment suivant et l'élément correspondant
-		} else {	
-			//On récupère les éléments du dernier segment du chemin
-			ArrayList<org.bollore.edi.Element> elements=null;
-			// On boucle une dernière fois pour trouver le segment
-			for (int j = 0; j < segments.size(); j++) {
-				// Dès qu'on le trouve, on sort de la boucle
-				if(segments.get(j).code.equals(split[0])){
-					
-					elements=segments.get(j).elements;					
-					break;					
-					}
-				}			
-			// On va maintenant récupérer l'élément attendu: On boucle sur tous les éléments du dernier segment
-			for (int k = 0; k < elements.size(); k++) 	{				
-				// On sort de la boucle dès que l'on a trouvé le bon élément
-				if(elements.get(k).code.equals(split[1])){
-
-					result=elements.get(k).clone();
-					
-					break;
-					}
-				}
-			}
+		}
+		
+		if(result==null){
+			throw new EDIException("L'élément '"+element_path+"' pour l'EDI "+this.edi_type+this.edi_year_version+this.edi_letter_version+" n'a pas été trouvé");
+		}
 		return result;		
 	}
 	
@@ -280,7 +296,8 @@ public class Edifact {
 		else if(!hash_segment.containsKey(segment_name)){
 			throw new EDIException("Le segment "+segment_name+" n'existe pas dans la définition du "+this.edi_type+" "+this.edi_year_version+this.edi_letter_version);
 		} else{
-			result=(org.bollore.edi.Segment)(this.structure.get(hash_segment.get(segment_name))).clone();		
+			result=(org.bollore.edi.Segment)(this.structure.get(hash_segment.get(segment_name))).clone();
+			
 		}
 		
 		return result;				
@@ -354,7 +371,7 @@ public class Edifact {
 	{	
 		try {
 			this.printHeader();
-			this.printSegments(this.segments);
+			this.printSegments();
 			this.printfooter();
 			this.close();
 		} catch (Exception e) {
@@ -379,37 +396,42 @@ public class Edifact {
 		this.printwriter.append("UNA"+this.element_separator+this.component_separator+this.decimal_separator+this.escape_character+this.space_character+this.segment_separator+"\n");
 	}
 	
+	public void printSegments(){
+		printSegments(this.segments);
+	}
+	
 	public void printSegments(ArrayList<org.bollore.edi.Segment> segments){
 		
 		// On boucle sur tous les segments à imprimer dans le fichier
 		for (int i = 0; i < segments.size(); i++) 
 		{
-			System.out.println("Ecriture du segment "+segments.get(i).code );
+			
 			org.bollore.edi.Segment segment=segments.get(i);
 			
-			// Si le segment est un segment de groupe
+			if(!segment.isEmpty(segment)){
+			
+				// Si le segment est un segment de groupe
 			if(segment.code.substring(0,3).equals("GRP")){
 				printSegments(segment.segments);			
 			} 
 			// Il s'agit d'un segment simple
 			else {
-				System.out.println("Ecriture du code "+segment.code);
-				this.printwriter.append(segment.code);
 				
+				this.printwriter.append(segment.code);
 
 				ArrayList<org.bollore.edi.Element> elements=segment.elements;
-				// On part de j=1 car on n'imprime pas l'élément instantié à nul provenant de la structure
-				for (int j = 1; j < elements.size(); j++) 
+				
+				for (int j = 0; j<elements.size(); j++) 
 
 				{
 					org.bollore.edi.Element element = elements.get(j);
 					ArrayList<org.bollore.edi.Component> components = element.components;
 					
 					//S'il s'agit d'un élément simple on l'écrit dans le fichier
-					if(components.size() == 0)
+					if(components==null||components.size() <= 0)
 					{
 						String value=(element.value==null)?"":element.value;
-						System.out.println("Ecriture de l'élément "+element.code+" avec la valeur "+element.value);
+
 						this.printwriter.append(element_separator + value);
 					}
 					// L'élément possède des composants
@@ -422,26 +444,28 @@ public class Edifact {
 							String value2=(component.value==null)?"":component.value;
 					
 							if(k==0){
-								System.out.println("Ecriture du premier composant "+component.label+" avec la valeur "+component.value);
+
 								this.printwriter.append(this.element_separator +value2 );
-								//this.printwriter.flush();
-							} else {
-								System.out.println("Ecriture du "+(k+1)+"ème composant "+component.label+" avec la valeur "+component.value);
+								
+								} else {
+								
 								this.printwriter.append(this.component_separator +value2 );
-								//this.printwriter.flush();
-							}				
+								
+								}				
+							}					
 						}					
-					}					
-				}
+					}
 				this.printwriter.append(this.segment_separator+"\n");
-				this.nb_segment++;
-			}
+				
+				}
+			
+			} // if
 		}	
 	}
 	
 	public void printfooter()
-	{
-		this.printwriter.append("UNT"+this.element_separator+this.nb_segment+this.element_separator+this.message_reference+this.segment_separator+"\n");
+	{	
+		this.printwriter.append("UNT"+this.element_separator+this.segments.size()+this.element_separator+this.message_reference+this.segment_separator+"\n");
 		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.segment_separator+"\n");
 	}
 	

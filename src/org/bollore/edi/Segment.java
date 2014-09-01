@@ -60,17 +60,34 @@ public class Segment implements Cloneable{
 		this.segments = segments;
 	}
 	
-	public Boolean isEmpty(){
+	public Boolean isEmpty(org.bollore.edi.Segment segment){
 		Boolean result=true;
 		
-		for (int i = 0; i < this.elements.size(); i++) {
-			if(this.elements.get(i).value!=null){
+		ArrayList<org.bollore.edi.Element> elements=segment.elements;
+		// On boucle sur les éléments des segments
+		for (int i = 0; i < elements.size(); i++) {
+			
+			org.bollore.edi.Element element=elements.get(i);
+			// Si le segment courant a au moins 1 élément valué on sort à false
+			if(element.value!=null){
 				result=false;
+				return result;
+			}
+			// On regarde si les composants de l'élément ont une valeur
+			ArrayList<org.bollore.edi.Component> components=element.components;
+			for (int j = 0; j < components.size(); j++) {
+				org.bollore.edi.Component component=components.get(j);
+				if(component.value!=null){
+					result=false;
+					return result;
+				}
 			}
 		}
-		for (int j = 0; j < this.segments.size(); j++) {
-			//return
-		}
+		
+		// On boucle sur les segments des segments
+		for (int i = 0; i < segment.segments.size(); i++) {
+		return isEmpty(segment.segments.get(i));	
+		}	
 		
 		return result;
 		
@@ -134,8 +151,8 @@ public class Segment implements Cloneable{
 				this.segments.get(i).printSegment();
 		}
 		
-		for (int i = 0; i < this.elements.size(); i++) {
-			((org.bollore.edi.Element)this.elements.get(i)).printElement();
+		for (int j = 0; j < this.elements.size(); j++) {
+			((org.bollore.edi.Element)this.elements.get(j)).printElement();
 			
 		}
 	}
