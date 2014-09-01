@@ -58,7 +58,7 @@ public class XMLParser {
 		  // creation de la requete XPTAH
 		  XPathFactory xPathFactory = XPathFactory.newInstance();
 		  XPath xpath = xPathFactory.newXPath();
-		  XPathExpression xPathExpression = xpath.compile("/edimap/segments/segment[@segcode='"+segcode+"']"); //"//segment[@segcode='DTM']"
+		  XPathExpression xPathExpression = xpath.compile("/edimap/segments/segment[@segcode='"+segcode+"']");
 
 		  /* execution de la requete xPath sur le fichier XML */
 		  String resultat = (String) xPathExpression.evaluate(source,XPathConstants.STRING);
