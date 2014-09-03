@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -16,22 +17,44 @@ import org.jdom2.input.SAXBuilder;
 
 public class Edifact {
 
-
+	// Attributs liés à la génération de fichier
 	public String filepath;
-	public String edi_type;
-	public String edi_year_version;
-	public String edi_letter_version;
-	public PrintWriter printwriter;	
+	public PrintWriter printwriter;
+	public Boolean isTest;
+	
+	//Attributs utilisés pour le segment UNA
 	public Character component_separator;
 	public Character element_separator;
 	public Character decimal_separator;
 	public Character escape_character;
 	public Character space_character=' ';
 	public Character segment_separator;
-	public String message_reference;
+	//Fin
+	
+	//Attributs utilisés pour le segment UNB
+	public String syntax_id;
+	public String syntax_version_number;
+	public String interchange_sender_id; //GRIMALDI
+	public String id_code_qualifier;
+	public String interchange_recipient_id; // exemple SNCUSTOMS
+	public String date; // Date du jour
+	public String time; // Heure du jour
+	public String interchange_control_reference; // Auto-incrément du nombre de fichiers échangés avec interchange_sender_id durant l'année courante	
+	//Fin
+	
+	// Attributs utilisés pour le segment UNH
+	public String message_reference_number;
+	public String edi_version_number;
+	public String edi_type;
+	public String edi_year_version;
+	public String edi_letter_version;
+	public String controlling_agency;
+	// Fin
+	
 	public ArrayList<org.bollore.edi.Segment> structure;
 	public ArrayList<org.bollore.edi.Segment> segments;
-	public HashMap<String, Integer> segments_rank;
+//	public HashMap<String, Integer> segments_rank;
+
 
 	/*********************************************
 	 * 
@@ -39,63 +62,120 @@ public class Edifact {
 	 *  
 	 * *******************************************/
 
-	public Edifact(String filepath,String edi_type,String edi_year_version,String edi_letter_version,Character element_separator,Character component_separator,
-			Character decimal_separator,Character escape_character,Character segment_separator,String message_reference)  {
+	public Edifact(String filepath,Boolean isTest,
+			Character element_separator,Character component_separator,Character space_character,Character decimal_separator,Character escape_character,Character segment_separator,
+			
+			String message_reference_number,String edi_version_number,String edi_type,String edi_year_version,String edi_letter_version,String controlling_agency,
+			
+			String syntax_id,String syntax_version_number,String interchange_sender_id,String id_code_qualifier,String interchange_recipient_id,Date date, String interchange_control_reference)
+			
+			 {
 
 		super();
 		try {
-
+			// Instantiation des attributs de fichier
 			this.filepath = filepath;
-			this.edi_type=edi_type;
-			this.edi_year_version=edi_year_version;
+			this.isTest=isTest;
 			this.printwriter=new PrintWriter(new File(filepath));
+			
+			//Instantiation des attributs liés au segment UNA
 			if(element_separator==null){this.element_separator='+';} else {this.element_separator = element_separator;}
 			if(decimal_separator==null){this.decimal_separator='.';} else {this.decimal_separator = decimal_separator;}
 			if(component_separator==null){this.component_separator=':';} else {this.component_separator = component_separator;}
 			if(escape_character==null){this.escape_character='?';} else {this.escape_character = decimal_separator;}
 			if(segment_separator==null){this.segment_separator='\'';} else {this.segment_separator = segment_separator;}
-			this.message_reference=message_reference;
+			if(space_character==null){this.space_character=' ';} else {this.space_character = space_character;}
+			
+			//Instantiation des attributs du segment UNB
+			this.syntax_id=syntax_id;
+			this.syntax_version_number=syntax_version_number;
+			this.interchange_sender_id=interchange_sender_id;
+			this.id_code_qualifier=(id_code_qualifier==null)?"":id_code_qualifier;
+			this.interchange_recipient_id=interchange_recipient_id;
+			this.date=(date==null)?Utils.getCurrentDate("yyMMdd"):Utils.formatDate("yyMMdd",date);			
+			this.time=(date==null)?Utils.getCurrentDate("HHmmss"):Utils.formatDate("HHmmss",date);
+			this.interchange_control_reference=interchange_control_reference;
+			
+			//Instantiation des attributs du segment UNH
+			this.message_reference_number=message_reference_number;
+			this.edi_version_number=edi_version_number;
+			this.edi_type=edi_type;
+			this.edi_year_version=edi_year_version;
+			this.edi_year_version=edi_year_version;
+			this.controlling_agency=controlling_agency;
+			
+			//Création des listes vides des segments et des éléments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
 
 			this.BuildStructureSegment();
-			this.segments_rank=this.buildHashSegment();
+			//this.segments_rank=this.buildHashSegment();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public Edifact(String filepath,Boolean isTest,
+			
+			String message_reference_number,String edi_version_number,String edi_type,String edi_year_version,String edi_letter_version,String controlling_agency,
+			
+			String syntax_id,String syntax_version_number,String interchange_sender_id,String id_code_qualifier,String interchange_recipient_id,Date date, String interchange_control_reference)
+			
+			 {
 
-	public Edifact(String filepath,String edi_type,String edi_year_version,String edi_letter_version,String message_reference) 
-	{
-		try
-		{		
+		super();
+		try {
+			// Instantiation des attributs de fichier
 			this.filepath = filepath;
-			this.edi_type=edi_type;
-			this.edi_year_version=edi_year_version;
-			this.edi_letter_version=edi_letter_version;
+			this.isTest=isTest;
 			this.printwriter=new PrintWriter(new File(filepath));
+			
+			//Instantiation des attributs liés au segment UNA
 			this.element_separator='+';
 			this.decimal_separator='.';
 			this.component_separator=':';
 			this.escape_character='?';
 			this.segment_separator='\'';
-			this.message_reference=message_reference;
+			this.space_character=' ';
+			
+			//Instantiation des attributs du segment UNB
+			this.syntax_id=syntax_id;
+			this.syntax_version_number=syntax_version_number;
+			this.interchange_sender_id=interchange_sender_id;
+			this.id_code_qualifier=(id_code_qualifier==null)?"":id_code_qualifier;
+			this.interchange_recipient_id=interchange_recipient_id;
+			this.date=(date==null)?Utils.getCurrentDate("yyMMdd"):Utils.formatDate("yyMMdd",date);			
+			this.time=(date==null)?Utils.getCurrentDate("HHmmss"):Utils.formatDate("HHmmss",date);
+			this.interchange_control_reference=interchange_control_reference;
+			
+			//Instantiation des attributs du segment UNH
+			this.message_reference_number=message_reference_number;
+			this.edi_version_number=edi_version_number;
+			this.edi_type=edi_type;
+			this.edi_year_version=edi_year_version;
+			this.edi_letter_version=edi_letter_version;
+			this.controlling_agency=controlling_agency;
+			
+			//Création des listes vides des segments et des éléments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
 
 			this.BuildStructureSegment();
-			this.segments_rank=this.buildHashSegment();
-			//this.printStructure();
-
-		} catch(FileNotFoundException fnfe){ fnfe.printStackTrace();}
+			//this.segments_rank=this.buildHashSegment();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 
 
 	public static void main(String[] args) throws JDOMException, IOException, EDIException
 	{
-		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", "CUSCAR", "95", "B", "MOL32");
-		//System.out.println(edi_cuscar.getElement("DTM/C507", null));
+		
+		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi",true,
+				"1","D","CUSCAR", "95", "B", "UN","UNOC","2","GRIMALDI","","SNCUSTOMS",
+				Utils.getCurrentDate(),"334518001");
+				
 
 		System.out.println(edi_cuscar.getSegment("DTM", null)==null);
 
@@ -146,8 +226,153 @@ public class Edifact {
 
 		edi_cuscar.printEDI();
 
-		edi_cuscar.print();	
+		edi_cuscar.print();
+		
+		org.bollore.edi.Segment unh=edi_cuscar.buildUNHSegment();
+		
+		ArrayList<org.bollore.edi.Element> elements=unh.elements;
+		
+		for (int i = 0; i < elements.size(); i++) {
+			
+			System.out.println(elements.get(i).code+"  "+elements.get(i).label+"  "+elements.get(i).value);
+			
+			ArrayList<org.bollore.edi.Component> components=(elements.get(i).components==null)?new ArrayList<org.bollore.edi.Component>():elements.get(i).components;
+			
+			for (int j = 0; j < components.size(); j++) {
+				System.out.println(components.get(j).label+"  "+components.get(j).value);
+			}
+		}
+		
+		
+				
+		
+		
+//		ArrayList<org.bollore.edi.Segment> segments=edi_cuscar.segments;
+//		
+//		for (int i = 0; i < segments.size(); i++) {
+//			System.out.println(segments.get(i).code+"  "+segments.get(i).name+"  "+segments.get(i).description);
+//			ArrayList<org.bollore.edi.Element> elements=segments.get(i).elements;
+//			
+//			for (int j = 0; j < elements.size(); j++) {
+//				System.out.println("    "+elements.get(j).code+"   "+elements.get(j).label+"   "+elements.get(j).documentation);
+//				
+//				ArrayList<org.bollore.edi.Component> components=elements.get(j).components;
+//				
+//				for (int k = 0; k < components.size(); k++) {
+//					System.out.println("        "+components.get(k).label+"        "+components.get(k).documentation);
+//				}
+//			}
+//		}
+		
+	}
+	
+	/**
+	 *  Cette méthode permet d'ajouter le segment UNB non présent dans la définition du Cuscar depuis Smooks
+	 */
+	
+	public org.bollore.edi.Segment buildUNBSegment() {
+		//Création du segment UNB
+				org.bollore.edi.Segment seg_unb=new Segment("MESSAGE HEADER ENVELOPE","UNB",  1, 1, "To identify the interchange", new ArrayList<org.bollore.edi.Element>(),new ArrayList<org.bollore.edi.Segment>());
 
+				// Création de l'élément S001 avec les composants
+				ArrayList<org.bollore.edi.Component> S001_components=new ArrayList<org.bollore.edi.Component>();
+				
+				org.bollore.edi.Component c0001=new Component("String", "1", "1", true, false,"Syntax identifier","Must report the following fixed values : UNOA: United Nations Controlling Agency.",this.syntax_id);
+				
+				org.bollore.edi.Component c0002=new Component("String", "1", "1", true, false,"Syntax version identifier","Version of the syntax",this.syntax_version_number);
+				
+				S001_components.add(c0001);
+				S001_components.add(c0002);
+				
+				org.bollore.edi.Element S001_element=new org.bollore.edi.Element("S001", true,false,"SYNTAX IDENTIFIER", "SYNTAX IDENTIFIER", S001_components);
+				
+				seg_unb.elements.add(S001_element);
+				
+				// Création de l'élément S002 avec les composants
+				ArrayList<org.bollore.edi.Component> S002_components=new ArrayList<org.bollore.edi.Component>();
+				
+				org.bollore.edi.Component c0004=new Component("String", "1", "1", true, false,"Sender identification","GLN: Global Location Number of the Shipping Company",this.interchange_sender_id);
+				org.bollore.edi.Component c0007=new Component("String", "1", "1", true, false,"Identification code qualifier","",this.id_code_qualifier);
+					
+				S002_components.add(c0004);
+				S002_components.add(c0007);
+				org.bollore.edi.Element S002_element=new org.bollore.edi.Element("S002", true,false,"INTERCHANGE SENDER", "Identification of the sender of the message.", S002_components);
+				
+				seg_unb.elements.add(S002_element);
+				
+				// Création de l'élément S003 avec les composants
+
+				ArrayList<org.bollore.edi.Component> S003_components=new ArrayList<org.bollore.edi.Component>();
+				
+				org.bollore.edi.Component c0010=new Component("String", "1", "1", true, false,"Recipient Identification","GLN: Global Location Number regarding the Customs where the ship will arrive. ",this.interchange_recipient_id);
+				
+				
+				S003_components.add(c0010);
+				S003_components.add(c0007);
+				org.bollore.edi.Element S003_element=new org.bollore.edi.Element("S003", true,false,"INTERCHANGE RECIPIENT", "Identification of the recipient of the message. ", S003_components);
+				
+				seg_unb.elements.add(S003_element);
+				
+				// Création de l'élément S004 avec les composants
+
+				ArrayList<org.bollore.edi.Component> S004_components=new ArrayList<org.bollore.edi.Component>();
+				
+				org.bollore.edi.Component c0017=new Component("String", "1", "1", true, false,"Date of Transmission","Date format CCYYMMDD (century, year,month, day)",this.date);
+				org.bollore.edi.Component c0019=new Component("String", "1", "1", true, false,"Time of transmission","Time of transmission format HHMM (Hour,minute) ",this.time);
+				
+				S004_components.add(c0017);
+				S004_components.add(c0019);
+				
+				org.bollore.edi.Element S004_element=new org.bollore.edi.Element("S004", true,false,"DATE/TIME OF PREPARATION", "Date/time of the message transmission.", S004_components);
+				
+				seg_unb.elements.add(S004_element);
+				
+				//Création de l'élément 0020
+				org.bollore.edi.Element E0020_element=new org.bollore.edi.Element("S0020", true,false,"INTERCHANGE CONTROL REFERENCE", "Sequential number of the message (the same of the file) that is being transmitted. This number starts with 0001 and includes all the files sent by the Shipper or its representative during a year. If during the year the company achieves the number 9999, the next one will have 0001 starting again the numbering.", this.interchange_control_reference);
+				
+				seg_unb.elements.add(E0020_element);
+				
+				//Création de l'élément 0035
+				
+				org.bollore.edi.Element S0035_element=new org.bollore.edi.Element("S0035", true,false,"TEST INDICATOR", "1: If the message is for a test. 6: The message is not for a test.", (this.isTest)?"1":"6");
+								
+				seg_unb.elements.add(S0035_element);
+				
+				return seg_unb;
+	}
+	
+	/**
+	 *  Cette méthode permet d'ajouter le segment UNH non présent dans la définition du Cuscar depuis Smooks
+	 */
+	public org.bollore.edi.Segment buildUNHSegment() {
+				//Création du segment UNH
+				org.bollore.edi.Segment seg_unh=new Segment( "MESSAGE HEADER ","UNH", 1, 1, "To head, identify and specify a message.", new ArrayList<org.bollore.edi.Element>(),new ArrayList<org.bollore.edi.Segment>());
+				
+				// Ajout de l'élément S0062
+
+				org.bollore.edi.Element S0062_element=new org.bollore.edi.Element("E0062", true,false,"MESSAGE REFERENCE NUMBER", "Unique message reference assigned by the sender.", this.message_reference_number);
+				
+				seg_unh.elements.add(S0062_element);
+				
+				// Création de l'élément S009 avec les composants
+
+				ArrayList<org.bollore.edi.Component> S009_components=new ArrayList<org.bollore.edi.Component>();
+		
+				org.bollore.edi.Component c0065=new Component("String", "1", "1", true, false,"Message type identifier","D: Code identifying a type of message and assigned by its controlling agency.",this.edi_type );
+				org.bollore.edi.Component c0052=new Component("String", "1", "1", true, false,"Message type version number ","Version number of a message type",this.edi_version_number);
+				org.bollore.edi.Component c0054=new Component("String", "1", "1", true, false,"Message type release number","96B: Released number within the current message type version number.",this.edi_year_version+this.edi_letter_version);
+				org.bollore.edi.Component c0051=new Component("String", "1", "1", true, false,"Controlling agency","UN Code identifying the agency controlling the specification, maintenance and publication of the message type.",this.controlling_agency);
+				
+				S009_components.add(c0065);
+				S009_components.add(c0052);
+				S009_components.add(c0054);
+				S009_components.add(c0051);
+				
+				org.bollore.edi.Element S009_element=new org.bollore.edi.Element("S009", true,false,"MESSAGE IDENTIFIER", "Message identifier", S009_components);
+				
+				seg_unh.elements.add(S009_element);
+				
+				return seg_unh;
 	}
 
 	public void setValueElement(String element_path,ArrayList<String> values,Boolean create_new_segment) throws EDIException{
@@ -311,7 +536,7 @@ public class Edifact {
 		org.jdom2.Element racine;
 
 		try 
-		{			
+		{   System.out.println("EDI_Definitions/D" + this.edi_year_version + this.edi_letter_version + "/" + this.edi_type + ".xml\n\n");
 			document = sxb.build("EDI_Definitions/D" + this.edi_year_version + this.edi_letter_version + "/" + this.edi_type + ".xml");
 
 			racine = document.getRootElement();
@@ -394,12 +619,22 @@ public class Edifact {
 	public void printHeader()
 	{
 		this.printwriter.append("UNA"+this.element_separator+this.component_separator+this.decimal_separator+this.escape_character+this.space_character+this.segment_separator+"\n");
+		
+		this.printSegment(this.buildUNBSegment());
+		this.printSegment(this.buildUNHSegment());
 	}
 
 	public void printSegments(){
 		printSegments(this.segments);
 	}
-
+	
+	public void printSegment(org.bollore.edi.Segment segment) {
+		ArrayList<org.bollore.edi.Segment> segments=new ArrayList<org.bollore.edi.Segment>();
+		segments.add(segment);
+		this.printSegments(segments);
+		
+	}
+	
 	public void printSegments(ArrayList<org.bollore.edi.Segment> segments){
 
 		// On boucle sur tous les segments à imprimer dans le fichier
@@ -465,7 +700,7 @@ public class Edifact {
 
 	public void printfooter()
 	{	
-		this.printwriter.append("UNT"+this.element_separator+this.segments.size()+this.element_separator+this.message_reference+this.segment_separator+"\n");
+		this.printwriter.append("UNT"+this.element_separator+this.segments.size()+this.element_separator+this.message_reference_number+this.segment_separator+"\n");
 		this.printwriter.append("UNZ"+this.element_separator+"1"+this.element_separator+this.segment_separator+"\n");
 	}
 

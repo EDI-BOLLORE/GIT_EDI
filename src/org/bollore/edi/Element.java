@@ -42,6 +42,17 @@ public class Element implements Cloneable{
 	}
 
 	Element(String code, Boolean required, Boolean truncatable,
+			String label, String documentation,String value){
+		super();
+		this.code = code;
+		this.required = required;
+		this.truncatable = truncatable;
+		this.label = label;
+		this.documentation = documentation;
+		this.value=value;
+	}
+	
+	Element(String code, Boolean required, Boolean truncatable,
 			String label, String documentation){
 		super();
 		this.code = code;
