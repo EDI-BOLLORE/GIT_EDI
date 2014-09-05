@@ -147,7 +147,7 @@ public class Edifact {
 			this.id_code_qualifier=(id_code_qualifier==null)?"":id_code_qualifier;
 			this.interchange_recipient_id=interchange_recipient_id;
 			this.date=(date==null)?Utils.getCurrentDate("yyMMdd"):Utils.formatDate("yyMMdd",date);			
-			this.time=(date==null)?Utils.getCurrentDate("HHmmss"):Utils.formatDate("HHmmss",date);
+			this.time=(date==null)?Utils.getCurrentDate("HHmm"):Utils.formatDate("HHmm",date);
 			this.interchange_control_reference=interchange_control_reference;
 			
 			//Instantiation des attributs du segment UNH
