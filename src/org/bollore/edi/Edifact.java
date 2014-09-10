@@ -283,14 +283,13 @@ public class Edifact {
 		loc2_c517.add("139");
 		loc2_c517.add("");
 		loc2_c517.add("");
-		
-		
-		// On peut utiliser l'un ou l'autre
-		edi_cuscar.setValueElement("DTM/C507", "I1,J1,K1",",",true);
 
-		//edi_cuscar.setValueElement("DTM/C507", dtm, true);
-		///////////////////////////////////////////////////
-		
+		// On peut utiliser l'un ou l'autre
+		edi_cuscar.setValueElement("DTM/C507", "I1,J1", ",", true);
+
+//		 edi_cuscar.setValueElement("DTM/C507", dtm, true);
+		// /////////////////////////////////////////////////
+
 		edi_cuscar.setValueElement("RFF/C506", rff1, true);
 		edi_cuscar.setValueElement("RFF/C506", rff2, true);
 		edi_cuscar.setValueElement("NAD/3035", nad1, true);
@@ -303,10 +302,83 @@ public class Edifact {
 
 		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng, true);
 		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng2, true);
+		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/PCI/C210","1,2,3,4,5,6,7,8,9,10",",",true);
 		// edi_cuscar.printEDI();
 
-		edi_cuscar.print();
+		 edi_cuscar.print();
 
+		// String A="1,2,3,4,5,6,7,8,9,10";
+		String A = "1,2,3,4,5";
+		//System.out.println(edi_cuscar.getElementNbValues("GRP2/EQD/8077"));
+		
+
+	}
+
+	public Integer getElementNbValues(String element_path) throws EDIException {
+		Integer result = -1;
+
+		// On récupère le segment à traiter
+		org.bollore.edi.Segment segment = null;
+		// On extrait le segment du chemin de l'élément
+		String segment_path = element_path.substring(0,
+				element_path.lastIndexOf("/"));
+		// On récupère le segment depuis la structure
+		segment = this.getSegmentStructure(segment_path);
+
+		ArrayList<org.bollore.edi.Element> elements = segment.elements;
+
+		org.bollore.edi.Element element = null;
+
+		String element_name = element_path.substring(
+				element_path.lastIndexOf("/") + 1, element_path.length());
+		for (int i = 0; i < elements.size(); i++) {
+			element = elements.get(i);
+
+			// A.substring(A.lastIndexOf("/")+1,A.length())
+
+			if (element.code.equals(element_name)) {
+
+				break;
+			}
+
+		}
+		// Si l'élément n'a pas été trouvé on sort
+		if(!element.code.equals(element_name)){
+			throw new EDIException("L'élément "+element_path+" n'a pas été trouvé.");
+		}
+
+		// L'élément n'a pas de composants
+		if ((element.components == null || element.components.size() <= 0)) {
+			result = 1;
+		} else {
+			result = element.components.size();
+		}
+
+		return result;
+	}
+
+
+	public static String formatInput(String input, Integer length_expected,
+			String separator) throws EDIException {
+		String result = "";
+
+		Integer length_input = input.split(separator).length;
+
+		if (length_input == length_expected) {
+			result = input;
+		} else if (length_input < length_expected) {
+			result = input;
+
+			for (int i = 0; i < length_expected - length_input; i++) {
+				result = result.concat(separator).concat(" ");
+			}
+		} else if (length_input > length_expected) {
+			throw new EDIException("Le nombre d'élément (" + length_input
+					+ ") est supérieur au nombre d'éléments attendus ("
+					+ length_expected + ")");
+		}
+
+		return result;
 	}
 
 	public org.bollore.edi.Segment getSegmentStructure(String segment_path)
@@ -553,11 +625,22 @@ public class Edifact {
 					"La donnée des valeurs à affecter à l'élément "
 							+ element_path + " est null");
 		} else {
-			String[] s_values = values.split(values_separator);
-
-			for (int i = 0; i < s_values.length; i++) {
-				a_values.add(s_values[i]);
+			
+			// Si il y a plus de valeurs que de composants 
+			// values.split(values_separator) renvoie le nombre de valeurs en entrée
+			if(getElementNbValues(element_path)<values.split(values_separator).length){
+				throw new EDIException("L'élément "+element_path+" possède "+getElementNbValues(element_path)+" valeurs à renseigner alors que l'on en a "+values.split(values_separator).length+" à affecter "+values);
+			} else {
+				
+				values=formatInput(values, getElementNbValues(element_path), values_separator);
+				}
+			
+			
+			
+			for (int i = 0; i < values.split(values_separator).length; i++) {
+				a_values.add(values.split(values_separator)[i]);
 			}
+			
 
 			setValueElement(element_path, a_values, create_new_segment);
 		}
@@ -617,10 +700,12 @@ public class Edifact {
 			// composants de l'élément
 			if (element.components.size() != values.size()) {
 
-				throw new EDIException("Le nombre de valeurs ("+values.size()+") ne correspond pas au nombre de composants de "+element_path+" ("+element.components.size()+")");
+				throw new EDIException("Le nombre de valeurs (" + values.size()
+						+ ") ne correspond pas au nombre de composants de "
+						+ element_path + " (" + element.components.size() + ")");
 
 			} else {
-				
+
 				for (int i = 0; i < element.components.size(); i++) {
 
 					element.components.get(i).value = values.get(i);
