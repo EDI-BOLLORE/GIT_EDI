@@ -281,17 +281,23 @@ public class Edifact {
 
 		loc2_c517.add("toto");
 		loc2_c517.add("139");
-		loc2_c517.add("");
-		loc2_c517.add("");
+		loc2_c517.add("   ");
+		loc2_c517.add("       ");
 
 		// On peut utiliser l'un ou l'autre
-		edi_cuscar.setValueElement("DTM/C507", "I1,J1", ",", true);
+		edi_cuscar.setValueElement("DTM/C507", "I1,  ,L1", ",", true);
 
-//		 edi_cuscar.setValueElement("DTM/C507", dtm, true);
+		 edi_cuscar.setValueElement("DTM/C507", dtm, true);
 		// /////////////////////////////////////////////////
 
 		edi_cuscar.setValueElement("RFF/C506", rff1, true);
 		edi_cuscar.setValueElement("RFF/C506", rff2, true);
+		
+		edi_cuscar.setValueElement("RFF/C506", ",J,K,L",",", true);
+		
+		edi_cuscar.setValueElement("RFF/C506", "M,N,O, ",",", true);
+		edi_cuscar.setValueElement("RFF/C506", "Q,R,S,",",", true);
+		edi_cuscar.setValueElement("RFF/C506", " ,T,U,V",",", true);
 		edi_cuscar.setValueElement("NAD/3035", nad1, true);
 		edi_cuscar.setValueElement("NAD/C082", nad2, false);
 
@@ -302,15 +308,12 @@ public class Edifact {
 
 		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng, true);
 		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng2, true);
-		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/PCI/C210","1,2,3,4,5,6,7,8,9,10",",",true);
+		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/PCI/C210",
+				"1,2,3,4,5,6,7,8,9,10", ",", true);
 		// edi_cuscar.printEDI();
 
-		 edi_cuscar.print();
+		edi_cuscar.print();
 
-		// String A="1,2,3,4,5,6,7,8,9,10";
-		String A = "1,2,3,4,5";
-		//System.out.println(edi_cuscar.getElementNbValues("GRP2/EQD/8077"));
-		
 
 	}
 
@@ -343,8 +346,9 @@ public class Edifact {
 
 		}
 		// Si l'élément n'a pas été trouvé on sort
-		if(!element.code.equals(element_name)){
-			throw new EDIException("L'élément "+element_path+" n'a pas été trouvé.");
+		if (!element.code.equals(element_name)) {
+			throw new EDIException("L'élément " + element_path
+					+ " n'a pas été trouvé.");
 		}
 
 		// L'élément n'a pas de composants
@@ -357,13 +361,16 @@ public class Edifact {
 		return result;
 	}
 
-
 	public static String formatInput(String input, Integer length_expected,
 			String separator) throws EDIException {
 		String result = "";
-
-		Integer length_input = input.split(separator).length;
-
+		
+		
+		//Integer length_input = (input.endsWith(separator)||(input.startsWith(separator)))?input.split(separator).length+1:input.split(separator).length;
+		input=(input!=null)?" ".concat(input).concat(" "):input;
+				
+		Integer length_input =input.split(separator).length;
+		
 		if (length_input == length_expected) {
 			result = input;
 		} else if (length_input < length_expected) {
@@ -377,8 +384,9 @@ public class Edifact {
 					+ ") est supérieur au nombre d'éléments attendus ("
 					+ length_expected + ")");
 		}
-
+		
 		return result;
+		
 	}
 
 	public org.bollore.edi.Segment getSegmentStructure(String segment_path)
@@ -625,23 +633,28 @@ public class Edifact {
 					"La donnée des valeurs à affecter à l'élément "
 							+ element_path + " est null");
 		} else {
-			
-			// Si il y a plus de valeurs que de composants 
-			// values.split(values_separator) renvoie le nombre de valeurs en entrée
-			if(getElementNbValues(element_path)<values.split(values_separator).length){
-				throw new EDIException("L'élément "+element_path+" possède "+getElementNbValues(element_path)+" valeurs à renseigner alors que l'on en a "+values.split(values_separator).length+" à affecter "+values);
+
+			// Si il y a plus de valeurs que de composants
+			// values.split(values_separator) renvoie le nombre de valeurs en
+			// entrée
+			if (getElementNbValues(element_path) < values
+					.split(values_separator).length) {
+				throw new EDIException("L'élément " + element_path
+						+ " possède " + getElementNbValues(element_path)
+						+ " valeurs à renseigner alors que l'on en a "
+						+ values.split(values_separator).length
+						+ " à affecter " + values);
 			} else {
-				
-				values=formatInput(values, getElementNbValues(element_path), values_separator);
-				}
-			
-			
-			
+
+				values = formatInput(values, getElementNbValues(element_path),
+						values_separator);
+			}
+
 			for (int i = 0; i < values.split(values_separator).length; i++) {
+				//System.out.println("setValueElement : A"+values.split(values_separator)[i]+"A");
 				a_values.add(values.split(values_separator)[i]);
 			}
 			
-
 			setValueElement(element_path, a_values, create_new_segment);
 		}
 
@@ -956,21 +969,44 @@ public class Edifact {
 						// fichier
 						if (components == null || components.size() <= 0) {
 							String value = (element.value == null) ? ""
-									: element.value;
+									: element.value.trim();
 
 							this.printwriter.append(element_separator + value);
 						}
 						// L'élément possède des composants
 						else {
-							for (int k = 0; k < components.size(); k++) {
+							Integer max_non_null = components.size();
+							// On détermine le rang à partir duquel tous les
+							// composants n'ont pas de valeur renseignée
+							for (int l = components.size() - 1; l >= 0; l--) {
+								
+								org.bollore.edi.Component component = components
+										.get(l);
+								
+								if (component.value == null) {
+									
+									max_non_null--;
+
+								} else if(component.value.trim().equals("")){									
+										
+										max_non_null--;
+									} else {
+										// Si la valeur est renseignée, on sort de la boucle
+										break;
+									}
+							}
+							// System.out.println("Max non null pour "+segment.code+"/"+element.code+" = "+max_non_null);
+
+							for (int k = 0; k < max_non_null; k++) {
 								org.bollore.edi.Component component = components
 										.get(k);
 
 								String value2 = (component.value == null) ? ""
-										: component.value;
+										: component.value.trim();
 
 								if (k == 0) {
-
+									// Si c'est le premier composant, on
+									// n'imprime pas le séparateur de composant
 									this.printwriter
 											.append(this.element_separator
 													+ value2);
@@ -991,6 +1027,7 @@ public class Edifact {
 
 			} // if
 		}
+
 	}
 
 	public void printfooter() {
