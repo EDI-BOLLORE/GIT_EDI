@@ -286,10 +286,7 @@ public class Edifact {
 
 		// On peut utiliser l'un ou l'autre
 		edi_cuscar.setValueElement("DTM/C507", "I1,  ,L1", ",", true);
-
 		 edi_cuscar.setValueElement("DTM/C507", dtm, true);
-		// /////////////////////////////////////////////////
-
 		edi_cuscar.setValueElement("RFF/C506", rff1, true);
 		edi_cuscar.setValueElement("RFF/C506", rff2, true);
 		
@@ -313,7 +310,6 @@ public class Edifact {
 		// edi_cuscar.printEDI();
 
 		edi_cuscar.print();
-
 
 	}
 
@@ -359,34 +355,6 @@ public class Edifact {
 		}
 
 		return result;
-	}
-
-	public static String formatInput(String input, Integer length_expected,
-			String separator) throws EDIException {
-		String result = "";
-		
-		
-		//Integer length_input = (input.endsWith(separator)||(input.startsWith(separator)))?input.split(separator).length+1:input.split(separator).length;
-		input=(input!=null)?" ".concat(input).concat(" "):input;
-				
-		Integer length_input =input.split(separator).length;
-		
-		if (length_input == length_expected) {
-			result = input;
-		} else if (length_input < length_expected) {
-			result = input;
-
-			for (int i = 0; i < length_expected - length_input; i++) {
-				result = result.concat(separator).concat(" ");
-			}
-		} else if (length_input > length_expected) {
-			throw new EDIException("Le nombre d'élément (" + length_input
-					+ ") est supérieur au nombre d'éléments attendus ("
-					+ length_expected + ")");
-		}
-		
-		return result;
-		
 	}
 
 	public org.bollore.edi.Segment getSegmentStructure(String segment_path)
@@ -527,8 +495,8 @@ public class Edifact {
 				true,
 				false,
 				"INTERCHANGE CONTROL REFERENCE",
-				"Sequential number of the message (the same of the file) that is being transmitted. This number starts with 0001 and includes all the files sent by the Shipper or its representative during a year. If during the year the company achieves the number 9999, the next one will have 0001 starting again the numbering.",
-				this.interchange_control_reference);
+				"Sequential number of the message (the same of the file) that is being transmitted. This number starts with 0001 and includes all the files sent by the Shipper or its representative during a year. If during the year the company achieves the number 9999, the next one will have 0001 starting again the numbering.");
+		E0020_element.setValue(this.interchange_control_reference);
 
 		seg_unb.elements.add(E0020_element);
 
@@ -539,8 +507,9 @@ public class Edifact {
 				true,
 				false,
 				"TEST INDICATOR",
-				"1: If the message is for a test. 6: The message is not for a test.",
-				(this.isTest) ? "1" : "6");
+				"1: If the message is for a test. 6: The message is not for a test.");
+		S0035_element.setValue((this.isTest) ? "1" : "6");
+		
 
 		seg_unb.elements.add(S0035_element);
 
@@ -562,8 +531,9 @@ public class Edifact {
 
 		org.bollore.edi.Element S0062_element = new org.bollore.edi.Element(
 				"E0062", true, false, "MESSAGE REFERENCE NUMBER",
-				"Unique message reference assigned by the sender.",
-				this.message_reference_number);
+				"Unique message reference assigned by the sender.");
+		
+		S0062_element.setValue(this.message_reference_number);
 
 		seg_unh.elements.add(S0062_element);
 
@@ -616,13 +586,6 @@ public class Edifact {
 		return seg_unh;
 	}
 
-	/**
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 	public void setValueElement(String element_path, String values,
 			String values_separator, Boolean create_new_segment)
 			throws EDIException {
@@ -646,7 +609,7 @@ public class Edifact {
 						+ " à affecter " + values);
 			} else {
 
-				values = formatInput(values, getElementNbValues(element_path),
+				values = Utils.formatInput(values, getElementNbValues(element_path),
 						values_separator);
 			}
 
@@ -871,12 +834,13 @@ public class Edifact {
 		for (int i = 0; i < nodes.size(); i++) {
 			if ("segment".equals(nodes.get(i).getName())
 					|| "segmentGroup".equals(nodes.get(i).getName())) {
-				if ("segment".equals(nodes.get(i).getName()))
+				if ("segment".equals(nodes.get(i).getName())) {
 					// _Segments.add(segments_definition.get(nodes.get(i).getAttributeValue("segcode")));
 					_Segments.add(segments_definition.get(
 							nodes.get(i).getAttributeValue("segcode")).clone());
-
-				if ("segmentGroup".equals(nodes.get(i).getName())) {
+				}
+				//if ("segmentGroup".equals(nodes.get(i).getName())) {
+				else {
 					org.bollore.edi.Segment segment = new org.bollore.edi.Segment(
 
 					nodes.get(i).getAttributeValue("xmltag"), "GRP"
@@ -940,12 +904,13 @@ public class Edifact {
 	}
 
 	public void printSegments(ArrayList<org.bollore.edi.Segment> segments) {
-
+		
 		// On boucle sur tous les segments à imprimer dans le fichier
 		for (int i = 0; i < segments.size(); i++) {
 
 			org.bollore.edi.Segment segment = segments.get(i);
-
+			
+			//if(true) {
 			if (!segment.isEmpty(segment)) {
 
 				// Si le segment est un segment de groupe
@@ -958,45 +923,29 @@ public class Edifact {
 					this.printwriter.append(segment.code);
 
 					ArrayList<org.bollore.edi.Element> elements = segment.elements;
-
+					
 					for (int j = 0; j < elements.size(); j++)
 
-					{
+					{ 
 						org.bollore.edi.Element element = elements.get(j);
+						
 						ArrayList<org.bollore.edi.Component> components = element.components;
-
+					
 						// S'il s'agit d'un élément simple on l'écrit dans le
 						// fichier
 						if (components == null || components.size() <= 0) {
-							String value = (element.value == null) ? ""
-									: element.value.trim();
-
-							this.printwriter.append(element_separator + value);
+							String value=element.value;
+							if(value!=null){
+								if(!"".equals(value.trim())) {
+									this.printwriter.append(element_separator + value);
+								}
+							}
+							
 						}
 						// L'élément possède des composants
 						else {
-							Integer max_non_null = components.size();
-							// On détermine le rang à partir duquel tous les
-							// composants n'ont pas de valeur renseignée
-							for (int l = components.size() - 1; l >= 0; l--) {
-								
-								org.bollore.edi.Component component = components
-										.get(l);
-								
-								if (component.value == null) {
-									
-									max_non_null--;
-
-								} else if(component.value.trim().equals("")){									
-										
-										max_non_null--;
-									} else {
-										// Si la valeur est renseignée, on sort de la boucle
-										break;
-									}
-							}
-							// System.out.println("Max non null pour "+segment.code+"/"+element.code+" = "+max_non_null);
-
+							Integer max_non_null = element.MaxRankComponentNonNull();
+							
 							for (int k = 0; k < max_non_null; k++) {
 								org.bollore.edi.Component component = components
 										.get(k);
@@ -1020,12 +969,13 @@ public class Edifact {
 								}
 							}
 						}
-					}
+				}
+
 					this.printwriter.append(this.segment_separator + "\n");
 
 				}
 
-			} // if
+			} 
 		}
 
 	}
@@ -1063,6 +1013,7 @@ public class Edifact {
 
 	public void close() {
 		try {
+			
 			if (this.printwriter != null) {
 				this.printwriter.close();
 			}

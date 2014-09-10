@@ -156,6 +156,67 @@ public class Segment implements Cloneable{
 
 		}
 	}
+	
+	// Cette méthode permet de renvoyer le rang de la dernière valeur affectée à un élément
+	// Elle permet de ne pas afficher les '+' inutiles dans l'EDI quand les éléments sont vides
+	public Integer MaxRankElementNonNull() {
+		Integer result=null;
+		
+
+
+		
+		if(this.elements==null){
+			
+			result=0;	
+		} else if(this.elements.size()<=0) {
+			
+			result=0;	
+		} else if(this.elements.size()>0) {
+			
+			result = this.elements.size();
+
+			// On détermine le rang à partir duquel tous les
+			// composants n'ont pas de valeur renseignée
+			for (int l = elements.size()-1; l > 0; l--) {
+				
+				org.bollore.edi.Element element = elements
+						.get(l);
+				//System.out.println("element==null");
+				if(element==null) {
+					System.out.println("1");
+					result--;
+				} else {
+					
+					if(element.value == null) {
+
+						if(element.HasEmptyComponents()) {
+
+
+							result--;
+						} else {
+
+							break;
+						}
+					} else {
+
+						if(element.value.trim().equals("")){
+
+							if(element.HasEmptyComponents()) {
+
+								result--;
+							}
+						} else {
+							System.out.println("7");
+							break;
+						}
+					}
+				}  
+			}
+		}
+		System.out.println("result final = "+result);
+		return result;
+		
+	}
 
 	public static void main(String[] args) throws XPathExpressionException, JDOMException, IOException{
 

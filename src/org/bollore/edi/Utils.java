@@ -47,6 +47,34 @@ public class Utils {
         return true;
     }
     
+	public static String formatInput(String input, Integer length_expected,
+			String separator) throws EDIException {
+		String result = "";
+		
+		
+		//Integer length_input = (input.endsWith(separator)||(input.startsWith(separator)))?input.split(separator).length+1:input.split(separator).length;
+		input=(input!=null)?" ".concat(input).concat(" "):input;
+				
+		Integer length_input =input.split(separator).length;
+		
+		if (length_input == length_expected) {
+			result = input;
+		} else if (length_input < length_expected) {
+			result = input;
+
+			for (int i = 0; i < length_expected - length_input; i++) {
+				result = result.concat(separator).concat(" ");
+			}
+		} else if (length_input > length_expected) {
+			throw new EDIException("Le nombre d'élément (" + length_input
+					+ ") est supérieur au nombre d'éléments attendus ("
+					+ length_expected + ")");
+		}
+		
+		return result;
+		
+	}
+    
     public static void main(String[] args) {
     	System.out.println(isDate("12:24:13","hh:mm:ss"));
     	

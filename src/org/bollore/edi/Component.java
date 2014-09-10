@@ -102,8 +102,6 @@ public class Component implements Cloneable{
 	}
 
 
-
-
 	public static void main(String[] args) {
 
 		Component original=new Component("datatype", "1", "2", true, true, "label", "documentation");

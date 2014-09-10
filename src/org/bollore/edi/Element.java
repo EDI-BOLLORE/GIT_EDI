@@ -41,16 +41,6 @@ public class Element implements Cloneable{
 		this.components = components;
 	}
 
-	Element(String code, Boolean required, Boolean truncatable,
-			String label, String documentation,String value){
-		super();
-		this.code = code;
-		this.required = required;
-		this.truncatable = truncatable;
-		this.label = label;
-		this.documentation = documentation;
-		this.value=value;
-	}
 	
 	Element(String code, Boolean required, Boolean truncatable,
 			String label, String documentation){
@@ -60,6 +50,16 @@ public class Element implements Cloneable{
 		this.truncatable = truncatable;
 		this.label = label;
 		this.documentation = documentation;
+	}	
+
+
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public org.bollore.edi.Component getComponent(String _LabelComponent)
@@ -98,13 +98,6 @@ public class Element implements Cloneable{
 
 			result=new Element(this.code, this.required, this.truncatable, this.label, this.documentation);
 
-			//			result.code=this.code;
-			//			result.required=this.required;
-			//			result.truncatable=this.truncatable;
-			//			result.label=this.label;
-			//			result.documentation=this.documentation;
-			//			result.value=this.value;
-
 			for (int i = 0; i < this.components.size(); i++) {
 				components.add(this.components.get(i).clone());
 			}
@@ -115,45 +108,97 @@ public class Element implements Cloneable{
 		}
 		return result;
 	}
+	
+	
+	// Cette méthode permet de renvoyer le rang de la dernière valeur affectée à un composant
+	// Elle permet de ne pas afficher les ':' inutiles dans l'EDI quand les valeurs ne sont pas affectées
+	public Integer MaxRankComponentNonNull() {
+		
+		Integer result=null;
+		
+		
+		if(this.components==null){
+			result=0;	
+		} else if(this.components.size()<=0) {
+			result=0;	
+		} else if(this.components.size()>0) {
+			result = this.components.size();
+			// On détermine le rang à partir duquel tous les
+			// composants n'ont pas de valeur renseignée
+			for (int l = components.size() - 1; l >= 0; l--) {
+				
+				org.bollore.edi.Component component = components
+						.get(l);
+				
+				if (component.value == null) {
+					
+					result--;
+
+				} else if(component.value.trim().equals("")){									
+						
+					result--;
+					} else {
+						// Si la valeur est renseignée, on sort de la boucle
+						break;
+					}
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	public Boolean HasEmptyComponents() {
+		Boolean result=true;
+		
+		if(this.components!=null) {
+			
+			if(this.components.size()>0){
+
+				for (int i = 0; i < this.components.size(); i++) {
+					if(this.components.get(i)!=null) {
+						
+						if(this.components.get(i).value!=null) {
+							if(!this.components.get(i).value.trim().equals("")) {
+								result=false;
+								break;
+							}
+
+						}
+							
+						}
+							
+					} 
+					} 
+				}
+		
+		
+	return result;		
+	}
+
 
 	public static void main(String[] args){
 
-		ArrayList<Component> components = new ArrayList<Component>();
-
-		Component c1=new Component("datatype", "1", "2", true, true, "label", "documentation","value1");
-		Component c2=new Component("datatype2", "1", "2", false, false, "label2", "documentation2","value2");
-
-		components.add(c1);
+		ArrayList<org.bollore.edi.Component> components=new ArrayList<org.bollore.edi.Component>();
+		
+		org.bollore.edi.Component c1=new Component("String","10","1",true,true,"label1","doc1","value2");
+		org.bollore.edi.Component c2=new Component("String","10","1",true,true,"label2","doc2",null);
+		org.bollore.edi.Component c3=new Component("String","10","1",true,true,"label3","doc3","value3");
+		
+//		components.add(c1);
 		components.add(c2);
+//		components.add(c3);
+		
+		org.bollore.edi.Element element=new Element("code_element",true,true,"label_element","doc_element",components);
+		//org.bollore.edi.Element element=new Element("code_element",true,true,"label_element","doc_element",new ArrayList<org.bollore.edi.Component>());
+		//org.bollore.edi.Element element=new Element("code_element",true,true,"label_element","doc_element",null);
+		
+		//System.out.println(element.MaxRankComponentNonNull());
+		System.out.println(element.HasEmptyComponents());
 
-		Element original=new Element("type_ref",true,true,"label","documentation", components);
-
-		Element cloned=(Element)original.clone();
-
-		//		System.out.println(cloned.type_ref);
-		//		
-		//		System.out.println(original!=cloned); // doit renvoyer true
-		//		System.out.println(original.getClass() == cloned.getClass()); // doit renvoyer true
-		//		System.out.println(original.equals(cloned)); // doit renvoyer false
-
-		ArrayList<Component> original_components=original.components;
-		ArrayList<Component> cloned_components=cloned.components;
-
-		for (int i = 0; i < original_components.size(); i++) {
-			System.out.println(original_components.get(i)!=cloned_components.get(i));
-			System.out.println(original_components.get(i).getClass() == cloned_components.get(i).getClass());
-			System.out.println(original_components.get(i).equals(cloned_components.get(i)));
 		}
 
 
 	}
 
 
-
-
-
-
-
-
-
-}
