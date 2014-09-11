@@ -20,7 +20,7 @@ public class Edifact {
 	// Attributs liés à la génération de fichier
 	public String filepath;
 	public PrintWriter printwriter;
-	public Boolean isTest;
+	public Integer isTest;
 
 	// Attributs utilisés pour le segment UNA
 	public Character component_separator;
@@ -65,7 +65,7 @@ public class Edifact {
 	 * 
 	 * *******************************************/
 
-	public Edifact(String filepath, Boolean isTest,
+	public Edifact(String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
 			Character escape_character, Character segment_separator,
@@ -152,7 +152,7 @@ public class Edifact {
 		}
 	}
 
-	public Edifact(String filepath, Boolean isTest,
+	public Edifact(String filepath, Integer isTest,
 
 	String message_reference_number, String edi_version_number,
 			String edi_type, String edi_year_version,
@@ -216,7 +216,7 @@ public class Edifact {
 	public static void main(String[] args) throws JDOMException, IOException,
 			EDIException {
 
-		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", true, "1",
+		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", 0, "1",
 				"D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI", "",
 				"SNCUSTOMS", Utils.getCurrentDate(), "334518001");
 		
@@ -512,9 +512,13 @@ public class Edifact {
 		org.bollore.edi.Element S0035_element = new org.bollore.edi.Element(
 				"S0035", true, false, "TEST INDICATOR",
 				"1: If the message is for a test. 6: The message is not for a test.");
-		S0035_element.setValue((this.isTest) ? "1" : "6");
+		
+		// On n'écrit l'élément est test ( 1 c'est un test 6, ce n'est pas un test) que si la valeur vaut 0
+		if(!(new Integer(0)).equals(this.isTest)) {
+		S0035_element.setValue(String.valueOf(this.isTest));
 
 		seg_unb.elements.add(S0035_element);
+		}
 
 		return seg_unb;
 	}
