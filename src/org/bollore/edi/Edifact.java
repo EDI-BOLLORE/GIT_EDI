@@ -53,6 +53,10 @@ public class Edifact {
 	public String edi_letter_version;
 	public String controlling_agency;
 	// Fin
+	
+	// Attribut utilisé pour le segment UNZ
+	// Cet attribut donne le nombre de segments (UNH,UNT) contenus dans le fichier
+	Integer nb_message;
 
 	public ArrayList<org.bollore.edi.Segment> structure;
 	public ArrayList<org.bollore.edi.Segment> segments;
@@ -144,6 +148,8 @@ public class Edifact {
 			// Création des listes vides des segments et des éléments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
+			
+			this.nb_message=1;
 
 			this.BuildStructureSegment();
 			// this.segments_rank=this.buildHashSegment();
@@ -205,6 +211,8 @@ public class Edifact {
 			// Création des listes vides des segments et des éléments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
+			
+			this.nb_message=1;
 
 			this.BuildStructureSegment();
 			// this.segments_rank=this.buildHashSegment();
@@ -658,7 +666,6 @@ public class Edifact {
 		for (int i = 0; i < elements.size(); i++) {
 			element = elements.get(i);
 
-			// A.substring(A.lastIndexOf("/")+1,A.length())
 			String element_name = element_path.substring(
 					element_path.lastIndexOf("/") + 1, element_path.length());
 			if (element.code.equals(element_name)) {
@@ -994,8 +1001,8 @@ public class Edifact {
 						+ this.element_separator
 						+ this.message_reference_number
 						+ this.segment_separator + "\n");
-		this.printwriter.append("UNZ" + this.element_separator + "1"
-				+ this.element_separator + this.segment_separator + "\n");
+		this.printwriter.append("UNZ" + this.element_separator + this.nb_message
+				+ this.element_separator + this.interchange_control_reference+ this.segment_separator + "\n");
 	}
 
 	public void printEDIStructure() {
