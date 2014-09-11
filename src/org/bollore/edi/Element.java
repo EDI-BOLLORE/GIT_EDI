@@ -174,32 +174,4 @@ public class Element implements Cloneable {
 		return result;
 	}
 
-	public static void main(String[] args) {
-
-		ArrayList<org.bollore.edi.Component> components = new ArrayList<org.bollore.edi.Component>();
-
-		org.bollore.edi.Component c1 = new Component("String", "10", "1", true,
-				true, "label1", "doc1", "value2");
-		org.bollore.edi.Component c2 = new Component("String", "10", "1", true,
-				true, "label2", "doc2", null);
-		org.bollore.edi.Component c3 = new Component("String", "10", "1", true,
-				true, "label3", "doc3", "value3");
-
-		// components.add(c1);
-		components.add(c2);
-		// components.add(c3);
-
-		org.bollore.edi.Element element = new Element("code_element", true,
-				true, "label_element", "doc_element", components);
-		// org.bollore.edi.Element element=new
-		// Element("code_element",true,true,"label_element","doc_element",new
-		// ArrayList<org.bollore.edi.Component>());
-		// org.bollore.edi.Element element=new
-		// Element("code_element",true,true,"label_element","doc_element",null);
-
-		// System.out.println(element.MaxRankComponentNonNull());
-		System.out.println(element.HasEmptyComponents());
-
-	}
-
 }

@@ -219,6 +219,11 @@ public class Edifact {
 		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", true, "1",
 				"D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI", "",
 				"SNCUSTOMS", Utils.getCurrentDate(), "334518001");
+		
+		ArrayList<String> cst = new ArrayList<String>();
+		
+		cst.add("1");
+		
 
 		ArrayList<String> rff1 = new ArrayList<String>();
 
@@ -307,6 +312,8 @@ public class Edifact {
 		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng2, true);
 		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/PCI/C210",
 				"1,2,3,4,5,6,7,8,9,10", ",", true);
+		
+		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/CST/1496", cst, true);
 		// edi_cuscar.printEDI();
 
 		edi_cuscar.print();

@@ -174,7 +174,6 @@ public class Segment implements Cloneable {
 			for (int l = elements.size() - 1; l > 0; l--) {
 
 				org.bollore.edi.Element element = elements.get(l);
-				// System.out.println("element==null");
 				if (element == null) {
 					System.out.println("1");
 					result--;
@@ -205,7 +204,6 @@ public class Segment implements Cloneable {
 				}
 			}
 		}
-		System.out.println("result final = " + result);
 		return result;
 
 	}
