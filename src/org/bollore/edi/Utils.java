@@ -57,7 +57,7 @@ public class Utils {
 			
 			input=input.trim();
 			
-			if (!input.contains(separator)) {
+			if (!input.contains(separator)&&length_expected==1) {
 				result = input.trim();
 			} else {
 
@@ -65,7 +65,7 @@ public class Utils {
 				// la valeur vide
 				// Ex: "A,B,C," le split considère 3 valeurs au lieu de 4 pour
 				// "A,B,C, "
-				input = (input != null) ? " ".concat(input).concat(" ") : input;
+				input = " ".concat(input).concat(" ");
 
 				Integer length_input = input.split(separator).length;
 
@@ -76,8 +76,10 @@ public class Utils {
 
 					for (int i = 0; i < length_expected - length_input; i++) {
 						result = result.concat(separator).concat(" ");
+						//result = result.concat(separator);
 					}
 					//result=result.concat(" ");
+					
 				} else if (length_input > length_expected) {
 					throw new EDIException("Le nombre d'élément (" + length_input
 							+ ") est supérieur au nombre d'éléments attendus ("

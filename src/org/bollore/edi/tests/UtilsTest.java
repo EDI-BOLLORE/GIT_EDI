@@ -22,6 +22,8 @@ public class UtilsTest extends TestCase {
 		assertEquals("1",Utils.formatInput("1",1,","));
 		assertEquals("1",Utils.formatInput("1   ",1,","));
 		assertEquals("1",Utils.formatInput("    1   ",1,","));
+		System.out.println("A"+Utils.formatInput("1",3,",")+"A");
+		assertEquals(" 1 , , ",Utils.formatInput("1",3,","));
 		
 		assertEquals(" 1,2,3 ",Utils.formatInput("1,2,3",3,","));
 		assertEquals(" 1,2,3 ",Utils.formatInput("    1,2,3   ",3,","));
