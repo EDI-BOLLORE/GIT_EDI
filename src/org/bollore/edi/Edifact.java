@@ -61,8 +61,6 @@ public class Edifact {
 	public ArrayList<org.bollore.edi.Segment> structure;
 	public ArrayList<org.bollore.edi.Segment> segments;
 
-	// public HashMap<String, Integer> segments_rank;
-
 	/*********************************************
 	 * 
 	 * Constructeurs de la classe Edifact
@@ -148,7 +146,7 @@ public class Edifact {
 			// Création des listes vides des segments et des éléments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
-			
+			//Utile ?
 			this.nb_message=1;
 
 			this.BuildStructureSegment();
@@ -224,9 +222,9 @@ public class Edifact {
 	public static void main(String[] args) throws JDOMException, IOException,
 			EDIException {
 
-		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", 0, "1",
+		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", 0, "1234567",
 				"D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI", "",
-				"SNCUSTOMS", Utils.getCurrentDate(), "334518001");
+				"SNCUSTOMS", Utils.getCurrentDate(), "identifiant de mon voyage");
 		
 		ArrayList<String> cst = new ArrayList<String>();
 		
@@ -996,8 +994,11 @@ public class Edifact {
 	}
 
 	public void printfooter() {
+		// Le nombre de segments affichés dans UNT est le nombre de segments entre UNH et UNT inclus d'où le +2
+		Integer nb_segments=this.segments.size()+2;
+		
 		this.printwriter
-				.append("UNT" + this.element_separator + this.segments.size()
+				.append("UNT" + this.element_separator + nb_segments
 						+ this.element_separator
 						+ this.message_reference_number
 						+ this.segment_separator + "\n");
