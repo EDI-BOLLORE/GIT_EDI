@@ -7,9 +7,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bollore.edi.tests.UtilsTest;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -17,12 +19,12 @@ import org.jdom2.input.SAXBuilder;
 
 public class Edifact {
 
-	// Attributs liés à la génération de fichier
+	// Attributs liï¿½s ï¿½ la gï¿½nï¿½ration de fichier
 	public String filepath;
 	public PrintWriter printwriter;
 	public Integer isTest;
 
-	// Attributs utilisés pour le segment UNA
+	// Attributs utilisï¿½s pour le segment UNA
 	public Character component_separator;
 	public Character element_separator;
 	public Character decimal_separator;
@@ -31,7 +33,7 @@ public class Edifact {
 	public Character segment_separator;
 	// Fin
 
-	// Attributs utilisés pour le segment UNB
+	// Attributs utilisï¿½s pour le segment UNB
 	public String syntax_id;
 	public String syntax_version_number;
 	public String interchange_sender_id; // GRIMALDI
@@ -39,13 +41,13 @@ public class Edifact {
 	public String interchange_recipient_id; // exemple SNCUSTOMS
 	public String date; // Date du jour
 	public String time; // Heure du jour
-	public String interchange_control_reference; // Auto-incrément du nombre de
-													// fichiers échangés avec
+	public String interchange_control_reference; // Auto-incrï¿½ment du nombre de
+													// fichiers ï¿½changï¿½s avec
 													// interchange_sender_id
-													// durant l'année courante
+													// durant l'annï¿½e courante
 	// Fin
 
-	// Attributs utilisés pour le segment UNH
+	// Attributs utilisï¿½s pour le segment UNH
 	public String message_reference_number;
 	public String edi_version_number;
 	public String edi_type;
@@ -53,9 +55,10 @@ public class Edifact {
 	public String edi_letter_version;
 	public String controlling_agency;
 	// Fin
-	
-	// Attribut utilisé pour le segment UNZ
-	// Cet attribut donne le nombre de segments (UNH,UNT) contenus dans le fichier
+
+	// Attribut utilisï¿½ pour le segment UNZ
+	// Cet attribut donne le nombre de segments (UNH,UNT) contenus dans le
+	// fichier
 	Integer nb_message;
 
 	public ArrayList<org.bollore.edi.Segment> structure;
@@ -64,6 +67,7 @@ public class Edifact {
 	/*********************************************
 	 * 
 	 * Constructeurs de la classe Edifact
+	 * @throws EDIException 
 	 * 
 	 * *******************************************/
 
@@ -79,7 +83,7 @@ public class Edifact {
 			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String id_code_qualifier,
 			String interchange_recipient_id, Date date,
-			String interchange_control_reference)
+			String interchange_control_reference) throws EDIException
 
 	{
 
@@ -90,38 +94,17 @@ public class Edifact {
 			this.isTest = isTest;
 			this.printwriter = new PrintWriter(new File(filepath));
 
-			// Instantiation des attributs liés au segment UNA
-			if (element_separator == null) {
-				this.element_separator = '+';
-			} else {
-				this.element_separator = element_separator;
-			}
-			if (decimal_separator == null) {
-				this.decimal_separator = '.';
-			} else {
-				this.decimal_separator = decimal_separator;
-			}
-			if (component_separator == null) {
-				this.component_separator = ':';
-			} else {
-				this.component_separator = component_separator;
-			}
-			if (escape_character == null) {
-				this.escape_character = '?';
-			} else {
-				this.escape_character = decimal_separator;
-			}
-			if (segment_separator == null) {
-				this.segment_separator = '\'';
-			} else {
-				this.segment_separator = segment_separator;
-			}
-			if (space_character == null) {
-				this.space_character = ' ';
-			} else {
-				this.space_character = space_character;
-			}
+			// Instantiation des attributs liï¿½s au segment UNA
 
+				this.element_separator = element_separator;
+				this.decimal_separator = decimal_separator;
+				this.escape_character = escape_character;
+				this.space_character = space_character;
+				this.segment_separator = segment_separator;
+				this.component_separator = component_separator;
+				
+				this.isGrammarCharValid();
+				
 			// Instantiation des attributs du segment UNB
 			this.syntax_id = syntax_id;
 			this.syntax_version_number = syntax_version_number;
@@ -140,14 +123,14 @@ public class Edifact {
 			this.edi_version_number = edi_version_number;
 			this.edi_type = edi_type;
 			this.edi_year_version = edi_year_version;
-			this.edi_year_version = edi_year_version;
+			this.edi_letter_version = edi_letter_version;
 			this.controlling_agency = controlling_agency;
 
-			// Création des listes vides des segments et des éléments
+			// Crï¿½ation des listes vides des segments et des ï¿½lï¿½ments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
-			//Utile ?
-			this.nb_message=1;
+			// Utile ?
+			this.nb_message = 1;
 
 			this.BuildStructureSegment();
 			// this.segments_rank=this.buildHashSegment();
@@ -166,7 +149,7 @@ public class Edifact {
 			String interchange_sender_id, String id_code_qualifier,
 			String interchange_recipient_id, Date date,
 
-			String interchange_control_reference)
+			String interchange_control_reference) throws EDIException
 
 	{
 
@@ -177,13 +160,15 @@ public class Edifact {
 			this.isTest = isTest;
 			this.printwriter = new PrintWriter(new File(filepath));
 
-			// Instantiation des attributs liés au segment UNA
+			// Instantiation des attributs liï¿½s au segment UNA
 			this.element_separator = '+';
 			this.decimal_separator = '.';
 			this.component_separator = ':';
 			this.escape_character = '?';
 			this.segment_separator = '\'';
 			this.space_character = ' ';
+			
+			this.isGrammarCharValid();
 
 			// Instantiation des attributs du segment UNB
 			this.syntax_id = syntax_id;
@@ -206,11 +191,11 @@ public class Edifact {
 			this.edi_letter_version = edi_letter_version;
 			this.controlling_agency = controlling_agency;
 
-			// Création des listes vides des segments et des éléments
+			// Crï¿½ation des listes vides des segments et des ï¿½lï¿½ments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.segments = new ArrayList<org.bollore.edi.Segment>();
-			
-			this.nb_message=1;
+
+			this.nb_message = 1;
 
 			this.BuildStructureSegment();
 			// this.segments_rank=this.buildHashSegment();
@@ -221,120 +206,154 @@ public class Edifact {
 
 	public static void main(String[] args) throws JDOMException, IOException,
 			EDIException {
-
-		Edifact edi_cuscar = new Edifact("C:/Temp/Cuscar_Test.edi", 0, "1234567",
-				"D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI", "",
-				"SNCUSTOMS", Utils.getCurrentDate(), "identifiant de mon voyage");
+		System.out.println(UtilsTest.tempdir+ "/Cuscar_Test.edi");
+		Edifact edi_cuscar =new Edifact(UtilsTest.tempdir+ "/Cuscar_Test.edi",6,
+				'+',':',' ','.','?','\'',"1234567", "D", "CUSCAR", "95", "B", "UN", "UNOC", "2",
+				"GRIMALDI", "", "SNCUSTOMS", Utils.getCurrentDate(),
+				"identifiant de mon voyage");
 		
-		ArrayList<String> cst = new ArrayList<String>();
+	}
+	
+	public Boolean isGrammarCharValid() throws EDIException{
+		Boolean result=null;
 		
-		cst.add("1");
+		HashSet<String> dedoub=new HashSet<String>();
 		
-
-		ArrayList<String> rff1 = new ArrayList<String>();
-
-		rff1.add("A");
-		rff1.add("B");
-		rff1.add("C");
-		rff1.add("D");
-
-		ArrayList<String> rff2 = new ArrayList<String>();
-
-		rff2.add("E");
-		rff2.add("F");
-		rff2.add("G");
-		rff2.add("H");
-
-		ArrayList<String> dtm = new ArrayList<String>();
-
-		dtm.add("I");
-		dtm.add("J");
-		dtm.add("K");
-
-		ArrayList<String> nad1 = new ArrayList<String>();
-
-		nad1.add("NAD1");
-
-		ArrayList<String> nad2 = new ArrayList<String>();
-
-		nad2.add("NAD21");
-		nad2.add("NAD22");
-		nad2.add("NAD23");
-
-		ArrayList<String> rng = new ArrayList<String>();
-
-		rng.add("RNG1");
-		rng.add("RNG2");
-		rng.add("RNG3");
-
-		ArrayList<String> rng2 = new ArrayList<String>();
-
-		rng2.add("RNG4");
-		rng2.add("RNG5");
-		rng2.add("RNG6");
-
-		ArrayList<String> loc_3227 = new ArrayList<String>();
-
-		loc_3227.add("5");
-
-		ArrayList<String> loc_c517 = new ArrayList<String>();
-
-		loc_c517.add("tata");
-		loc_c517.add("162");
-		loc_c517.add("");
-		loc_c517.add("");
-
-		ArrayList<String> loc2_3227 = new ArrayList<String>();
-
-		loc2_3227.add("5");
-
-		ArrayList<String> loc2_c517 = new ArrayList<String>();
-
-		loc2_c517.add("toto");
-		loc2_c517.add("139");
-		loc2_c517.add("   ");
-		loc2_c517.add("       ");
-
-		// On peut utiliser l'un ou l'autre
-		edi_cuscar.setValueElement("DTM/C507", "I1,  ,L1", ",", true);
-		edi_cuscar.setValueElement("DTM/C507", dtm, true);
-		edi_cuscar.setValueElement("RFF/C506", rff1, true);
-		edi_cuscar.setValueElement("RFF/C506", rff2, true);
-
-		edi_cuscar.setValueElement("RFF/C506", ",J,K,L", ",", true);
-
-		edi_cuscar.setValueElement("RFF/C506", "M,N,O, ", ",", true);
-		edi_cuscar.setValueElement("RFF/C506", "Q,R,S,", ",", true);
-		edi_cuscar.setValueElement("RFF/C506", " ,T,U,V", ",", true);
-		edi_cuscar.setValueElement("NAD/3035", nad1, true);
-		edi_cuscar.setValueElement("NAD/C082", nad2, false);
-
-		edi_cuscar.setValueElement("GRP1/LOC/3227", loc_3227, true);
-		edi_cuscar.setValueElement("GRP1/LOC/C517", loc_c517, false);
-		edi_cuscar.setValueElement("GRP1/LOC/3227", loc2_3227, true);
-		edi_cuscar.setValueElement("GRP1/LOC/C517", loc2_c517, false);
-
-		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng, true);
-		edi_cuscar.setValueElement("GRP2/GRP3/RNG/C280", rng2, true);
-		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/PCI/C210",
-				"1,2,3,4,5,6,7,8,9,10", ",", true);
+		ArrayList<String> edi_char=new ArrayList<String>();
 		
-		edi_cuscar.setValueElement("GRP4/GRP5/GRP10/CST/1496", cst, true);
-		// edi_cuscar.printEDI();
+		if(this.component_separator==null){
+			throw new EDIException("Le sÃ©parateur de composants doit Ãªtre renseignÃ© : this.component_separator="+this.component_separator);
+		}
+		
+		if(this.element_separator==null){
+			throw new EDIException("Le sÃ©parateur d'Ã©lÃ©ment doit Ãªtre renseignÃ© : this.element_separator="+this.element_separator);
+		}
+		
+		if(this.decimal_separator==null){
+			throw new EDIException("Le sÃ©parateur de dÃ©cimales doit Ãªtre renseignÃ© : this.decimal_separator="+this.decimal_separator);
+		}
+		
+		if(this.escape_character==null){
+			throw new EDIException("Le caractÃ¨re d'Ã©chappement doit Ãªtre renseignÃ© : this.escape_character="+this.escape_character);
+		}
+		
+		if(this.space_character==null){
+			throw new EDIException("Le caractÃ¨re d'espace doit Ãªtre renseignÃ© : this.space_character="+this.space_character);
+		}
+		
+		if(this.element_separator==null){
+			throw new EDIException("Le sÃ©parateur de segment doit Ãªtre renseignÃ© : this.segment_separator="+this.segment_separator);
+		}
+		
+		edi_char.add(this.component_separator.toString());
+		edi_char.add(this.element_separator.toString());
+		edi_char.add(this.decimal_separator.toString());
+		edi_char.add(this.escape_character.toString());
+		edi_char.add(this.space_character.toString());
+		edi_char.add(this.segment_separator.toString());
+		
+		for (int i = 0; i < edi_char.size(); i++) {
+			
+			//Si un Ã©lÃ©ment est dÃ©jÃ  prÃ©sent dans un hashset la mÃ©thode add renvoie false.
+			if(dedoub.contains(edi_char.get(i))){
+				throw new EDIException("La grammaire de l'EDI ne doit pas comporter de doublons "+this.component_separator+this.element_separator+this.decimal_separator+this.escape_character+this.space_character+this.segment_separator);
+				//return false;
+			}
+			else {
+				dedoub.add(edi_char.get(i));
+				result=true;
+			}
+		}
+		
+		return result;
+		
+	}
 
-		edi_cuscar.print();
+	public String replaceGrammarChar(String input) {
+		String result="";
+		
+		if(input==null){
+			
+			return result;
+		} else {
+			if(input.trim().equals("")){
+				return result;
+			}
+		}
 
+		result = input;
+
+		// Construction d'une hashmap avec tous les mï¿½ta-caractï¿½res de
+		// JAVA/Regex
+		HashMap<String, String> javametacharacter_map = new HashMap<String, String>();
+
+		javametacharacter_map.put(".", "\\.");
+		javametacharacter_map.put("*", "\\*");
+		javametacharacter_map.put("?", "\\?");
+		javametacharacter_map.put("(", "\\(");
+		javametacharacter_map.put(")", "\\)");
+		javametacharacter_map.put("[", "\\[");
+		javametacharacter_map.put("]", "\\]");
+		javametacharacter_map.put("{", "\\{");
+		javametacharacter_map.put("}", "\\}");
+		javametacharacter_map.put("^", "\\^");
+		javametacharacter_map.put("$", "\\$");
+		javametacharacter_map.put("|", "\\|");
+		javametacharacter_map.put("+", "\\+");
+		javametacharacter_map.put("\\", "\\\\");
+
+		// A faire en premier: remplacement du caractï¿½re d'ï¿½chappement EDI
+
+		String edi_escape_char;
+		String to_replace;
+		String replacement_string;
+		
+		if (javametacharacter_map.containsKey(String
+				.valueOf(this.escape_character))) {			
+
+			edi_escape_char = javametacharacter_map.get(String
+					.valueOf(this.escape_character));
+
+			
+		} else {
+			edi_escape_char = String.valueOf(this.escape_character);
+		}
+		
+		result = result.replaceAll(edi_escape_char,
+				edi_escape_char.concat(edi_escape_char));
+
+		
+		String[] edi_char= {String.valueOf(this.component_separator),String.valueOf(this.element_separator),
+				String.valueOf(this.decimal_separator),
+				String.valueOf(this.segment_separator),String.valueOf(this.space_character)};
+		
+		//String.valueOf(this.space_character), doit on catchÃ© l'espace???
+		
+		
+		for (int i = 0; i < edi_char.length; i++) {
+			if(javametacharacter_map.containsKey(edi_char[i])) {
+				to_replace=javametacharacter_map.get(edi_char[i]);
+				replacement_string=edi_escape_char.concat(to_replace);
+			} else {
+				to_replace=edi_char[i];
+				replacement_string=edi_escape_char.concat(edi_char[i]);				
+			}
+				
+			result=result.replaceAll(to_replace, replacement_string);	
+		}
+
+		return result;
 	}
 
 	public Integer getElementNbValues(String element_path) throws EDIException {
 		Integer result = -1;
 
-		// On récupère le segment à traiter
+		// On rï¿½cupï¿½re le segment ï¿½ traiter
 		org.bollore.edi.Segment segment = null;
-		// On extrait le segment du chemin de l'élément
+		// On extrait le segment du chemin de l'ï¿½lï¿½ment
 		String segment_path = element_path.substring(0,
 				element_path.lastIndexOf("/"));
-		// On récupère le segment depuis la structure
+		// On rï¿½cupï¿½re le segment depuis la structure
 		segment = this.getSegmentStructure(segment_path);
 
 		ArrayList<org.bollore.edi.Element> elements = segment.elements;
@@ -354,13 +373,13 @@ public class Edifact {
 			}
 
 		}
-		// Si l'élément n'a pas été trouvé on sort
+		// Si l'ï¿½lï¿½ment n'a pas ï¿½tï¿½ trouvï¿½ on sort
 		if (!element.code.equals(element_name)) {
-			throw new EDIException("L'élément " + element_path
-					+ " n'a pas été trouvé.");
+			throw new EDIException("L'ï¿½lï¿½ment " + element_path
+					+ " n'a pas ï¿½tï¿½ trouvï¿½.");
 		}
 
-		// L'élément n'a pas de composants
+		// L'ï¿½lï¿½ment n'a pas de composants
 		if ((element.components == null || element.components.size() <= 0)) {
 			result = 1;
 		} else {
@@ -377,7 +396,7 @@ public class Edifact {
 
 		if (segment_path == null) {
 			throw new EDIException(
-					"Le segment a récupérer doit avoir un chemin renseigné");
+					"Le segment a rï¿½cupï¿½rer doit avoir un chemin renseignï¿½");
 		} else {
 
 			String[] split = segment_path.split("/");
@@ -402,19 +421,19 @@ public class Edifact {
 	}
 
 	/**
-	 * Cette méthode permet d'ajouter le segment UNB non présent dans la
-	 * définition du Cuscar depuis Smooks
+	 * Cette mï¿½thode permet d'ajouter le segment UNB non prï¿½sent dans la
+	 * dï¿½finition du Cuscar depuis Smooks
 	 */
 
 	public org.bollore.edi.Segment buildUNBSegment() {
-		// Création du segment UNB
+		// Crï¿½ation du segment UNB
 		org.bollore.edi.Segment seg_unb = new Segment(
 				"MESSAGE HEADER ENVELOPE", "UNB", 1, 1,
 				"To identify the interchange",
 				new ArrayList<org.bollore.edi.Element>(),
 				new ArrayList<org.bollore.edi.Segment>());
 
-		// Création de l'élément S001 avec les composants
+		// Crï¿½ation de l'ï¿½lï¿½ment S001 avec les composants
 		ArrayList<org.bollore.edi.Component> S001_components = new ArrayList<org.bollore.edi.Component>();
 
 		org.bollore.edi.Component c0001 = new Component(
@@ -440,7 +459,7 @@ public class Edifact {
 
 		seg_unb.elements.add(S001_element);
 
-		// Création de l'élément S002 avec les composants
+		// Crï¿½ation de l'ï¿½lï¿½ment S002 avec les composants
 		ArrayList<org.bollore.edi.Component> S002_components = new ArrayList<org.bollore.edi.Component>();
 
 		org.bollore.edi.Component c0004 = new Component("String", "1", "1",
@@ -459,7 +478,7 @@ public class Edifact {
 
 		seg_unb.elements.add(S002_element);
 
-		// Création de l'élément S003 avec les composants
+		// Crï¿½ation de l'ï¿½lï¿½ment S003 avec les composants
 
 		ArrayList<org.bollore.edi.Component> S003_components = new ArrayList<org.bollore.edi.Component>();
 
@@ -482,7 +501,7 @@ public class Edifact {
 
 		seg_unb.elements.add(S003_element);
 
-		// Création de l'élément S004 avec les composants
+		// Crï¿½ation de l'ï¿½lï¿½ment S004 avec les composants
 
 		ArrayList<org.bollore.edi.Component> S004_components = new ArrayList<org.bollore.edi.Component>();
 
@@ -502,7 +521,7 @@ public class Edifact {
 
 		seg_unb.elements.add(S004_element);
 
-		// Création de l'élément 0020
+		// Crï¿½ation de l'ï¿½lï¿½ment 0020
 		org.bollore.edi.Element E0020_element = new org.bollore.edi.Element(
 				"S0020",
 				true,
@@ -513,34 +532,35 @@ public class Edifact {
 
 		seg_unb.elements.add(E0020_element);
 
-		// Création de l'élément 0035
+		// Crï¿½ation de l'ï¿½lï¿½ment 0035
 
 		org.bollore.edi.Element S0035_element = new org.bollore.edi.Element(
 				"S0035", true, false, "TEST INDICATOR",
 				"1: If the message is for a test. 6: The message is not for a test.");
-		
-		// On n'écrit l'élément est test ( 1 c'est un test 6, ce n'est pas un test) que si la valeur vaut 0
-		if(!(new Integer(0)).equals(this.isTest)) {
-		S0035_element.setValue(String.valueOf(this.isTest));
 
-		seg_unb.elements.add(S0035_element);
+		// On n'ï¿½crit l'ï¿½lï¿½ment est test ( 1 c'est un test 6, ce n'est pas un
+		// test) que si la valeur vaut 0
+		if (!(new Integer(0)).equals(this.isTest)) {
+			S0035_element.setValue(String.valueOf(this.isTest));
+
+			seg_unb.elements.add(S0035_element);
 		}
 
 		return seg_unb;
 	}
 
 	/**
-	 * Cette méthode permet d'ajouter le segment UNH non présent dans la
-	 * définition du Cuscar depuis Smooks
+	 * Cette mï¿½thode permet d'ajouter le segment UNH non prï¿½sent dans la
+	 * dï¿½finition du Cuscar depuis Smooks
 	 */
 	public org.bollore.edi.Segment buildUNHSegment() {
-		// Création du segment UNH
+		// Crï¿½ation du segment UNH
 		org.bollore.edi.Segment seg_unh = new Segment("MESSAGE HEADER ", "UNH",
 				1, 1, "To head, identify and specify a message.",
 				new ArrayList<org.bollore.edi.Element>(),
 				new ArrayList<org.bollore.edi.Segment>());
 
-		// Ajout de l'élément S0062
+		// Ajout de l'ï¿½lï¿½ment S0062
 
 		org.bollore.edi.Element S0062_element = new org.bollore.edi.Element(
 				"E0062", true, false, "MESSAGE REFERENCE NUMBER",
@@ -550,7 +570,7 @@ public class Edifact {
 
 		seg_unh.elements.add(S0062_element);
 
-		// Création de l'élément S009 avec les composants
+		// Crï¿½ation de l'ï¿½lï¿½ment S009 avec les composants
 
 		ArrayList<org.bollore.edi.Component> S009_components = new ArrayList<org.bollore.edi.Component>();
 
@@ -606,30 +626,48 @@ public class Edifact {
 
 		if (values == null) {
 			throw new EDIException(
-					"La donnée des valeurs à affecter à l'élément "
+					"La donnee des valeurs a affecter a l'element "
 							+ element_path + " est null");
 		} else {
 
 			// Si il y a plus de valeurs que de composants
 			// values.split(values_separator) renvoie le nombre de valeurs en
-			// entrée
+			// entrï¿½e
 			if (getElementNbValues(element_path) < values
 					.split(values_separator).length) {
-				throw new EDIException("L'élément " + element_path
-						+ " possède " + getElementNbValues(element_path)
-						+ " valeurs à renseigner alors que l'on en a "
+				throw new EDIException("L'element " + element_path
+						+ " possede " + getElementNbValues(element_path)
+						+ " valeurs a renseigner alors que l'on en a "
 						+ values.split(values_separator).length
-						+ " à affecter " + values);
+						+ " a affecter " + values);
 			} else {
 
 				values = Utils.formatInput(values,
 						getElementNbValues(element_path), values_separator);
 			}
 
-			for (int i = 0; i < values.split(values_separator).length; i++) {
-				// System.out.println("setValueElement : A"+values.split(values_separator)[i]+"A");
-				a_values.add(values.split(values_separator)[i]);
-			}
+			
+			
+			
+			
+			
+			//Boucle Ã  refaire
+			
+			
+			
+			
+			
+			
+				a_values=Utils.StringToArray(values, values_separator);
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
 			setValueElement(element_path, a_values, create_new_segment);
 		}
@@ -638,12 +676,12 @@ public class Edifact {
 
 	public void setValueElement(String element_path, ArrayList<String> values,
 			Boolean create_new_segment) throws EDIException {
-		// On récupère le segment à traiter
+		// On recupere le segment a traiter
 		org.bollore.edi.Segment segment = null;
 
-		// Si l'on doit créer un nouveau segment
+		// Si l'on doit creer un nouveau segment
 		if (create_new_segment) {
-			// Si l'on doit créé le segment, on l'importe depuis la structure et
+			// Si l'on doit cree le segment, on l'importe depuis la structure et
 			// on le met dans segments
 			String segment_path = element_path.substring(0,
 					element_path.lastIndexOf("/"));
@@ -651,10 +689,10 @@ public class Edifact {
 			// this.segments.add(this.getSegmentStructure(split[0]));
 		}
 
-		// On récupère le dernier segment en cours de traitement de l'EDI
+		// On rï¿½cupï¿½re le dernier segment en cours de traitement de l'EDI
 		segment = this.segments.get(segments.size() - 1);
 
-		// On récupère l'élément que l'on souhaite instancier
+		// On rï¿½cupï¿½re l'ï¿½lï¿½ment que l'on souhaite instancier
 
 		// org.bollore.edi.Element element=null;
 		ArrayList<org.bollore.edi.Element> elements = segment.elements;
@@ -673,19 +711,19 @@ public class Edifact {
 
 		}
 
-		// L'élément n'a pas de composants
+		// L'ï¿½lï¿½ment n'a pas de composants
 		if ((element.components == null || element.components.size() <= 0)) {
 			if (values.size() == 1) {
 				element.value = values.get(0);
 			} else {
-				throw new EDIException("L'élément " + element.code
-						+ " n'a pas de composants et possède " + values.size()
-						+ " valeurs à affecter");
+				throw new EDIException("L'ï¿½lï¿½ment " + element.code
+						+ " n'a pas de composants et possï¿½de " + values.size()
+						+ " valeurs ï¿½ affecter");
 			}
 
 		} else {
-			// Si le nombre de valeur à affecter est différent du nombre de
-			// composants de l'élément
+			// Si le nombre de valeur ï¿½ affecter est diffï¿½rent du nombre de
+			// composants de l'ï¿½lï¿½ment
 			if (element.components.size() != values.size()) {
 
 				throw new EDIException("Le nombre de valeurs (" + values.size()
@@ -707,38 +745,38 @@ public class Edifact {
 			ArrayList<org.bollore.edi.Segment> segments) throws EDIException {
 		org.bollore.edi.Segment result = null;
 
-		// On récupère les segments et l'élément en découpant la chaîne
+		// On rï¿½cupï¿½re les segments et l'ï¿½lï¿½ment en dï¿½coupant la chaï¿½ne
 		String[] split = segment_path.split("/");
 
-		// Si les segments ne sont pas renseignés, il s'agit de la première
-		// exécution
+		// Si les segments ne sont pas renseignï¿½s, il s'agit de la premiï¿½re
+		// exï¿½cution
 		if (segments == null) {
 			segments = this.segments;
 		}
 
-		// Si le chemin possède au moins 2 segments
+		// Si le chemin possï¿½de au moins 2 segments
 		if (split.length > 1) {
 			// On cherche le segment correspondant
 			for (int i = 0; i < segments.size(); i++) {
-				// On a trouvé le bon segment on itere sur l'arraylist du
-				// segment correspondant en rappelant la méthode en tronquant le
+				// On a trouvï¿½ le bon segment on itere sur l'arraylist du
+				// segment correspondant en rappelant la mï¿½thode en tronquant le
 				// chemin du composant GRP2/GRP3/RNG/C280 devient GRP3/RNG/C280
-				// et en passant en paramètre l'arraylist de segments du segment
-				// trouvé
+				// et en passant en paramï¿½tre l'arraylist de segments du segment
+				// trouvï¿½
 				if (segments.get(i).code.equals(split[0])) {
 
 					return this.getSegment(segment_path.substring(segment_path
 							.indexOf("/") + 1), segments.get(i).segments);
 				}
 			}
-			// Le chemin possède 2 segments séparés par un /: On récupère le
+			// Le chemin possï¿½de 2 segments sï¿½parï¿½s par un /: On rï¿½cupï¿½re le
 			// segment suivant
 		} else {
-			// On boucle une dernière fois pour trouver le segment
-			// La boucle se fait à l'envers pour récupérer le dernier segment
-			// avec le code recherché
+			// On boucle une derniï¿½re fois pour trouver le segment
+			// La boucle se fait ï¿½ l'envers pour rï¿½cupï¿½rer le dernier segment
+			// avec le code recherchï¿½
 			for (int j = segments.size() - 1; j >= 0; j--) {
-				// Dès qu'on le trouve, on sort de la boucle
+				// Dï¿½s qu'on le trouve, on sort de la boucle
 				if (segments.get(j).code.equals(split[0])) {
 
 					result = segments.get(j);
@@ -756,14 +794,14 @@ public class Edifact {
 
 	public org.bollore.edi.Element getElement(String element_path,
 			ArrayList<org.bollore.edi.Segment> segments) throws EDIException {
-		// Instantiation du retour de la méthode
+		// Instantiation du retour de la mï¿½thode
 		org.bollore.edi.Element result = null;
 
-		// On récupère les segments et l'élément en découpant la chaîne
+		// On rï¿½cupï¿½re les segments et l'ï¿½lï¿½ment en dï¿½coupant la chaï¿½ne
 		String[] split = element_path.split("/");
 
-		// Si les segments ne sont pas renseignés, il s'agit de la première
-		// exécution
+		// Si les segments ne sont pas renseignï¿½s, il s'agit de la premiï¿½re
+		// exï¿½cution
 		if (segments == null) {
 
 			segments = this.segments;
@@ -773,7 +811,7 @@ public class Edifact {
 		// Le chemin ne comporte pas a minima SEGMENT/ELEMENT
 		if (split.length < 2) {
 			throw new EDIException(
-					"Pour récupérer un élément la structure minimale est SEGMENT/ELEMENT. Au moins un '/' doit apparaître dans le chemin.");
+					"Pour rï¿½cupï¿½rer un ï¿½lï¿½ment la structure minimale est SEGMENT/ELEMENT. Au moins un '/' doit apparaï¿½tre dans le chemin.");
 		}
 		// Le chemin est de la forme SEGMENT/ELEMENT
 		else if (split.length == 2) {
@@ -785,7 +823,7 @@ public class Edifact {
 
 					ArrayList<org.bollore.edi.Element> elements = segment.elements;
 
-					// Si la partie droite correspond à un élément:
+					// Si la partie droite correspond ï¿½ un ï¿½lï¿½ment:
 					for (int j = elements.size() - 1; j >= 0; j--) {
 
 						if (elements.get(j).code.equals(split[1])) {
@@ -798,13 +836,13 @@ public class Edifact {
 		} else {
 
 			throw new EDIException(
-					" La méthode getElement() dans la classe Edifact attend en entrée une valeur de la forme SEGMENT/ELEMENT");
+					" La mï¿½thode getElement() dans la classe Edifact attend en entrï¿½e une valeur de la forme SEGMENT/ELEMENT");
 		}
 
 		if (result == null) {
-			throw new EDIException("L'élément '" + element_path
+			throw new EDIException("L'ï¿½lï¿½ment '" + element_path
 					+ "' pour l'EDI " + this.edi_type + this.edi_year_version
-					+ this.edi_letter_version + " n'a pas été trouvé");
+					+ this.edi_letter_version + " n'a pas ï¿½tï¿½ trouvï¿½");
 		}
 		return result;
 	}
@@ -917,7 +955,7 @@ public class Edifact {
 
 	public void printSegments(ArrayList<org.bollore.edi.Segment> segments) {
 
-		// On boucle sur tous les segments à imprimer dans le fichier
+		// On boucle sur tous les segments ï¿½ imprimer dans le fichier
 		for (int i = 0; i < segments.size(); i++) {
 
 			org.bollore.edi.Segment segment = segments.get(i);
@@ -942,10 +980,10 @@ public class Edifact {
 
 						ArrayList<org.bollore.edi.Component> components = element.components;
 
-						// S'il s'agit d'un élément simple on l'écrit dans le
+						// S'il s'agit d'un ï¿½lï¿½ment simple on l'ï¿½crit dans le
 						// fichier
 						if (components == null || components.size() <= 0) {
-							String value = element.value;
+							String value = this.replaceGrammarChar(element.value);
 							if (value != null) {
 								if (!"".equals(value.trim())) {
 									this.printwriter.append(element_separator
@@ -954,7 +992,7 @@ public class Edifact {
 							}
 
 						}
-						// L'élément possède des composants
+						// L'ï¿½lï¿½ment possï¿½de des composants
 						else {
 							Integer max_non_null = element
 									.MaxRankComponentNonNull();
@@ -962,13 +1000,13 @@ public class Edifact {
 							for (int k = 0; k < max_non_null; k++) {
 								org.bollore.edi.Component component = components
 										.get(k);
-
-								String value2 = (component.value == null) ? ""
-										: component.value.trim();
+								
+								String value2 =this.replaceGrammarChar(component.value);
+								//String value2 = (component.value == null) ? "": component.value.trim();
 
 								if (k == 0) {
 									// Si c'est le premier composant, on
-									// n'imprime pas le séparateur de composant
+									// n'imprime pas le sï¿½parateur de composant
 									this.printwriter
 											.append(this.element_separator
 													+ value2);
@@ -994,16 +1032,17 @@ public class Edifact {
 	}
 
 	public void printfooter() {
-		// Le nombre de segments affichés dans UNT est le nombre de segments entre UNH et UNT inclus d'où le +2
-		Integer nb_segments=this.segments.size()+2;
-		
-		this.printwriter
-				.append("UNT" + this.element_separator + nb_segments
-						+ this.element_separator
-						+ this.message_reference_number
-						+ this.segment_separator + "\n");
-		this.printwriter.append("UNZ" + this.element_separator + this.nb_message
-				+ this.element_separator + this.interchange_control_reference+ this.segment_separator + "\n");
+		// Le nombre de segments affichï¿½s dans UNT est le nombre de segments
+		// entre UNH et UNT inclus d'oï¿½ le +2
+		Integer nb_segments = this.segments.size() + 2;
+
+		this.printwriter.append("UNT" + this.element_separator + nb_segments
+				+ this.element_separator + this.message_reference_number
+				+ this.segment_separator + "\n");
+		this.printwriter.append("UNZ" + this.element_separator
+				+ this.nb_message + this.element_separator
+				+ this.interchange_control_reference + this.segment_separator
+				+ "\n");
 	}
 
 	public void printEDIStructure() {
@@ -1056,13 +1095,13 @@ public class Edifact {
 
 			for (int i = 0; i < nodes.size(); i++) {
 
-				// On récupère la liste de tous les segments
+				// On rï¿½cupï¿½re la liste de tous les segments
 				List<org.jdom2.Element> segts = ((org.jdom2.Element) nodes
 						.get(i)).getChildren("segment");
 
 				for (int j = 0; j < segts.size(); j++) {
 
-					// Pour chaque segments on récupère la liste des éléments
+					// Pour chaque segments on rï¿½cupï¿½re la liste des ï¿½lï¿½ments
 					List<org.jdom2.Element> field = ((org.jdom2.Element) segts
 							.get(j)).getChildren("field");
 
@@ -1076,11 +1115,11 @@ public class Edifact {
 						String doc = (documentation.size() > 0) ? documentation
 								.get(0).getText() : null;
 
-						// Je récupère la doc de l'élément
+						// Je rï¿½cupï¿½re la doc de l'ï¿½lï¿½ment
 						List<org.jdom2.Element> component = ((org.jdom2.Element) field
 								.get(l)).getChildren("component");
 						ArrayList<Component> components = new ArrayList<Component>();
-						// On travaille avec un élément qui possède des
+						// On travaille avec un ï¿½lï¿½ment qui possï¿½de des
 						// composants
 						if (component.size() > 0) {
 
@@ -1113,7 +1152,7 @@ public class Edifact {
 														.get(0).getText()));
 							}
 
-							// On travaille avec un élément qui ne possède pas
+							// On travaille avec un ï¿½lï¿½ment qui ne possï¿½de pas
 							// de composants
 						} else {
 

@@ -6,8 +6,18 @@ public class Message {
 
 	public String reference_number;
 	public ArrayList<org.bollore.edi.Segment> segments;
-	public Integer nb_segments; // Inutile si on fait un arraylist.size
+	//public Integer nb_segments; // Inutile si on fait un arraylist.size
 	
 	
 	
-}
+
+	
+	public static void main(String[] args){
+		
+
+			
+			
+		}
+	}
+	
+
