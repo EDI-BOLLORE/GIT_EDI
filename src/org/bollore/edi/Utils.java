@@ -57,33 +57,35 @@ public class Utils {
 
 		return true;
 	}
-	
-	public static String formatInput(String input, Integer nb_elements_expected,
-			String separator) throws EDIException {
+
+	public static String formatInput(String input,
+			Integer nb_elements_expected, String separator) throws EDIException {
 		String result = null;
-		
+
 		try {
-			if(input==null||nb_elements_expected==null||separator==null) {
+			if (input == null || nb_elements_expected == null
+					|| separator == null) {
 				return result;
 			}
-			
-			input=input.trim();
-			
-			if (!input.contains(separator)&&nb_elements_expected==1) {
+
+			input = input.trim();
+
+			if (!input.contains(separator) && nb_elements_expected == 1) {
 				result = input.trim();
 			} else {
-	
-				//Calcul du nombre d'éléments contenus dans la chaine de caractère
-				
-				Integer nb_elements=1;
-				
-				java.util.regex.Pattern pattern=Pattern.compile(separator);
+
+				// Calcul du nombre d'éléments contenus dans la chaine de
+				// caractère
+
+				Integer nb_elements = 1;
+
+				java.util.regex.Pattern pattern = Pattern.compile(separator);
 				java.util.regex.Matcher matcher = pattern.matcher(input);
-				
+
 				while (matcher.find()) {
 					nb_elements++;
 				}
-				
+
 				if (nb_elements == nb_elements_expected) {
 					result = input;
 				} else if (nb_elements < nb_elements_expected) {
@@ -92,60 +94,62 @@ public class Utils {
 					for (int i = 0; i < nb_elements_expected - nb_elements; i++) {
 						result = result.concat(separator);
 					}
-					
+
 				} else if (nb_elements > nb_elements_expected) {
-					throw new EDIException("Le nombre d'element (" + nb_elements
+					throw new EDIException("Le nombre d'element ("
+							+ nb_elements
 							+ ") est superieur au nombre d'elements attendus ("
 							+ nb_elements_expected + ")");
 				}
 			}
-			
+
 		} catch (Exception e) {
-			result="";
+			result = "";
 		}
 		return result;
 	}
-	
-	  public static String checkSum(String path) throws NoSuchAlgorithmException, IOException{
 
-		  	MessageDigest md = MessageDigest.getInstance("md5");
-		    FileInputStream fis = new FileInputStream(path);
-		    byte[] dataBytes = new byte[1024];
-		 
-		    int nread = 0; 
-		 
-		    while ((nread = fis.read(dataBytes)) != -1) {
-		      md.update(dataBytes, 0, nread);
-		    };
-		 
-		    byte[] mdbytes = md.digest();
-		 
-		    //convert the byte to hex format
-		    StringBuffer sb = new StringBuffer("");
-		    for (int i = 0; i < mdbytes.length; i++) {
-		    	sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
-		    }
-		 
-		    //System.out.println("Digest(in hex format):: " + sb.toString());
-		 
-		    return sb.toString();
-		  }
-	  
-	  public static ArrayList<String> StringToArray(String input,String separator){
-		  ArrayList<String> result=new ArrayList<String>();
-		  
-		  input=input.replaceAll(separator, separator.concat(" "));
-		  // On traite le premier élément à part
-		  result.add(input.substring(0,input.indexOf(",")));
-		  
-			String[] split=input.split(separator);
-			for (int i = 1; i < split.length; i++) {
-				result.add(split[i].replaceFirst(" ", ""));
-				
-			}
-		  return result;
-	  }
-		
-		
+	public static String checkSum(String path) throws NoSuchAlgorithmException,
+			IOException {
+
+		MessageDigest md = MessageDigest.getInstance("md5");
+		FileInputStream fis = new FileInputStream(path);
+		byte[] dataBytes = new byte[1024];
+
+		int nread = 0;
+
+		while ((nread = fis.read(dataBytes)) != -1) {
+			md.update(dataBytes, 0, nread);
+		}
+		;
+
+		byte[] mdbytes = md.digest();
+
+		// convert the byte to hex format
+		StringBuffer sb = new StringBuffer("");
+		for (int i = 0; i < mdbytes.length; i++) {
+			sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16)
+					.substring(1));
+		}
+
+		// System.out.println("Digest(in hex format):: " + sb.toString());
+
+		return sb.toString();
 	}
 
+	public static ArrayList<String> StringToArray(String input, String separator) {
+		ArrayList<String> result = new ArrayList<String>();
+
+		input = input.replaceAll(separator, separator.concat(" "));
+		// On traite le premier élément à part
+		result.add(input.substring(0, input.indexOf(",")));
+
+		String[] split = input.split(separator);
+		for (int i = 1; i < split.length; i++) {
+			result.add(split[i].replaceFirst(" ", ""));
+
+		}
+		return result;
+	}
+
+}

@@ -48,7 +48,7 @@ public class Edifact {
 	// Fin
 
 	// Attributs utilis�s pour le segment UNH
-	public String message_reference_number;
+	// public String message_reference_number;
 	public String edi_version_number;
 	public String edi_type;
 	public String edi_year_version;
@@ -59,15 +59,16 @@ public class Edifact {
 	// Attribut utilis� pour le segment UNZ
 	// Cet attribut donne le nombre de segments (UNH,UNT) contenus dans le
 	// fichier
-	Integer nb_message;
+	// Integer nb_message;
 
 	public ArrayList<org.bollore.edi.Segment> structure;
-	public ArrayList<org.bollore.edi.Segment> segments;
+	public ArrayList<org.bollore.edi.Message> messages;
 
 	/*********************************************
 	 * 
 	 * Constructeurs de la classe Edifact
-	 * @throws EDIException 
+	 * 
+	 * @throws EDIException
 	 * 
 	 * *******************************************/
 
@@ -76,9 +77,9 @@ public class Edifact {
 			Character space_character, Character decimal_separator,
 			Character escape_character, Character segment_separator,
 
-			String message_reference_number, String edi_version_number,
-			String edi_type, String edi_year_version,
-			String edi_letter_version, String controlling_agency,
+			String edi_version_number, String edi_type,
+			String edi_year_version, String edi_letter_version,
+			String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String id_code_qualifier,
@@ -96,15 +97,15 @@ public class Edifact {
 
 			// Instantiation des attributs li�s au segment UNA
 
-				this.element_separator = element_separator;
-				this.decimal_separator = decimal_separator;
-				this.escape_character = escape_character;
-				this.space_character = space_character;
-				this.segment_separator = segment_separator;
-				this.component_separator = component_separator;
-				
-				this.isGrammarCharValid();
-				
+			this.element_separator = element_separator;
+			this.decimal_separator = decimal_separator;
+			this.escape_character = escape_character;
+			this.space_character = space_character;
+			this.segment_separator = segment_separator;
+			this.component_separator = component_separator;
+
+			this.isGrammarCharValid();
+
 			// Instantiation des attributs du segment UNB
 			this.syntax_id = syntax_id;
 			this.syntax_version_number = syntax_version_number;
@@ -119,7 +120,6 @@ public class Edifact {
 			this.interchange_control_reference = interchange_control_reference;
 
 			// Instantiation des attributs du segment UNH
-			this.message_reference_number = message_reference_number;
 			this.edi_version_number = edi_version_number;
 			this.edi_type = edi_type;
 			this.edi_year_version = edi_year_version;
@@ -128,9 +128,7 @@ public class Edifact {
 
 			// Cr�ation des listes vides des segments et des �l�ments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
-			this.segments = new ArrayList<org.bollore.edi.Segment>();
-			// Utile ?
-			this.nb_message = 1;
+			this.messages = new ArrayList<org.bollore.edi.Message>();
 
 			this.BuildStructureSegment();
 			// this.segments_rank=this.buildHashSegment();
@@ -141,8 +139,7 @@ public class Edifact {
 
 	public Edifact(String filepath, Integer isTest,
 
-	String message_reference_number, String edi_version_number,
-			String edi_type, String edi_year_version,
+	String edi_version_number, String edi_type, String edi_year_version,
 			String edi_letter_version, String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
@@ -167,7 +164,7 @@ public class Edifact {
 			this.escape_character = '?';
 			this.segment_separator = '\'';
 			this.space_character = ' ';
-			
+
 			this.isGrammarCharValid();
 
 			// Instantiation des attributs du segment UNB
@@ -184,7 +181,6 @@ public class Edifact {
 			this.interchange_control_reference = interchange_control_reference;
 
 			// Instantiation des attributs du segment UNH
-			this.message_reference_number = message_reference_number;
 			this.edi_version_number = edi_version_number;
 			this.edi_type = edi_type;
 			this.edi_year_version = edi_year_version;
@@ -193,9 +189,7 @@ public class Edifact {
 
 			// Cr�ation des listes vides des segments et des �l�ments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
-			this.segments = new ArrayList<org.bollore.edi.Segment>();
-
-			this.nb_message = 1;
+			this.messages = new ArrayList<org.bollore.edi.Message>();
 
 			this.BuildStructureSegment();
 			// this.segments_rank=this.buildHashSegment();
@@ -206,77 +200,96 @@ public class Edifact {
 
 	public static void main(String[] args) throws JDOMException, IOException,
 			EDIException {
-		System.out.println(UtilsTest.tempdir+ "/Cuscar_Test.edi");
-		Edifact edi_cuscar =new Edifact(UtilsTest.tempdir+ "/Cuscar_Test.edi",6,
-				'+',':',' ','.','?','\'',"1234567", "D", "CUSCAR", "95", "B", "UN", "UNOC", "2",
+		System.out.println(UtilsTest.tempdir + "/Cuscar_Test.edi");
+		Edifact edi_cuscar = new Edifact(
+				UtilsTest.tempdir + "/Cuscar_Test.edi", 6, '+', ':', ' ', '.',
+				'?', '\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2",
 				"GRIMALDI", "", "SNCUSTOMS", Utils.getCurrentDate(),
 				"identifiant de mon voyage");
-		
+
 	}
-	
-	public Boolean isGrammarCharValid() throws EDIException{
-		Boolean result=null;
-		
-		HashSet<String> dedoub=new HashSet<String>();
-		
-		ArrayList<String> edi_char=new ArrayList<String>();
-		
-		if(this.component_separator==null){
-			throw new EDIException("Le séparateur de composants doit être renseigné : this.component_separator="+this.component_separator);
+
+	public Boolean isGrammarCharValid() throws EDIException {
+		Boolean result = null;
+
+		HashSet<String> dedoub = new HashSet<String>();
+
+		ArrayList<String> edi_char = new ArrayList<String>();
+
+		if (this.component_separator == null) {
+			throw new EDIException(
+					"Le séparateur de composants doit être renseigné : this.component_separator="
+							+ this.component_separator);
 		}
-		
-		if(this.element_separator==null){
-			throw new EDIException("Le séparateur d'élément doit être renseigné : this.element_separator="+this.element_separator);
+
+		if (this.element_separator == null) {
+			throw new EDIException(
+					"Le séparateur d'élément doit être renseigné : this.element_separator="
+							+ this.element_separator);
 		}
-		
-		if(this.decimal_separator==null){
-			throw new EDIException("Le séparateur de décimales doit être renseigné : this.decimal_separator="+this.decimal_separator);
+
+		if (this.decimal_separator == null) {
+			throw new EDIException(
+					"Le séparateur de décimales doit être renseigné : this.decimal_separator="
+							+ this.decimal_separator);
 		}
-		
-		if(this.escape_character==null){
-			throw new EDIException("Le caractère d'échappement doit être renseigné : this.escape_character="+this.escape_character);
+
+		if (this.escape_character == null) {
+			throw new EDIException(
+					"Le caractère d'échappement doit être renseigné : this.escape_character="
+							+ this.escape_character);
 		}
-		
-		if(this.space_character==null){
-			throw new EDIException("Le caractère d'espace doit être renseigné : this.space_character="+this.space_character);
+
+		if (this.space_character == null) {
+			throw new EDIException(
+					"Le caractère d'espace doit être renseigné : this.space_character="
+							+ this.space_character);
 		}
-		
-		if(this.element_separator==null){
-			throw new EDIException("Le séparateur de segment doit être renseigné : this.segment_separator="+this.segment_separator);
+
+		if (this.element_separator == null) {
+			throw new EDIException(
+					"Le séparateur de segment doit être renseigné : this.segment_separator="
+							+ this.segment_separator);
 		}
-		
+
 		edi_char.add(this.component_separator.toString());
 		edi_char.add(this.element_separator.toString());
 		edi_char.add(this.decimal_separator.toString());
 		edi_char.add(this.escape_character.toString());
 		edi_char.add(this.space_character.toString());
 		edi_char.add(this.segment_separator.toString());
-		
+
 		for (int i = 0; i < edi_char.size(); i++) {
-			
-			//Si un élément est déjà présent dans un hashset la méthode add renvoie false.
-			if(dedoub.contains(edi_char.get(i))){
-				throw new EDIException("La grammaire de l'EDI ne doit pas comporter de doublons "+this.component_separator+this.element_separator+this.decimal_separator+this.escape_character+this.space_character+this.segment_separator);
-				//return false;
-			}
-			else {
+
+			// Si un élément est déjà présent dans un hashset la méthode add
+			// renvoie false.
+			if (dedoub.contains(edi_char.get(i))) {
+				throw new EDIException(
+						"La grammaire de l'EDI ne doit pas comporter de doublons "
+								+ this.component_separator
+								+ this.element_separator
+								+ this.decimal_separator
+								+ this.escape_character + this.space_character
+								+ this.segment_separator);
+				// return false;
+			} else {
 				dedoub.add(edi_char.get(i));
-				result=true;
+				result = true;
 			}
 		}
-		
+
 		return result;
-		
+
 	}
 
 	public String replaceGrammarChar(String input) {
-		String result="";
-		
-		if(input==null){
-			
+		String result = "";
+
+		if (input == null) {
+
 			return result;
 		} else {
-			if(input.trim().equals("")){
+			if (input.trim().equals("")) {
 				return result;
 			}
 		}
@@ -307,39 +320,37 @@ public class Edifact {
 		String edi_escape_char;
 		String to_replace;
 		String replacement_string;
-		
+
 		if (javametacharacter_map.containsKey(String
-				.valueOf(this.escape_character))) {			
+				.valueOf(this.escape_character))) {
 
 			edi_escape_char = javametacharacter_map.get(String
 					.valueOf(this.escape_character));
 
-			
 		} else {
 			edi_escape_char = String.valueOf(this.escape_character);
 		}
-		
+
 		result = result.replaceAll(edi_escape_char,
 				edi_escape_char.concat(edi_escape_char));
 
-		
-		String[] edi_char= {String.valueOf(this.component_separator),String.valueOf(this.element_separator),
+		String[] edi_char = { String.valueOf(this.component_separator),
+				String.valueOf(this.element_separator),
 				String.valueOf(this.decimal_separator),
-				String.valueOf(this.segment_separator),String.valueOf(this.space_character)};
-		
-		//String.valueOf(this.space_character), doit on catché l'espace???
-		
-		
+				String.valueOf(this.segment_separator) };
+
+		// String.valueOf(this.space_character), doit on catché l'espace???
+
 		for (int i = 0; i < edi_char.length; i++) {
-			if(javametacharacter_map.containsKey(edi_char[i])) {
-				to_replace=javametacharacter_map.get(edi_char[i]);
-				replacement_string=edi_escape_char.concat(to_replace);
+			if (javametacharacter_map.containsKey(edi_char[i])) {
+				to_replace = javametacharacter_map.get(edi_char[i]);
+				replacement_string = edi_escape_char.concat(to_replace);
 			} else {
-				to_replace=edi_char[i];
-				replacement_string=edi_escape_char.concat(edi_char[i]);				
+				to_replace = edi_char[i];
+				replacement_string = edi_escape_char.concat(edi_char[i]);
 			}
-				
-			result=result.replaceAll(to_replace, replacement_string);	
+
+			result = result.replaceAll(to_replace, replacement_string);
 		}
 
 		return result;
@@ -348,12 +359,12 @@ public class Edifact {
 	public Integer getElementNbValues(String element_path) throws EDIException {
 		Integer result = -1;
 
-		// On r�cup�re le segment � traiter
+		// On recupere le segment � traiter
 		org.bollore.edi.Segment segment = null;
 		// On extrait le segment du chemin de l'�l�ment
 		String segment_path = element_path.substring(0,
 				element_path.lastIndexOf("/"));
-		// On r�cup�re le segment depuis la structure
+		// On recupere le segment depuis la structure
 		segment = this.getSegmentStructure(segment_path);
 
 		ArrayList<org.bollore.edi.Element> elements = segment.elements;
@@ -373,10 +384,10 @@ public class Edifact {
 			}
 
 		}
-		// Si l'�l�ment n'a pas �t� trouv� on sort
+		// Si l'element n'a pas ete trouve on sort
 		if (!element.code.equals(element_name)) {
-			throw new EDIException("L'�l�ment " + element_path
-					+ " n'a pas �t� trouv�.");
+			throw new EDIException("L'element" + element_path
+					+ " n'a pas ete trouve");
 		}
 
 		// L'�l�ment n'a pas de composants
@@ -426,7 +437,8 @@ public class Edifact {
 	 */
 
 	public org.bollore.edi.Segment buildUNBSegment() {
-		// Cr�ation du segment UNB
+
+		// Creation du segment UNB
 		org.bollore.edi.Segment seg_unb = new Segment(
 				"MESSAGE HEADER ENVELOPE", "UNB", 1, 1,
 				"To identify the interchange",
@@ -538,8 +550,8 @@ public class Edifact {
 				"S0035", true, false, "TEST INDICATOR",
 				"1: If the message is for a test. 6: The message is not for a test.");
 
-		// On n'�crit l'�l�ment est test ( 1 c'est un test 6, ce n'est pas un
-		// test) que si la valeur vaut 0
+		// On n'écrit l'element test (1 c'est un test 6, ce n'est pas un test
+		// que si la valeur est !=0
 		if (!(new Integer(0)).equals(this.isTest)) {
 			S0035_element.setValue(String.valueOf(this.isTest));
 
@@ -549,11 +561,36 @@ public class Edifact {
 		return seg_unb;
 	}
 
+	public org.bollore.edi.Segment buildUNTSegment(Message message) {
+		// Le nombre de segments affiches dans UNT est le nombre de segments
+		// entre UNH et UNT inclus d'ou le +2
+		String nb_segments = String.valueOf(message.segments.size() + 2);
+
+		org.bollore.edi.Segment seg_unt = new Segment("MESSAGE TRAILER", "UNT",
+				1, 1, "To identify the message",
+				new ArrayList<org.bollore.edi.Element>(),
+				new ArrayList<org.bollore.edi.Segment>());
+
+		org.bollore.edi.Element element1 = new org.bollore.edi.Element("S1",
+				true, false, "NUMBER OF MESSAGES", "Number of messages", null);
+
+		element1.value = message.reference_number;
+
+		org.bollore.edi.Element element2 = new org.bollore.edi.Element("S2",
+				true, false, "MESSAGE ID", "Message id", null);
+		element2.value = nb_segments;
+
+		seg_unt.elements.add(element1);
+		seg_unt.elements.add(element2);
+
+		return seg_unt;
+	}
+
 	/**
-	 * Cette m�thode permet d'ajouter le segment UNH non pr�sent dans la
-	 * d�finition du Cuscar depuis Smooks
+	 * Cette methode permet d'ajouter le segment UNH non present dans la
+	 * definition des EDI dans Smooks
 	 */
-	public org.bollore.edi.Segment buildUNHSegment() {
+	public org.bollore.edi.Segment buildUNHSegment(Message message) {
 		// Cr�ation du segment UNH
 		org.bollore.edi.Segment seg_unh = new Segment("MESSAGE HEADER ", "UNH",
 				1, 1, "To head, identify and specify a message.",
@@ -566,7 +603,7 @@ public class Edifact {
 				"E0062", true, false, "MESSAGE REFERENCE NUMBER",
 				"Unique message reference assigned by the sender.");
 
-		S0062_element.setValue(this.message_reference_number);
+		S0062_element.setValue(message.reference_number);
 
 		seg_unh.elements.add(S0062_element);
 
@@ -619,9 +656,9 @@ public class Edifact {
 		return seg_unh;
 	}
 
-	public void setValueElement(String element_path, String values,
-			String values_separator, Boolean create_new_segment)
-			throws EDIException {
+	public void setValueElement(String message_reference_number,
+			String element_path, String values, String values_separator,
+			Boolean create_new_segment) throws EDIException {
 		ArrayList<String> a_values = new ArrayList<String>();
 
 		if (values == null) {
@@ -645,54 +682,76 @@ public class Edifact {
 				values = Utils.formatInput(values,
 						getElementNbValues(element_path), values_separator);
 			}
+			a_values = Utils.StringToArray(values, values_separator);
 
-			
-			
-			
-			
-			
-			//Boucle à refaire
-			
-			
-			
-			
-			
-			
-				a_values=Utils.StringToArray(values, values_separator);
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
-			setValueElement(element_path, a_values, create_new_segment);
+			setValueElement(message_reference_number, element_path, a_values,
+					create_new_segment);
 		}
 
 	}
 
-	public void setValueElement(String element_path, ArrayList<String> values,
-			Boolean create_new_segment) throws EDIException {
+	public org.bollore.edi.Message getMessage(String message_reference_number)
+			throws EDIException {
+		ArrayList<org.bollore.edi.Message> messages = this.messages;
+		org.bollore.edi.Message result = null;
+
+		// On catche les cas d'erreur
+		if (message_reference_number == null) {
+			throw new EDIException(
+					"Le message à récupérer dans l'EDI doit avoir une référence non null");
+
+		} else {
+			if ("".equals(message_reference_number.trim())) {
+				throw new EDIException(
+						"Le message à récupérer dans l'EDI doit avoir une référence");
+			}
+		}
+
+		for (int i = 0; i < messages.size(); i++) {
+			org.bollore.edi.Message message = messages.get(i);
+
+			if (message_reference_number.equals(message.reference_number)) {
+				result = message;
+				return result;
+			}
+		}
+
+		// Si le message n'existe pas on l'ajoute
+		if (result == null) {
+			result = new Message(message_reference_number);
+			this.messages.add(result);
+		}
+
+		return result;
+
+	}
+
+	public void setValueElement(String message_ref, String element_path,
+			ArrayList<String> values, Boolean create_new_segment)
+			throws EDIException {
 		// On recupere le segment a traiter
 		org.bollore.edi.Segment segment = null;
 
+		org.bollore.edi.Message message = this.getMessage(message_ref);
+
 		// Si l'on doit creer un nouveau segment
 		if (create_new_segment) {
+
+			// this.messages.size()-1;
 			// Si l'on doit cree le segment, on l'importe depuis la structure et
 			// on le met dans segments
 			String segment_path = element_path.substring(0,
 					element_path.lastIndexOf("/"));
-			this.segments.add(this.getSegmentStructure(segment_path));
+			this.getMessage(message_ref).segments.add(this
+					.getSegmentStructure(segment_path));
 			// this.segments.add(this.getSegmentStructure(split[0]));
 		}
 
 		// On r�cup�re le dernier segment en cours de traitement de l'EDI
-		segment = this.segments.get(segments.size() - 1);
+		segment = this.getMessage(message_ref).segments.get(this
+				.getMessage(message_ref).segments.size() - 1);
 
-		// On r�cup�re l'�l�ment que l'on souhaite instancier
+		// On recupere l'element que l'on souhaite instancier
 
 		// org.bollore.edi.Element element=null;
 		ArrayList<org.bollore.edi.Element> elements = segment.elements;
@@ -741,8 +800,9 @@ public class Edifact {
 		}
 	}
 
-	public org.bollore.edi.Segment getSegment(String segment_path,
-			ArrayList<org.bollore.edi.Segment> segments) throws EDIException {
+	public org.bollore.edi.Segment getSegment(Integer message_rank,
+			String segment_path, ArrayList<org.bollore.edi.Segment> segments)
+			throws EDIException {
 		org.bollore.edi.Segment result = null;
 
 		// On r�cup�re les segments et l'�l�ment en d�coupant la cha�ne
@@ -751,7 +811,7 @@ public class Edifact {
 		// Si les segments ne sont pas renseign�s, il s'agit de la premi�re
 		// ex�cution
 		if (segments == null) {
-			segments = this.segments;
+			segments = this.messages.get(message_rank).segments;
 		}
 
 		// Si le chemin poss�de au moins 2 segments
@@ -765,8 +825,9 @@ public class Edifact {
 				// trouv�
 				if (segments.get(i).code.equals(split[0])) {
 
-					return this.getSegment(segment_path.substring(segment_path
-							.indexOf("/") + 1), segments.get(i).segments);
+					return this.getSegment(message_rank, segment_path
+							.substring(segment_path.indexOf("/") + 1), segments
+							.get(i).segments);
 				}
 			}
 			// Le chemin poss�de 2 segments s�par�s par un /: On r�cup�re le
@@ -787,13 +848,14 @@ public class Edifact {
 		return result;
 	}
 
-	public org.bollore.edi.Element getElement(String element_path)
-			throws EDIException {
-		return getElement(element_path, null);
+	public org.bollore.edi.Element getElement(Integer message_rank,
+			String element_path) throws EDIException {
+		return getElement(message_rank, element_path, null);
 	}
 
-	public org.bollore.edi.Element getElement(String element_path,
-			ArrayList<org.bollore.edi.Segment> segments) throws EDIException {
+	public org.bollore.edi.Element getElement(Integer message_rank,
+			String element_path, ArrayList<org.bollore.edi.Segment> segments)
+			throws EDIException {
 		// Instantiation du retour de la m�thode
 		org.bollore.edi.Element result = null;
 
@@ -804,14 +866,14 @@ public class Edifact {
 		// ex�cution
 		if (segments == null) {
 
-			segments = this.segments;
+			segments = this.messages.get(message_rank).segments;
 
 		}
 
 		// Le chemin ne comporte pas a minima SEGMENT/ELEMENT
 		if (split.length < 2) {
 			throw new EDIException(
-					"Pour r�cup�rer un �l�ment la structure minimale est SEGMENT/ELEMENT. Au moins un '/' doit appara�tre dans le chemin.");
+					"Pour recuperer un element la structure minimale est SEGMENT/ELEMENT. Au moins un '/' doit apparaitre dans le chemin.");
 		}
 		// Le chemin est de la forme SEGMENT/ELEMENT
 		else if (split.length == 2) {
@@ -912,7 +974,7 @@ public class Edifact {
 	public void print() {
 		try {
 			this.printHeader();
-			this.printSegments();
+			this.printMessages();
 			this.printfooter();
 			this.close();
 		} catch (Exception e) {
@@ -939,11 +1001,19 @@ public class Edifact {
 				+ this.segment_separator + "\n");
 
 		this.printSegment(this.buildUNBSegment());
-		this.printSegment(this.buildUNHSegment());
+		// this.printSegment(this.buildUNHSegment());
 	}
 
-	public void printSegments() {
-		printSegments(this.segments);
+	public void printMessages() {
+		for (int i = 0; i < this.messages.size(); i++) {
+			printMessage(this.messages.get(i));
+		}
+	}
+
+	public void printMessage(Message message) {
+		this.printSegment(this.buildUNHSegment(message));
+		this.printSegments(message.segments);
+		this.printSegment(this.buildUNTSegment(message));
 	}
 
 	public void printSegment(org.bollore.edi.Segment segment) {
@@ -980,10 +1050,11 @@ public class Edifact {
 
 						ArrayList<org.bollore.edi.Component> components = element.components;
 
-						// S'il s'agit d'un �l�ment simple on l'�crit dans le
+						// Il s'agit d'un élément simple: on l'écrit dans le
 						// fichier
 						if (components == null || components.size() <= 0) {
-							String value = this.replaceGrammarChar(element.value);
+							String value = this
+									.replaceGrammarChar(element.value);
 							if (value != null) {
 								if (!"".equals(value.trim())) {
 									this.printwriter.append(element_separator
@@ -992,7 +1063,7 @@ public class Edifact {
 							}
 
 						}
-						// L'�l�ment poss�de des composants
+						// L'élément possède des composants
 						else {
 							Integer max_non_null = element
 									.MaxRankComponentNonNull();
@@ -1000,9 +1071,11 @@ public class Edifact {
 							for (int k = 0; k < max_non_null; k++) {
 								org.bollore.edi.Component component = components
 										.get(k);
-								
-								String value2 =this.replaceGrammarChar(component.value);
-								//String value2 = (component.value == null) ? "": component.value.trim();
+
+								String value2 = this
+										.replaceGrammarChar(component.value);
+								// String value2 = (component.value == null) ?
+								// "": component.value.trim();
 
 								if (k == 0) {
 									// Si c'est le premier composant, on
@@ -1032,15 +1105,9 @@ public class Edifact {
 	}
 
 	public void printfooter() {
-		// Le nombre de segments affich�s dans UNT est le nombre de segments
-		// entre UNH et UNT inclus d'o� le +2
-		Integer nb_segments = this.segments.size() + 2;
 
-		this.printwriter.append("UNT" + this.element_separator + nb_segments
-				+ this.element_separator + this.message_reference_number
-				+ this.segment_separator + "\n");
 		this.printwriter.append("UNZ" + this.element_separator
-				+ this.nb_message + this.element_separator
+				+ this.messages.size() + this.element_separator
 				+ this.interchange_control_reference + this.segment_separator
 				+ "\n");
 	}
@@ -1060,8 +1127,13 @@ public class Edifact {
 		if (this.structure == null) {
 			System.out.println(" Y a pas de structure");
 		} else {
-			for (int i = 0; i < this.segments.size(); i++) {
-				((org.bollore.edi.Segment) this.segments.get(i)).printSegment();
+			for (int i = 0; i < this.messages.size(); i++) {
+
+				org.bollore.edi.Message message = this.messages.get(i);
+				for (int j = 0; j < message.segments.size(); j++) {
+					((org.bollore.edi.Segment) message.segments.get(j))
+							.printSegment();
+				}
 			}
 		}
 	}

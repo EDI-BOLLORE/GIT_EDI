@@ -1,9 +1,9 @@
 package org.bollore.edi;
 
-public class Component implements Cloneable{
+public class Component implements Cloneable {
 
 	String dataType;
-	String maxLength; 
+	String maxLength;
 	String minLength;
 	Boolean required;
 	Boolean truncatable;
@@ -12,10 +12,11 @@ public class Component implements Cloneable{
 	String value;
 
 	//
-	// Cette classe permet de modéliser la notion de composant à savoir ce qui compose un élément de groupe d'un segment
+	// Cette classe permet de modéliser la notion de composant à savoir ce qui
+	// compose un élément de groupe d'un segment
 	//
 
-	public Component(){
+	public Component() {
 		super();
 		this.dataType = "";
 		this.maxLength = "";
@@ -41,7 +42,7 @@ public class Component implements Cloneable{
 
 	public Component(String dataType, String maxLength, String minLength,
 			Boolean required, Boolean truncatable, String label,
-			String documentation,String value) {
+			String documentation, String value) {
 		super();
 		this.dataType = dataType;
 		this.maxLength = maxLength;
@@ -50,7 +51,7 @@ public class Component implements Cloneable{
 		this.truncatable = truncatable;
 		this.label = label;
 		this.documentation = documentation;
-		this.value=value;
+		this.value = value;
 	}
 
 	public Component(Component component) {
@@ -62,7 +63,7 @@ public class Component implements Cloneable{
 		this.truncatable = component.truncatable;
 		this.label = component.label;
 		this.documentation = component.documentation;
-		this.value=component.value;
+		this.value = component.value;
 	}
 
 	public String getValue() {
@@ -74,21 +75,21 @@ public class Component implements Cloneable{
 	}
 
 	public org.bollore.edi.Component clone() {
-		org.bollore.edi.Component result=null;
+		org.bollore.edi.Component result = null;
 
 		try {
 
-			result=null;
-			result=(org.bollore.edi.Component)super.clone();
+			result = null;
+			result = (org.bollore.edi.Component) super.clone();
 
-			result.dataType=this.dataType;
-			result.maxLength=this.maxLength;
-			result.minLength=this.minLength;
-			result.required=this.required;
-			result.truncatable=this.truncatable;
-			result.label=this.label;
-			result.documentation=this.documentation;
-			result.value=this.value;
+			result.dataType = this.dataType;
+			result.maxLength = this.maxLength;
+			result.minLength = this.minLength;
+			result.required = this.required;
+			result.truncatable = this.truncatable;
+			result.label = this.label;
+			result.documentation = this.documentation;
+			result.value = this.value;
 
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
@@ -96,29 +97,29 @@ public class Component implements Cloneable{
 		return result;
 	}
 
-	public void printComponent(){
+	public void printComponent() {
 
-		System.out.println("\t\tlabel = "+this.label + "  valeur "+this.value+"\n");
+		System.out.println("\t\tlabel = " + this.label + "  valeur "
+				+ this.value + "\n");
 	}
-
 
 	public static void main(String[] args) {
 
-		Component original=new Component("datatype", "1", "2", true, true, "label", "documentation");
+		Component original = new Component("datatype", "1", "2", true, true,
+				"label", "documentation");
 
-		Component cloned=(Component)original.clone();
-		original.minLength="3";
-		System.out.println(cloned.minLength+original.minLength);
+		Component cloned = (Component) original.clone();
+		original.minLength = "3";
+		System.out.println(cloned.minLength + original.minLength);
 
-		System.out.println(original!=cloned); // doit renvoyer true
-		System.out.println(original.getClass() == cloned.getClass()); // doit renvoyer true
+		System.out.println(original != cloned); // doit renvoyer true
+		System.out.println(original.getClass() == cloned.getClass()); // doit
+																		// renvoyer
+																		// true
 		System.out.println(cloned.equals(original)); // doit renvoyer true
 
-		System.out.println(original.dataType+cloned.dataType);
-		System.out.println(original.documentation+cloned.documentation);
-
-
-
+		System.out.println(original.dataType + cloned.dataType);
+		System.out.println(original.documentation + cloned.documentation);
 
 	}
 

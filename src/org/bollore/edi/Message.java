@@ -6,18 +6,17 @@ public class Message {
 
 	public String reference_number;
 	public ArrayList<org.bollore.edi.Segment> segments;
-	//public Integer nb_segments; // Inutile si on fait un arraylist.size
-	
-	
-	
 
-	
-	public static void main(String[] args){
-		
-
-			
-			
-		}
+	public Message(String reference_number, ArrayList<Segment> segments) {
+		super();
+		this.reference_number = reference_number;
+		this.segments = segments;
 	}
-	
 
+	public Message(String reference_number) {
+		super();
+		this.reference_number = reference_number;
+		this.segments = new ArrayList<org.bollore.edi.Segment>();
+	}
+
+}
