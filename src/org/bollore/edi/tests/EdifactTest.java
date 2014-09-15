@@ -66,8 +66,6 @@ public class EdifactTest extends TestCase {
 				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
-		// Message message1=new Message(message_reference_number);
-
 		ArrayList<String> cst = new ArrayList<String>();
 
 		cst.add("1");
@@ -181,7 +179,7 @@ public class EdifactTest extends TestCase {
 		// edi_cuscar.printEDI();
 
 		edi_cuscar.print();
-		System.out.println(Utils.checkSum(path));
+		
 		assertEquals("3c5ebf98b354254ec6fac57f5d89333f", Utils.checkSum(path));
 
 	}

@@ -19,8 +19,10 @@ import org.jdom2.input.SAXBuilder;
 
 public class Edifact {
 
+	
+	
 	// Attributs lies à la generation de fichier
-	public String EDIDefinitions_dir;
+	public String EDIDefinitions_dir="D:/STORK/INTERFACES_EDI/XML/";
 	public String filepath;
 	public PrintWriter printwriter;
 	public Integer isTest;
@@ -214,15 +216,19 @@ public class Edifact {
 			this.edi_letter_version = edi_letter_version;
 			this.controlling_agency = controlling_agency;
 
-			// Cr�ation des listes vides des segments et des �l�ments
+			// Creation des listes vides des segments et des elements
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.messages = new ArrayList<org.bollore.edi.Message>();
 
 			this.BuildStructureSegment();
-			// this.segments_rank=this.buildHashSegment();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 
 	public Boolean isGrammarCharValid() throws EDIException {
