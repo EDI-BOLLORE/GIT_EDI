@@ -103,7 +103,28 @@ public class UtilsTest extends TestCase {
 		result.add("");
 		result.add("  ");
 
+
 		assertEquals(result, Utils.StringToArray(",B,C, D,,,  ", ","));
+		assertEquals(result, Utils.StringToArray("%B%C% D%%%  ", "%"));
+		
+		result.clear();		
+		result.add("1");
+
+		ArrayList<String> temp=Utils.StringToArray("1", ",");
+
+		assertEquals(result, Utils.StringToArray("1", ","));
+		
+		result.clear();
+		result.add("");
+		
+		assertEquals(result, Utils.StringToArray(null, ","));
+		assertEquals(result, Utils.StringToArray(null, null));
+		assertEquals(result, Utils.StringToArray("Blabla",null));
+		
+		result.clear();
+		result.add("ACE");
+		
+		assertEquals(result, Utils.StringToArray("ACE", ","));
 
 	}
 

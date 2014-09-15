@@ -139,17 +139,35 @@ public class Utils {
 
 	public static ArrayList<String> StringToArray(String input, String separator) {
 		ArrayList<String> result = new ArrayList<String>();
+		
+		if(input==null||separator==null) {
+			result.add("");
+			return result;
+		} else if(input.trim().equals("")) {
+			result.add("");
+			return result;
+		} else if(!input.contains(separator)) {
+
+			result.add(input);
+			return result;
+		} else {
 
 		input = input.replaceAll(separator, separator.concat(" "));
 		// On traite le premier élément à part
-		result.add(input.substring(0, input.indexOf(",")));
+		result.add(input.substring(0, input.indexOf(separator)));
 
 		String[] split = input.split(separator);
 		for (int i = 1; i < split.length; i++) {
 			result.add(split[i].replaceFirst(" ", ""));
 
 		}
+		}
 		return result;
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<String> result=StringToArray("1",",");
+		System.out.println(result.size());
 	}
 
 }
