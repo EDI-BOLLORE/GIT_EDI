@@ -19,7 +19,8 @@ import org.jdom2.input.SAXBuilder;
 
 public class Edifact {
 
-	// Attributs li�s � la g�n�ration de fichier
+	// Attributs lies à la generation de fichier
+	public String EDIDefinitions_dir;
 	public String filepath;
 	public PrintWriter printwriter;
 	public Integer isTest;
@@ -72,7 +73,32 @@ public class Edifact {
 	 * 
 	 * *******************************************/
 
+	//String EDIDefinitions_dir
+	
 	public Edifact(String filepath, Integer isTest,
+			Character element_separator, Character component_separator,
+			Character space_character, Character decimal_separator,
+			Character escape_character, Character segment_separator,
+
+			String edi_version_number, String edi_type,
+			String edi_year_version, String edi_letter_version,
+			String controlling_agency,
+
+			String syntax_id, String syntax_version_number,
+			String interchange_sender_id, String id_code_qualifier,
+			String interchange_recipient_id, Date date,
+			String interchange_control_reference) throws EDIException{
+		
+		this("D:/STORK/INTERFACES_EDI/XML/",filepath,isTest,element_separator,component_separator,
+				space_character,decimal_separator,
+				escape_character,segment_separator,edi_version_number,edi_type,
+				edi_year_version,edi_letter_version,controlling_agency,syntax_id,syntax_version_number,
+				interchange_sender_id,id_code_qualifier,
+				interchange_recipient_id, date,
+				interchange_control_reference);
+	}
+	
+	public Edifact(String EDIDefinitions_dir,String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
 			Character escape_character, Character segment_separator,
@@ -91,6 +117,7 @@ public class Edifact {
 		super();
 		try {
 			// Instantiation des attributs de fichier
+			this.EDIDefinitions_dir=EDIDefinitions_dir;
 			this.filepath = filepath;
 			this.isTest = isTest;
 			this.printwriter = new PrintWriter(new File(filepath));
@@ -196,17 +223,6 @@ public class Edifact {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) throws JDOMException, IOException,
-			EDIException {
-		System.out.println(UtilsTest.tempdir + "/Cuscar_Test.edi");
-		Edifact edi_cuscar = new Edifact(
-				UtilsTest.tempdir + "/Cuscar_Test.edi", 6, '+', ':', ' ', '.',
-				'?', '\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2",
-				"GRIMALDI", "", "SNCUSTOMS", Utils.getCurrentDate(),
-				"identifiant de mon voyage");
-
 	}
 
 	public Boolean isGrammarCharValid() throws EDIException {
@@ -315,7 +331,7 @@ public class Edifact {
 		javametacharacter_map.put("+", "\\+");
 		javametacharacter_map.put("\\", "\\\\");
 
-		// A faire en premier: remplacement du caract�re d'�chappement EDI
+		// A faire en premier: remplacement du caractere d'echappement de l'EDI
 
 		String edi_escape_char;
 		String to_replace;
@@ -432,8 +448,8 @@ public class Edifact {
 	}
 
 	/**
-	 * Cette m�thode permet d'ajouter le segment UNB non pr�sent dans la
-	 * d�finition du Cuscar depuis Smooks
+	 * Cette methode permet d'ajouter le segment UNB non present dans la
+	 * definition du Cuscar depuis Smooks
 	 */
 
 	public org.bollore.edi.Segment buildUNBSegment() {
@@ -770,7 +786,7 @@ public class Edifact {
 
 		}
 
-		// L'�l�ment n'a pas de composants
+		// L'element pas de composants
 		if ((element.components == null || element.components.size() <= 0)) {
 			if (values.size() == 1) {
 				element.value = values.get(0);
@@ -781,8 +797,8 @@ public class Edifact {
 			}
 
 		} else {
-			// Si le nombre de valeur � affecter est diff�rent du nombre de
-			// composants de l'�l�ment
+			// Si le nombre de valeur a affecter est different du nombre de
+			// composants de l'element
 			if (element.components.size() != values.size()) {
 
 				throw new EDIException("Le nombre de valeurs (" + values.size()
@@ -805,10 +821,10 @@ public class Edifact {
 			throws EDIException {
 		org.bollore.edi.Segment result = null;
 
-		// On r�cup�re les segments et l'�l�ment en d�coupant la cha�ne
+		// On recupere les segments et l'element en decoupant la chaine
 		String[] split = segment_path.split("/");
 
-		// Si les segments ne sont pas renseign�s, il s'agit de la premi�re
+		// Si les segments ne sont pas renseignes, il s'agit de la premi�re
 		// ex�cution
 		if (segments == null) {
 			segments = this.messages.get(message_rank).segments;
@@ -1159,7 +1175,7 @@ public class Edifact {
 		HashMap<String, org.bollore.edi.Segment> segments = new HashMap<String, org.bollore.edi.Segment>();
 
 		try {
-			document = sxb.build("EDI_Definitions/D" + this.edi_year_version
+			document = sxb.build(this.EDIDefinitions_dir+"EDI_Definitions/D" + this.edi_year_version
 					+ this.edi_letter_version + "/__modelset_definitions.xml");
 
 			racine = document.getRootElement();
