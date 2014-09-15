@@ -208,20 +208,4 @@ public class Segment implements Cloneable {
 
 	}
 
-	public static void main(String[] args) throws XPathExpressionException,
-			JDOMException, IOException {
-
-		Segment original = new Segment("name", "code", 1, 2, "description");
-		Segment cloned = (Segment) original.clone();
-
-		// System.out.println(original.name+"   "+cloned.name);
-
-		System.out.println(original != cloned); // doit renvoyer true
-		System.out.println(original.getClass() == cloned.getClass()); // doit
-																		// renvoyer
-																		// true
-		System.out.println(original.equals(cloned)); // doit renvoyer false
-
-	}
-
 }

@@ -2,14 +2,14 @@ package org.bollore.edi;
 
 public class Component implements Cloneable {
 
-	String dataType;
-	String maxLength;
-	String minLength;
-	Boolean required;
-	Boolean truncatable;
-	String label;
-	String documentation;
-	String value;
+	public String dataType;
+	public String maxLength;
+	public String minLength;
+	public Boolean required;
+	public Boolean truncatable;
+	public String label;
+	public String documentation;
+	public String value;
 
 	//
 	// Cette classe permet de modéliser la notion de composant à savoir ce qui
@@ -79,7 +79,7 @@ public class Component implements Cloneable {
 
 		try {
 
-			result = null;
+			//result=new org.bollore.edi.Component();
 			result = (org.bollore.edi.Component) super.clone();
 
 			result.dataType = this.dataType;
@@ -105,21 +105,7 @@ public class Component implements Cloneable {
 
 	public static void main(String[] args) {
 
-		Component original = new Component("datatype", "1", "2", true, true,
-				"label", "documentation");
 
-		Component cloned = (Component) original.clone();
-		original.minLength = "3";
-		System.out.println(cloned.minLength + original.minLength);
-
-		System.out.println(original != cloned); // doit renvoyer true
-		System.out.println(original.getClass() == cloned.getClass()); // doit
-																		// renvoyer
-																		// true
-		System.out.println(cloned.equals(original)); // doit renvoyer true
-
-		System.out.println(original.dataType + cloned.dataType);
-		System.out.println(original.documentation + cloned.documentation);
 
 	}
 
