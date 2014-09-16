@@ -56,11 +56,11 @@ public class EdifactTest extends TestCase {
 
 		String message_reference_number = "1234";
 
-		File temp = new File(path);
-
-		if (temp.exists()) {
-			temp.delete();
-		}
+//		File temp = new File(path);
+//
+//		if (temp.exists()) {
+//			temp.delete();
+//		}
 
 		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
 				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
@@ -177,10 +177,10 @@ public class EdifactTest extends TestCase {
 		edi_cuscar.setValueElement(message_reference_number,
 				"GRP4/GRP5/GRP10/CST/1496", cst, true);
 		// edi_cuscar.printEDI();
-
+		//System.out.println("MD5 "+Utils.checkSum(edi_cuscar.filepath));
 		edi_cuscar.print();
 		
-		assertEquals("3c5ebf98b354254ec6fac57f5d89333f", Utils.checkSum(path));
+		assertEquals("5e19fd997dee39e97ffe224f68b24819", Utils.checkSum(edi_cuscar.filepath));
 
 	}
 

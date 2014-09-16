@@ -1,8 +1,12 @@
 package org.bollore.edi;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -227,9 +231,7 @@ public class Edifact {
 		}
 	}
 	
-	public static void main(String[] args) {
-		
-	}
+
 
 	public Boolean isGrammarCharValid() throws EDIException {
 		Boolean result = null;
@@ -582,6 +584,8 @@ public class Edifact {
 
 		return seg_unb;
 	}
+	
+
 
 	public org.bollore.edi.Segment buildUNTSegment(Message message) {
 		// Le nombre de segments affiches dans UNT est le nombre de segments
@@ -592,15 +596,17 @@ public class Edifact {
 				1, 1, "To identify the message",
 				new ArrayList<org.bollore.edi.Element>(),
 				new ArrayList<org.bollore.edi.Segment>());
+		
+		org.bollore.edi.Element element1 = new org.bollore.edi.Element("S2",
+				true, false, "MESSAGE ID", "Message id", null);
+		element1.value = nb_segments;
 
-		org.bollore.edi.Element element1 = new org.bollore.edi.Element("S1",
+		org.bollore.edi.Element element2 = new org.bollore.edi.Element("S1",
 				true, false, "NUMBER OF MESSAGES", "Number of messages", null);
 
-		element1.value = message.reference_number;
+		element2.value = message.reference_number;
 
-		org.bollore.edi.Element element2 = new org.bollore.edi.Element("S2",
-				true, false, "MESSAGE ID", "Message id", null);
-		element2.value = nb_segments;
+
 
 		seg_unt.elements.add(element1);
 		seg_unt.elements.add(element2);
@@ -1290,6 +1296,51 @@ public class Edifact {
 		}
 
 		return segments;
+	}
+	
+	public static void readEDI(String filepath) throws IOException{
+		
+		File edi=new File(filepath);
+		
+		String chaine="";
+		
+		
+		
+		InputStream ips=new FileInputStream(filepath); 
+		InputStreamReader ipsr=new InputStreamReader(ips);
+		
+		BufferedReader br=new BufferedReader(ipsr);
+		String ligne;
+		String una=br.readLine();
+		Character element_separator=una.charAt(3);
+		Character component_separator=una.charAt(4);
+		Character decimal_separator=una.charAt(5);
+		Character escape_char=una.charAt(6);
+		Character space_char=una.charAt(7);
+		Character segment_char=una.charAt(8);
+		
+		System.out.println(element_separator.toString()+component_separator.toString()+decimal_separator.toString()
+				+escape_char.toString()+space_char.toString()+segment_char.toString());
+		String unb=br.readLine();
+		String unh=br.readLine();
+		System.out.println(unh);
+//		System.out.println(una.substring(3,4));
+//		System.out.println(una.substring(4,5));
+//		System.out.println(una.substring(5,6));
+//		System.out.println(una.substring(6,7));
+//		System.out.println(una.substring(7,8));
+//		System.out.println(una.substring(8,9));
+//		while ((ligne=br.readLine())!=null){
+//			System.out.println(ligne);
+//			chaine+=ligne+"\n";
+//		}
+		
+	}
+	
+	public void buildSegment(){}
+	
+	public static void main(String[] args) throws IOException {
+		Edifact.readEDI("C:/Bollore/Projets/EDI/Talend/Cuscar_Test_Sekou.edi");
 	}
 
 }

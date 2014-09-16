@@ -34,6 +34,19 @@ public class UtilsTest extends TestCase {
 		// if(!file.exists()) {
 		// file.cr
 	}
+	
+	public void testPatternCheck(){
+		
+		assertTrue(Utils.PatternCheck("ext.nuno.francisco@bollore.fr","^[a-z\\.]+@[a-z]+\\.[a-z]{2,4}$"));
+		assertFalse(Utils.PatternCheck(null,"^\\w+@[a-z]+\\.[a-z]{2,4}$"));
+		assertFalse(Utils.PatternCheck("A",null));
+		assertFalse(Utils.PatternCheck(null,null));
+	}
+	
+	public void testPatternExtract(){
+		
+		//assertEquals("ext.nuno.francisco@bollore.com",Utils.PatternExtract("126ext.nuno.francisco@bollore.com167823:/","[A-Za-z\\.]+[@]{1}[A-Za-z\\.]+",null));
+	}
 
 	public void testFormatInput() throws EDIException {
 		assertNull(Utils.formatInput(null, 1, ","));

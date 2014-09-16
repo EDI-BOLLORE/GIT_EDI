@@ -15,6 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils {
@@ -165,9 +166,55 @@ public class Utils {
 		return result;
 	}
 	
+	public static Boolean PatternCheck(String input,String regex){
+		Boolean result=null;
+		
+		try {
+		Pattern pattern=Pattern.compile(regex);
+		Matcher matcher=pattern.matcher(input);
+		
+		result=matcher.matches();
+		} catch(Exception e) {
+			result=false;
+		}
+		
+		return result;
+	}
+	
+	public static ArrayList<String> PatternExtract(String input,String regex,Integer group_rank){
+		ArrayList<String> result=new ArrayList<String>();
+		
+		try {
+		Pattern pattern=Pattern.compile(regex);
+		Matcher matcher=pattern.matcher(input);
+		
+		while(matcher.find()) {
+			result.add(matcher.group());
+			//System.out.println("AA    "+texte);
+//		if(group_rank==null) {
+//			result=matcher.group();
+//		} else {
+//			result=matcher.group(group_rank);
+//		}
+		}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	public static void main(String[] args) {
-		ArrayList<String> result=StringToArray("1",",");
-		System.out.println(result.size());
+		String unb="UNB+UNOC:2+GRIMALDI+SNCUSTOMS+140916:1038+GFR0713'";
+		String unh="UNH+123456789+CUSCAR:D:95B:UN'";
+		String regex="([A-Z0-9\\:]+)";
+		ArrayList<String> A=Utils.PatternExtract(unb,regex,null);
+		ArrayList<String> B=Utils.PatternExtract(unh,regex,null);
+		
+		for (int i = 0; i < A.size(); i++) {
+			System.out.println(A.get(i));
+		}
+		
 	}
 
 }
