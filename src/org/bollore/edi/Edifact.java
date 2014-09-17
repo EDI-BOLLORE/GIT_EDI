@@ -81,6 +81,10 @@ public class Edifact {
 
 	//String EDIDefinitions_dir
 	
+	public Edifact(String filepath) {
+		this.filepath=filepath;		
+	}
+	
 	public Edifact(String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
@@ -590,7 +594,7 @@ public class Edifact {
 	public org.bollore.edi.Segment buildUNTSegment(Message message) {
 		// Le nombre de segments affiches dans UNT est le nombre de segments
 		// entre UNH et UNT inclus d'ou le +2
-		String nb_segments = String.valueOf(message.segments.size() + 2);
+		String nb_segments = message.countSegments();
 
 		org.bollore.edi.Segment seg_unt = new Segment("MESSAGE TRAILER", "UNT",
 				1, 1, "To identify the message",
@@ -1298,49 +1302,10 @@ public class Edifact {
 		return segments;
 	}
 	
-	public static void readEDI(String filepath) throws IOException{
-		
-		File edi=new File(filepath);
-		
-		String chaine="";
-		
-		
-		
-		InputStream ips=new FileInputStream(filepath); 
-		InputStreamReader ipsr=new InputStreamReader(ips);
-		
-		BufferedReader br=new BufferedReader(ipsr);
-		String ligne;
-		String una=br.readLine();
-		Character element_separator=una.charAt(3);
-		Character component_separator=una.charAt(4);
-		Character decimal_separator=una.charAt(5);
-		Character escape_char=una.charAt(6);
-		Character space_char=una.charAt(7);
-		Character segment_char=una.charAt(8);
-		
-		System.out.println(element_separator.toString()+component_separator.toString()+decimal_separator.toString()
-				+escape_char.toString()+space_char.toString()+segment_char.toString());
-		String unb=br.readLine();
-		String unh=br.readLine();
-		System.out.println(unh);
-//		System.out.println(una.substring(3,4));
-//		System.out.println(una.substring(4,5));
-//		System.out.println(una.substring(5,6));
-//		System.out.println(una.substring(6,7));
-//		System.out.println(una.substring(7,8));
-//		System.out.println(una.substring(8,9));
-//		while ((ligne=br.readLine())!=null){
-//			System.out.println(ligne);
-//			chaine+=ligne+"\n";
-//		}
-		
-	}
 	
-	public void buildSegment(){}
 	
 	public static void main(String[] args) throws IOException {
-		Edifact.readEDI("C:/Bollore/Projets/EDI/Talend/Cuscar_Test_Sekou.edi");
+		
 	}
 
 }

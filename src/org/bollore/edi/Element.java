@@ -5,13 +5,13 @@ import java.util.HashSet;
 
 public class Element implements Cloneable {
 
-	String code;
-	Boolean required;
-	Boolean truncatable;
-	String label;
-	String documentation;
-	String value;
-	ArrayList<org.bollore.edi.Component> components;
+	public String code;
+	public Boolean required;
+	public Boolean truncatable;
+	public String label;
+	public String documentation;
+	public String value;
+	public ArrayList<org.bollore.edi.Component> components;
 
 	//
 	// Cette classe permet de modéliser la notion d'élément qui constitue les
@@ -31,6 +31,17 @@ public class Element implements Cloneable {
 		this.documentation = null;
 		this.components = new ArrayList<Component>();
 
+	}
+	
+	public Element(String value) {
+		super();
+		this.value=value;
+		this.code = null;
+		this.required = null;
+		this.truncatable = null;
+		this.label = null;
+		this.documentation = null;
+		this.components = new ArrayList<Component>();
 	}
 
 	public Element(String code, Boolean required, Boolean truncatable,

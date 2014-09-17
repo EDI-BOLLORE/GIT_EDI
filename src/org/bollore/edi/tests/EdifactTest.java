@@ -10,8 +10,10 @@ import java.util.Date;
 import org.bollore.edi.EDIException;
 import org.bollore.edi.Edifact;
 import org.bollore.edi.Message;
+import org.bollore.edi.Segment;
 import org.bollore.edi.Utils;
 //import org.junit.Rule;
+
 
 import junit.*;
 import junit.framework.*;
@@ -173,11 +175,16 @@ public class EdifactTest extends TestCase {
 				"GRP2/GRP3/RNG/C280", rng2, true);
 		edi_cuscar.setValueElement(message_reference_number,
 				"GRP4/GRP5/GRP10/PCI/C210", "1,2,3,4,5,6,7,8,9,10", ",", true);
-
+		
 		edi_cuscar.setValueElement(message_reference_number,
 				"GRP4/GRP5/GRP10/CST/1496", cst, true);
 		// edi_cuscar.printEDI();
 		//System.out.println("MD5 "+Utils.checkSum(edi_cuscar.filepath));
+		
+		//J'ajoute 2 segments vides qui ne seront pas imprimés et donc le nb de segments ne doit pas être incrémenté.
+ 		edi_cuscar.messages.get(0).segments.add(new Segment());
+		edi_cuscar.messages.get(0).segments.add(new Segment());
+		
 		edi_cuscar.print();
 		
 		assertEquals("5e19fd997dee39e97ffe224f68b24819", Utils.checkSum(edi_cuscar.filepath));
@@ -338,6 +345,8 @@ public class EdifactTest extends TestCase {
 				"GRP4/GRP5/GRP10/CST/1496", cst, true);
 
 		edi_cuscar.print();
+		
+		
 	}
 
 }

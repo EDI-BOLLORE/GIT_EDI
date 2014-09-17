@@ -8,7 +8,7 @@ public class EDIException extends Exception {
 	}
 
 	public EDIException(String message) {
-		System.err.println(message + "\n");
+		System.err.println("EDIException : "+message + "\n");
 	}
 
 }

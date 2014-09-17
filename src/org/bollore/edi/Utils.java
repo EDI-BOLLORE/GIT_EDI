@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +18,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.text.SimpleDateFormat;
 
 public class Utils {
 
@@ -26,6 +28,21 @@ public class Utils {
 
 	public static String getCurrentDate(String pattern) {
 		return formatDate(pattern, Calendar.getInstance().getTime());
+	}
+	
+	public static Date parseDate(String pattern,String input) {
+		Date result=null;
+		
+		try {
+			DateFormat sdf=new SimpleDateFormat(pattern);
+			result=sdf.parse(input);
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+				
+		return result;
+		
 	}
 
 	public static String formatDate(String pattern, Date date) {
@@ -211,9 +228,11 @@ public class Utils {
 		ArrayList<String> A=Utils.PatternExtract(unb,regex,null);
 		ArrayList<String> B=Utils.PatternExtract(unh,regex,null);
 		
-		for (int i = 0; i < A.size(); i++) {
-			System.out.println(A.get(i));
-		}
+//		for (int i = 0; i < A.size(); i++) {
+//			System.out.println(A.get(i));
+//		}
+		
+		System.out.println(Utils.parseDate("dd/MM/yyyy HH:mm:ss","22/07/1977 03:45:56"));
 		
 	}
 

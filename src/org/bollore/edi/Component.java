@@ -26,6 +26,18 @@ public class Component implements Cloneable {
 		this.label = "";
 		this.documentation = "";
 	}
+	
+	public Component(String value) {
+		super();
+		this.value=value;
+		this.dataType = "";
+		this.maxLength = "";
+		this.minLength = "";
+		this.required = false;
+		this.truncatable = false;
+		this.label = "";
+		this.documentation = "";
+	}
 
 	public Component(String dataType, String maxLength, String minLength,
 			Boolean required, Boolean truncatable, String label,

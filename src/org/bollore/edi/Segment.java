@@ -10,13 +10,13 @@ import javax.xml.xpath.XPathExpressionException;
 
 public class Segment implements Cloneable {
 
-	String name;
-	String code;
-	Integer min_occurence;
-	Integer max_occurence;
-	String description;
-	ArrayList<org.bollore.edi.Element> elements;
-	ArrayList<org.bollore.edi.Segment> segments;
+	public String name;
+	public String code;
+	public Integer min_occurence;
+	public Integer max_occurence;
+	public String description;
+	public ArrayList<org.bollore.edi.Element> elements;
+	public ArrayList<org.bollore.edi.Segment> segments;
 
 	public Segment() {
 		super();

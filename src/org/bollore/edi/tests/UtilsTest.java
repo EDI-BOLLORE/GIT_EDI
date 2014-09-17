@@ -70,6 +70,14 @@ public class UtilsTest extends TestCase {
 		assertFalse(Utils.isDate("12:24:13", null));
 		assertFalse(Utils.isDate(null, null));
 	}
+	
+	public void parseDate() {
+		Calendar cal=Calendar.getInstance();
+		cal.set(1977,7,22,3,45,56);
+		Date result=cal.getTime();
+		assertEquals(result, Utils.parseDate("dd/MM/yyyy HH:mm:ss","22/07/1977 03:45:56"));
+		
+	}
 
 	public void testcheckSum() throws EDIException, NoSuchAlgorithmException,
 			IOException {
