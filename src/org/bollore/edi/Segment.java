@@ -207,5 +207,9 @@ public class Segment implements Cloneable {
 		return result;
 
 	}
+	
 
-}
+		
+	}
+
+

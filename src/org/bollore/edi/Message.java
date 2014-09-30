@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Message {
 
-	public Integer nb_segments;
+	//public Integer nb_segments;
 	public String reference_number;
 	public ArrayList<org.bollore.edi.Segment> segments;
 
@@ -12,7 +12,7 @@ public class Message {
 		super();
 		this.reference_number = reference_number;
 		this.segments = segments;
-		this.nb_segments=segments.size();
+		//this.nb_segments=segments.size();
 	}
 
 	public Message(String reference_number) {
@@ -21,8 +21,10 @@ public class Message {
 		this.segments = new ArrayList<org.bollore.edi.Segment>();
 	}
 	
+	
+	
 	public void addSegment(Segment segment) {
-		this.nb_segments++;
+		//this.nb_segments++;
 		this.segments.add(segment);
 	}
 	

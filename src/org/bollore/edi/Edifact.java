@@ -46,7 +46,7 @@ public class Edifact {
 	public String interchange_sender_id; // GRIMALDI
 	public String id_code_qualifier;
 	public String interchange_recipient_id; // exemple SNCUSTOMS
-	public String date; // Date du jour
+	public String date; // Date du jour au format
 	public String time; // Heure du jour
 	public String interchange_control_reference; // Auto-incr�ment du nombre de
 													// fichiers �chang�s avec
@@ -85,6 +85,19 @@ public class Edifact {
 		this.filepath=filepath;		
 	}
 	
+	public Edifact(String filepath,String edi_version_number, String edi_type,
+			String edi_year_version, String edi_letter_version){
+		this.EDIDefinitions_dir=System.getProperty("user.dir").concat(System.getProperty("file.separator"));
+		this.filepath=filepath;
+		this.edi_version_number=edi_version_number;
+		this.edi_type=edi_type;
+		this.edi_year_version=edi_year_version;
+		this.edi_letter_version=edi_letter_version;
+		
+		this.messages=new ArrayList<Message>();
+		this.buildStructureSegmentDefinition();
+		}
+	
 	public Edifact(String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
@@ -99,7 +112,7 @@ public class Edifact {
 			String interchange_recipient_id, Date date,
 			String interchange_control_reference) throws EDIException{
 		
-		this("D:/STORK/INTERFACES_EDI/XML/",filepath,isTest,element_separator,component_separator,
+		this(System.getProperty("user.dir").concat(System.getProperty("file.separator")),filepath,isTest,element_separator,component_separator,
 				space_character,decimal_separator,
 				escape_character,segment_separator,edi_version_number,edi_type,
 				edi_year_version,edi_letter_version,controlling_agency,syntax_id,syntax_version_number,
@@ -1190,7 +1203,8 @@ public class Edifact {
 
 		HashMap<String, org.bollore.edi.Segment> segments = new HashMap<String, org.bollore.edi.Segment>();
 
-		try {
+		try {			
+			
 			document = sxb.build(this.EDIDefinitions_dir+"EDI_Definitions/D" + this.edi_year_version
 					+ this.edi_letter_version + "/__modelset_definitions.xml");
 
@@ -1302,6 +1316,9 @@ public class Edifact {
 		return segments;
 	}
 	
+
+	
+
 	
 	
 	public static void main(String[] args) throws IOException {

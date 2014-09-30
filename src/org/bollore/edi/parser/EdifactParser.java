@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 
 import org.bollore.edi.*;
 
@@ -41,14 +43,12 @@ public class EdifactParser {
 	}
 	
 	
+	
+	
 	public Edifact readEDI() throws IOException, EDIException, EDIParseException{
 		
 		Edifact result=new Edifact(this.filepath);
-		File edi=new File(this.filepath);
-		
-		//String chaine="";
-		
-		
+		File edi=new File(this.filepath);		
 		
 		InputStream ips=new FileInputStream(this.filepath); 
 		InputStreamReader ipsr=new InputStreamReader(ips);
@@ -63,112 +63,98 @@ public class EdifactParser {
 		this.space_char=una.charAt(7);
 		this.segment_char=una.charAt(8);
 		
-
-		Segment seg_unb= SegmentParser.parse(br.readLine(), String.valueOf(this.element_separator), String.valueOf(this.component_separator));
-		Segment seg_unh= SegmentParser.parse(br.readLine(), String.valueOf(this.element_separator), String.valueOf(this.component_separator));
+		String unb_line=br.readLine();
+		String unh_line=br.readLine();
 		
-		System.out.println(seg_unb.elements.size());
+		Segment seg_unb= SegmentParser.parse(null,unb_line, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char));
+		Segment seg_unh= SegmentParser.parse(null,unh_line, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char));
 		
 		ArrayList<Element> unb_elements=seg_unb.elements;
 		ArrayList<Element> unh_elements=seg_unh.elements;
-		
-		for (int i = 0; i < unb_elements.size(); i++) {
-			System.out.println(unb_elements.get(i).value);
-			ArrayList<org.bollore.edi.Component> components=unb_elements.get(i).components;
-			
-			for (int j = 0; j < components.size(); j++) {
-				System.out.println(i+" "+j+"  "+components.get(j).value);
-			}
-		}
-		
-		
-		System.out.println("Coucou");
-		Integer isTest=null;
-		if(unb_elements.size()>=6){
-			System.out.println("Coucou");
-			String temp=unb_elements.get(6).value;
-			if(Utils.PatternCheck(temp,"[0-9]{1}")){
-				System.out.println("Coucou");
-				isTest=Integer.parseInt(temp);
-			} 
-		}
-		System.out.println(isTest);
-		
-		//System.out.println(unb_elements.get(4).components.size());
-		//System.out.println(unb_elements.get(4).components.get(0)+""+unb_elements.get(4).components.get(1));
-		//Date date_edi=Utils.parseDate("yyMMddHHmm",unb_elements.get(4).components.get(0)+""+unb_elements.get(4).components.get(1));
-		//System.out.println(date_edi);
-		for (int i = 0; i < unb_elements.size(); i++) {
-			System.out.println(i+" value " +unb_elements.get(i).value);
-		}
-		
-//		String edi_version_number=edi_infos[1];
-//		String edi_type=edi_infos[0];
-//		String edi_year_version=edi_infos[2].substring(0,2);
-//		String edi_letter_version=edi_infos[2].substring(2,3);
-//		String controlling_agency=edi_infos[3];
-//		
-//		String syntax=unb_segments.get(1);
-//		System.out.println("syntax :"+syntax);
-//		String syntax_id=unb_segments.get(1); //UNOC
-		String syntax_version_number; // 2
-		String interchange_sender_id; //GRIMALDI
-		String id_code_qualifier; // ABC comme GRIMALDI:ABC
-		String interchange_recipient_id; // SNCUSTOMS
-		String interchange_control_reference; //0214
-		
-		//System.out.println("controlling_agency"+controlling_agency);
-		
-		
-		//System.out.println(Utils.PatternExtract(unb,"([A-Z0-9\\:]+)", 1).get(3));
-		//System.out.println(unh);
-//		System.out.println(una.substring(3,4));
-//		System.out.println(una.substring(4,5));
-//		System.out.println(una.substring(5,6));
-//		System.out.println(una.substring(6,7));
-//		System.out.println(una.substring(7,8));
-//		System.out.println(una.substring(8,9));
-//		while ((ligne=br.readLine())!=null){
-//			System.out.println(ligne);
-//			chaine+=ligne+"\n";
-//		}
-		
-		
-		/**
-		 * Edifact(String filepath, Integer isTest,
-			Character element_separator, Character component_separator,
-			Character space_character, Character decimal_separator,
-			Character escape_character, Character segment_separator,
 
-			String edi_version_number, String edi_type,
-			String edi_year_version, String edi_letter_version,
-			String controlling_agency,
+		
+		String edi_version_number=unh_elements.get(1).components.get(1).value;
+		String edi_type=unh_elements.get(1).components.get(0).value;
+		String edi_year_version=unh_elements.get(1).components.get(2).value.substring(0,2);
+		String edi_letter_version=unh_elements.get(1).components.get(2).value.substring(2,3);
+		
+		result=new Edifact(filepath,edi_version_number,edi_type,edi_year_version,edi_letter_version);
+		result.BuildStructureSegment();
+		
+		HashMap<String,org.bollore.edi.Segment> seg_def=result.buildStructureSegmentDefinition();
+		
+		String message_ref_num=unh_elements.get(0).value;
+		
+		
+		if(unb_elements.get(0).components!=null&&unb_elements.get(0).components.size()==2) {
+		//UNOC
+		result.syntax_id=unb_elements.get(0).components.get(0).value;
+		// 2
+		result.syntax_version_number=unb_elements.get(0).components.get(1).value;
+		} else {
+			result.syntax_id=unb_elements.get(0).value;
+		}
+		
+		if(unb_elements.get(1).components!=null&&unb_elements.get(1).components.size()==2){
+			//GRIMALDI
+			result.interchange_sender_id=unb_elements.get(1).components.get(0).value;
+			// ABC comme GRIMALDI:ABC
+			result.id_code_qualifier=unb_elements.get(1).components.get(1).value;
+		} else {
+			result.interchange_sender_id=unb_elements.get(1).value;
+		}
 
-			String syntax_id, String syntax_version_number,
-			String interchange_sender_id, String id_code_qualifier,
-			String interchange_recipient_id, Date date,
-			String interchange_control_reference)
-		 */
-//		Edifact edifact=new Edifact(filepath, isTest, element_separator, component_separator, space_char, decimal_separator,
-//				escape_char, segment_char, edi_version_number, edi_type, edi_year_version, edi_letter_version,
-//				controlling_agency, syntax_id, syntax_version_number, interchange_sender_id, id_code_qualifier,
-//				interchange_recipient_id, date_edi, interchange_control_reference);
-	
+		//UN
+		result.controlling_agency=unh_elements.get(1).components.get(3).value;
+		//140917
+		result.date=unb_elements.get(3).components.get(0).value;
+		//1633
+		result.time=unb_elements.get(3).components.get(1).value;
+		//0214
+		result.interchange_control_reference=unh_elements.get(0).value;
+		// SNCUSTOMS
+		result.interchange_recipient_id=unb_elements.get(2).value;
+		
+		// On ajoute un nouveau message lié à la référence contenue dans UNH
+		Message cur_message=new Message(message_ref_num);
+		result.messages.add(cur_message);
+		
+		// Récupération des segments de données
+		String cur_seg;
+		while(!"UNT".equals(SegmentParser.getSegmentCode(cur_seg=br.readLine()))) {
+		cur_message.addSegment(SegmentParser.parse(seg_def,cur_seg, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char)));
+		
+		}		
+
 	return result;
+
 	}
 	
 
-
-	
-	
-	
 	
 	public static void main(String[] args) throws IOException,EDIException, EDIParseException {
 
-		EdifactParser edi=new EdifactParser("C:/Bollore/Projets/EDI/Talend/Cuscar_Test_Sekou.edi");
+		EdifactParser edi=new EdifactParser("TestFiles/TestCuscar.edi");
 		
-		edi.readEDI();
-
+		Edifact edifact=edi.readEDI();
+	
+		
+		Segment bgm=edifact.getSegmentStructure("BGM");
+		System.out.println(bgm.code+bgm.name+bgm.max_occurence);
+		
+		//edifact.filepath="C:/Temp/test.edi";
+		edifact.printEDI();
+//		System.out.println(edifact.structure.get(2).code);
+//		System.out.println(edifact.structure.get(2).description);
+//		System.out.println(edifact.structure.get(2).name);
+//		System.out.println(edifact.structure.get(2).min_occurence);
+//		System.out.println(edifact.structure.get(2).max_occurence);
+//		
+//		System.out.println(edifact.messages.get(0).segments.get(1).code);
+//		System.out.println(edifact.messages.get(0).segments.get(1).description);
+//		System.out.println(edifact.messages.get(0).segments.get(1).name);
+//		System.out.println(edifact.messages.get(0).segments.get(1).min_occurence);
+//		System.out.println(edifact.messages.get(0).segments.get(1).max_occurence);
 	}
 
 }

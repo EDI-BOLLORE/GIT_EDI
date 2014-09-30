@@ -183,6 +183,23 @@ public class Utils {
 		return result;
 	}
 	
+	public static ArrayList<String> StringToArray(String input, String separator,Integer nb_items_expected) {
+		ArrayList<String> result = StringToArray(input,separator);
+		System.out.println("size "+result.size());
+		if(nb_items_expected>result.size()) {
+			
+			System.out.println("loop  "+(nb_items_expected-result.size()));
+			
+			for (int i = 0; i < (nb_items_expected-result.size()); i++) {
+				System.out.println(i+"add");
+				result.add("");
+			}
+		}
+		System.out.println("size "+result.size());
+	
+		return result;
+	}
+	
 	public static Boolean PatternCheck(String input,String regex){
 		Boolean result=null;
 		
@@ -207,12 +224,7 @@ public class Utils {
 		
 		while(matcher.find()) {
 			result.add(matcher.group());
-			//System.out.println("AA    "+texte);
-//		if(group_rank==null) {
-//			result=matcher.group();
-//		} else {
-//			result=matcher.group(group_rank);
-//		}
+
 		}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -222,18 +234,40 @@ public class Utils {
 	}
 	
 	public static void main(String[] args) {
-		String unb="UNB+UNOC:2+GRIMALDI+SNCUSTOMS+140916:1038+GFR0713'";
-		String unh="UNH+123456789+CUSCAR:D:95B:UN'";
-		String regex="([A-Z0-9\\:]+)";
-		ArrayList<String> A=Utils.PatternExtract(unb,regex,null);
-		ArrayList<String> B=Utils.PatternExtract(unh,regex,null);
-		
-//		for (int i = 0; i < A.size(); i++) {
-//			System.out.println(A.get(i));
+//		String unb="UNOC:2+GRII?+MALDI+SNCUSTOMS+140916:1038+GFR0713+'";
+//		String unb2="UNOC%2µGRII?MALDIµSNCUSTOMSµ140916%1038µGFR0713µ#";
+//		String unh="UNH+123456?+789+CUSCAR:D:95B:UN'";
+//
+//		String[] regex_special= {"\\","+","?","[","]","(",")",".","*"};
+//		
+//		String segment_separator="#";
+//		String element_separator="µ";
+//		String component_separator="%";
+//		
+//		
+//		
+//		String[] split=unb.split("(?<!\\?)\\+");
+//		
+//		String[] split2=unb2.split("(?<!\\?)"+element_separator);
+//		
+//		for (int i = 0; i < split.length; i++) {
+//			System.out.println(split[i]);
 //		}
+
+
+			String input="A:B::C:";
+			
+			ArrayList<String> result=StringToArray(input, ":",10);
+			
+			for (int i = 0; i < result.size(); i++) {
+				System.out.println(i+" "+result.get(i));
+			}
+	
 		
-		System.out.println(Utils.parseDate("dd/MM/yyyy HH:mm:ss","22/07/1977 03:45:56"));
+		
 		
 	}
+	
+
 
 }
