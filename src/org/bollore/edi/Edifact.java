@@ -1,12 +1,12 @@
 package org.bollore.edi;
 
-import java.io.BufferedReader;
+//import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+//import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import org.bollore.edi.tests.UtilsTest;
+//import org.bollore.edi.tests.UtilsTest;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -26,7 +26,6 @@ public class Edifact {
 	
 	
 	// Attributs lies à la generation de fichier
-	public String EDIDefinitions_dir="D:/STORK/INTERFACES_EDI/XML/";
 	public String filepath;
 	public PrintWriter printwriter;
 	public Integer isTest;
@@ -56,14 +55,12 @@ public class Edifact {
 
 	// Attributs utilis�s pour le segment UNH
 	// public String message_reference_number;
-	public String edi_version_number;
+	public String edi_version;
 	public String edi_type;
-	public String edi_year_version;
-	public String edi_letter_version;
 	public String controlling_agency;
 	// Fin
 
-	// Attribut utilis� pour le segment UNZ
+	// Attribut utilise pour le segment UNZ
 	// Cet attribut donne le nombre de segments (UNH,UNT) contenus dans le
 	// fichier
 	// Integer nb_message;
@@ -85,49 +82,23 @@ public class Edifact {
 		this.filepath=filepath;		
 	}
 	
-	public Edifact(String filepath,String edi_version_number, String edi_type,
-			String edi_year_version, String edi_letter_version){
-		this.EDIDefinitions_dir=System.getProperty("user.dir").concat(System.getProperty("file.separator"));
+	public Edifact(String filepath,String edi_type,String edi_version){
 		this.filepath=filepath;
-		this.edi_version_number=edi_version_number;
 		this.edi_type=edi_type;
-		this.edi_year_version=edi_year_version;
-		this.edi_letter_version=edi_letter_version;
+		this.edi_version=edi_version;
 		
 		this.messages=new ArrayList<Message>();
 		this.buildStructureSegmentDefinition();
 		}
+	
+
 	
 	public Edifact(String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
 			Character escape_character, Character segment_separator,
 
-			String edi_version_number, String edi_type,
-			String edi_year_version, String edi_letter_version,
-			String controlling_agency,
-
-			String syntax_id, String syntax_version_number,
-			String interchange_sender_id, String id_code_qualifier,
-			String interchange_recipient_id, Date date,
-			String interchange_control_reference) throws EDIException{
-		
-		this(System.getProperty("user.dir").concat(System.getProperty("file.separator")),filepath,isTest,element_separator,component_separator,
-				space_character,decimal_separator,
-				escape_character,segment_separator,edi_version_number,edi_type,
-				edi_year_version,edi_letter_version,controlling_agency,syntax_id,syntax_version_number,
-				interchange_sender_id,id_code_qualifier,
-				interchange_recipient_id, date,
-				interchange_control_reference);
-	}
-	
-	public Edifact(String EDIDefinitions_dir,String filepath, Integer isTest,
-			Character element_separator, Character component_separator,
-			Character space_character, Character decimal_separator,
-			Character escape_character, Character segment_separator,
-
-			String edi_version_number, String edi_type,
-			String edi_year_version, String edi_letter_version,
+			 String edi_type,String edi_version,
 			String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
@@ -140,7 +111,6 @@ public class Edifact {
 		super();
 		try {
 			// Instantiation des attributs de fichier
-			this.EDIDefinitions_dir=EDIDefinitions_dir;
 			this.filepath = filepath;
 			this.isTest = isTest;
 			this.printwriter = new PrintWriter(new File(filepath));
@@ -170,10 +140,8 @@ public class Edifact {
 			this.interchange_control_reference = interchange_control_reference;
 
 			// Instantiation des attributs du segment UNH
-			this.edi_version_number = edi_version_number;
+			this.edi_version = edi_version;
 			this.edi_type = edi_type;
-			this.edi_year_version = edi_year_version;
-			this.edi_letter_version = edi_letter_version;
 			this.controlling_agency = controlling_agency;
 
 			// Cr�ation des listes vides des segments et des �l�ments
@@ -189,8 +157,7 @@ public class Edifact {
 
 	public Edifact(String filepath, Integer isTest,
 
-	String edi_version_number, String edi_type, String edi_year_version,
-			String edi_letter_version, String controlling_agency,
+	String edi_version, String edi_type, String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String id_code_qualifier,
@@ -231,10 +198,8 @@ public class Edifact {
 			this.interchange_control_reference = interchange_control_reference;
 
 			// Instantiation des attributs du segment UNH
-			this.edi_version_number = edi_version_number;
+			this.edi_version = edi_version;
 			this.edi_type = edi_type;
-			this.edi_year_version = edi_year_version;
-			this.edi_letter_version = edi_letter_version;
 			this.controlling_agency = controlling_agency;
 
 			// Creation des listes vides des segments et des elements
@@ -667,7 +632,7 @@ public class Edifact {
 				this.edi_type);
 		org.bollore.edi.Component c0052 = new Component("String", "1", "1",
 				true, false, "Message type version number ",
-				"Version number of a message type", this.edi_version_number);
+				"Version number of a message type", this.edi_version.substring(0, 1));
 		org.bollore.edi.Component c0054 = new Component(
 				"String",
 				"1",
@@ -676,7 +641,7 @@ public class Edifact {
 				false,
 				"Message type release number",
 				"96B: Released number within the current message type version number.",
-				this.edi_year_version + this.edi_letter_version);
+				this.edi_version.substring(1,4));
 		org.bollore.edi.Component c0051 = new Component(
 				"String",
 				"1",
@@ -948,8 +913,7 @@ public class Edifact {
 
 		if (result == null) {
 			throw new EDIException("L'�l�ment '" + element_path
-					+ "' pour l'EDI " + this.edi_type + this.edi_year_version
-					+ this.edi_letter_version + " n'a pas �t� trouv�");
+					+ "' pour l'EDI " + this.edi_type + this.edi_version.substring(1,4) + " n'a pas ete trouve");
 		}
 		return result;
 	}
@@ -960,8 +924,8 @@ public class Edifact {
 		org.jdom2.Element racine;
 
 		try {
-			document = sxb.build("EDI_Definitions/D" + this.edi_year_version
-					+ this.edi_letter_version + "/" + this.edi_type + ".xml");
+			
+			document = sxb.build(this.getClass().getResourceAsStream("/D" + this.edi_version.substring(1,4) + "/" + this.edi_type + ".xml"));
 
 			racine = document.getRootElement();
 			List<org.jdom2.Element> nodes = racine.getChildren("segments");
@@ -1203,23 +1167,22 @@ public class Edifact {
 
 		HashMap<String, org.bollore.edi.Segment> segments = new HashMap<String, org.bollore.edi.Segment>();
 
-		try {			
+		try {	
 			
-			document = sxb.build(this.EDIDefinitions_dir+"EDI_Definitions/D" + this.edi_year_version
-					+ this.edi_letter_version + "/__modelset_definitions.xml");
+			document = sxb.build(Edifact.class.getResourceAsStream("/" + this.edi_version + "/__modelset_definitions.xml"));
 
 			racine = document.getRootElement();
 			List<org.jdom2.Element> nodes = racine.getChildren("segments");
 
 			for (int i = 0; i < nodes.size(); i++) {
 
-				// On r�cup�re la liste de tous les segments
+				// On recupere la liste de tous les segments
 				List<org.jdom2.Element> segts = ((org.jdom2.Element) nodes
 						.get(i)).getChildren("segment");
 
 				for (int j = 0; j < segts.size(); j++) {
 
-					// Pour chaque segments on r�cup�re la liste des �l�ments
+					// Pour chaque segments on recupere la liste des elements
 					List<org.jdom2.Element> field = ((org.jdom2.Element) segts
 							.get(j)).getChildren("field");
 
@@ -1237,7 +1200,7 @@ public class Edifact {
 						List<org.jdom2.Element> component = ((org.jdom2.Element) field
 								.get(l)).getChildren("component");
 						ArrayList<Component> components = new ArrayList<Component>();
-						// On travaille avec un �l�ment qui poss�de des
+						// On travaille avec un �l�ment qui possede des
 						// composants
 						if (component.size() > 0) {
 
@@ -1270,7 +1233,7 @@ public class Edifact {
 														.get(0).getText()));
 							}
 
-							// On travaille avec un �l�ment qui ne poss�de pas
+							// On travaille avec un element qui ne poss�de pas
 							// de composants
 						} else {
 
@@ -1323,6 +1286,8 @@ public class Edifact {
 	
 	public static void main(String[] args) throws IOException {
 		
+		InputStream stream = Edifact.class.getResourceAsStream("/D95B/APERAK.xml");
+		System.out.println(stream != null);
 	}
 
 }

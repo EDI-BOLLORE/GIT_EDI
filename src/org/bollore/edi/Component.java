@@ -119,7 +119,12 @@ public class Component implements Cloneable {
 
 	public static void main(String[] args) {
 
-
+		String ediversion="D95B";
+		
+		System.out.println(ediversion.substring(0,1));
+		System.out.println(ediversion.substring(1,3));
+		System.out.println(ediversion.substring(3,4));
+		System.out.println(ediversion.substring(1,4));
 
 	}
 

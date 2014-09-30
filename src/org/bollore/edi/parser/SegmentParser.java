@@ -111,7 +111,7 @@ public class SegmentParser {
 		Date date = cal.getTime();
 
 		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
-				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", date, "identifiant de mon voyage");
 
 		Message message1 = new Message(message_reference_number);

@@ -73,12 +73,10 @@ public class EdifactParser {
 		ArrayList<Element> unh_elements=seg_unh.elements;
 
 		
-		String edi_version_number=unh_elements.get(1).components.get(1).value;
+		String edi_version=unh_elements.get(1).components.get(1).value+unh_elements.get(1).components.get(2).value.substring(0,3);
 		String edi_type=unh_elements.get(1).components.get(0).value;
-		String edi_year_version=unh_elements.get(1).components.get(2).value.substring(0,2);
-		String edi_letter_version=unh_elements.get(1).components.get(2).value.substring(2,3);
 		
-		result=new Edifact(filepath,edi_version_number,edi_type,edi_year_version,edi_letter_version);
+		result=new Edifact(filepath,edi_type,edi_version);
 		result.BuildStructureSegment();
 		
 		HashMap<String,org.bollore.edi.Segment> seg_def=result.buildStructureSegmentDefinition();

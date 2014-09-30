@@ -41,7 +41,7 @@ public class EdifactTest extends TestCase {
 		}
 
 		Edifact edi_cuscar = new Edifact(path, 6, '+', ':', ' ', '.', '?',
-				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
 		String input = "A?B+C'D.E:F";
@@ -53,7 +53,7 @@ public class EdifactTest extends TestCase {
 	public void testisGrammarCharValid() throws EDIException {
 		Edifact edi_cuscar = new Edifact(
 				UtilsTest.tempdir.concat("Cuscar_Test.edi"), 6, '+', ':', ' ',
-				'.', '?', '\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2",
+				'.', '?', '\'',"CUSCAR", "D95B", "UN", "UNOC", "2",
 				"GRIMALDI", "", "SNCUSTOMS", UtilsTest.date,
 				"identifiant de mon voyage");
 		
@@ -81,10 +81,11 @@ public class EdifactTest extends TestCase {
 		
 		String path = UtilsTest.tempdir.concat("Cuscar_Test2.edi");
 		System.out.println(path);
-		Edifact edi=new Edifact(path,"D", "CUSCAR",
-				"95","B");
+		Edifact edi=new Edifact(path, "CUSCAR","D95B");
 		
-		assertEquals(System.getProperty("user.dir").concat(System.getProperty("file.separator")), edi.EDIDefinitions_dir);
+		System.out.println(edi.edi_type);
+		
+		//assertEquals(System.getProperty("user.dir").concat(System.getProperty("file.separator")), edi.EDIDefinitions_dir);
 		
 	}
 
@@ -96,8 +97,11 @@ public class EdifactTest extends TestCase {
 		String message_reference_number = "1234";
 
 		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
-				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+		
+		System.out.println(edi_cuscar.edi_type);
+		System.out.println(edi_cuscar.edi_version);
 
 		ArrayList<String> cst = new ArrayList<String>();
 
@@ -227,7 +231,7 @@ public class EdifactTest extends TestCase {
 		String path = UtilsTest.tempdir.concat("Tata.edi");
 
 		Edifact edi_cuscar = new Edifact(path, 6, '+', ':', ' ', '.', '?',
-				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
+				'\'', "CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
 		assertTrue(edi_cuscar.messages.isEmpty());
@@ -248,7 +252,7 @@ public class EdifactTest extends TestCase {
 		String path = UtilsTest.tempdir.concat("Tata.edi");
 		
 		Edifact edi_cuscar = new Edifact(path, 6, '+', ':', ' ', '.', '?',
-				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
 		HashMap<String,Segment> seg_def=edi_cuscar.buildStructureSegmentDefinition();
@@ -268,6 +272,10 @@ public class EdifactTest extends TestCase {
 	public static void main(String[] args) throws EDIException {
 		String path = UtilsTest.tempdir.concat("Cuscar_Test2.edi");
 
+		Edifact edi=new Edifact(path, "CUSCAR","D95B");
+		
+		System.out.println(edi.edi_type);
+		
 		String message_reference_number = "1234";
 
 		File temp = new File(path);
@@ -288,7 +296,7 @@ public class EdifactTest extends TestCase {
 		
 
 		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
-				'\'', "D", "CUSCAR", "95", "B", "UN", "UNOC", "2", "GRIMALDI",
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", date, "identifiant de mon voyage");
 
 		 Message message1=new Message(message_reference_number);
