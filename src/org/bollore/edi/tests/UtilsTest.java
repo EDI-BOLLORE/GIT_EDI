@@ -21,8 +21,7 @@ public class UtilsTest extends TestCase {
 	// cal.
 
 	public static String fileseparator = System.getProperty("file.separator");
-	public static String tempdir = System.getProperty("java.io.tmpdir")
-			.concat(fileseparator).concat("EDI").concat(fileseparator);
+	public static String tempdir = System.getProperty("java.io.tmpdir").concat("EDI").concat(fileseparator);
 	public static Date date;
 
 	static {

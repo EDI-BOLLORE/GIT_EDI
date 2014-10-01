@@ -56,25 +56,39 @@ public class EdifactTest extends TestCase {
 				'.', '?', '\'',"CUSCAR", "D95B", "UN", "UNOC", "2",
 				"GRIMALDI", "", "SNCUSTOMS", UtilsTest.date,
 				"identifiant de mon voyage");
-		
-		/**
-		 * Edifact(String EDIDefinitions_dir,String filepath, Integer isTest,
-			Character element_separator, Character component_separator,
-			Character space_character, Character decimal_separator,
-			Character escape_character, Character segment_separator,
-
-			String edi_version_number D, String edi_type CUSCAR ,
-			String edi_year_version 95 , String edi_letter_version B,
-			String controlling_agency UN,
-
-			String syntax_id UNOC, String syntax_version_number 2,
-			String interchange_sender_id GRIMALDI, String id_code_qualifier "",
-			String interchange_recipient_id SNCUSTOMS, Date date,
-			String interchange_control_reference "0214" id du voyage)
-		 */
 
 		assertTrue(edi_cuscar.isGrammarCharValid());
 
+	}
+	/**
+	 * Ce test permet de valider que l'arborescence de l'EDI que l'on va générer sera créer si elle n'existe pas
+	 * @throws EDIException
+	 */
+	public void testCreateDir() throws EDIException {
+		String fs=System.getProperty("file.separator");
+		
+		
+		String random_dir_name=Utils.RandomString();
+		//String random_dir_name="";
+		
+		String dir=UtilsTest.tempdir.concat(random_dir_name).concat(fs).concat("mon_fichier.edi");
+		
+		String message_reference_number = "1234";
+		
+		
+		Edifact edi_cuscar = new Edifact(dir, 0, '+', ':', ' ', '.', '?',
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
+				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+		
+		edi_cuscar.setValueElement(message_reference_number, "DTM/C507","I1,  ,L1", ",", true);
+		
+		edi_cuscar.print();
+		
+		File file=new File(dir);
+		
+		assertTrue(file.exists());
+		
+		file.delete();
 	}
 	
 	public void testEDIDefinitionDir() {
@@ -84,8 +98,6 @@ public class EdifactTest extends TestCase {
 		Edifact edi=new Edifact(path, "CUSCAR","D95B");
 		
 		System.out.println(edi.edi_type);
-		
-		//assertEquals(System.getProperty("user.dir").concat(System.getProperty("file.separator")), edi.EDIDefinitions_dir);
 		
 	}
 
@@ -99,9 +111,6 @@ public class EdifactTest extends TestCase {
 		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
-		
-		System.out.println(edi_cuscar.edi_type);
-		System.out.println(edi_cuscar.edi_version);
 
 		ArrayList<String> cst = new ArrayList<String>();
 

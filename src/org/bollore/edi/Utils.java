@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,23 @@ public class Utils {
 				
 		return result;
 		
+	}
+	
+	
+	// Cette méthode permet de créer l'arborescence des répertoires étant donné le chemin absolu d'un fichier
+	// Cette méthode est utilisée pour les EDIFACT. Si le répertoire n'existe pas sans cette méthode ça plante
+	public static void CreateDir(String filepath) {
+		File file=new File(filepath);
+		
+		if(!file.getParentFile().exists()){
+			file.getParentFile().mkdirs();
+		}
+	}
+	
+	public static String RandomString() {
+		SecureRandom random = new SecureRandom();
+		
+		return new BigInteger(130, random).toString(32);
 	}
 
 	public static String formatDate(String pattern, Date date) {
@@ -255,14 +273,8 @@ public class Utils {
 //		}
 
 
-			String input="A:B::C:";
-			
-			ArrayList<String> result=StringToArray(input, ":",10);
-			
-			for (int i = 0; i < result.size(); i++) {
-				System.out.println(i+" "+result.get(i));
-			}
-	
+
+		System.out.println(RandomString());
 		
 		
 		

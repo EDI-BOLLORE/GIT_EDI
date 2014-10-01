@@ -79,16 +79,20 @@ public class Edifact {
 	//String EDIDefinitions_dir
 	
 	public Edifact(String filepath) {
-		this.filepath=filepath;		
+		this.filepath=filepath;
+		Utils.CreateDir(this.filepath);
 	}
 	
 	public Edifact(String filepath,String edi_type,String edi_version){
 		this.filepath=filepath;
+		Utils.CreateDir(this.filepath);
 		this.edi_type=edi_type;
 		this.edi_version=edi_version;
 		
 		this.messages=new ArrayList<Message>();
 		this.buildStructureSegmentDefinition();
+		
+		
 		}
 	
 
@@ -112,6 +116,9 @@ public class Edifact {
 		try {
 			// Instantiation des attributs de fichier
 			this.filepath = filepath;
+			
+			Utils.CreateDir(this.filepath);
+			
 			this.isTest = isTest;
 			this.printwriter = new PrintWriter(new File(filepath));
 
@@ -149,7 +156,7 @@ public class Edifact {
 			this.messages = new ArrayList<org.bollore.edi.Message>();
 
 			this.BuildStructureSegment();
-			// this.segments_rank=this.buildHashSegment();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -171,6 +178,7 @@ public class Edifact {
 		try {
 			// Instantiation des attributs de fichier
 			this.filepath = filepath;
+			Utils.CreateDir(this.filepath);
 			this.isTest = isTest;
 			this.printwriter = new PrintWriter(new File(filepath));
 
@@ -207,6 +215,8 @@ public class Edifact {
 			this.messages = new ArrayList<org.bollore.edi.Message>();
 
 			this.BuildStructureSegment();
+			
+			Utils.CreateDir(this.filepath);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -982,6 +992,15 @@ public class Edifact {
 
 	public void print() {
 		try {
+			
+			String edifilepath=this.filepath;
+			
+			File edifile=new File(edifilepath);
+			
+			if(!edifile.getParentFile().exists()) {
+				edifile.getParentFile().mkdirs();
+			}
+			
 			this.printHeader();
 			this.printMessages();
 			this.printfooter();
@@ -1117,7 +1136,7 @@ public class Edifact {
 
 		this.printwriter.append("UNZ" + this.element_separator
 				+ this.messages.size() + this.element_separator
-				+ this.interchange_control_reference + this.segment_separator
+				+ this.replaceGrammarChar(this.interchange_control_reference)  + this.segment_separator
 				+ "\n");
 	}
 
