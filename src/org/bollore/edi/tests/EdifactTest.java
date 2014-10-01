@@ -69,10 +69,9 @@ public class EdifactTest extends TestCase {
 		
 		
 		String random_dir_name=Utils.RandomString();
-		//String random_dir_name="";
 		
 		String dir=UtilsTest.tempdir.concat(random_dir_name).concat(fs).concat("mon_fichier.edi");
-		
+
 		String message_reference_number = "1234";
 		
 		
@@ -87,8 +86,9 @@ public class EdifactTest extends TestCase {
 		File file=new File(dir);
 		
 		assertTrue(file.exists());
-		
+		System.out.println(file.getParentFile().getAbsolutePath());
 		file.delete();
+		file.getParentFile().delete();
 	}
 	
 	public void testEDIDefinitionDir() {
