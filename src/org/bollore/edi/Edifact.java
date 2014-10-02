@@ -15,6 +15,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
+
+
+import org.bollore.edi.tests.UtilsTest;
 //import org.bollore.edi.tests.UtilsTest;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -402,8 +405,8 @@ public class Edifact {
 		}
 		// Si l'element n'a pas ete trouve on sort
 		if (!element.code.equals(element_name)) {
-			throw new EDIException("L'element" + element_path
-					+ " n'a pas ete trouve");
+			throw new EDIException("L'element " + element_path
+					+ " n'a pas ete trouve pour l'EDI "+this.edi_type+" "+this.edi_version);
 		}
 
 		// L'�l�ment n'a pas de composants
@@ -767,7 +770,7 @@ public class Edifact {
 			// this.segments.add(this.getSegmentStructure(split[0]));
 		}
 
-		// On r�cup�re le dernier segment en cours de traitement de l'EDI
+		// On recupere le dernier segment en cours de traitement de l'EDI
 		segment = this.getMessage(message_ref).segments.get(this
 				.getMessage(message_ref).segments.size() - 1);
 
@@ -777,17 +780,25 @@ public class Edifact {
 		ArrayList<org.bollore.edi.Element> elements = segment.elements;
 
 		org.bollore.edi.Element element = null;
-
+		
+		String element_name=null;
+		
 		for (int i = 0; i < elements.size(); i++) {
 			element = elements.get(i);
 
-			String element_name = element_path.substring(
+			element_name = element_path.substring(
 					element_path.lastIndexOf("/") + 1, element_path.length());
 			if (element.code.equals(element_name)) {
 
 				break;
 			}
 
+		}
+		
+		// Si l'element n'a pas ete trouve on sort
+		if (!element.code.equals(element_name)) {
+			throw new EDIException("L'element " + element_path
+					+ " n'a pas ete trouve pour l'EDI "+this.edi_type+" "+this.edi_version);
 		}
 
 		// L'element pas de composants
@@ -1303,10 +1314,17 @@ public class Edifact {
 
 	
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, EDIException {
 		
-		InputStream stream = Edifact.class.getResourceAsStream("/D95B/APERAK.xml");
-		System.out.println(stream != null);
+		String dir="C:/Temp/Tata.edi";
+		Edifact edi_cuscar = new Edifact(dir, 0, '+', ':', ' ', '.', '?',
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
+				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+		
+		edi_cuscar.setValueElement("message_reference_number", "DTM/Tata","I1,  ,L1", ",", true);
+		
+		edi_cuscar.print();
+		
 	}
 
 }

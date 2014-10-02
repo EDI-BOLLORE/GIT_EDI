@@ -86,7 +86,7 @@ public class EdifactTest extends TestCase {
 		File file=new File(dir);
 		
 		assertTrue(file.exists());
-		System.out.println(file.getParentFile().getAbsolutePath());
+		//System.out.println(file.getParentFile().getAbsolutePath());
 		file.delete();
 		file.getParentFile().delete();
 	}
