@@ -184,5 +184,26 @@ public class Element implements Cloneable {
 
 		return result;
 	}
+	
+	public Boolean isEmpty(){
+		Boolean result=true;
+		
+		if(this.value!=null&&!"".equals(this.value.trim())) {
+			result=false;
+			return result;
+		}
+		
+		if(this.components!=null){
+		
+		for (int i = 0; i < this.components.size(); i++) {
+			if(this.components.get(i).value!=null&&!"".equals(this.components.get(i).value)) {
+				result=false;
+				return result;
+			}
+		}
+		}
+		
+		return result;		
+	}
 
 }

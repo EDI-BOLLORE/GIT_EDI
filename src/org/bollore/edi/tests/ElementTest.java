@@ -69,5 +69,32 @@ public class ElementTest extends TestCase {
 
 		assertTrue(element2.HasEmptyComponents());
 	}
+	
+	public void testIsEmptyElement() {
+		org.bollore.edi.Element element=new Element();
+		assertTrue(element.isEmpty());
+		
+		org.bollore.edi.Element element2=new Element("ABC", true, true,
+				"label", "doc",null);
+		assertTrue(element2.isEmpty());
+		
+		org.bollore.edi.Element element3=new Element("ABC", true, true,
+				"label", "doc",null);
+		element3.setValue("ABC");
+		assertFalse(element3.isEmpty());
+		
+		ArrayList<org.bollore.edi.Component> components=new ArrayList<org.bollore.edi.Component>();
+		org.bollore.edi.Element element4=new Element("ABC", true, true,
+				"label", "doc",components);		
+		assertTrue(element4.isEmpty());
+		
+		org.bollore.edi.Component component= new Component("ABC");
+		ArrayList<org.bollore.edi.Component> components2=new ArrayList<org.bollore.edi.Component>();
+		components.add(component);
+		org.bollore.edi.Element element5=new Element("ABC", true, true,
+				"label", "doc",components);
+		assertFalse(element5.isEmpty());
+		
+	}
 
 }

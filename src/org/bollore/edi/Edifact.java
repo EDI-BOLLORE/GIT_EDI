@@ -1082,13 +1082,19 @@ public class Edifact {
 
 					ArrayList<org.bollore.edi.Element> elements = segment.elements;
 
-					for (int j = 0; j < elements.size(); j++)
+					
+					
+					for (int j = 0; j < segment.MaxRankElementNonNull(); j++)
 
 					{
 						org.bollore.edi.Element element = elements.get(j);
 
 						ArrayList<org.bollore.edi.Component> components = element.components;
-
+						
+						if(!element.isEmpty()) {
+						
+						
+						
 						// Il s'agit d'un élément simple: on l'écrit dans le
 						// fichier
 						if (components == null || components.size() <= 0) {
@@ -1113,12 +1119,11 @@ public class Edifact {
 
 								String value2 = this
 										.replaceGrammarChar(component.value);
-								// String value2 = (component.value == null) ?
-								// "": component.value.trim();
+
 
 								if (k == 0) {
 									// Si c'est le premier composant, on
-									// n'imprime pas le s�parateur de composant
+									// n'imprime pas le separateur de composant
 									this.printwriter
 											.append(this.element_separator
 													+ value2);
@@ -1132,9 +1137,14 @@ public class Edifact {
 								}
 							}
 						}
+					} else {
+						this.printwriter.append(this.element_separator);
+					}
 					}
 
 					this.printwriter.append(this.segment_separator + "\n");
+					
+					
 
 				}
 
@@ -1179,7 +1189,7 @@ public class Edifact {
 
 	public void close() {
 		try {
-
+			
 			if (this.printwriter != null) {
 				this.printwriter.close();
 			}

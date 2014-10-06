@@ -1,11 +1,18 @@
 package org.bollore.edi;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -15,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
@@ -45,6 +53,8 @@ public class Utils {
 		return result;
 		
 	}
+	
+
 	
 	
 	// Cette méthode permet de créer l'arborescence des répertoires étant donné le chemin absolu d'un fichier
@@ -250,31 +260,26 @@ public class Utils {
 		
 		return result;
 	}
+
+	public static void replaceInFile(String filepath,String to_replace) throws IOException {
+
+        Path path = new File(filepath).toPath();
+        
+        List<String> lines = Files.readAllLines(path, Charset.defaultCharset());
+        
+        for (String line : lines)
+        {
+            line = line.replaceAll("[\\+]+'", "'");
+        }
+        
+        Files.write(path, lines, Charset.defaultCharset());
+    }
+		
 	
-	public static void main(String[] args) {
-//		String unb="UNOC:2+GRII?+MALDI+SNCUSTOMS+140916:1038+GFR0713+'";
-//		String unb2="UNOC%2µGRII?MALDIµSNCUSTOMSµ140916%1038µGFR0713µ#";
-//		String unh="UNH+123456?+789+CUSCAR:D:95B:UN'";
-//
-//		String[] regex_special= {"\\","+","?","[","]","(",")",".","*"};
-//		
-//		String segment_separator="#";
-//		String element_separator="µ";
-//		String component_separator="%";
-//		
-//		
-//		
-//		String[] split=unb.split("(?<!\\?)\\+");
-//		
-//		String[] split2=unb2.split("(?<!\\?)"+element_separator);
-//		
-//		for (int i = 0; i < split.length; i++) {
-//			System.out.println(split[i]);
-//		}
+	
+	public static void main(String[] args) throws IOException {
 
-
-
-		System.out.println(RandomString());
+		Utils.replaceInFile("C:/Bollore/Projets/EDI/Baplie/Output/CUSCAR/CUSCAR_DOUANE.edi", "");
 		
 		
 		
