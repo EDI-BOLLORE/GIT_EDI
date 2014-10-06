@@ -138,7 +138,8 @@ public class EdifactTest extends TestCase {
 
 		ArrayList<String> nad1 = new ArrayList<String>();
 
-		nad1.add("NAD1");
+		//nad1.add("NAD1");
+		nad1.add(null);
 
 		ArrayList<String> nad2 = new ArrayList<String>();
 
@@ -230,8 +231,8 @@ public class EdifactTest extends TestCase {
 		edi_cuscar.messages.get(0).segments.add(new Segment());
 		
 		edi_cuscar.print();
-		
-		assertEquals("5e19fd997dee39e97ffe224f68b24819", Utils.checkSum(edi_cuscar.filepath));
+		System.out.println(Utils.checkSum(edi_cuscar.filepath));
+		assertEquals("486409b21624e505a5073c80d5e2197a", Utils.checkSum(edi_cuscar.filepath));
 
 	}
 

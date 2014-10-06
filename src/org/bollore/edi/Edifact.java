@@ -1034,8 +1034,8 @@ public class Edifact {
 	}
 
 	public void printHeader() {
-		this.printwriter.append("UNA" + this.element_separator
-				+ this.component_separator + this.decimal_separator
+		this.printwriter.append("UNA" + this.component_separator
+				+ this.element_separator + this.decimal_separator
 				+ this.escape_character + this.space_character
 				+ this.segment_separator + "\n");
 
@@ -1094,11 +1094,11 @@ public class Edifact {
 						if (components == null || components.size() <= 0) {
 							String value = this
 									.replaceGrammarChar(element.value);
-							if (value != null) {
-								if (!"".equals(value.trim())) {
-									this.printwriter.append(element_separator
+							if (value != null&&!"".equals(value.trim())) {
+									this.printwriter.append(this.element_separator
 											+ value);
-								}
+							} else {
+								this.printwriter.append(this.element_separator);
 							}
 
 						}
