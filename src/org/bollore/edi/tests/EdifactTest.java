@@ -25,6 +25,7 @@ import org.bollore.edi.Utils;
 
 
 
+
 import junit.*;
 import junit.framework.*;
 
@@ -45,7 +46,7 @@ public class EdifactTest extends TestCase {
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
 		String input = "A?B+C'D.E:F";
-		String result = "A??B?+C?'D?.E?:F";
+		String result = "A??B?+C?'D.E?:F";
 		assertEquals(result, edi_cuscar.replaceGrammarChar(input));
 		assertEquals("", edi_cuscar.replaceGrammarChar(null));
 	}
@@ -104,9 +105,25 @@ public class EdifactTest extends TestCase {
 
 		String message_reference_number = "1234";
 
+		/**
+		 * (String filepath, Integer isTest,
+			Character element_separator, Character component_separator,
+			Character space_character, Character decimal_separator,
+			Character escape_character, Character segment_separator,
+
+			 String edi_type,String edi_version,
+			String controlling_agency,
+
+			String syntax_id, String syntax_version_number,
+			String interchange_sender_id, String id_code_qualifier,
+			String interchange_recipient_id, Date date,
+			String interchange_control_reference)
+		 */
+//		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
+//				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
+//				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
-				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",null, "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
 		ArrayList<String> cst = new ArrayList<String>();
 

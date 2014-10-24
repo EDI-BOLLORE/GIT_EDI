@@ -306,7 +306,7 @@ public class Edifact {
 
 		if (input == null) {
 
-			return result;
+			return "";
 		} else {
 			if (input.trim().equals("")) {
 				return result;
@@ -319,7 +319,8 @@ public class Edifact {
 		// JAVA/Regex
 		HashMap<String, String> javametacharacter_map = new HashMap<String, String>();
 
-		javametacharacter_map.put(".", "\\.");
+		
+		//javametacharacter_map.put(".", "\\.");
 		javametacharacter_map.put("*", "\\*");
 		javametacharacter_map.put("?", "\\?");
 		javametacharacter_map.put("(", "\\(");
@@ -355,7 +356,7 @@ public class Edifact {
 
 		String[] edi_char = { String.valueOf(this.component_separator),
 				String.valueOf(this.element_separator),
-				String.valueOf(this.decimal_separator),
+				//String.valueOf(this.decimal_separator),
 				String.valueOf(this.segment_separator) };
 
 		// String.valueOf(this.space_character), doit on catché l'espace???
