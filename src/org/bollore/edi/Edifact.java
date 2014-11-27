@@ -169,7 +169,7 @@ public class Edifact {
 		}
 	}
 
-	public Edifact(String filepath, Integer isTest,
+	public Edifact(String lineseparator,String filepath, Integer isTest,
 
 	String edi_version, String edi_type, String controlling_agency,
 
@@ -222,7 +222,7 @@ public class Edifact {
 			this.messages = new ArrayList<org.bollore.edi.Message>();
 
 			this.BuildStructureSegment();
-			
+			this.lineseparator=lineseparator;
 			Utils.CreateDir(this.filepath);
 			
 		} catch (FileNotFoundException e) {
