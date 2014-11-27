@@ -41,7 +41,7 @@ public class EdifactTest extends TestCase {
 			temp.delete();
 		}
 
-		Edifact edi_cuscar = new Edifact(path, 6, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
@@ -52,7 +52,7 @@ public class EdifactTest extends TestCase {
 	}
 
 	public void testisGrammarCharValid() throws EDIException {
-		Edifact edi_cuscar = new Edifact(
+		Edifact edi_cuscar = new Edifact("\n",
 				UtilsTest.tempdir.concat("Cuscar_Test.edi"), 6, '+', ':', ' ',
 				'.', '?', '\'',"CUSCAR", "D95B", "UN", "UNOC", "2",
 				"GRIMALDI", "", "SNCUSTOMS", UtilsTest.date,
@@ -76,7 +76,7 @@ public class EdifactTest extends TestCase {
 		String message_reference_number = "1234";
 		
 		
-		Edifact edi_cuscar = new Edifact(dir, 0, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
@@ -122,7 +122,7 @@ public class EdifactTest extends TestCase {
 //		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
 //				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 //				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
-		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",null, "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
 		ArrayList<String> cst = new ArrayList<String>();
@@ -262,7 +262,7 @@ public class EdifactTest extends TestCase {
 
 		String path = UtilsTest.tempdir.concat("Tata.edi");
 
-		Edifact edi_cuscar = new Edifact(path, 6, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'', "CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
@@ -283,7 +283,7 @@ public class EdifactTest extends TestCase {
 		
 		String path = UtilsTest.tempdir.concat("Tata.edi");
 		
-		Edifact edi_cuscar = new Edifact(path, 6, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		

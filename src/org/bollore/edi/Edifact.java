@@ -30,6 +30,7 @@ public class Edifact {
 	
 	// Attributs lies à la generation de fichier
 	public String filepath;
+	public String lineseparator;
 	public PrintWriter printwriter;
 	public Integer isTest;
 
@@ -91,6 +92,7 @@ public class Edifact {
 		Utils.CreateDir(this.filepath);
 		this.edi_type=edi_type;
 		this.edi_version=edi_version;
+		this.lineseparator="\n";
 		
 		this.messages=new ArrayList<Message>();
 		this.buildStructureSegmentDefinition();
@@ -100,7 +102,7 @@ public class Edifact {
 	
 
 	
-	public Edifact(String filepath, Integer isTest,
+	public Edifact(String lineseparator,String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
 			Character escape_character, Character segment_separator,
@@ -157,6 +159,8 @@ public class Edifact {
 			// Cr�ation des listes vides des segments et des �l�ments
 			this.structure = new ArrayList<org.bollore.edi.Segment>();
 			this.messages = new ArrayList<org.bollore.edi.Message>();
+			
+			this.lineseparator=lineseparator;
 
 			this.BuildStructureSegment();
 			
@@ -1038,7 +1042,7 @@ public class Edifact {
 		this.printwriter.append("UNA" + this.component_separator
 				+ this.element_separator + this.decimal_separator
 				+ this.escape_character + this.space_character
-				+ this.segment_separator + "\n");
+				+ this.segment_separator + this.lineseparator);
 
 		this.printSegment(this.buildUNBSegment());
 		// this.printSegment(this.buildUNHSegment());
@@ -1143,7 +1147,7 @@ public class Edifact {
 					}
 					}
 
-					this.printwriter.append(this.segment_separator + "\n");
+					this.printwriter.append(this.segment_separator + this.lineseparator);
 					
 					
 
@@ -1159,7 +1163,7 @@ public class Edifact {
 		this.printwriter.append("UNZ" + this.element_separator
 				+ this.messages.size() + this.element_separator
 				+ this.replaceGrammarChar(this.interchange_control_reference)  + this.segment_separator
-				+ "\n");
+				+ this.lineseparator);
 	}
 
 	public void printEDIStructure() {
@@ -1328,7 +1332,7 @@ public class Edifact {
 	public static void main(String[] args) throws IOException, EDIException {
 		
 		String dir="C:/Temp/Tata.edi";
-		Edifact edi_cuscar = new Edifact(dir, 0, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
