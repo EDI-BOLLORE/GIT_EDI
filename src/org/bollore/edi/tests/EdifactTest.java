@@ -43,7 +43,7 @@ public class EdifactTest extends TestCase {
 
 		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 
 		String input = "A?B+C'D.E:F";
 		String result = "A??B?+C?'D.E?:F";
@@ -55,7 +55,7 @@ public class EdifactTest extends TestCase {
 		Edifact edi_cuscar = new Edifact("\n",
 				UtilsTest.tempdir.concat("Cuscar_Test.edi"), 6, '+', ':', ' ',
 				'.', '?', '\'',"CUSCAR", "D95B", "UN", "UNOC", "2",
-				"GRIMALDI", "", "SNCUSTOMS", UtilsTest.date,
+				"GRIMALDI","recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date,
 				"identifiant de mon voyage");
 
 		assertTrue(edi_cuscar.isGrammarCharValid());
@@ -78,7 +78,7 @@ public class EdifactTest extends TestCase {
 		
 		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
 		edi_cuscar.setValueElement(message_reference_number, "DTM/C507","I1,  ,L1", ",", true);
 		
@@ -123,7 +123,8 @@ public class EdifactTest extends TestCase {
 //				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 //				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':', ' ', '.', '?',
-				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",null, "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "sender_id"
+				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage");
 
 		ArrayList<String> cst = new ArrayList<String>();
 
@@ -199,8 +200,6 @@ public class EdifactTest extends TestCase {
 		ftx_c107.add("");
 		ftx_c107.add("");
 		ftx_c107.add("C107");
-//		ftx_c108.add("");
-//		ftx_c108.add("C108");
 
 		// On peut utiliser l'un ou l'autre
 		edi_cuscar.setValueElement(message_reference_number, "DTM/C507",
@@ -252,19 +251,20 @@ public class EdifactTest extends TestCase {
 		//J'ajoute 2 segments vides qui ne seront pas imprimés et donc le nb de segments ne doit pas être incrémenté.
  		edi_cuscar.messages.get(0).segments.add(new Segment());
 		edi_cuscar.messages.get(0).segments.add(new Segment());
-		
+		System.out.println("Before Print");
 		edi_cuscar.print();
-		assertEquals("2cc16a5c208fc5bbc8e5a5b4edc3e090", Utils.checkSum(edi_cuscar.filepath));
+		assertEquals("4f56f4c742a9d891f40cc415badacddb", Utils.checkSum(edi_cuscar.filepath));
+		System.out.println(Utils.checkSum(edi_cuscar.filepath));
 
 	}
 
 	public void testgetMessage() throws EDIException {
 
 		String path = UtilsTest.tempdir.concat("Tata.edi");
-
+		System.out.println(path);
 		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
-				'\'', "CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				'\'', "CUSCAR", "D95B", "UN", "UNOC", "2", "sender_id"
+				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage");
 
 		assertTrue(edi_cuscar.messages.isEmpty());
 		edi_cuscar.getMessage("Blabla");
@@ -285,7 +285,7 @@ public class EdifactTest extends TestCase {
 		
 		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
 		HashMap<String,Segment> seg_def=edi_cuscar.buildStructureSegmentDefinition();
 		

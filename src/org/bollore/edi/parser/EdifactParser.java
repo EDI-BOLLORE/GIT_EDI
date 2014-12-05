@@ -97,7 +97,7 @@ public class EdifactParser {
 			//GRIMALDI
 			result.interchange_sender_id=unb_elements.get(1).components.get(0).value;
 			// ABC comme GRIMALDI:ABC
-			result.id_code_qualifier=unb_elements.get(1).components.get(1).value;
+			result.sender_code_qualifier=unb_elements.get(1).components.get(1).value;
 		} else {
 			result.interchange_sender_id=unb_elements.get(1).value;
 		}

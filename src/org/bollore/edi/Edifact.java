@@ -47,7 +47,8 @@ public class Edifact {
 	public String syntax_id;
 	public String syntax_version_number;
 	public String interchange_sender_id; // GRIMALDI
-	public String id_code_qualifier;
+	public String sender_code_qualifier;
+	public String recipient_code_qualifier;
 	public String interchange_recipient_id; // exemple SNCUSTOMS
 	public String date; // Date du jour au format
 	public String time; // Heure du jour
@@ -111,7 +112,8 @@ public class Edifact {
 			String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
-			String interchange_sender_id, String id_code_qualifier,
+			String interchange_sender_id, String sender_code_qualifier,
+			String recipient_code_qualifier,
 			String interchange_recipient_id, Date date,
 			String interchange_control_reference) throws EDIException
 
@@ -142,8 +144,10 @@ public class Edifact {
 			this.syntax_id = syntax_id;
 			this.syntax_version_number = syntax_version_number;
 			this.interchange_sender_id = interchange_sender_id;
-			this.id_code_qualifier = (id_code_qualifier == null) ? ""
-					: id_code_qualifier;
+			this.sender_code_qualifier = (sender_code_qualifier == null) ? ""
+					: sender_code_qualifier;
+			this.recipient_code_qualifier=(recipient_code_qualifier == null) ? ""
+					: recipient_code_qualifier;
 			this.interchange_recipient_id = interchange_recipient_id;
 			this.date = (date == null) ? Utils.getCurrentDate("yyMMdd") : Utils
 					.formatDate("yyMMdd", date);
@@ -174,7 +178,7 @@ public class Edifact {
 	String edi_version, String edi_type, String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
-			String interchange_sender_id, String id_code_qualifier,
+			String interchange_sender_id, String sender_code_qualifier,
 			String interchange_recipient_id, Date date,
 
 			String interchange_control_reference) throws EDIException
@@ -203,8 +207,8 @@ public class Edifact {
 			this.syntax_id = syntax_id;
 			this.syntax_version_number = syntax_version_number;
 			this.interchange_sender_id = interchange_sender_id;
-			this.id_code_qualifier = (id_code_qualifier == null) ? ""
-					: id_code_qualifier;
+			this.sender_code_qualifier = (sender_code_qualifier == null) ? ""
+					: sender_code_qualifier;
 			this.interchange_recipient_id = interchange_recipient_id;
 			this.date = (date == null) ? Utils.getCurrentDate("yyMMdd") : Utils
 					.formatDate("yyMMdd", date);
@@ -504,7 +508,7 @@ public class Edifact {
 				this.interchange_sender_id);
 		org.bollore.edi.Component c0007 = new Component("String", "1", "1",
 				true, false, "Identification code qualifier", "",
-				this.id_code_qualifier);
+				this.sender_code_qualifier);
 
 		S002_components.add(c0004);
 		S002_components.add(c0007);
@@ -527,9 +531,13 @@ public class Edifact {
 				"Recipient Identification",
 				"GLN: Global Location Number regarding the Customs where the ship will arrive. ",
 				this.interchange_recipient_id);
+		
+		org.bollore.edi.Component c0007_2 = new Component("String", "1", "1",
+				true, false, "Identification code qualifier", "",
+				this.recipient_code_qualifier);
 
 		S003_components.add(c0010);
-		S003_components.add(c0007);
+		S003_components.add(c0007_2);
 		org.bollore.edi.Element S003_element = new org.bollore.edi.Element(
 				"S003", true, false, "INTERCHANGE RECIPIENT",
 				"Identification of the recipient of the message. ",
@@ -1334,7 +1342,7 @@ public class Edifact {
 		String dir="C:/Temp/Tata.edi";
 		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"","", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
 		edi_cuscar.setValueElement("message_reference_number", "DTM/Tata","I1,  ,L1", ",", true);
 		
