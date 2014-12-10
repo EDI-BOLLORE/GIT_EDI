@@ -16,16 +16,6 @@ import org.bollore.edi.Edifact;
 import org.bollore.edi.Message;
 import org.bollore.edi.Segment;
 import org.bollore.edi.Utils;
-//import org.junit.Rule;
-
-
-
-
-
-
-
-
-
 import junit.*;
 import junit.framework.*;
 
@@ -105,23 +95,6 @@ public class EdifactTest extends TestCase {
 
 		String message_reference_number = "1234";
 
-		/**
-		 * (String filepath, Integer isTest,
-			Character element_separator, Character component_separator,
-			Character space_character, Character decimal_separator,
-			Character escape_character, Character segment_separator,
-
-			 String edi_type,String edi_version,
-			String controlling_agency,
-
-			String syntax_id, String syntax_version_number,
-			String interchange_sender_id, String id_code_qualifier,
-			String interchange_recipient_id, Date date,
-			String interchange_control_reference)
-		 */
-//		Edifact edi_cuscar = new Edifact(path, 0, '+', ':', ' ', '.', '?',
-//				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-//				"", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "sender_id"
 				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage");
@@ -251,10 +224,9 @@ public class EdifactTest extends TestCase {
 		//J'ajoute 2 segments vides qui ne seront pas imprimés et donc le nb de segments ne doit pas être incrémenté.
  		edi_cuscar.messages.get(0).segments.add(new Segment());
 		edi_cuscar.messages.get(0).segments.add(new Segment());
-		System.out.println("Before Print");
 		edi_cuscar.print();
-		assertEquals("4f56f4c742a9d891f40cc415badacddb", Utils.checkSum(edi_cuscar.filepath));
-		System.out.println(Utils.checkSum(edi_cuscar.filepath));
+		assertEquals("c09d7022a102d382a2d679bf6c00481f", Utils.checkSum(edi_cuscar.filepath));
+		//System.out.println(Utils.checkSum(edi_cuscar.filepath));
 
 	}
 
@@ -300,10 +272,30 @@ public class EdifactTest extends TestCase {
 		
 	}
 
-	public static void main(String[] args) throws EDIException {
-
+	public static void testparseGrammar() throws EDIException {
+		String path = UtilsTest.tempdir.concat("testparseGrammar.edi");
+		Edifact edi=new Edifact(path);
+		assertNull(edi.component_separator);
+		assertNull(edi.segment_separator);
+		assertNull(edi.decimal_separator);
+		assertNull(edi.element_separator);
+		assertNull(edi.escape_character);
+		//assertNull(edi.space_character);
+		//System.out.println("A"+edi.space_character+"A");
 		
+		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':',' ', '.', '?',
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
 		
+		edi_cuscar.setValueElement("message_reference_number", "DTM/C507","I1,  ,L1", ",", true);
+		
+		edi_cuscar.print();
+		assertEquals(String.valueOf(edi_cuscar.segment_separator),"'");
+		assertEquals(String.valueOf(edi_cuscar.component_separator),":");
+		assertEquals(String.valueOf(edi_cuscar.element_separator),"+");
+		assertEquals(String.valueOf(edi_cuscar.space_character)," ");
+		assertEquals(String.valueOf(edi_cuscar.decimal_separator),".");
+		assertEquals(String.valueOf(edi_cuscar.escape_character),"?");
 	}
 
 }

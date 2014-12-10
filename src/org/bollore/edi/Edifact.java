@@ -1,11 +1,15 @@
 package org.bollore.edi;
 
 //import java.io.BufferedReader;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 //import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 //import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,6 +18,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
+
+
+
 
 
 
@@ -112,9 +120,8 @@ public class Edifact {
 			String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
-			String interchange_sender_id, String sender_code_qualifier,
-			String recipient_code_qualifier,
-			String interchange_recipient_id, Date date,
+			String interchange_sender_id, String sender_code_qualifier,			
+			String interchange_recipient_id,String recipient_code_qualifier, Date date,
 			String interchange_control_reference) throws EDIException
 
 	{
@@ -179,7 +186,7 @@ public class Edifact {
 
 			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String sender_code_qualifier,
-			String interchange_recipient_id, Date date,
+			String interchange_recipient_id,String recipient_code_qualifier, Date date,
 
 			String interchange_control_reference) throws EDIException
 
@@ -210,6 +217,7 @@ public class Edifact {
 			this.sender_code_qualifier = (sender_code_qualifier == null) ? ""
 					: sender_code_qualifier;
 			this.interchange_recipient_id = interchange_recipient_id;
+			this.recipient_code_qualifier=recipient_code_qualifier;
 			this.date = (date == null) ? Utils.getCurrentDate("yyMMdd") : Utils
 					.formatDate("yyMMdd", date);
 			this.time = (date == null) ? Utils.getCurrentDate("HHmm") : Utils
@@ -820,8 +828,8 @@ public class Edifact {
 				element.value = values.get(0);
 			} else {
 				throw new EDIException("L'�l�ment " + element.code
-						+ " n'a pas de composants et poss�de " + values.size()
-						+ " valeurs � affecter");
+						+ " n'a pas de composants et possede " + values.size()
+						+ " valeurs a affecter");
 			}
 
 		} else {
@@ -1332,6 +1340,38 @@ public class Edifact {
 		return segments;
 	}
 	
+	public void parseGrammar(){
+		try {
+			
+			FileInputStream fstream = new FileInputStream(filepath);
+			
+			DataInputStream in = new DataInputStream(fstream);
+			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			  String strLine="";
+			  
+			  //strLine = br.readLine()) != null&&
+			  while((strLine = br.readLine())!= null) {
+				  if(strLine.startsWith("UNA")) {
+					  this.component_separator=strLine.substring(4,5).charAt(0);
+					  this.segment_separator=strLine.substring(8,9).charAt(0);
+					  this.element_separator=strLine.substring(3,4).charAt(0);
+					  this.escape_character=strLine.substring(6,7).charAt(0);
+					  this.space_character=strLine.substring(7,8).charAt(0);
+					  this.decimal_separator=strLine.substring(5,6).charAt(0);
+					  break;
+				  }				  
+			  }			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public org.bollore.edi.Edifact read(String filepath,Boolean validate){
+		org.bollore.edi.Edifact result=new Edifact(filepath);
+		return result;
+	}
+	
 
 	
 
@@ -1339,14 +1379,9 @@ public class Edifact {
 	
 	public static void main(String[] args) throws IOException, EDIException {
 		
-		String dir="C:/Temp/Tata.edi";
-		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
-				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"","", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
-		
-		edi_cuscar.setValueElement("message_reference_number", "DTM/Tata","I1,  ,L1", ",", true);
-		
-		edi_cuscar.print();
+		Edifact edi=new Edifact("C:/Bollore/Projets/EDI/Cuscar/Samples/PETRA2014092513290026_exemplede fichier en sortie d'Alfa Angola.EDI");
+		edi.parseGrammar();
+
 		
 	}
 
