@@ -213,17 +213,17 @@ public class Utils {
 	
 	public static ArrayList<String> StringToArray(String input, String separator,Integer nb_items_expected) {
 		ArrayList<String> result = StringToArray(input,separator);
-		System.out.println("size "+result.size());
+		//System.out.println("size "+result.size());
 		if(nb_items_expected>result.size()) {
 			
 			System.out.println("loop  "+(nb_items_expected-result.size()));
 			
 			for (int i = 0; i < (nb_items_expected-result.size()); i++) {
-				System.out.println(i+"add");
+				//System.out.println(i+"add");
 				result.add("");
 			}
 		}
-		System.out.println("size "+result.size());
+		//System.out.println("size "+result.size());
 	
 		return result;
 	}

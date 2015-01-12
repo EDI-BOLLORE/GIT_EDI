@@ -1,5 +1,6 @@
 package org.bollore.edi;
 
+import org.bollore.edi.parser.EDIParseException;
 import org.jdom2.JDOMException;
 
 import java.io.IOException;
@@ -208,6 +209,96 @@ public class Segment implements Cloneable {
 
 	}
 	
+	public static String parseSegmentCode(String segment)
+			throws EDIParseException {
+		String result = null;
+
+		if (segment != null && segment.length() >= 3) {
+			String temp = segment.substring(0, 3);
+			if (Utils.PatternCheck(temp, "[A-Z]{3}")) {
+				result = temp;
+			} else {
+				throw new EDIParseException(
+						"Le segment '"
+								+ segment
+								+ "' à parser ne comporte pas de code à 3 caractères alphabétiques");
+			}
+
+		} else {
+			throw new EDIParseException(
+					"Le segment à parser est vide ou de longueur < 3");
+		}
+		return result;
+	}
+	
+	public static Segment parse(
+			HashMap<String, org.bollore.edi.Segment> seg_def, String segment,
+			String element_separator, String component_separator,
+			String escape_separator) throws EDIParseException {
+		
+		Segment result = new Segment();
+
+		/**
+		 * Prévoir cas où element_separator et component_separator sont des
+		 * caractères spéciaux pour les regex
+		 */
+		
+		ArrayList<String> segments_values = Utils.PatternExtract(segment,
+				"([A-Z0-9" + component_separator + "]" + element_separator
+						+ ")", 1);
+
+		if (seg_def != null && seg_def.containsKey(parseSegmentCode(segment))) {
+			result = seg_def.get(parseSegmentCode(segment));
+			
+			System.out.println("Le segment "+result.code+"possède "+result.elements.size()+" éléments pour "+segments_values.size()+" valeurs.");
+
+			for (int i = 0; i < segments_values.size(); i++) {
+				
+			}
+			
+			for (int i = 0; i < segments_values.size(); i++) {
+				
+				org.bollore.edi.Element cur_element=result.elements.get(i);
+				String value=segments_values.get(i);
+				
+				if(cur_element.components.size()==0){
+					cur_element.value=value;
+				} else {
+					
+				}
+				
+				
+			}
+			
+			// Dans le cas où l'on crée un segment sans renseigner ses
+			// caractéristiques seg_def==null
+		} else {
+
+
+
+			result.code = parseSegmentCode(segment);
+
+			for (int i = 1; i < segments_values.size(); i++) {
+				result.elements.add(Element.parseElement(
+						segments_values.get(i), component_separator));
+
+			}
+		}
+		// String
+		// pattern="([A-Z0-9"+component_separator+"]"+element_separator+")";
+		// String
+		// pattern="([A-Z0-9\\s"+component_separator+"]"+element_separator+")";
+		String pattern = "([A-Za-z0-9\\s(?:)]+)" + component_separator + "?";
+
+		ArrayList<String> elements_values = Utils.PatternExtract(segment,
+				pattern, 1);
+
+		ArrayList<org.bollore.edi.Element> ref_elements = result.elements;
+
+		// System.out.println(ref_elements.get(index));
+
+		return result;
+	}
 
 		
 	}

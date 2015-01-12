@@ -205,5 +205,47 @@ public class Element implements Cloneable {
 		
 		return result;		
 	}
+	
+	public static org.bollore.edi.Element parseElement(String element,String component_separator){
+		org.bollore.edi.Element result=new org.bollore.edi.Element();
+		
+		// L'élément est vide
+		if(element==null||component_separator==null){
+			result=new Element();
+		// L'élément n'est pas vide
+		} else {
+			//L'élément n'est pas renseigné
+			if(element.trim().equals("")) {
+				result=new Element();
+			}
+			// L'élément est renseigné
+			else {
+				// Si il n'y a pas de séparateur de composants c'est un élément simple
+				if(!element.contains(component_separator)) {
+					
+					result=new Element();
+				
+				// L'élément est composé de composants
+				} else {
+									
+					ArrayList<String> temp=Utils.StringToArray(element, component_separator);
+					
+					// On instantie les composants de l'élément
+					for (int i = 0; i < temp.size(); i++) {
+						result.components.add(new Component(temp.get(i)));
+						}
+					// On ajoute finalement l'élément
+					//result.add(result);
+							}				
+				}			
+		}		
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		String input="A;B;C";
+		org.bollore.edi.Element element=Element.parseElement(input, ";");
+		System.out.println(element.components.size());
+	}
 
 }

@@ -66,63 +66,63 @@ public class EdifactParser {
 		String unb_line=br.readLine();
 		String unh_line=br.readLine();
 		
-		Segment seg_unb= SegmentParser.parse(null,unb_line, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char));
-		Segment seg_unh= SegmentParser.parse(null,unh_line, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char));
+		//Segment seg_unb= SegmentParser.parse(null,unb_line, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char));
+		//Segment seg_unh= SegmentParser.parse(null,unh_line, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char));
 		
-		ArrayList<Element> unb_elements=seg_unb.elements;
-		ArrayList<Element> unh_elements=seg_unh.elements;
+//		ArrayList<Element> unb_elements=seg_unb.elements;
+//		ArrayList<Element> unh_elements=seg_unh.elements;
+//
+//		
+//		String edi_version=unh_elements.get(1).components.get(1).value+unh_elements.get(1).components.get(2).value.substring(0,3);
+//		String edi_type=unh_elements.get(1).components.get(0).value;
+//		
+//		result=new Edifact(filepath,edi_type,edi_version);
+//		result.BuildStructureSegment();
+//		
+//		HashMap<String,org.bollore.edi.Segment> seg_def=result.buildStructureSegmentDefinition();
+//		
+//		String message_ref_num=unh_elements.get(0).value;
+//		
+//		
+//		if(unb_elements.get(0).components!=null&&unb_elements.get(0).components.size()==2) {
+//		//UNOC
+//		result.syntax_id=unb_elements.get(0).components.get(0).value;
+//		// 2
+//		result.syntax_version_number=unb_elements.get(0).components.get(1).value;
+//		} else {
+//			result.syntax_id=unb_elements.get(0).value;
+//		}
+//		
+//		if(unb_elements.get(1).components!=null&&unb_elements.get(1).components.size()==2){
+//			//GRIMALDI
+//			result.interchange_sender_id=unb_elements.get(1).components.get(0).value;
+//			// ABC comme GRIMALDI:ABC
+//			result.sender_code_qualifier=unb_elements.get(1).components.get(1).value;
+//		} else {
+//			result.interchange_sender_id=unb_elements.get(1).value;
+//		}
 
-		
-		String edi_version=unh_elements.get(1).components.get(1).value+unh_elements.get(1).components.get(2).value.substring(0,3);
-		String edi_type=unh_elements.get(1).components.get(0).value;
-		
-		result=new Edifact(filepath,edi_type,edi_version);
-		result.BuildStructureSegment();
-		
-		HashMap<String,org.bollore.edi.Segment> seg_def=result.buildStructureSegmentDefinition();
-		
-		String message_ref_num=unh_elements.get(0).value;
-		
-		
-		if(unb_elements.get(0).components!=null&&unb_elements.get(0).components.size()==2) {
-		//UNOC
-		result.syntax_id=unb_elements.get(0).components.get(0).value;
-		// 2
-		result.syntax_version_number=unb_elements.get(0).components.get(1).value;
-		} else {
-			result.syntax_id=unb_elements.get(0).value;
-		}
-		
-		if(unb_elements.get(1).components!=null&&unb_elements.get(1).components.size()==2){
-			//GRIMALDI
-			result.interchange_sender_id=unb_elements.get(1).components.get(0).value;
-			// ABC comme GRIMALDI:ABC
-			result.sender_code_qualifier=unb_elements.get(1).components.get(1).value;
-		} else {
-			result.interchange_sender_id=unb_elements.get(1).value;
-		}
-
-		//UN
-		result.controlling_agency=unh_elements.get(1).components.get(3).value;
-		//140917
-		result.date=unb_elements.get(3).components.get(0).value;
-		//1633
-		result.time=unb_elements.get(3).components.get(1).value;
-		//0214
-		result.interchange_control_reference=unh_elements.get(0).value;
-		// SNCUSTOMS
-		result.interchange_recipient_id=unb_elements.get(2).value;
-		
-		// On ajoute un nouveau message lié à la référence contenue dans UNH
-		Message cur_message=new Message(message_ref_num);
-		result.messages.add(cur_message);
-		
-		// Récupération des segments de données
-		String cur_seg;
-		while(!"UNT".equals(SegmentParser.getSegmentCode(cur_seg=br.readLine()))) {
-		cur_message.addSegment(SegmentParser.parse(seg_def,cur_seg, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char)));
-		
-		}		
+//		//UN
+//		result.controlling_agency=unh_elements.get(1).components.get(3).value;
+//		//140917
+//		result.date=unb_elements.get(3).components.get(0).value;
+//		//1633
+//		result.time=unb_elements.get(3).components.get(1).value;
+//		//0214
+//		result.interchange_control_reference=unh_elements.get(0).value;
+//		// SNCUSTOMS
+//		result.interchange_recipient_id=unb_elements.get(2).value;
+//		
+//		// On ajoute un nouveau message lié à la référence contenue dans UNH
+//		Message cur_message=new Message(message_ref_num);
+//		result.messages.add(cur_message);
+//		
+//		// Récupération des segments de données
+//		String cur_seg;
+//		while(!"UNT".equals(SegmentParser.getSegmentCode(cur_seg=br.readLine()))) {
+//		cur_message.addSegment(SegmentParser.parse(seg_def,cur_seg, String.valueOf(this.element_separator), String.valueOf(this.component_separator), String.valueOf(this.escape_char)));
+//		
+//		}		
 
 	return result;
 

@@ -25,6 +25,8 @@ import java.util.List;
 
 
 
+import java.util.StringTokenizer;
+
 import org.bollore.edi.tests.UtilsTest;
 //import org.bollore.edi.tests.UtilsTest;
 import org.jdom2.Document;
@@ -94,6 +96,7 @@ public class Edifact {
 	public Edifact(String filepath) {
 		this.filepath=filepath;
 		Utils.CreateDir(this.filepath);
+		this.messages=new ArrayList<org.bollore.edi.Message>();
 	}
 	
 	public Edifact(String filepath,String edi_type,String edi_version){
@@ -1339,8 +1342,28 @@ public class Edifact {
 
 		return segments;
 	}
+
 	
-	public void parseGrammar(){
+	public static String replaceSpecialGrammarChar(Character input) {
+		Character[] inputs= {'*','+','.'};
+		String result="";
+		Boolean is_special_char=false;
+		for (int i = 0; i < inputs.length; i++) {
+			if(inputs[i].equals(input)) {
+				is_special_char=true;
+				break;
+			}
+		}
+		if(is_special_char) {
+			result="\\".concat(input.toString());
+		} else {
+			result=input.toString();
+		}
+		
+		return result;
+	}
+	
+	public void parseEDI(){
 		try {
 			
 			FileInputStream fstream = new FileInputStream(filepath);
@@ -1349,7 +1372,8 @@ public class Edifact {
 			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			  String strLine="";
 			  
-			  //strLine = br.readLine()) != null&&
+			  this.lineseparator="\n";
+			  
 			  while((strLine = br.readLine())!= null) {
 				  if(strLine.startsWith("UNA")) {
 					  this.component_separator=strLine.substring(4,5).charAt(0);
@@ -1360,29 +1384,78 @@ public class Edifact {
 					  this.decimal_separator=strLine.substring(5,6).charAt(0);
 					  break;
 				  }				  
-			  }			
+			  }
+			  
+			  while((strLine = br.readLine())!= null&&strLine.startsWith("UNB")) {
+				
+					  
+					String[] unb_elements= strLine.split(replaceSpecialGrammarChar(this.component_separator));
+					if(unb_elements.length==7&&"1".equals(unb_elements[6].substring(0,1))){
+						this.isTest=1;												
+					} else {
+						this.isTest=0;
+						}
+					
+					String[] syntax=unb_elements[1].split(replaceSpecialGrammarChar(this.element_separator));
+					this.syntax_id=syntax[0];
+					this.syntax_version_number=syntax[1];
+					if(Utils.PatternCheck(unb_elements[4],"[0-9]{6}.{1}[0-9]{4}")) {
+						this.date=unb_elements[4].substring(0,6);
+						this.time=unb_elements[4].substring(7,11).concat("00");
+					} 
+					this.interchange_control_reference=unb_elements[5].replaceAll(this.segment_separator.toString(),"");
+					break;
+			  }
+			  
+			  while((strLine = br.readLine())!= null) {
+				  if(strLine.startsWith("UNH")) {
+					  
+					String[] unh_elements= strLine.split(replaceSpecialGrammarChar(this.component_separator));
+					
+					this.messages.add(new Message(unh_elements[1]));
+					
+					String[] unh_components=(unh_elements[2]).split(replaceSpecialGrammarChar(this.element_separator));
+					
+					this.edi_type=unh_components[0];
+					
+					this.edi_version=unh_components[1].concat(unh_components[2]);					
+					this.buildStructureSegmentDefinition();
+					this.controlling_agency=unh_components[3];
+					
+					
+					for (int i = 0; i < unh_elements.length; i++) {
+						//System.out.println(unh_elements[i]);
+					}					
+
+				  }				  
+			  }	
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public org.bollore.edi.Edifact read(String filepath,Boolean validate){
-		org.bollore.edi.Edifact result=new Edifact(filepath);
-		return result;
-	}
-	
-
-	
-
-	
-	
 	public static void main(String[] args) throws IOException, EDIException {
 		
 		Edifact edi=new Edifact("C:/Bollore/Projets/EDI/Cuscar/Samples/PETRA2014092513290026_exemplede fichier en sortie d'Alfa Angola.EDI");
-		edi.parseGrammar();
+		edi.parseEDI();
+		System.out.println(edi.isTest);
+		System.out.println(edi.time);
+		System.out.println(edi.date);
+		System.out.println(edi.edi_type);
+		System.out.println(edi.edi_version);
+		System.out.println(edi.syntax_id+"     "+edi.syntax_version_number);
+		System.out.println(edi.controlling_agency);
+		System.out.println(edi.messages.get(0).reference_number);
+		System.out.println(edi.interchange_control_reference);
+		
+
+			
+		}
+		
+
 
 		
 	}
 
-}
+

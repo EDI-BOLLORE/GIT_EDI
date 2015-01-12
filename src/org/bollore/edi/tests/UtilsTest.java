@@ -29,9 +29,6 @@ public class UtilsTest extends TestCase {
 		cal.set(2014, 1, 1, 1, 1, 1);
 		date = cal.getTime();
 
-		// File file=new File(tempdir);
-		// if(!file.exists()) {
-		// file.cr
 	}
 	
 	public void testPatternCheck(){

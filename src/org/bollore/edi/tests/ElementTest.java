@@ -96,5 +96,17 @@ public class ElementTest extends TestCase {
 		assertFalse(element5.isEmpty());
 		
 	}
+	
+	public void testparseElement() {
+
+		assertEquals(0, ((Element)Element.parseElement(null,null)).components.size());
+		assertEquals(0, ((Element)Element.parseElement("",null)).components.size());
+		assertEquals(0, ((Element)Element.parseElement(null,"")).components.size());
+		
+		String input="A:B:C";
+		
+		org.bollore.edi.Element element=Element.parseElement(input, ":");
+		assertEquals(3, element.components.size());
+	}
 
 }
