@@ -297,5 +297,69 @@ public class EdifactTest extends TestCase {
 		assertEquals(String.valueOf(edi_cuscar.decimal_separator),".");
 		assertEquals(String.valueOf(edi_cuscar.escape_character),"?");
 	}
+	
+	public static void testMessages() throws EDIException {
+		
+		// On crée la structure vide d'un cuscar
+		String path = UtilsTest.tempdir.concat("testparseGrammar.edi");
+		
+		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':',' ', '.', '?',
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+		
+		
+		// On crée un message "message 1" avec un unique segment CST
+		ArrayList<String> cst = new ArrayList<String>();
+
+		cst.add("1");
+		
+		edi_cuscar.setValueElement("message 1",
+				"GRP4/GRP5/GRP10/CST/1496", cst, true);
+
+		// On crée un message "message 2" avec 2 segments RFF et DTM
+		ArrayList<String> rff1 = new ArrayList<String>();
+
+		rff1.add("A");
+		rff1.add("B");
+		rff1.add("C");
+		rff1.add("D");
+		
+		edi_cuscar.setValueElement("message 2", "RFF/C506", rff1,
+				true);
+		
+		ArrayList<String> dtm = new ArrayList<String>();
+
+		dtm.add("I");
+		dtm.add("J");
+		dtm.add("K");
+		
+		edi_cuscar.setValueElement("message 2", "DTM/C507", dtm,
+				true);
+
+		// On valide que notre cuscar ne possède que 2 segments
+		assertEquals(edi_cuscar.messages.size(), 2);
+		
+		org.bollore.edi.Message message1=edi_cuscar.messages.get(0);
+		org.bollore.edi.Message message2=edi_cuscar.messages.get(1);
+		
+		// On valide que les références des messages
+		assertEquals(message1.reference_number,"message 1");
+		assertEquals(message2.reference_number,"message 2");
+		
+		// On récupère les segments de chaque message
+		ArrayList<org.bollore.edi.Segment> segments_message1=message1.segments;
+		ArrayList<org.bollore.edi.Segment> segments_message2=message2.segments;
+		
+		// On valide le nombre de segments de chaque
+		assertEquals(segments_message1.size(),1);
+		assertEquals(segments_message2.size(),2);
+		
+		assertEquals("CST", segments_message1.get(0).code);
+		assertEquals("RFF", segments_message2.get(0).code);
+		assertEquals("DTM", segments_message2.get(1).code);
+		
+
+		
+	}
 
 }

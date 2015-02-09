@@ -243,7 +243,7 @@ public class Utils {
 		return result;
 	}
 	
-	public static ArrayList<String> PatternExtract(String input,String regex,Integer group_rank){
+	public static ArrayList<String> PatternExtract(String input,String regex){
 		ArrayList<String> result=new ArrayList<String>();
 		
 		try {

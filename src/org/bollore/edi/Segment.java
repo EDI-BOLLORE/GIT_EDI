@@ -245,7 +245,7 @@ public class Segment implements Cloneable {
 		
 		ArrayList<String> segments_values = Utils.PatternExtract(segment,
 				"([A-Z0-9" + component_separator + "]" + element_separator
-						+ ")", 1);
+						+ ")");
 
 		if (seg_def != null && seg_def.containsKey(parseSegmentCode(segment))) {
 			result = seg_def.get(parseSegmentCode(segment));
@@ -291,7 +291,7 @@ public class Segment implements Cloneable {
 		String pattern = "([A-Za-z0-9\\s(?:)]+)" + component_separator + "?";
 
 		ArrayList<String> elements_values = Utils.PatternExtract(segment,
-				pattern, 1);
+				pattern);
 
 		ArrayList<org.bollore.edi.Element> ref_elements = result.elements;
 
