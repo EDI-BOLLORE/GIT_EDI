@@ -1,0 +1,370 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="ICSOLI" version="D:02A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="ICSOLI">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       To identify the purpose and status of the Insurance claim
+       solicitor's instruction message, such as instruction, progress
+       report, resolution details.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>RFF,
+       To identify the version of the message implementation guide
+       being used in the application.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+            <documentation>SEQ,
+       To identify the sequence number of the message in a series of
+       messages relating to the same claim, incident or action.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       Contains the creation date of the message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="External_file_link_identification">
+            <documentation>EFI,
+       To enable cross reference to electronic files containing
+       photographic or video files associated with this message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       Contains details of one policy under which the claim was
+       reported. Required when the message type is instruction.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                <documentation>ICD,
+          To identify the class of policy.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          Contains monetary amounts relating to the policy excesses
+          and indemnity limits.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          Identifies the type of indemnity provided, and the area of
+          jurisdiction specified by the policy.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To specify reference numbers which are specific to the
+          policy, e.g. policy number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          To specify the start and end dates for the cover under the
+          policy.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          Used to convey whether indemnity is unlimited and whether
+          there was a previous policy in force.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          Contains a text description of the reason why policy cover
+          is at issue and the legal venue specified in the policy.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+                         SG5
+       A group of segments used to identify all the parties involved
+       in the transaction. The group will be used in all identified
+       transaction types.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          Contains the name of the party in text or a coded
+          identification of the name and address of the party together
+          with the role of the party in the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To specify those references which are specific to the party,
+          e.g. national insurance number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                <documentation>EMP,
+          Contains a coded description of the occupation or business
+          of the party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Indicates dates which are relevant to the party, e.g. date
+          of birth, date exposure commenced.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <documentation>PCD,
+          To specify percentages applicable to the party, e.g. co-
+          insurers proportion.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          Used to convey whether the party is registered for value
+          added tax or under a legal disability.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          Provides a textual description of the function of a party in
+          a message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          Provides the communication number and channel for a contact
+          party. Note: where the communication details are linked to
+          an address they should be included in the address group.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          Contains a coded identification or text description of an
+          attribute of the party, e.g. title, gender, trading status.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          Contains address details for the party and communication
+          information related to that address. Note: if the address is
+          included in the coded identification of the party it does
+          not need to be repeated here.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <documentation>ADR,
+             Contains the address type and details for the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             Contains a communication number and type of communication
+             for the party at the address, e.g. telephone number.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          Contains details and amounts relating to quantum applicable
+          to the party in respect of damage, loss or injury caused to
+          the party by the insured risk.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ROD" segcode="ROD" truncatable="true" xmltag="Risk_object_type">
+                    <documentation>ROD,
+             Contains the type of quantum in respect of the damage,
+             injury or loss caused to the party by the insured risk.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             Contains the monetary amount and status of the quantum.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             Contains the text description of the type of quantum,
+             required if non-standard and no code available.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          Contains details of convictions sustained by the party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COD" segcode="COD" truncatable="true" xmltag="Component_details">
+                    <documentation>COD,
+             Identifies the group as containing conviction
+             information.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Identifies the type of sentence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                    <documentation>IDE,
+             Makes reference to other parties related to the offence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             Contains a reference which uniquely identifies the
+             conviction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             Contains the date of the conviction and periods relating
+             to the conviction, e.g. length of disqualification.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             Contains the monetary amount of a fine resulting from the
+             conviction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                    <documentation>EQN,
+             Contains the number of penalty points relating to the
+             conviction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                    <documentation>QRS,
+             Advises whether the conviction is related to the claim
+             which is the subject of the message.
+4.1.2  Detail section
+       Information to be provided in the Detail section:</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+            <documentation>UNS,
+       A service segment placed at the start of the detail section to
+       avoid segment collision.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+       A group of segments containing details of the claim event.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                <documentation>EVE,
+          Contains a qualifier identifying the segment as claim/loss.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          Contains the location or addresses relevant to the claim
+          event.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          Identifies the claim number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Contains dates relating to the claim event, e.g. incident
+          start and end date.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          Used to convey information relevant to the claim such as
+          whether the solicitor has delegated authority, whether
+          aggregate indemnity/excess or indemnity is at issue, whether
+          the claim is a recovery etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          Contains a text description of the claim. e.g. claim
+          circumstances.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          Contains the type, status and amount of a recovery or the
+          type and amount of reserve applicable to the claim.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Contains the type and status of a recovery or the type of
+             reserve.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             Contains the monetary amount of the reserve or recovery.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+       A group of segments containing information relating to payments
+       in connection with the claim or dispute resolution.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="Payment_terms">
+                <documentation>PYT,
+          Contains a coded identification or textual description of
+          the nature of the monetary value, also whether it is a
+          payment or receipt.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          Contains the payment/receipt amount.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          Contains the full name of the payee.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                <documentation>FII,
+          Contains the financial institution account number and sort
+          code of the payee.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          Contains a coded identification of the payment status, e.g.
+          payment made, make payment etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          Contains the roll number, accounting reference of the payee
+          and a coded identification of the party to whom the payment
+          should be sent.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+            <documentation>Segment group 9:
+       A group of segments containing information relating to a
+       dispute resolution in connection with the claim.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COD" segcode="COD" truncatable="true" xmltag="Component_details">
+                <documentation>COD,
+          Contains a coded identification of the method of dispute
+          resolution, e.g. Crown Court, Civil County Court, mediation
+          etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          To specify coded attributes relating to the dispute
+          resolution.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          Contains the reference of the dispute resolution.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          Contains the address details or location where the dispute
+          resolution is to be held. Note: this is used where the
+          address or location is not related to a party, e.g. an
+          inquest may be held at any suitable location such as a
+          cinema or local hall.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Contains dates relevant to the dispute resolution e.g.
+          proceedings issue date, dispute resolution date etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          Used to request whether there are other proceedings in
+          force.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          Contains a textual description of the dispute resolution or
+          other proceedings.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+          A group of segments containing information relating to
+          progress in connection with a dispute resolution.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+             Identifies the type of progress, e.g. trial, close of
+             pleadings etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Contains a coded identification of the status of progress
+             and/or coroner verdict.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             Contains the unique identifying reference of a party
+             associated with the progress.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             Contains dates relevant to the progress, e.g. response
+             date progress as at date etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             Contains details of a monetary amount related to the
+             progress.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             Contains a textual description of progress.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,125 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="TAXCON" version="D:06B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="TAXCON">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment carrying the identity of the type of document and the
+       reference number. In this case it would be the file reference
+       number for tax control report.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       This segment specifies the date and time of preparation of the
+       Tax control message. Other dates related to the whole message
+       may be specified at this point.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       This group is used to specify references that relate to the
+       whole message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          This segment identifies relevant references, such as the
+          previous Tax control message between the trading partners.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          This segment specifies the date and time of the reference in
+          the preceding reference segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       This segment is used to identify the tax entities involved in
+       the interchange. It could also be used to identify the
+       controlling tax administration.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          This segment identifies the names and addresses of the two
+          registered tax entities i.e. the sender and the recipient of
+          the message. The segment may also identify the controlling
+          tax administration.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          This segment is used to send tax references which may
+          identify the party specified in the preceding segment, such
+          as a tax registration number issued by the relevant tax
+          administration.
+4.1.2  Detail section
+       Information to be provided in the Detail section:</documentation>
+            </segment>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+            <documentation>UNS,
+       This segment separates the header information from the detailed
+       control information. It will have the value D.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       This segment group carries all the control values.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment specifying the relevant reference numbers to
+          identify the source file, i.e. the file that provides all
+          data for the batch of related messages. This may be the file
+          generation number and the file version number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          This segment may be used to give the date of preparation of
+          the file identified in the preceding reference segment.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          This group identifies the type of tax related messages and
+          specifies the control totals for each type.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             A segment to identify documents by transaction type, to
+             enable the tax type and values within those documents to
+             be summarized. For example, the segment would be used to
+             specify credit notes in a separate occurrence from
+             commercial invoices.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             This segment gives the relevant monetary values per
+             message type being summarised.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+                    <documentation>CNT,
+             This segment gives relevant control quantities. In this
+             case the number of documents of the type indicated in the
+             preceding document/message details segment.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             This group identifies the type of tax and the relevant
+             tax information relating to the type of tax for the batch
+             of messages of the type specified in the preceding
+             document/message details segment.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                        <documentation>TAX,
+                This segment specifies the duty/tax category or type
+                and relevant details, eg. tax percentage.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                This segment gives the relevant monetary values
+                relating to the tax type and rate identified in the
+                tax segment. These will usually be:
+                
+                - the total value of the goods and services (i.e. the
+                amount on which the tax is assessed).
+                
+                - the total tax monetary amount calculated for this
+                tax type and rate.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

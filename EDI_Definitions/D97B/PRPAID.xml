@@ -1,0 +1,177 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="PRPAID" version="D:97B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="PRPAID">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment for specifying message name and function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+            <documentation>GIS,
+       A segment containing the indication of the type of the
+       Insurance Premium Payment message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>RFF,
+       A segment containing identifying numbers of the Insurance
+       Premium Payment message or of the statement or the bordereau.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying dates related to the Insurance Premium
+       Payment message or to the statement or the bordereau.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="2" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments providing identification, names and
+       addresses, contacts and references of the parties involved in
+       the exchange of the message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment for identifying either by names and addresses, or
+          by codes, the parties and their function in the exchange of
+          the Insurance Premium Payment message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <documentation>CTA,
+          A segment giving additional contact information of the party
+          specified in the NAD segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          A segment specifying the communication channel and number
+          for the contact specified in the CTA.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment for additional identifying references of the party
+          specified in the NAD.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments providing detailed information concerning
+       individual insurance premiums.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          A segment providing a unique identification of an Insurance
+          Premium message or a statement line.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments providing the paid/partly paid/not paid
+          indicator and the reason for partly or non payment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                    <documentation>GIS,
+             A segment providing the paid/partly paid/not paid
+             indicator.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment providing the reason for partly or non payment.</documentation>
+                </segment>
+            </segmentGroup>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying dates related to the insurance premium.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment specifying the policy holder or the insured.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments providing total amounts of an Insurance
+          Premium message or of a statement line. These amounts are
+          detailed amounts for the borderau or for the statement.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment specifying premiums, taxes, fees, commissions
+             and other amounts coming from the Insurance Premium
+             message or from the statement line.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying dates related to the insurance
+             premium.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             A segment specifying the commission rate for commission
+             amounts.</documentation>
+                </segment>
+            </segmentGroup>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment specifying references to documents to which the
+          insurance premium relates.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                <documentation>ICD,
+          A segment specifying the main class of business of the
+          insurance premium.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments providing details about the collection
+          of the insurance premium.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             A segment providing the type of insurance premium, the
+             collection details and the co-insurance information.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             A segment specifying the percentage of the total premium
+             of a co-insurance contract, covered by this insurance
+             premium.</documentation>
+                </segment>
+            </segmentGroup>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <documentation>CUX,
+          A segment specifying currencies and relevant details for the
+          rate of exchange.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+       A group of segments providing total amounts of the bordereau or
+       of the statement.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment specifying total amounts.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                <documentation>GIS,
+          A segment specifying the totalization criterion paid/partly
+          paid/not paid.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the totalization criterion expressed by
+          a date.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment specifying a policy number as totalisation
+          criterion.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          A segment specifying the type of premium and/or collection
+          specifications as totalization criterion.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                <documentation>ICD,
+          A segment specifying the type of insurance as totalization
+          criterion.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <documentation>CUX,
+          A segment specifying the currency as a totalization
+          criterion.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

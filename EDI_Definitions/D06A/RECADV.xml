@@ -1,0 +1,666 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="RECADV" version="D:06A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="RECADV">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment for unique identification of the Receiving advice
+       message, name and its number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       Date/time/period related to the whole message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+            <documentation>ALI,
+       A segment indicating that the message is subject to special
+       conditions owing to origin or commercial factors.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+            <documentation>CUX,
+       A segment to specify currencies and relevant details for the
+       rate of exchange.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment to provide a clear or coded textual description of a
+       reception rejection.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments giving references where necessary, dates
+       relating to the whole message, e.g. despatch advice, contract
+       number, accounting citations, monetary amounts and
+       allowance/charge information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment for referencing documents relating to the whole
+          Receiving advice message, e.g. despatch advice, purchase
+          orders, delivery instructions. If the RECADV refers to a
+          prior message, this message has to be referenced.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Date or date and time as applied to the referred document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <documentation>GEI,
+          A segment identifying the components of an accounting
+          citation.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment providing a monetary amount related to an
+          associated accounting citation.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                <documentation>ALC,
+          A segment identifying the purpose of the accounting citation
+          and indicating whether it is an allowance or a charge.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the discrepancies with the
+       documentary requirements relating to the whole consignment.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          A segment identifying documents where a discrepancy occurs.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments to report the physical or logical state
+          of the document upon receipt and to give the appropriate
+          instructions if needed.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                    <documentation>CDI,
+             A segment to report the logical state of the document
+             upon receipt, e.g. required document not received or
+             incorrect.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                    <documentation>INP,
+             A segment to give instructions to correct the discrepancy
+             reflected by CDI segment, e.g. send again.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments identifying names, addresses and locations,
+       relevant to the whole Receiving advice.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment for identifying names and addresses and their
+          functions relevant for the whole Receiving advice.
+          Identification of at least the recipient of the goods is
+          mandatory. It is recommended that where possible only the
+          coded form of the party ID should be specified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          A segment indicating more details regarding specific places
+          or locations related to the party specified in the NAD
+          segment, e.g. internal site and, or building number.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments giving references only relevant to the
+          specified party rather than the whole message.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment for referencing documents relating to the party
+             specified by the NAD segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment for date or date and time as related to the
+             referred document.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments giving contact details of the specific
+          person or department within the party identified in the NAD
+          segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify person, function, department to
+             whom communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to identify communication types and numbers for
+             person, function, department identified in CTA.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_7">
+            <documentation>Segment group 7:
+       A group of segments to report on discrepancies on terms of
+       deliveries.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="Terms_of_delivery_or_transport">
+                <documentation>TOD,
+          A segment to indicate the terms of delivery.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+          A group of segments to report on the discrepancy and to give
+          the appropriate instructions, if needed.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                    <documentation>CDI,
+             A segment to report a discrepancy on the terms of
+             delivery upon receipt.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                    <documentation>INP,
+             A segment to give instructions to correct the discrepancy
+             reflected by CDI segment.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+          A group of segments to report discrepancy on locations
+          related to terms of delivery.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment indicating locations relevant to the TOD
+             segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                    <documentation>CDI,
+             A segment to report discrepancy on locations.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_10">
+            <documentation>Segment group 10:
+       A group of segments specifying details of the mode and means of
+       transport, the date or date and time of arrival, if a
+       discrepancy has occurred or if required by the recipient of the
+       message for further identification.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Transport_information">
+                <documentation>TDT,
+          A segment specifying the carriage, and the mode and means of
+          transport of the goods arrived.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment giving the date or date and time information of
+          the identified means of transport.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="20" minOccurs="0" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                <documentation>CDI,
+          A segment to report the state of the mode and means of
+          transport.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_11">
+            <documentation>Segment group 11:
+       A group of segments identifying equipment with which a problem
+       has occurred or if required by the recipient of the message for
+       further identification.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+                <documentation>EQD,
+          A segment to identify the specific equipment item.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+          A segment group to report on the physical state of the
+          identified equipment upon receipt and to give the
+          appropriate instructions if needed.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                    <documentation>CDI,
+             A segment to report the physical state of the equipment
+             upon receipt, e.g. damaged, missing.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                    <documentation>INP,
+             A segment to give instructions, e.g. pick up.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="25" minOccurs="0" xmltag="Segment_group_13">
+                <documentation>Segment group 13:
+          A group of segments identifying the seal number and
+          reporting anomalies.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEL" segcode="SEL" truncatable="true" xmltag="Seal_number">
+                    <documentation>SEL,
+             A segment specifying a seal number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                    <documentation>CDI,
+             A segment identifying the anomaly reported.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+          A group of segments identifying attached equipment with
+          which a problem has occurred or if required by the recipient
+          of the message for further identification.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="Attached_equipment">
+                    <documentation>EQA,
+             A segment identifying equipment attached to the equipment
+             identified in the EQD segment.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+             A segment group to report the physical state of the
+             identified attached equipment upon receipt and to give
+             the appropriate instructions if needed.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                        <documentation>CDI,
+                A segment to report the physical state of the attached
+                equipment upon receipt, e.g. damaged, missing.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                        <documentation>INP,
+                A segment to give instruction, e.g. pick up.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_16">
+            <documentation>Segment group 16:
+       A group of segments providing details of all packages and/or
+       individual items as received. This segment group provides
+       thecapability to give the top-down hierarchical relationship
+       ofthe package levels and also of the transport levels.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CPS" segcode="CPS" truncatable="true" xmltag="Consignment_packing_sequence">
+                <documentation>CPS,
+          A segment identifying the sequence in which packing of the
+          consignment is presented, e.g. a pallet loaded with boxes.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_17">
+                <documentation>Segment group 17:
+          A group of segments giving references only relevant to the
+          specified transport rather than the whole message.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment for referencing documents relating to the
+             transport.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment for date or date and time as related to the
+             referred document.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_18">
+                <documentation>Segment group 18:
+          A group of segments specifying details of the mode and means
+          of transport, the date or date and time of departure and/or
+          arrival.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Transport_information">
+                    <documentation>TDT,
+             A segment specifying the carriage, and the mode and means
+             oftransport of the goods arrived.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment giving the date or date and time information of
+             the identified means of transport.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_19">
+                <documentation>Segment group 19:
+          A group of segments identifying names, addresses and
+          locations,relevant to the delivery place by means of
+          transport.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+             A segment for identifying names and addresses of the
+             party relevant to the delivery place by means of
+             transport.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment indicating more details regarding specific
+             placesor locations related to the party specified in the
+             name and address segment, e.g. internal site, building
+             number.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_20">
+                <documentation>Segment group 20:
+          A group of segments identifying packaging, quantities and
+          marks and numbers.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                    <documentation>PAC,
+             A segment specifying the number and type of packages or
+             physical units and the physical type of packaging of the
+             arrived goods.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="Quantity_variances">
+                    <documentation>QVR,
+             A segment identifying quantity variances between the
+             number of units received (as specified in the PAC
+             segment) and the number of units expected or planned.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_21">
+                    <documentation>Segment group 21:
+             A group of segments specifying markings and labels and,
+             if required, related anomalies.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="Package_identification">
+                        <documentation>PCI,
+                A segment specifying markings and labels used on
+                individual physical units (packages) described in the
+                PAC segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment for referencing the package identification,
+                e.g. master local number.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_22">
+                        <documentation>Segment group 22:
+                A group of segments to report the physical state of
+                the package upon receipt and to give the appropriate
+                instructions if needed.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                            <documentation>CDI,
+                   A segment to report the physical state of the
+                   related package, e.g. damaged, missing.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                            <documentation>INP,
+                   A segment to give instructions, e.g. replace.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_23">
+                        <documentation>Segment group 23:
+                A group of segments giving package identification
+                numbers and if required the related anomalies.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                            <documentation>GIN,
+                   A segment providing identity numbers applied to
+                   packages being received or missing.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_24">
+                            <documentation>Segment group 24:
+                   A group of segments to report the physical state of
+                   the identified package upon receipt and to give the
+                   appropriate instructions if needed.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                                <documentation>CDI,
+                      A segment to report the physical state of the
+                      identified package upon receipt, e.g. damaged,
+                      missing.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                                <documentation>INP,
+                      A segment to give instructions, e.g. replace.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_25">
+                <documentation>Segment group 25:
+                            SG28-SG29-SG31-SG33-SG34
+          A group of segments providing details of the product or
+          service received.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                    <documentation>LIN,
+             A segment identifying the product or service received.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <documentation>PIA,
+             A segment providing additional product or service
+             identification.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+             A segment describing the product or service received.
+             This segment should be used for a product or service that
+             cannot be identified by a product code or article number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+             A segment to give quantity information about the product
+             specified in the LIN, PIA or IMD segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="Quantity_variances">
+                    <documentation>QVR,
+             A segment identifying quantity variances between quantity
+             per item and quantity per item expected or planned.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment providing date or date and time information
+             relevant for the delivery of product.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                    <documentation>PRI,
+             A segment to provide price information related to the
+             current line item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             A segment to provide percentage information related to
+             the current line item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to provide a clear or coded textual description
+             of a reception rejection.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_26">
+                    <documentation>Segment group 26:
+             A group of segments identifying names, addresses,
+             locations andcontact information relevant to the line
+             item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                A segment to provide party information related to the
+                line item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                A segment indicating more details regarding specific
+                placesor locations related to the party specified in
+                the name and address segment, e.g. internal site,
+                building number.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_27">
+                        <documentation>Segment group 27:
+                A group of segments giving contact details of the
+                specificperson or department within the party
+                identified in the name and address segment.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                            <documentation>CTA,
+                   A segment to identify person, function, department
+                   to whom communication should be directed.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                            <documentation>COM,
+                   A segment to identify communication types and
+                   numbers for person, function, department identified
+                   in the contact information segment.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_28">
+                    <documentation>Segment group 28:
+             A group of segments to report the physical state of the
+             product given in the LIN or IMD segment upon receipt and
+             to give the appropriate instructions if needed.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                        <documentation>CDI,
+                A segment to report the physical state of the product
+                upon receipt e.g. wrong colour.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                        <documentation>INP,
+                A segment to give instructions, e.g. replace.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_29">
+                    <documentation>Segment group 29:
+             A group of segments identifying the discrepancies with
+             the documentary requirements relating to line item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                        <documentation>DOC,
+                A segment identifying documents where a discrepancy
+                occurs.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_30">
+                        <documentation>Segment group 30:
+                A group of segments to report the physical or logical
+                state of the document upon receipt and to give the
+                appropriate instructions if needed.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                            <documentation>CDI,
+                   A segment to report the physical or logical state
+                   of the document upon receipt, e.g. required
+                   documents not received or incorrect.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                            <documentation>INP,
+                   A segment to give instructions, e.g. send again.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_31">
+                    <documentation>Segment group 31:
+             A group of segments giving goods identification numbers
+             and if required the related anomalies.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                        <documentation>GIN,
+                A segment providing identity numbers of goods being
+                received or missing.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_32">
+                        <documentation>Segment group 32:
+                A group of segments to report the physical state of
+                the identified goods at receipt and to give the
+                appropriate instructions, if needed.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                            <documentation>CDI,
+                   A segment to report the receiving conditions for
+                   the identified goods, e.g. missing, damaged.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                            <documentation>INP,
+                   A segment to give instructions , e.g. replace.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_33">
+                    <documentation>Segment group 33:
+             A group of segments giving references, dates, accounting
+             citations, monetary amounts and allowance/charge
+             information relevant to the line item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment for referencing documents relating to the
+                line item specified by the LIN or IMD segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment for date or date and time as related to the
+                referred document.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                A segment identifying the components of an accounting
+                citation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment providing a monetary amount related to an
+                associated accounting citation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                        <documentation>ALC,
+                A segment identifying the purpose of the accounting
+                citation and indicating whether it is an allowance or
+                a charge.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_34">
+                    <documentation>Segment group 34:
+             A group of segments identifying one specific package or a
+             number of packages, the marks and numbers, quantities,
+             references and receiving conditions.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="Package_identification">
+                        <documentation>PCI,
+                A segment specifying marking and labels used on
+                identified package(s).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                A segment to specify the quantity per package.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="Quantity_variances">
+                        <documentation>QVR,
+                A segment identifying quantity variances between
+                quantity per package received and quantity per package
+                expected or planned.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_35">
+                        <documentation>Segment group 35:
+                A group of segments to report the physical state of
+                the package upon receipt and to give the appropriate
+                instructions, if needed.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                            <documentation>CDI,
+                   A segment to report the physical state of the
+                   package, e.g. missing, damaged.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                            <documentation>INP,
+                   A segment to give instructions, e.g. replace.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_36">
+                        <documentation>Segment group 36:
+                A group of segments giving package identification
+                numbers and if required the related anomalies.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                            <documentation>GIN,
+                   A segment providing identity numbers of packages
+                   received or missing.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_37">
+                            <documentation>Segment group 37:
+                   A group of segments to report the physical state of
+                   the identified packages upon receipt and to give
+                   the appropriate instructions, if needed.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDI" segcode="CDI" truncatable="true" xmltag="Physical_or_logical_state">
+                                <documentation>CDI,
+                      A segment to report the physical state of the
+                      identified packages , e.g. missing, damaged.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                                <documentation>INP,
+                      A segment to give instructions, e.g. replace.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_38">
+                        <documentation>Segment group 38:
+                A group of segments giving references relevant to the
+                specified package identified in the package
+                identification segment.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment for referencing documents relating to the
+                   package.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment for date or date and time as related to
+                   the referred document.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+            <documentation>CNT,
+       A segment by which control total may be provided by sender for
+       checking by the receiver.</documentation>
+        </segment>
+    </segments>
+</edimap>

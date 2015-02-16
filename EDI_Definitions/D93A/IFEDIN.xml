@@ -1,0 +1,108 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="IFTRIN" version="D:93A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="IFTRIN">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>UNH,
+Data element   0065  IFTRIN
+               0052  D
+               0054  93A
+               0051  UN</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>BGM,
+A segment to indicate the type and function of the message and to
+transmit the identifying number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>DTM,
+A segment to indicate date(s) and time(s) applying to the whole
+message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>FTX,
+A segment to specify free form or processable supplementary
+information. In computer-to-computer exchanges free form text will
+normally require the receiver to process this segment manually.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_Group_1">
+            <documentation>RFF,
+A segment to express a reference which applies to the entire message,
+e.g. rate note/commodity item number.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>Segment Group 1:
+A group of segments to identify the routing and date for the rate
+information.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>LOC,
+  A segment to identify a location, e.g. place of departure/arrival.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_Group_2">
+            <documentation>DTM,
+  A segment to indicate date(s) and time(s) related to the location.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+                <documentation>Segment Group 2:
+A group of segments to specify the transport and rate selection
+criteria and to indicate the rate information being provided.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>TDT,
+  A segment to indicate information related to the mode and means of
+  transport, e.g. specific carrier.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>DTM,
+  A segment to indicate date(s) and time(s) relating to the transport
+  details.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>LOC,
+  A segment to indicate a location relating to the transport details.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <documentation>RFF,
+  A segment to identify a reference relating to the transport details.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <documentation>CUX,
+  A segment to indicate the currency in which the charges/rates are
+  expressed.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_Group_3">
+                <documentation>MEA,
+  A segment to indicate an applicable weight or volume.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TCC" segcode="TCC" truncatable="true" xmltag="Transport_charge_rate_calculations">
+                    <documentation>Segment Group 3:
+  A group of segments to specify the rate information selection
+  criteria and to indicate the rate information being provided.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                    <documentation>TCC,
+    A segment to specify a charge/rate, e.g. freight rate.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>EQN,
+    A segment to specify the number of units to which the unit
+    price/rate applies.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>PCD,
+    A segment to specify the applicable reduction or surcharge
+    percentage details.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                    <documentation>QTY,
+    A segment to specify a quantity relevant to calculate the charge,
+    e.g. chargeable quantity.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>PRI,
+    A segment to specify the price information of the charge.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

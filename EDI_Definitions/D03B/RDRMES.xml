@@ -1,0 +1,167 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="RDRMES" version="D:03B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="RDRMES">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment specifying the functional use (e.g. sub-set) of the
+       Raw data reporting message and identifying the message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment identifying dates, times, or periods which are
+       relevant to the whole message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments identifying the name and address of the
+       relevant parties, along with additional information related to
+       the interchanging partners, such as references, contacts and
+       communication numbers.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment to identify the relevant parties.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to specify a reference that the respondent wishes
+          to communicate to the collector.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment to provide free form or coded text information.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments identifying a contact within the
+          identified organization and communication number (e.g.
+          telephone number, fax number).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify a person or a department to whom
+             communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to identify a communication number of a
+             department or a person to whom communication should be
+             directed.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments identifying a questionnaire, the responding
+       organization, the questions in the questionnaire and the
+       responses to the questions.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                <documentation>IDE,
+          A segment identifying a questionnaire.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments identifying the responding organization
+          to a questionnaire, the contact details, and administrative
+          data relevant to the organization.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+             A segment identifying the responding organization.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment to specify a reference that the responding
+             organization wishes to communicate to the collector.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to provide free form or coded text information.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             A group of segments identifying a contact within, or
+             representing, the responding organization and
+             communication number (e.g. telephone number, fax number).</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment to identify a person or a department to whom
+                communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment to identify a communication number of a
+                department or a person to whom communication should be
+                directed.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments which specify a question in a
+          questionnaire and the data given in response.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCD" segcode="SCD" truncatable="true" xmltag="Structure_component_definition">
+                    <documentation>SCD,
+             A segment to specify the identity of a question (e.g. in
+             a questionnaire).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99999" minOccurs="0" nodeTypeRef="UN:ARR" segcode="ARR" truncatable="true" xmltag="Array_information">
+                    <documentation>ARR,
+             A segment containing the data in response to a question.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment to specify a reference relevant to the
+             response.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment identifying dates, times, or periods relevant
+             to the response.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to provide free form or coded text information
+             relevant to the response.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+             A group of segments that identify an organization,
+             contact information and administrative information given
+             in response to a question.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                A segment specifying the identity of an organization
+                which is given in response to a question.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment to specify a reference relevant to the
+                organization.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment to provide free form or coded text
+                information.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                        <documentation>Segment group 8:
+                A group of segments identifying a contact within the
+                identified organization and communication number (e.g.
+                telephone number, fax number).</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                            <documentation>CTA,
+                   A segment to identify a person or a department to
+                   whom communication should be directed.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                            <documentation>COM,
+                   A segment to identify a communication number of a
+                   department or a person to whom communication should
+                   be directed.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

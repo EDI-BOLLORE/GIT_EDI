@@ -1,0 +1,155 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="BOPBNK" version="D:94B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="BOPBNK">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment to indicate the type and function of the message and
+       to transmit its identifying number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment to specify the date and, when required, the time at
+       which the message has been created as well as specification of
+       other process dates.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments to give auxiliary references and the
+       relevant dates for the message itself.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to give another reference for the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to give the period reported in the message (for
+          example day/month/year).</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="2" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments to give the identification of the reporting
+       agent (generally the bank) or, possibly with a second
+       occurrence, the identification of the bank on behalf of which
+       the declaration is made.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment to identify the resident bank.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <documentation>CTA,
+          A segment to identify a person or a department for the party
+          specified in the NAD segment and to whom communication
+          should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          A segment to give a communication number for the party
+          identified in the NAD segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to accommodate the details relevant to the
+       transactions performed in one currency.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                <documentation>LIN,
+          A segment identifying the report line item by a current line
+          number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment to give the opening balance and the closing
+          balance of the account and the currency.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments to give for each currency the relevant
+          information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                    <documentation>RCS,
+             A segment to give the nature of transaction or the type
+             of position. A qualifier allows a clear distinction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to give information in clear and free form to
+             provide explanations about the nature of the transaction
+             or about the position.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             A group of segments to give the amount and details of
+             each different nature of the transaction or the amount
+             and details related to the position.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment to give the amount, and if necessary the
+                currency, of the transaction or of the position.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_6">
+                        <documentation>Segment group 6:
+                A group of segments to give the identification and the
+                quantity of security.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                            <documentation>GIR,
+                   A segment to identify the type of security (shares,
+                   bonds, etc).</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                            <documentation>QTY,
+                   A segment to specify the quantity of security.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                            <documentation>PRI,
+                   A segment to give the face value of the security.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_7">
+                        <documentation>Segment group 7:
+                A group of segments to give the references and dates
+                of the transaction.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment to give the serial number of the
+                   transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment to give the day, month and year of the
+                   transaction.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                A segment to give the identification of 2nd party
+                (either the Payor, the Payee or another party). A
+                second occurrence allows the identification of a 3rd
+                party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                A segment to indicate one of the different countries
+                involved.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+       A group of segments to specify the details of authentication.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+                <documentation>AUT,
+          A segment to specify the details of any authentication
+          (validation) procedure applied to the BOPBNK message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to identify the date and if necessary, the time of
+          validation.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

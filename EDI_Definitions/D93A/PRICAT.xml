@@ -1,0 +1,931 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="PRICAT" version="D:93A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="PRICAT">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+A segment by which the sender must uniquely identify the Price/Sales
+catalogue by means of its type and number and when necessary its
+function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="35" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+A segment specifying general dates and, when relevant, times related
+to the whole message. The segment must be specified at least once to
+identify the Price/sales catalogue document date.
+Examples of the use of this DTM segment are: Lead times that apply to
+the whole Price/Sales catalogue or expiration date/time of the
+Price/sales catalogue.
+The Date/time/period segment within other Segment groups should be
+used whenever the date/time/period requires to be logically related to
+another specified data item. e.g. the Reference date is specified
+within the RFF segment group.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+            <documentation>ALI,
+A segment indicating special conditions related to the total
+Price/sales catalogue owing to origin, customs preference, or other
+commercial factors.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+A segment with free text information, in coded or clear form, used
+when additional information is needed but cannot be accommodated
+within other segments. In computer to computer exchanges such text
+will normally require the receiver to process this segment manually.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_1">
+            <documentation>Segment Group 1:
+A group of segments for giving references and where necessary, their
+dates, relating to the whole message, e.g. request for price
+information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+  A segment identifying the reference by its number and where
+  appropriate, a line number within a document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+  A segment specifying the date/time related to the reference.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="20" minOccurs="0" xmltag="Segment_Group_2">
+            <documentation>Segment Group 2:
+A group of segments identifying the parties with associated
+information relevant to the price/sales catalogue.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+  A segment identifying names and addresses of the parties, in coded
+  or clear form, and their functions. Identification of the sender and
+  receiver parties is mandatory for the Price/sales catalogue message.
+  It is recommended that where possible only the coded form of the
+  party ID should be specified, e.g. The sender and the receiver are
+  known to each other, thus only the coded ID is required, but the
+  other parties specified in the message may vary and would have to be
+  clearly specified, preferably in structured format.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="25" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+  A segment giving more specific location information of the party
+  specified in the NAD segment e.g. internal site/building number.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_3">
+                <documentation>Segment Group 3:
+  A group of segments giving references only relevant to the specified
+  party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+    A segment identifying the reference by its number and where
+    appropriate a line number within a document.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+    A segment specifying the date and/or time related to the
+    reference.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_4">
+                <documentation>Segment Group 4:
+  A group of segments giving contact details of the person or
+  department within the party identified in the NAD segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+    A segment to identify a person or department, and their function,
+    to whom communications should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+    A segment to identify a communications type and number for the
+    contact specified in the CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_5">
+            <documentation>Segment Group 5:
+A group of segments specifying tax related information, valid for the
+whole Price/sales catalogue, e.g. Value Added Tax at the standard rate
+is applicable for all items.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                <documentation>TAX,
+  A segment specifying a tax type, category and rate, or exemption.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+  A segment specifying the amount for the identified tax/fee, e.g. a
+  stamp fee.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_6">
+            <documentation>Segment Group 6:
+A group of segments specifying the currencies and related
+dates/periods valid for the whole Price/sales catalogue. Currency data
+maybe omitted in national applications but will be required for
+international transactions.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <documentation>CUX,
+  A segment identifying the currencies required in the Price/sales
+  catalogue, e.g. the Price/sales catalogue currency. A rate of
+  exchange may be given to convert a reference currency into a target
+  currency.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+  A segment specifying the date/time/period related to the rate of
+  exchange.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_7">
+            <documentation>Segment Group 7:
+A group of segments specifying the terms of payment applicable for the
+whole Price/sales catalogue.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
+                <documentation>PAT,
+  A segment identifying the payment terms and date/time basis.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+  A segment giving the specific date/time/period, if needed, of any
+  payments, discounts, installments etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <documentation>PCD,
+  A segment specifying the discount, interest, penalty as well as
+  installment percentage.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+  A segment specifying amounts related to payment discounts, penalties
+  or installments.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_8">
+            <documentation>Segment Group 8:
+A group of segments identifying the mode and means of transport and
+locations relating to the whole Price/sales catalogue.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+                <documentation>TDT,
+  A segment specifying the mode, means and identification of the
+  transport for the goods listed in the Price/sales catalogue. If
+  required, the carrier's address should be indicated within the NAD
+  segment group.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+  A segment identifying locations relevant to the transport specified
+  in the TDT segment, e.g. place of departure or border crossing point.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_9">
+            <documentation>Segment Group 9:
+A group of segments indicating the terms of delivery for the whole
+Price/sales catalogue.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="Terms_of_delivery">
+                <documentation>TOD,
+  A segment identifying the delivery terms to be used, e.g. UN
+  INCOTERMS</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+  A segment identifying locations relevant to the delivery terms
+  specified in the TOD segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_10">
+            <documentation>Segment Group 10:
+A group of segments specifying allowances and charges for the whole
+Price/sales catalogue. The allowance or charge specified within this
+segment group may either relate to the total Price/sales catalogue in
+which case it cannot be overridden at detail level, or it can relate
+to the line items as a default allowance/charge and can be overridden
+by the ALC segment group within the detail section. Where relevant,
+additional information, tax/fee details are to be indicated. The basis
+for the calculation of the allowance/charge may be a quantity, a
+percentage, an amount or a rate and one of the segment group 11-14)
+should be used accordingly.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                <documentation>ALC,
+  A segment identifying the charge or allowance and, where necessary
+  its calculation sequence.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                <documentation>ALI,
+  A segment indicating that the allowance or charge specified is
+  subject to special conditions owing to origin, customs preference or
+  commercial factors.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_11">
+                <documentation>Segment Group 11:
+  A group of segments specifying the quantity of the allowance or
+  charge with its measure unit specifier. A range to which the
+  allowance or charge applies may be specified, e.g. An allowance of a
+  free quantity of 20 pieces may be specified if the quantity of goods
+  ordered is greater than 1000 pieces.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+    A segment identifying the type of quantity and the quantity
+    related to the allowance or charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                    <documentation>RNG,
+    A segment specifying, if required, the range to which the
+    allowance or charge applies.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_12">
+                <documentation>Segment Group 12:
+  A group of segments specifying the percentage for the allowance or
+  charge, e.g. The allowance/charge amount is calculated as 5% of the
+  goods value or a price reduction of 5% may be specified if the goods
+  quantity ordered is within the range 5 tons to 10 tons.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+    A segment identifying the percentage and the percentage basis for
+    the calculation of the allowance or charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                    <documentation>RNG,
+    A segment specifying, if required, a range for the application of
+    the percentage.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_Group_13">
+                <documentation>Segment Group 13:
+  A group of segments specifying a monetary amount for an allowance or
+  charge. A range to which the allowance or charge applies can be
+  specified, e.g. an allowance of 5000 BEF may be specified if goods
+  value ordered is greater than 100000 BEF.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+    A segment identifying the monetary amount for the allowance or
+    charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                    <documentation>RNG,
+    A segment specifying, if required, a range for the application of
+    the allowance/charge amount.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_14">
+                <documentation>Segment Group 14:
+  A group of segments specifying the rate per unit and basis to which
+  the allowance or charge applies, e.g. The allowance/charge rate is 3
+  DEM per 10 tons.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="Rate_details">
+                    <documentation>RTE,
+    A segment specifying the rate per unit and the basis for
+    calculation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                    <documentation>RNG,
+    A segment specifying, if required, the range for the application
+    of the allowance/charge rate.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_15">
+                <documentation>Segment Group 15:
+  A group of segments of segments specifying tax related information
+  for the allowance or charge.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                    <documentation>TAX,
+    A segment specifying the tax type, category, and rate, or
+    exemption, related to the allowance or charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+    A segment specifying a monetary amount for the allowance or
+    charge. (e.g. a stamp fee)</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1000" minOccurs="0" xmltag="Segment_Group_16">
+            <documentation>Segment Group 16:
+A group of segments enabling the standard commercial factors relevant
+to a specific group of items to be specified. e.g. quantity related
+price break factors or minimum order quantity.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="Product_group_information">
+                <documentation>PGI,
+  A segment identifying the products Price/Tariff group where
+  applicable.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="15" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+  A segment indicating date/time/period related to the price group.
+  e.g. expiration date/time or validity period for the price group.
+  Lead time of the goods/services mentioned in the price group can
+  also be provided by the DTM segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <documentation>QTY,
+  A segment to specify pertinent quantities related to the specified
+  price group, e.g. minimum order quantity</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                <documentation>ALI,
+  A segment indicating that the price group is subject to special
+  conditions owing to origin, customs preference or commercial
+  factors.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+  A segment with free text information, in coded or clear form, used
+  when additional information is needed for the specification of the
+  price group. In computer to computer exchanges such text will
+  normally require the receiver to process this segment manually.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="100" minOccurs="0" xmltag="Segment_Group_17">
+                <documentation>Segment Group 17:
+  A group of segments identifying the details of the price information
+  for the product or service identified in the Price group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                    <documentation>PRI,
+    A segment providing either the unit or reference price and the
+    price type, valid for the pricing group.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:API" segcode="API" truncatable="true" xmltag="Additional_price_information">
+                    <documentation>API,
+    A segment to identify additional pricing information related to
+    the class or type of trade and additionally identifying the reason
+    for any change.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                    <documentation>RNG,
+    A segment to identify a quantity or an amount range to which the
+    price information applies.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+    A segment to identify the date/time/period information related to
+    the price information, e.g. period of validity.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_18">
+                <documentation>Segment Group 18:
+  A group of segments specifying tax related information, valid for
+  the pricing group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                    <documentation>TAX,
+    A segment specifying a tax type, category and rate, or exemption.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+    A segment specifying the amount for the identified tax/fee, e.g. a
+    stamp fee.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_19">
+                <documentation>Segment Group 19:
+  A group of segments specifying allowances and charges for the whole
+  pricing group. The allowances or charges specified within group 19
+  may either relate to the total pricing group in which case it cannot
+  be overridden at price item level, or it can relate to the price
+  item level as a default allowance/charge and can be overridden by
+  the ALC group within at the price item level. When relevant,
+  additional information, tax details may be indicated. The basis for
+  the calculation of the allowance/charge may be a quantity, a
+  percentage, an amount or a rate and one of the groups 20-23 should
+  be used accordingly</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                    <documentation>ALC,
+    A segment identifying the charge or allowance and,where necessary
+    its calculation sequence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                    <documentation>ALI,
+    A segment indicating that the allowance or charge specified is
+    subject to special conditions owing to origin, customs preference
+    or commercial factors..</documentation>
+                </segment>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_20">
+                    <documentation>Segment Group 20:
+    A group of segments specifying the quantity of the allowance or
+    charge with its measure unit specifier. A range to which the
+    allowance or charge applies may be specified. e.g. An allowance of
+    a free quantity of 20 pieces may be specified if the quantity of
+    goods ordered is greater than 1000 pieces.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+      A segment identifying the type of quantity and the quantity
+      related to the allowance or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                        <documentation>RNG,
+      A segment specifying, if required, the range to which the
+      allowance or charge applies.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_21">
+                    <documentation>Segment Group 21:
+    A group of segments specifying the percentage for the allowance or
+    charge, e.g. The allowance/charge amount is calculated as 5% of
+    the goods value or a price reduction of 5% may be specified if the
+    goods quantity ordered is within the range 5 tons to 10 tons.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+      A segment identifying the percentage and the percentage basis
+      for the calculation of the allowance or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                        <documentation>RNG,
+      A segment specifying, if required, a range for the application
+      of the percentage.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_Group_22">
+                    <documentation>Segment Group 22:
+    A group of segments specifying a monetary amount for an allowance
+    or charge. A range to which the allowance or charge applies can be
+    specified, e.g. an allowance of 5000 BEF may be specified if goods
+    value ordered is greater than 100000 BEF.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+      A segment identifying the monetary amount for the allowance or
+      charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                        <documentation>RNG,
+      A segment specifying, if required, a range for the application
+      of the allowance/charge amount.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_23">
+                    <documentation>Segment Group 23:
+    A group of segments specifying the rate per unit and basis to
+    which the allowance or charge applies, e.g. The allowance/charge
+    rate is 3 DEM per 10 tons.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="Rate_details">
+                        <documentation>RTE,
+      A segment specifying the rate per unit and the basis for
+      calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                        <documentation>RNG,
+      A segment specifying, if required, the range for the application
+      of the allowance/charge rate.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_24">
+                    <documentation>Segment Group 24:
+    A group of segments of segments specifying tax related information
+    for the allowance or charge.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                        <documentation>TAX,
+      A segment specifying the tax type, category, and rate, or
+      exemption, related to the allowance or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+      A segment specifying a monetary amount for the allowance or
+      charge. (e.g. a stamp fee).</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="20" minOccurs="0" xmltag="Segment_Group_25">
+                <documentation>Segment Group 25:
+  A group of segments identifying the parties with the associated
+  information relevant for the pricing group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+    A segment identifying names and addresses of the parties, in coded
+    or clear form, and their functions. It is recommended that where
+    possible only the coded form of the party ID should be specified.
+    e.g. The sender and the receiver are known to each other, thus
+    only the coded ID is required, but the other parties specified in
+    the message may vary and would have to be clearly specified,
+    preferably in structured format.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+    A segment giving more specific location information of the party
+    specified in the NAD segment e.g. internal site/building number.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_26">
+                    <documentation>Segment Group 26:
+    A group of segments giving references only relevant to the
+    specified party.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+      A segment identifying the reference by its number and where
+      appropriate a line number within a document.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+      A segment specifying the date and/or time related to the
+      reference.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_27">
+                    <documentation>Segment Group 27:
+    A group of segments giving contact details of the person or
+    department within the party identified in the NAD segment.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+      A segment to identify a person or department, and their
+      function, to whom communications should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+      A segment to identify a communications type and number for the
+      contact specified in the CTA segment.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_28">
+                <documentation>Segment Group 28:
+  A group of segments specifying the currencies and related
+  dates/periods valid for the whole pricing group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                    <documentation>CUX,
+    A segment identifying the currencies required in the Price/sales
+    catalogue, e.g. the Price/sales catalogue currency. A rate of
+    exchange may be given to convert a reference currency into a
+    target currency.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+    A segment specifying the date/time/period related to the rate of
+    exchange.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_29">
+                <documentation>Segment Group 29:
+  A group of segments specifying the terms of payment applicable for
+  the whole pricing group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
+                    <documentation>PAT,
+    A segment identifying the payment terms and date/time basis.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+    A segment giving the specific date/time/period, if needed, of any
+    payments, discounts, installments etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+    A segment specifying the discount, interest, penalty as well as
+    installment percentage.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+    A segment specifying amounts related to payment discounts,
+    penalties or installments.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_30">
+                <documentation>Segment Group 30:
+  A group of segments identifying the mode and means of transport, and
+  locations relating to the whole pricing group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+                    <documentation>TDT,
+    A segment specifying the mode, means and identification of the
+    transport for the goods listed in the Price/sales catalogue. If
+    required, the carrier's address should be indicated within the NAD
+    segment group.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+    A segment identifying locations relevant to the transport
+    specified in the TDT segment, e.g.place of departure or border
+    crossing point.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_31">
+                <documentation>Segment Group 31:
+  A group of segments indicating the terms of delivery for the whole
+  pricing group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="Terms_of_delivery">
+                    <documentation>TOD,
+    A segment identifying the delivery terms to be used. e.g. UN
+    INCOTERMS</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+    A segment identifying locations relevant to the delivery terms
+    specified in the TOD segment.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_32">
+                <documentation>Segment Group 32:
+  A group of segments specifying the packaging, physical dimensions
+  for goods referenced by the price group. If required, providing
+  handling instructions and notification of hazardous materials,
+  relating to the price group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                    <documentation>PAC,
+    A segment specifying the physical type of packages for the price
+    group. e.g. pallets.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <documentation>MEA,
+    A segment specifying physical measurements of packages described
+    in the PAC segment e.g. pallet size.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                    <documentation>HAN,
+    A segment providing information on required handling instructions
+    of materials and additionally, if required, notifying hazardous
+    materials in the whole pricing group.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="200000" minOccurs="0" xmltag="Segment_Group_33">
+                <documentation>Segment Group 33:
+  -SG42-SG43-SG44-SG45-SG46
+  A group of segments providing the relevant price/sales information
+  for the specified product/service.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PIT" segcode="PIT" truncatable="true" xmltag="Price_item_line">
+                    <documentation>PIT,
+    A segment identifying the line item (or sub-line item in a
+    configuration).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <documentation>PIA,
+    A segment for identifying a product in the Price Catalogue.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+    A segment for describing the product or service as well as its
+    characteristics. This segment should be used for products or
+    services that cannot be identified by a product code or article
+    number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <documentation>MEA,
+    A segment to allow physical measurements and dimensions to be
+    stated, where this is required for identification of the product.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+    A segment to specify pertinent quantities related to the specified
+    price item line, e.g. minimum order quantity</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                    <documentation>HAN,
+    A segment providing information on required handling of materials
+    in the line item, and additionally, if required, notifying
+    hazardous materials.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                    <documentation>ALI,
+    A segment specifying the relevant additional information for an
+    item, e.g. country of origin.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+    A segment specifying the date, and when relevant, the time or
+    period of an activity identified by the date/time/period
+    qualifier. e.g. expiration date of the price/sales catalogue for
+    the price item line.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+    A segment with free text information, in coded or clear form, used
+    when additional information is needed at the line item leveled
+    within other segment. In computer to computer exchanges such text
+    will normally require the receiver to process this segment
+    manually.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_34">
+                    <documentation>Segment Group 34:
+    A group of segments specifying a tax type, category and rate
+    relating to the item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                        <documentation>TAX,
+      A segment specifying a tax type, category and rate, or
+      exemption.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+      A segment specifying the amount for the identified tax/fee, e.g.
+      a stamp fee.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="100" minOccurs="0" xmltag="Segment_Group_35">
+                    <documentation>Segment Group 35:
+    A group of segments identifying the details of the price
+    information for the product or service identified in the PIT
+    segment group.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                        <documentation>PRI,
+      A segment providing either the unit or reference price and the
+      price type, valid for the pricing group.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:API" segcode="API" truncatable="true" xmltag="Additional_price_information">
+                        <documentation>API,
+      A segment to identify additional pricing information related to
+      the class or type of trade and additionally identifying the
+      reason for any change.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                        <documentation>RNG,
+      A segment to identify a quantity or an amount range to which the
+      price information applies.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+      A segment to identify the date/time/period information related
+      to the price information..e.g. period of validity.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_36">
+                    <documentation>Segment Group 36:
+    A group of segments specifying allowances and charges for the
+    price item line. When relevant, additional information, tax
+    details may be indicated. The basis for the calculation of the
+    allowance/charge may be a quantity, a percentage, an amount or a
+    rate and one of the groups 39-40 should be used accordingly.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                        <documentation>ALC,
+      A segment identifying the charge or allowance and,where
+      necessary its calculation sequence.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                        <documentation>ALI,
+      A segment indicating that the allowance or charge specified is
+      subject to special conditions owing to origin, customs
+      preference or commercial factors.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_37">
+                        <documentation>Segment Group 37:
+      A group of segments specifying the quantity of the allowance or
+      charge with its measure unit specifier. A range to which the
+      allowance or charge applies may be specified. e.g. An allowance
+      of a free quantity of 20 pieces may be specified if the quantity
+      of goods ordered is greater than 1000 pieces.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                            <documentation>QTY,
+        A segment identifying the type of quantity and the quantity
+        related to the allowance or char</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                            <documentation>RNG,
+        A segment specifying, if required, the range to which the
+        allowance or charge applies.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_38">
+                        <documentation>Segment Group 38:
+      A group of segments specifying the percentage for the allowance
+      or charge, e.g. The allowance/charge amount is calculated as 5%
+      of the goods value or a price reduction of 5% may be specified
+      if the goods quantity ordered is within the range 5 tons to 10
+      tons.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                            <documentation>PCD,
+        A segment identifying the percentage and the percentage basis
+        for the calculation of the allowance or charge.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                            <documentation>RNG,
+        A segment specifying, if required, a range for the application
+        of the percentage.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_Group_39">
+                        <documentation>Segment Group 39:
+      A group of segments specifying a monetary amount for an
+      allowance or charge. A range to which the allowance or charge
+      applies can be specified, e.g. an allowance of 5000 BEF may be
+      specified if goods value ordered is greater than 100000 BEF.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+        A segment identifying the monetary amount for the allowance or
+        charge.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                            <documentation>RNG,
+        A segment specifying, if required, a range for the application
+        of the allowance/charge amount.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_Group_40">
+                        <documentation>Segment Group 40:
+      A group of segments specifying the rate per unit and basis to
+      which the allowance or charge applies, e.g. The allowance/charge
+      rate is 3 DEM per 10 tons.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="Rate_details">
+                            <documentation>RTE,
+        A segment specifying the rate per unit and the basis for
+        calculation.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                            <documentation>RNG,
+        A segment specifying, if required, the range for the
+        application of the allowance/charge rate.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_41">
+                        <documentation>Segment Group 41:
+      A group of segments of segments specifying tax related
+      information for the allowance or charge.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                            <documentation>TAX,
+        A segment specifying the tax type, category, and rate, or
+        exemption, related to the allowance or charge.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+        A segment specifying a monetary amount for the allowance or
+        charge. (e.g. a stamp fee).</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_42">
+                    <documentation>Segment Group 42:
+    A group of segments specifying the currencies and related
+    dates/periods valid for the Price item line.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                        <documentation>CUX,
+      A segment identifying the currencies required in the Price/sales
+      catalogue, e.g. the Price/sales catalogue currency. A rate of
+      exchange may be given to convert a reference currency into a
+      target currency.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+      A segment specifying the date/time/period related to the rate of
+      exchange.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_43">
+                    <documentation>Segment Group 43:
+    A group of segments identifying the packaging, physical
+    dimensions, for the Price item line. If required, providing
+    handling instructions and notification of hazardous materials.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                        <documentation>PAC,
+      A segment specifying the physical type of packages for the Price
+      item line.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <documentation>MEA,
+      A segment specifying physical measurements of packages described
+      in the PAC segment e.g. box size.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                        <documentation>HAN,
+      A segment providing information on required handling of
+      materials in the price item line, and additionally, if required,
+      notifying hazardous materials.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_44">
+                    <documentation>Segment Group 44:
+    A group of segments specifying the terms of payment applicable for
+    the Price item line.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
+                        <documentation>PAT,
+      A segment identifying the payment terms and date/time basis.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+      A segment giving the specific date/time/period, if needed, of
+      any payments, discounts, installments etc.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+      A segment specifying the discount, interest, penalty as well as
+      installment percentage.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+      A segment specifying amounts related to payment discounts,
+      penalties or installments.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_45">
+                    <documentation>Segment Group 45:
+    A group of segments identifying the mode and means of transport,
+    and locations relating to the Price line item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+                        <documentation>TDT,
+      A segment specifying the mode, means and identification of the
+      transport for the goods listed in the Price/sales catalogue. If
+      required, the carrier's address should be indicated within the
+      NAD segment group.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+      A segment identifying locations relevant to the transport
+      specified in the TDT segment, e.g.place of departure or border
+      crossing point.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_Group_46">
+                    <documentation>Segment Group 46:
+    A group of segments indicating the terms of delivery for the Price
+    line item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="Terms_of_delivery">
+                        <documentation>TOD,
+      A segment identifying the delivery terms to be used. e.g. UN
+      INCOTERMS</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+      A segment identifying locations relevant to the delivery terms
+      specified in the TOD segment.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -102,6 +102,31 @@ public class Edifact {
 
 	}
 
+	/**
+	 * Constructeur de la classe Edifact
+	 * 
+	 * @param lineseparator: séparateur de ligne
+	 * @param filepath
+	 * @param isTest
+	 * @param element_separator
+	 * @param component_separator
+	 * @param space_character
+	 * @param decimal_separator
+	 * @param escape_character
+	 * @param segment_separator
+	 * @param edi_type
+	 * @param edi_version
+	 * @param controlling_agency
+	 * @param syntax_id
+	 * @param syntax_version_number
+	 * @param interchange_sender_id
+	 * @param sender_code_qualifier
+	 * @param interchange_recipient_id
+	 * @param recipient_code_qualifier
+	 * @param date
+	 * @param interchange_control_reference
+	 * @throws EDIException
+	 */
 	public Edifact(String lineseparator, String filepath, Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,

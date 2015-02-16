@@ -1,0 +1,388 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="JAPRES" version="D:01A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="JAPRES">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment by which the sender must uniquely identify the job
+       application result by means of its type and number and, when
+       necessary, its function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying general dates and, when relevant, times
+       related to the whole message. The segment must be specified at
+       least once to identify the document date.
+       The Date/time/period segment within other Segment groups should
+       be used whenever the date or time or period requires to be
+       logically related to another specified data item.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments identifying the parties with associated
+       information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          A segment identifying the name of a person or parties and
+          their function related to the Job Application Result
+          message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          A segment identifying the address of a person or party and
+          function related to the Job Application Result message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          A segment giving more specific location information of the
+          party specified in the ADR segment, e.g. internal site or
+          building number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the date or time.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments giving contact details of the specific
+          person or department within the party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify a person or department and their
+             function, to whom communications should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to identify a communications type and number
+             for the contact specified in the CTA segment, e.g.
+             telephone-number, fax-number, telex-number.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments for giving references and, where necessary,
+       their dates, relating to the whole message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment identifying the reference by its number related to
+          the whole message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the date or time related to the
+          reference.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments specifying general processing indicators
+       and, when necessary, additional textual information, relevant
+       for the whole message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                <documentation>GIS,
+          A segment specifying general indicators for the whole
+          message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment with free text information, in coded or clear
+          form, used when additional information is needed but cannot
+          be accommodated within other segments. In computer to
+          computer exchanges such text will normally require the
+          receiver to process this segment manually.
+4.1.2  Detail section
+       Information to be provided in the Detail section:</documentation>
+            </segment>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+            <documentation>UNS,
+       A mandatory service segment placed before the first user
+       segment in the detail section to avoid segment collision.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+       A group of segments providing details and result of a job
+       application or an interview of an applicant proposed. There
+       must be at least one occurrence of Segment group 5 within a Job
+       Application Result Message. This Segment group may be repeated
+       to give information about results of several other applicants.
+       The Segment group 5 gives information about an applicant and
+       the employment of the applicant. It may give also information
+       about the rejection of an applicant by the enterprise or the
+       rejection of an offered job by the applicant. If the applicant
+       refused the job, the message may contain the reasons.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment identifying the administrative operation of the
+          job application by a number given by the employment agency,
+          e.g. job order number of an employment agency.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying date and, when relevant, time relating
+          to the RFF segment. Examples of the use of this DTM segment
+          are: order date or time of the employment agency, date of
+          employment of a person.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment with free text information, in coded or clear
+          form, used when additional information is needed but cannot
+          be accommodated within other segments. In computer to
+          computer exchanges such text will normally require the
+          receiver to process this segment manually.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments providing details of the identity of a
+          proposed applicant.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             A segment giving the identity of the applicant in coded
+             or named form.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <documentation>ADR,
+             A segment identifying the relevant addresses of a person
+             requesting a job.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment giving the birth date of the applicant.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment giving the place of birth of the applicant and
+             other places regarding the location of the job.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="Nationality">
+                    <documentation>NAT,
+             A segment giving the nationality of the applicant.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="Person_demographic_information">
+                    <documentation>PDI,
+             A segment providing various additional information
+             regarding the applicant.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             A segment indicating documents which permit to identify
+             the applicant.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A group of segments for giving references and, where
+          necessary, their dates, relevant to job applications.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment for specifying references relevant to the job
+             application, e.g. order number of the enterprise, number
+             of a job advertisement.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the date or time related to the
+             reference.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="1" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+          A group of segments specifying general processing indicators
+          and, when necessary, additional textual information, related
+          to the result of an application or an interview of a person.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                    <documentation>GIS,
+             A segment specifying general indicators related to the
+             result of a job application or an interview, e.g.
+             employed, qualifications are not satisfied, experience,
+             rejection by the person.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment with free text information, in coded or clear
+             form, used when additional information is needed but
+             cannot be accommodated within other segments. In computer
+             to computer exchanges such text will normally require the
+             receiver to process this segment manually.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+          A group of segments identifying the qualification of a
+          person and attributes, such as education and experience.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                    <documentation>EMP,
+             A segment to identify an employment proposed to an
+             applicant.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment indicating the location, where the job should
+             be performed.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_10">
+                    <documentation>Segment group 10:
+             A group of segments specifying general processing
+             indicators and, when necessary, additional textual
+             information, related to the rejection of the job by an
+             applicant.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                        <documentation>GIS,
+                A segment specifying general indicators related to the
+                reasons of the rejection of the job by an applicant,
+                e.g. remuneration, bad working-times, others.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with free text information, in coded or
+                clear form, used when additional information is needed
+                but cannot be accommodated within other segments. In
+                computer to computer exchanges such text will normally
+                require the receiver to process this segment manually.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="20" minOccurs="0" xmltag="Segment_group_11">
+                    <documentation>Segment group 11:
+             A group of segments giving coded attribute information of
+             a profession or job regarding educational qualifications
+             and experience and, when necessary, priority of the
+             information and additional textual information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment identifying in coded form attributes of a
+                profession or job. The codes are related to education,
+                job experience, special knowledge and required
+                qualifications.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with free text information for special
+                knowledge, in coded or clear form, used when
+                additional information is needed but cannot be
+                accommodated within other segments. In computer to
+                computer exchanges such text will normally require the
+                receiver to process this segment manually.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="Priority">
+                        <documentation>PTY,
+                A segment identifying the priority of requirements for
+                a job.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_12">
+                    <documentation>Segment group 12:
+             A group of segments giving information about languages
+             and experiences of language.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="Language">
+                        <documentation>LAN,
+                A segment specifying a language in coded or clear
+                form.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                        <documentation>GIS,
+                A segment specifying general indicators of the
+                experience of a language.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_13">
+                <documentation>Segment group 13:
+          A group of segments giving information about the
+          remuneration type offered and the basic condition of the
+          remuneration. It may contain the remuneration amount or a
+          remuneration range and additional remuneration benefits.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SAL" segcode="SAL" truncatable="true" xmltag="Remuneration_type_identification">
+                    <documentation>SAL,
+             A segment identifying the type of the remuneration and,
+             if required, the name of the remuneration type or
+             contract.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment with free text information for the remuneration
+             type or contract, in coded or clear form, used when
+             additional information is needed but cannot be
+             accommodated within other segments. In computer to
+             computer exchanges such text will normally require the
+             receiver to process this segment manually.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the dates and/or times related to
+             the remuneration.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_14">
+                    <documentation>Segment group 14:
+             A group of segments giving attribute information, in
+             coded form, for the remuneration offered and, where
+             necessary, additional textual information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment identifying in coded form additional
+                remuneration information and other benefits offered.
+                The codes are related to working conditions, working
+                time, employment contract, piece work and remuneration
+                benefits.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with free text information for additional
+                remuneration benefits, in coded or clear form, used
+                when additional information is needed but cannot be
+                accommodated within other segments. In computer to
+                computer exchanges such text will normally require the
+                receiver to process this segment manually.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+             A group of segments specifying general processing
+             indicators and, when necessary, additional textual
+             information, relevant for the remuneration.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                        <documentation>GIS,
+                A segment specifying general indicators related to the
+                remuneration.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with free text information, in coded or
+                clear form, used when additional information is needed
+                but cannot be accommodated within other segments. In
+                computer to computer exchanges such text will normally
+                require the receiver to process this segment manually.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+             A group of segments specifying the type and the amount of
+             the remuneration or a remuneration range offered.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment giving information about the type and the
+                amount of the remuneration for the job.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                        <documentation>RNG,
+                A segment to identify a remuneration range for the
+                job, when an exact remuneration amount in the MOA
+                segment is not available. The remuneration range is
+                related to the type of remuneration in the MOA
+                segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with free text information, in coded or
+                clear form, used when additional information is needed
+                but cannot be accommodated within other segments. In
+                computer to computer exchanges such text will normally
+                require the receiver to process this segment manually.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

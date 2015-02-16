@@ -1,0 +1,588 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="DEBREC" version="D:09B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="DEBREC">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       To identify the function of the message and the type of document it
+       corresponds to.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       To provide document related dates, times or periods such as the
+       creation date of the document.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments used to provide information related to parties
+       involved at message level (e.g. issuing party, recipient, signing
+       party).</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          To identify a party and describe its function at message level.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          To provide the address of the party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To provide additional references related to the party. It could
+          be references used by another party (e.g. Identification of a
+          legal person at the Chamber of Commerce).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                <documentation>EMP,
+          To provide employment details in case the party is a natural
+          person (in opposite to legal person).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          To provide communication information related to the party
+          described in the PNA segment.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments used to provide contact information and
+          related communication numbers.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             To provide contact information (department or person) within
+             the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To provide contact related dates, times or periods.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
+                    <documentation>Segment group 3:
+             A group of segments used to provide communication information
+             linked to validity periods.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                To provide communication information related to the
+                contact.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To provide communication and contact related dates, times
+                or periods such as availability periods.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments used to describe authentication information
+          and dates related to the party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+                    <documentation>AUT,
+             To provide the authentication result related to the Party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To provide authentication related dates, times or periods such
+             as the date of authentication.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+       A group of segments used to describe a debts recovery case and to
+       provide related information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                <documentation>GIR,
+          To identify the debts recovery case (case identification numbers:
+          principal and the enacting party ones).
+          
+          Note: In the submission phase of a debts recovery case the only
+          case identification number known is the one assigned by the
+          principal.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments to provide attributes of the debts recovery
+          case and related dates, times or periods.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             To provide an attribute related to the debts recovery case
+             such as the type of debt to which the debts recovery case
+             relates.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To provide attributes related dates, times or periods.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A group of segments used to describe events related to the debts
+          recovery case processing and to provide related information such
+          as associated reasons and requirements.
+          
+          Note: It could be that more than one event is declared for one
+          case (e.g. information that part of the debt has been paid and
+          that the debtor is allowed to postpone the next payment).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                    <documentation>EVE,
+             To identify an event.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To provide dates related to the event such as the date when
+             the event occurred.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:IRQ" segcode="IRQ" truncatable="true" xmltag="Information_required">
+                    <documentation>IRQ,
+             To identify required information in relation with the event.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide additional textual information related to the
+             event.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+             A group of segments used to describe attributes and related
+             dates.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                To provide an attribute related to an event such as extra
+                instructions.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To provide dates, times or periods to the attribute.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+                               SG10-SG12-SG14
+             A group of segments to identify all involved parties in debts
+             recovery cases and provide related information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                        <documentation>PNA,
+                To identify a party and his function.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                To provide additional reference numbers used to identify
+                the party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                To provide attributes related to the party such as the
+                legal form or the legal status of a legal person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                        <documentation>EMP,
+                To identify the employment or profession of the party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="Person_demographic_information">
+                        <documentation>PDI,
+                To provide the marital status of the party when it is a
+                natural person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                        <documentation>FII,
+                To provide financial and banking information related to the
+                party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To provide dates, times or periods related to the party
+                such as the date of birth for a natural person or the
+                creation date for a legal person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To provide monetary amounts related to the party such as
+                the registered capital or share holding amount in the case
+                of a legal person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                To provide quantities related to the party such as the
+                number of employees for a legal person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                To provide percentages related to the party such as the
+                percentage of legal aid.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                To provide communication information about the party.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_10">
+                        <documentation>Segment group 10:
+                A group of segments to describe contacts and related
+                information of the party.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                            <documentation>CTA,
+                   To provide contact information (department or person) of
+                   the party.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To provide contact related dates, times or periods.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To provide additional textual information related to the
+                   contact.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_11">
+                            <documentation>Segment group 11:
+                   A group of segments to provide communication information
+                   about the contact.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                                <documentation>COM,
+                      To provide communication information of the contact.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      To provide dates related to the communication
+                      information.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_12">
+                        <documentation>Segment group 12:
+                A group of segments to describe the addresses and related
+                information of the party.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                            <documentation>ADR,
+                   To provide the address of the party.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To provide dates related to the address.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_13">
+                            <documentation>Segment group 13:
+                   A group of segments to provide communication information
+                   related to the address of the party.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                                <documentation>COM,
+                      To provide communication information related to the
+                      address of the party.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      To provide dates related to the address.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_14">
+                        <documentation>Segment group 14:
+                A group of segments to describe the relationship between
+                the party and other parties (also described in the
+                message).</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                            <documentation>REL,
+                   To identify the type of relationship which exists
+                   between the currently described party and the party
+                   referenced (e.g. one party is the debtor, another party
+                   is a bank of the debtor).</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   To provide the reference number of the party which has a
+                   relationship with the currently described party.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+             A group of segments used to provide information about the
+             justifying documents related to the debts recovery case such
+             as titles.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                        <documentation>DOC,
+                To describe the justifying document by providing its type
+                and number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To provide dates, times or periods related to the document.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                To provide textual information related to the document such
+                as a summary.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                To provide attributes related to the document such as
+                scope, legal value or notification channel of the document.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To provide monetary amounts involved in the document.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_16">
+                        <documentation>Segment group 16:
+                A group of segments to identify parties related to the
+                document such as issuing, certifying or third parties.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                            <documentation>PNA,
+                   To identify a party and his function related to the
+                   document.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   To provide additional reference numbers used to identify
+                   the party.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                            <documentation>ADR,
+                   To provide the address of the party.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_17">
+                    <documentation>Segment group 17:
+             A group of segments to describe goods related to the debt
+             recovery case. A distinction is made between:
+             - real estate goods (e.g. buildings, houses),
+             - other goods that can be described in a structured way (e.g.
+             car, boat),
+             - any good (e.g. computers) described in a textual way.
+             
+             Note: - Goods described in this group of segments are part of
+             the reason of the debts recovery case,
+             - An occurrence of this group of segments relates to one good
+             (e.g. a car, a computer),
+             - An occurrence of this group describes the concerned good
+             item either in a structured way, in a textual way (free text)
+             or by referencing a document which contains the description of
+             the good.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                        <documentation>IMD,
+                To provide information related to the goods being described
+                such as their type, reference or short description.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                        <documentation>STS,
+                To provide the status of goods within the debt recovery
+                case such as to mention that the goods have been stolen.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                To provide a textual description of the goods.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                To provide an attribute related to the goods being
+                described such as a complement to its type.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_18">
+                        <documentation>Segment group 18:
+                A group of segments to give a structured description of any
+                good except real estate goods which are described in a
+                dedicated group of segments.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   To provide the reference of the goods being described
+                   such as the registration/license number for a car.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                            <documentation>PIA,
+                   To provide additional identification numbers of the
+                   goods such as the serial number for a car.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                            <documentation>LOC,
+                   To provide location information of the goods.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To provide dates, times or periods related to the goods
+                   such as the year for a car.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                            <documentation>MEA,
+                   To provide measures related to the goods such as the
+                   power of an engine in kW.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   To provide attributes of the goods such the color or the
+                   type (private, commercial) of a car.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To provide additional textual information about the
+                   Goods.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_19">
+                        <documentation>Segment group 19:
+                A group of segments to give a structured description of
+                real estate goods.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                            <documentation>ADR,
+                   To provide the address of a real estate good.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_20">
+                            <documentation>Segment group 20:
+                   A group of segments to provide detailed information
+                   about a real estate good.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                                <documentation>RFF,
+                      To provide a reference of the real estate good such
+                      as section numbers.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      To provide additional textual information such as the
+                      nature, designation of the real estate good.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                                <documentation>MEA,
+                      To provide measures of the real estate good such as
+                      the size of a section.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_21">
+                        <documentation>Segment group 21:
+                A group of segments to refer to a document that contains a
+                detailed description of the goods.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                            <documentation>DOC,
+                   To provide the reference and type of the document which
+                   details the goods.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To provide dates, times or periods related to the
+                   document such as the issuing date.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To provide textual information related to the document
+                   such as a summary.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_22">
+                    <documentation>Segment group 22:
+             A group of segments to describe all debt components (sets of
+             monetary amounts) related to the debts recovery case.
+             
+             Note: - Each occurrence of this group of segments corresponds
+             to one monetary component.
+             - When using this group of segments one of its sub-groups is
+             mandatory.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                To provide the type of structure used for describing the
+                debt component in the following sub-groups:
+                - reference to a document which contains all relevant
+                information,
+                - all amounts are detailed in the message,
+                - reference to a document and detailed amounts are both
+                given in the message.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To provide dates, times or periods related to the debt
+                component such as the beginning or end of a debt component
+                period.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                To provide textual information about the debt component.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_23">
+                        <documentation>Segment group 23:
+                A group of segments used to provide information related to
+                the document describing the debt component.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                            <documentation>DOC,
+                   To provide information about the document by providing
+                   its type and number.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To provide dates, times or periods related to the
+                   document such as the issuing date.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To provide textual information about the document such
+                   as a summary.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_24">
+                        <documentation>Segment group 24:
+                A group of segments to provide a detailed description of
+                all monetary amounts that are part of the debt component.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="Monetary_amount_function">
+                            <documentation>ARD,
+                   To qualify the monetary amount within the debt
+                   component.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   To identify the purpose of the monetary amount such as
+                   amount paid or revised amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To provide amount related dates, times or periods.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                            <documentation>TAX,
+                   To provide tax information related to the amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To provide textual information related to the amounts.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   To provide attributes related to the amounts.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_25">
+                            <documentation>Segment group 25:
+                   A group of segment to describe percentages related to
+                   the monetary amount.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                                <documentation>PCD,
+                      To provide percentage information related to the
+                      amount.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      To provide a date, a time or a period related to the
+                      percentage.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_26">
+                            <documentation>Segment group 26:
+                   To provide payment information related to the amounts.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+                                <documentation>PAI,
+                      To provide payment details such as payment
+                      conditions, means or channel.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                                <documentation>RFF,
+                      To provide references related to payment instructions
+                      such as credit transfer reference number.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+            <documentation>CNT,
+       To provide message control totals such as the total of all due
+       amounts in all debts recovery cases mentioned in the message.</documentation>
+        </segment>
+    </segments>
+</edimap>

@@ -1,0 +1,197 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CHACCO" version="D:06B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CHACCO">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment identifying the type of chart of accounts.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment containing the date of the opening and closing period
+       of the chart of accounts message, and its preparation date.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>RFF,
+       A segment containing the chart of accounts references (type and
+       version number).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+            <documentation>CUX,
+       A segment providing currencies which are specific to the chart
+       of accounts message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment with free text information, in coded or clear form,
+       for the purpose of providing additional clarification.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A segment group giving information on sender, recipient and
+       intermediary.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment to identify the sender, recipient or intermediary.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to provide references which are specific to the
+          concerned party.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments to identify contacts and related
+          communication numbers.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to provide contacts related to the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to provide communication numbers of the
+             contact.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to provide accounting features of the chart
+       of accounts and the type of chart of accounts that has been
+       used as reference.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                <documentation>CCI,
+          A segment to identify an accounting characteristic of the
+          chart of accounts.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                <documentation>CAV,
+          A segment to provide the value of the above characteristic.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A segment group giving account related information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                <documentation>LIN,
+          A segment indicating the chart of accounts line number
+          within the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CPT" segcode="CPT" truncatable="true" xmltag="Account_identification">
+                <documentation>CPT,
+          A segment containing detailed information identifying the
+          principal account number (general, subsidiary, analytical or
+          budget account).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment to provide the source of the account and
+          information about the creation of the account.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                <documentation>TAX,
+          A segment used to provide tax related information. Mainly
+          used to provide the tax rate.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment giving detailed information on the opening and
+          closing dates of an account of the chart of accounts
+          message.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A segment group used to provide the legal status of the
+          account holder or settlement of an account.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                    <documentation>REL,
+             A segment to identify the relationship between a
+             principal account and other associated entities (sub-
+             account, bank account, etc.).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CPT" segcode="CPT" truncatable="true" xmltag="Account_identification">
+                    <documentation>CPT,
+             A segment containing detailed information identifying the
+             account (general, subsidiary, analytical or budget
+             account) linked to the principal account.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                    <documentation>FII,
+             A segment identifying the associated bank account.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="Payment_terms">
+                    <documentation>PYT,
+             A segment providing associated payment terms.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+                    <documentation>PAI,
+             A segment specifying instructions related to payment.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+             A segment group to provide legal or accounting
+             characteristics of the account.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <documentation>CCI,
+                A segment to identify a legal or accounting
+                characteristic of an account.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                        <documentation>CAV,
+                A segment to provide the value of the above
+                characteristic.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A segment group identify parties related to the account. It
+          may be used to identify the accountant who is in charge of
+          the account in the account holder company.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+             A segment identifying the concerned party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment providing references related to the party. It
+             can be used to provide numbers such as the VAT number of
+             the account holder company.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+             A segment group to identify contacts and related
+             communication numbers.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment to provide contacts related to the party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment to provide communication numbers of the
+                contact.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+            <documentation>EQN,
+       A segment specifying the number of accounts in the chart of
+       accounts message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
+            <documentation>Segment group 9:
+       A segment group to provide authentication information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+                <documentation>AUT,
+          A segment to provide results of the accounting application
+          of an authentication procedure.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to provide the date of the authentication.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

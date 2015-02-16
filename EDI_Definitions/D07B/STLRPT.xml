@@ -1,0 +1,368 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="STLRPT" version="D:07B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="STLRPT">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment to indicate the type and function of the message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment to indicate processing dates and times.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <documentation>NAD,
+       A segment identifying either the reporting agent or the BSP.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments occurring in the BSP-to-airline functional
+       message to specify transaction totals of all agents by
+       specified currency.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <documentation>CUX,
+          A segment to specify the currency for the total amount.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                <documentation>EQN,
+          A segment to specify the number of agents reporting
+          transactions for the specified currency.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment to indicate the transaction totals for the
+          specified currency.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments to specify either the transactions for the
+       reporting period in the CRS-to-BSPC functional message, or the
+       billing analysis transactions and totals in the BSPC-to-airline
+       functional message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to indicate BSP reporting dates.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <documentation>GEI,
+          A segment to specify indicators relating to the BSP
+          processing of the transactions.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments occurring in the BSP-to-airline
+          functional message to specify the transactions totals for
+          all agents by specified currency for a billing analysis
+          period.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                    <documentation>CUX,
+             A segment to specify the currency for the total amount.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                    <documentation>EQN,
+             A segment to specify the number of agents reporting
+             transactions for the specified currency.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment to indicate the transaction totals for the
+             specified currency.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="Quantity_variances">
+                    <documentation>QVR,
+             A segment to indicate monetary variances relating to BSP
+             processing.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999999" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments to specify the transaction data for an
+          agent.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment identifying the reporting agent.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment to identify the locale of the agent.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment to indicate the BSP remittance period ending
+             date.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to specify free text information relating to
+             the agent transactions.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             A group of segments occurring in the BSP-to-airline
+             functional message to specify transaction totals for the
+             agent.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                        <documentation>CUX,
+                A segment to specify the currency for the total
+                amounts.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment to indicate the transaction totals for the
+                specified currency.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="Quantity_variances">
+                        <documentation>QVR,
+                A segment to indicate monetary variances relating to
+                BSP processing for the agent.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+             A group of segments to specify transaction type data.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="Business_function">
+                        <documentation>BUS,
+                A segment to specify the transaction type.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
+                        <documentation>Segment group 7:
+                A group of segments occurring in the BSP-to-airline
+                functional message to specify transaction type totals
+                of an agent by specified currency.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                            <documentation>CUX,
+                   A segment to specify the currency for the total
+                   amounts.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment to indicate the transaction type totals
+                   for the specified currency.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="Quantity_variances">
+                            <documentation>QVR,
+                   A segment to indicate transaction type monetary
+                   variances relating to BSP processing for the agent.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_8">
+                        <documentation>Segment group 8:
+                                  ALC-FTX-TAX-SG9-SG10-SG11
+                A group of segments to specify the transaction
+                details.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                            <documentation>LIN,
+                   A segment to specify the transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment to indicate the date of issue of the
+                   transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment identifying the reference numbers
+                   relating to a transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                            <documentation>NAD,
+                   A segment identifying the agent and passenger
+                   involved in the transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                            <documentation>LOC,
+                   A segment to identify the location where the
+                   transaction took place.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                            <documentation>CUX,
+                   A segment to indicate the currency relating to the
+                   transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                            <documentation>GEI,
+                   A segment to specify indicators relating to the
+                   processing of the transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                            <documentation>IMD,
+                   A segment to specify the type of transaction, in
+                   coded form.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment to indicate transaction monetary amounts.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                            <documentation>ALC,
+                   A segment to indicate the charge.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment to specify free text information relating
+                   to the transaction.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                            <documentation>TAX,
+                   A segment to specify tax and commission amounts.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                            <documentation>Segment group 9:
+                   A group of segments to specify the ticket details.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                                <documentation>DOC,
+                      A segment to specify the ticket number.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      A segment to indicate the date of issue of a
+                      refunded ticket.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      A segment to specify free text information
+                      relating to the ticket.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                                <documentation>PIA,
+                      A segment to specify the substituted ticket
+                      number.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                                <documentation>SEQ,
+                      A segment to specify the product delivery
+                      sequence number.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_10">
+                            <documentation>Segment group 10:
+                                     IMD
+                   A group of segments to specify the terms of payment
+                   details.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="Payment_terms">
+                                <documentation>PYT,
+                      A segment to specify the terms of payment.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                                <documentation>MOA,
+                      A segment to indicate the monetary amounts
+                      associated with the terms of payment.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                                <documentation>RFF,
+                      A segment identifying references relating to the
+                      terms of payment.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      A segment to indicate the dates associated with
+                      the terms of payment.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="Agreement_identification">
+                                <documentation>AGR,
+                      A segment to specify the agreement details.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                                <documentation>GEI,
+                      A segment to indicate payment processing codes.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                                <documentation>NAD,
+                      A segment identifying the client.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      A segment to specify optional free text
+                      information.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                                <documentation>IMD,
+                      A segment to specify the form of payment, in
+                      coded form.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_11">
+                            <documentation>Segment group 11:
+                   A group of segments to specify related document
+                   details.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                                <documentation>GIR,
+                      A segment to specify the related document
+                      number.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                                <documentation>IMD,
+                      A segment to specify the type of related
+                      document.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                                <documentation>GIN,
+                      A segment to specify stock control numbers.</documentation>
+                            </segment>
+                            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_12">
+                                <documentation>Segment group 12:
+                                        TDT-DTM-LOC
+                      A group of segments to specify coupon
+                      information.</documentation>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                                    <documentation>SEQ,
+                         A segment to specify the coupon delivery
+                         sequence.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                    <documentation>FTX,
+                         A segment to specify print and service
+                         provider information in free text format.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                                    <documentation>ALC,
+                         A segment to indicate the coupon charge.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                                    <documentation>GIN,
+                         A segment to specify coupon stock control
+                         numbers.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                                    <documentation>RFF,
+                         A segment to specify a frequent flyer number.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                                    <documentation>IMD,
+                         A segment to specify services and products
+                         relating to the coupon or flight details.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                                    <documentation>NAD,
+                         A segment identifying the party to be billed.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Transport_information">
+                                    <documentation>TDT,
+                         A segment identifying the carrier and flight
+                         number.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                    <documentation>DTM,
+                         A segment to indicate flight departure dates
+                         and times, and, coupon validity dates.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                                    <documentation>LOC,
+                         A segment to specify airports of departure
+                         and arrival and to indicate transit stops.</documentation>
+                                </segment>
+                            </segmentGroup>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+                    <documentation>CNT,
+             A segment to specify the total number of transactions per
+             agent.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,204 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CONWQD" version="D:03A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CONWQD">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment for unique identification of the Work Item Quantity
+       Determination document name, number and function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying the dates that apply, e.g. date of
+       valuation, date of submission, acceptance date, etc.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+            <documentation>AUT,
+       A segment used to authenticate the message by exchanging a
+       password or some other form of identification agreed between
+       the trading partners.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment with free text information, in coded or clear form,
+       used for any textual qualification. In computer to computer
+       exchanges, such text will require the receiver to process this
+       segment manually.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments for quoting references and their relevant
+       dates that are applicable to the message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment for quoting references that are applicable to this
+          message. e.g. contract identity, operational references,
+          determination reference number of a former message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Date of references quoted in the previous RFF segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the parties with associated
+       information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment identifying names and addresses of the parties, in
+          coded or clear form, and their functions relevant to the
+          Work Item Quantity Determination Message. Identification of
+          the contractor and client parties is mandatory for the Work
+          Item Quantity Determination Message. It is recommended that
+          where possible only the coded form of the party ID should be
+          specified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          A segment giving more specific location information of the
+          party specified in the NAD segment e.g. internal
+          site/building number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                <documentation>FII,
+          A segment identifying the financial institution (e.g. bank)
+          and relevant account numbers for the contractor, client and
+          where necessary other parties.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments giving references only relevant to the
+          specified party rather than the whole message.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment identifying the reference by its number and
+             where appropriate a line number within a document.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the date and/or time related to the
+             reference.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments identifying the documentary requirements
+          of the specified party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             A segment identifying and providing information relating
+             to the documents required by the party specified by the
+             NAD.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the date and/or time of the
+             document.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments giving contact details of the specific
+          person or department within the party identified in the NAD
+          segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify a person or department, and
+             associated function, to whom communications should be
+             directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to identify a communication type and number for
+             the contact specified in the CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+       A group of segments providing the quantity determination for
+       each work item. A quantity determination can consist of several
+       "calculation lines".</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="Structure_identification">
+                <documentation>BII,
+          A segment to identify the item of work to which this
+          quantity determination applies.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <documentation>QTY,
+          A segment giving control totals for this work item.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A segment group enabling a reference for the work item.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment giving a reference for the work item within the
+             whole project.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment giving a narrative description of the
+             reference.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment giving a date when the reference in this
+             segment group was related to project documentation.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+          A segment group giving the calculation lines and their
+          values for the work item identified in the BII segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                    <documentation>LIN,
+             A segment identifying a calculation line within a work
+             item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             A segment indicating how this calculation must be
+             interpreted.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A narrative description concerning the whole work item or
+             only the calculation given in segment group 9.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+             A segment group giving the details of the calculation
+             lines.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                A segment giving the values and factor of this
+                calculation line.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                A segment indicating, when necessary, mathematical
+                signs for the values given in the QTY segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment giving either:
+                - the reference of an existing calculation line for
+                this work item, identified in the BII segment, when
+                its result is used in the current calculation line, or
+                - when a standard formula is used, its reference
+                number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                Where a calculation line is not based upon a standard
+                formula, the free and unstructured calculation and its
+                values can be given in this segment.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

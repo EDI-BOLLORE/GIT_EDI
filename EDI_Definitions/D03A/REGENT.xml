@@ -1,0 +1,437 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="REGENT" version="D:03A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="REGENT">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment to identify the function of the message and to
+       transmit its identification number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+            <documentation>CUX,
+       A segment to specify the default currency used to express the
+       monetary amounts contained in the whole message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A segment group identifying and providing details relating to
+       parties at message level, such as message sender and receiver,
+       declarant and signatory.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          A segment providing the names and identifier of the parties
+          involved in the transmission of the message or in a
+          transaction associated to the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment providing additional references related to the
+          parties.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          A segment to indicate attributes of the parties.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          A segment to specify addresses related to the parties.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          A segment to indicate communication numbers relevant to the
+          described parties.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A segment group to identify supporting documents at message and
+       declaration level.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          A segment identifying and providing information relating to
+          the documents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to provide additional references related to the
+          documents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to indicate dates related to the documents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          A segment to specify attributes of the documents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          A segment to provide addresses associated with the documents
+          such as a postal address.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          A segment to describe locations associated with the
+          documents such as place of signature or place of delivery.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          A segment to provide communication numbers related to the
+          documents, such as the one used to transmit a document via a
+          specified channel.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <documentation>GEI,
+          A segment to specify an indicator related to the processing
+          of the documents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment to provide additional free text information
+          concerning the documents.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A segment group to specify details about the payment related to
+       the cost of a formality, such as registration fees.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment to indicate the paid amount.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+                <documentation>PAI,
+          A segment to detail instructions for the payment, such as
+          payment means.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                <documentation>FII,
+          A segment to identify an account and the related financial
+          institution relevant for the payment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to provide dates related to the payment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A segment group to identify and describe the events reported in
+       the message. This group may provide a summary of the events
+       described in details in the rest of the message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                <documentation>EVE,
+          A segment to identify the event reported in the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          A segment to indicate attributes associated with the events.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to specify dates related to the events.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment to provide free text information related to the
+          events.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+       A segment group to provide information on relevant entities
+       belonging to an enterprise to which events apply. An entity
+       designates a component of the structure of an enterprise such
+       as its legal entity, a branch or an agency. This group may
+       describe entities referring to different enterprises when
+       events affect them all together.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DSI" segcode="DSI" truncatable="true" xmltag="Data_set_identification">
+                <documentation>DSI,
+          A segment to identify a data set referring to an entity
+          within an enterprise.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          A segment to provide the names and identifier of the parties
+          associated with the entity of the enterprise currently
+          described.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                <documentation>REL,
+          A segment to indicate the relationship between the entity
+          currently described and others previously provided.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to provide references related to the entity
+          described such as a unique identifier of the entity which is
+          in relation with it.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A segment group to identify and provide information related
+          to events applying to the entity of the enterprise.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                    <documentation>EVE,
+             A segment to identify events applying to the entity of
+             the enterprise.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             A segment to provide attributes associated with the
+             events.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment to indicate dates associated with the events.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to provide free text information related to the
+             events.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+                               QTY-FTX-SG8-SG9-SG10-SG11-SG12-SG13
+             A segment group to provide detailed information related
+             to the events applying to the described entity of the
+             enterprise.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                        <documentation>REL,
+                A segment to identify the relationship between data
+                contained in this group.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                        <documentation>PNA,
+                A segment to provide the names and the identifier of a
+                related party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment to indicate references associated with the
+                information described in the group, such as additional
+                reference numbers of a related party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="Nationality">
+                        <documentation>NAT,
+                A segment to provide the nationality of a related
+                party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="Person_demographic_information">
+                        <documentation>PDI,
+                A segment to indicate the marital status of a related
+                party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment to provide dates associated with event-
+                related information described in the group, such as
+                the related party date of birth or accounting dates.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                        <documentation>ADR,
+                A segment to provide addresses associated with the
+                event-related information described in the group.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                A segment to provide locations associated with the
+                event-related information described in the group, such
+                as the place of birth of a related party or the
+                operating place of an enterprise.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment to provide communication numbers associated
+                with the event-related information described in the
+                group.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                A segment to provide quantities associated with the
+                event-related information described in the group, such
+                as a number of employees.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment to provide additional free text information
+                concerning the event-related information described in
+                the group.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                        <documentation>Segment group 8:
+                A segment group to provide relevant attributes
+                applying to the event-related information described in
+                the group, such as a business activity characteristic.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   A segment to identify attributes associated with
+                   the event-related information described in the
+                   group.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                            <documentation>GEI,
+                   A segment to specify a processing indicator
+                   associated with the described attribute.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment to provide dates associated with the
+                   described attribute.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                            <documentation>MEA,
+                   A segment to specify a measurement applicable to
+                   the described attribute.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment to provide additional free text
+                   information concerning the described attribute.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                        <documentation>Segment group 9:
+                A segment group to provide details on relevant
+                monetary amounts associated with the event-related
+                information described in the group, such as capital
+                amount or share holding amount.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment to provide details on a monetary amount
+                   associated with the event-related information
+                   described in the group.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   A segment to specify relevant attributes applicable
+                   to the provided monetary amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment to indicate dates associated with the
+                   provided monetary amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                            <documentation>QTY,
+                   A segment to indicate relevant quantities
+                   associated with the provided monetary amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment to specify any additional free text
+                   information associated with the provided monetary
+                   amount.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                        <documentation>Segment group 10:
+                A segment group to provide details on documents
+                associated with the event-related information
+                described in the group, such as:
+                - supporting document,
+                - written proof,
+                - specific authorization.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                            <documentation>DOC,
+                   A segment to identify the related documents.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   A segment to specify attributes applicable to the
+                   related documents.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                            <documentation>LOC,
+                   A segment to provide locations associated with the
+                   related documents.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment to indicate dates applicable to the
+                   related documents.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_11">
+                        <documentation>Segment group 11:
+                A segment group to provide tax related information.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                            <documentation>TAX,
+                   A segment to identify and describe the tax
+                   information.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   A segment to provide any tax related attribute such
+                   as a tax system characteristic or a periodicity of
+                   payment.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                            <documentation>LOC,
+                   A segment to provide any tax related locations.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment to provide any tax related free text
+                   information.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_12">
+                        <documentation>Segment group 12:
+                A segment group to provide employment related
+                information.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                            <documentation>EMP,
+                   A segment to identify the employment type and
+                   category.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   A segment to provide employment related attributes.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                            <documentation>LOC,
+                   A segment to provide employment related locations.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment to provide employment related dates.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_13">
+                        <documentation>Segment group 13:
+                A segment group to provide insurance coverage related
+                information.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                            <documentation>ICD,
+                   A segment to identify and describe the related
+                   insurance coverage.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_14">
+                            <documentation>Segment group 14:
+                   A segment group to identify and describe parties
+                   involved in the insurance coverage, such as an
+                   health insurance organization or a pension scheme.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                                <documentation>PNA,
+                      A segment to provide names and identifier of a
+                      party involved in the insurance coverage.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                                <documentation>ADR,
+                      A segment to provide addresses related to the
+                      party involved in the insurance coverage.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                                <documentation>LOC,
+                      A segment to provide locations related to the
+                      party involved in the insurance coverage.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,834 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="FINPAY" version="D:07A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="FINPAY">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment by means of which the sender must uniquely identify
+       the FINPAY message using its type and number and when necessary
+       its function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying the date and, if required, the time when
+       the message is created.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="Business_function">
+            <documentation>BUS,
+       A segment identifying certain characteristics of the Multiple
+       interbank funds transfer message, such as the type of
+       transaction and/or bank operation, and used for routing
+       purposes.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments identifying a previously-sent FINPAY.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment specifying the reference of the previously-sent
+          FINPAY.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the creation date of the referenced
+          message.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the financial institutions
+       involved in the multiple interbank funds transfer message and
+       the routing functions with their contacts.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                <documentation>FII,
+          A segment identifying the financial institutions associated
+          with the transaction in coded or uncoded form and their
+          function.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <documentation>CTA,
+          A segment identifying a person or a department for the party
+          specified in the leading FII segment to whom communication
+          should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          A segment identifying communication type(s) and number(s) of
+          person(s) or department(s) specified in the associated CTA
+          segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments containing general information about the
+       transaction, such as the total amount to be transferred. It
+       also contains details which pertain to all individual payments
+       specified within the group.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                <documentation>LIN,
+          A segment identifying the beginning of the general
+          information related to the transaction (B level) by a
+          sequential line number, which may also be used for
+          reconciliation purposes.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="Business_function">
+                <documentation>BUS,
+          A segment identifying characteristics of the type(s) of
+          transaction(s) contained in level C.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment identifying the posting date and/or value date
+          and/or the requested execution date.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="5" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments specifying the account relationship(s)
+          and providing information pertaining to the routing of the
+          funds.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                    <documentation>FII,
+             A segment identifying the account relationship between
+             the sending and receiving financial institution.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment identifying a person or a department for the
+             financial institution specified in the FII segment and to
+             whom communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment identifying communication type(s) and number(s)
+             of person(s) or department(s) specified in the associated
+             CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments specifying the reference of the total
+          amount to be transferred.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment specifying the reference number of the total
+             amount to be transferred. This reference is specific for
+             each total amount contained in each B level.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment indicating the date and, if required, the time
+             relevant to the preceding reference.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="4" minOccurs="1" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments containing the total of all the amounts
+          of the subsequent C levels to be transferred. It may also
+          specify the currency, the foreign exchange details, as well
+          as any other relevant amounts.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment containing the total of all subsequent
+             individual amounts to be transferred as well as,
+             optionally, the currency.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                    <documentation>CUX,
+             A segment identifying the source currency and the target
+             currency of the amount to be transferred when they are
+             different, and indicating the exchange rate related to
+             the account and amount to be converted.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the effective date and/or time the
+             rate of exchange quoted in the preceding CUX segment was
+             fixed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment identifying other transactions to which funds
+             associated with the multiple interbank funds transfer are
+             related, such as a separate foreign exchange deal.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A group of segments specifying the method for allocation of
+          charges and allowances and to which account these charges
+          have been directed. It may also contain the total amount of
+          charges and allowances.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="Financial_charges_allocation">
+                    <documentation>FCA,
+             A segment specifying the method for allocation of charges
+             and allowances and identifying the account to which such
+             charges should be directed where it is different from the
+             principal account.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment containing the total amount of charges and
+             allowances and associated taxes related to a specific
+             account or to the same account as quoted in the preceding
+             FII segment, specifying the account relationship(s). It
+             may also contain the total of individual amounts
+             calculated from a basis amount or the basis amount from
+             which charges and/or allowances are calculated when this
+             is different from the original amount.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="6" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+             A group of segments providing details pertaining to all
+             charges and/or allowances. It may also specify any
+             exchange rates related to these charges and/or
+             allowances.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                        <documentation>ALC,
+                A segment containing any charges and/or allowances
+                which are related to the total amount, calculated from
+                the original amount or from the basis amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                A segment specifying the details of the percentage
+                used for calculating the charges and/or allowances.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment identifying the single amount of charges
+                and/or allowances and specifying the basis amount from
+                which these charges and/or allowances are calculated,
+                when different from the transaction amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                        <documentation>CUX,
+                A segment indicating any exchange rate related to the
+                charges and/or allowances, where relevant.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment specifying the effective date and/or time
+                the rate of exchange quoted in the preceding CUX
+                segment was fixed.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="6" minOccurs="0" xmltag="Segment_group_9">
+                        <documentation>Segment group 9:
+                A group of segments describing any taxes associated
+                with the charges, their amount, exchange rates and
+                date of exchange rates.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                            <documentation>TAX,
+                   A segment identifying taxes computed to the charges
+                   in the preceding segment group.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment identifying the basis amount from which
+                   the tax is calculated, if different from the amount
+                   contained in the preceding MOA segment, identifying
+                   a single amount of charges and/or allowances.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                            <documentation>CUX,
+                   A segment specifying the rate of exchange related
+                   to the tax amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment specifying the effective date and/or time
+                   the rate of exchange quoted in the preceding CUX
+                   segment was fixed.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="3" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+          A group of segments containing instructions and related
+          information from the sender or the receiver of the message
+          to parties involved in the transaction. It specifies action
+          to be taken by the identified parties and the date (and
+          optionally time) by which such action needs to be taken.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                    <documentation>INP,
+             A segment identifying the party to enact the instruction
+             and the parties to be contacted. It specifies where
+             appropriate the instruction in coded form.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment providing free text instructions related to the
+             associated INP segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the earliest and the latest dates
+             and times by which the instruction specified in the INP
+             and/or FTX segment(s) needs to be carried out.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+          A group of segments providing information for subsequent use
+          by regulatory authorities requiring statistical and other
+          types of data. It also identifies the regulatory authority
+          for which the information is intended followed by the
+          information itself.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             A segment identifying what processing should be completed
+             for regulatory authorities.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment giving the amount and the currency of each
+             transaction to be reported.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment giving the different origins and/or
+             destinations (places) of goods and/or investments and/or
+             services.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+             A segment identifying the recipient of the associated
+             informative text.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                    <documentation>RCS,
+             A segment giving the nature (e.g., goods, transport
+             services) and direction of each transaction to be
+             recorded in coded form.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment giving information in coded or in clear form to
+             provide information relevant to regulatory authorities'
+             requirements.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999999" minOccurs="1" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+                            SG19-SG20-SG23
+          A group of segments containing information relating to the
+          transactions to be transferred, such as the financial and
+          non-financial institutions involved, payment channel,
+          amounts, dates, instructions. It may also contain remittance
+          information related to the transactions.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                    <documentation>SEQ,
+             A segment specifying the sequence number indicating the
+             start of the information related to each individual
+             transaction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="Business_function">
+                    <documentation>BUS,
+             A segment providing information relating to the type of
+             transfer and the underlying reason for the transfer.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment indicating dates, taken from the original
+             payment order and added by the sending financial
+             institution, such as the execution dates, the posting
+             date, the value date, etc.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="4" minOccurs="1" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+             A group of segments specifying the financial institutions
+             involved in further processing the transaction, as well
+             as any relevant contact names and numbers.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                        <documentation>FII,
+                A segment specifying the financial institutions
+                involved in further processing the transaction.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment identifying a person or a department for the
+                financial institution specified in the FII segment and
+                to whom communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment identifying communication type(s) and
+                number(s) of person(s) or department(s).</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="6" minOccurs="0" xmltag="Segment_group_14">
+                    <documentation>Segment group 14:
+             A group of segments specifying reference numbers from the
+             original transfer instruction and additional references
+             added by the financial institutions involved in the
+             transaction.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment specifying a reference number identifying
+                the entry and/or item from the sending financial
+                institution's perspective.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment specifying the date and/or time and/or
+                period relevant to the preceding reference number.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+             A group of segments containing instructions intended for
+             the financial institutions involved on the receiving side
+             of the transactions and/or for the account owner.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+                        <documentation>PAI,
+                A segment specifying the conditions, method and
+                payment channel used to execute the funds transfer.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment giving additional information pertaining to
+                the funds transfer instructions, in free form.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="4" minOccurs="1" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+             A group of segments indicating the individual amounts to
+             be transferred. This segment group may also contain the
+             currency, dates and a reference related to the amount.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment containing the final amount to be
+                transferred. It may also contain the original amount
+                of the transfer instruction and the amount received.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                        <documentation>CUX,
+                A segment identifying the source currency and the
+                target currency of the amount to be transferred when
+                they are different, and indicating the exchange rate
+                related to the account and amount to be converted.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment indicating the date and/or time relating to
+                the exchange rate quoted in the preceding CUX segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment specifying the reference of another
+                transaction underlying the transfer being made, such
+                as a foreign exchange transaction.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="6" minOccurs="0" xmltag="Segment_group_17">
+                    <documentation>Segment group 17:
+             A group of segments identifying the names and addresses
+             of non-financial parties involved in the transaction, as
+             well as any contacts and numbers.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                A segment identifying parties involved in the
+                transaction, such as the Payee, Beneficiary, Payor and
+                Ordering Customer.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment identifying a person or a department for the
+                party specified in the NAD segment and to whom
+                communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment identifying communication type(s) and
+                number(s) of person(s) or department(s).</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_18">
+                    <documentation>Segment group 18:
+             A group of segments providing information for subsequent
+             use by regulatory authorities requiring statistical and
+             other types of data. It also identifies the regulatory
+             authority for which the information is intended followed
+             by the information itself.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                A segment identifying what processing should be
+                completed for regulatory authorities.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment giving the amount and the currency of each
+                transaction to be reported.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                A segment giving the different origins and/or
+                destinations (places) of goods and/or investments
+                and/or services.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                A segment identifying the recipient of the associated
+                informative text.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                        <documentation>RCS,
+                A segment giving the nature (e.g., goods, transport
+                services) and direction of each transaction to be
+                recorded in coded form.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment giving information in coded or in clear form
+                to provide information relevant to regulatory
+                authorities' requirements.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="4" minOccurs="0" xmltag="Segment_group_19">
+                    <documentation>Segment group 19:
+             A group of segments containing instructions and related
+             information from the sender or the receiver of the
+             message to parties involved in the transaction. It
+             specifies action to be taken by the identified parties
+             and the date (and optionally time) by which such action
+             needs to be taken.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                        <documentation>INP,
+                A segment identifying the party to enact the
+                instruction and the parties to be contacted. It
+                specifies where appropriate the instruction in coded
+                form.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment providing free text instructions related to
+                the associated INP segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment specifying the earliest and the latest dates
+                and times by which the instruction specified in the
+                INP and/or FTX segment(s) needs to be carried out.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_20">
+                    <documentation>Segment group 20:
+             A group of segments providing full details of all
+             charges, allowances and associated taxes that apply to
+             the amount to be transferred, together with information
+             as to who bears the charges and to which account they
+             have been directed. A total value of all charges plus
+             allowances may be given for every account to which
+             charges may be directed.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="Financial_charges_allocation">
+                        <documentation>FCA,
+                A segment specifying the method for allocation of
+                charges and allowances and identifying the account to
+                which such charges should be directed where it is
+                different from the principal amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment containing the total amount of charges,
+                allowances and associated taxes related to a specific
+                account or to the same account as quoted in segment
+                group 16. It may also contain the total of individual
+                amounts calculated from a basis amount or the basis
+                amount from which charges and/or allowances are
+                calculated when this is different from the original
+                amount.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="6" minOccurs="0" xmltag="Segment_group_21">
+                        <documentation>Segment group 21:
+                A group of segments providing a detailed breakdown of
+                all charges and/or allowances.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="Allowance_or_charge">
+                            <documentation>ALC,
+                   A segment containing any charges and/or allowances
+                   which are related to the total amount, calculated
+                   from the original amount or from the basis amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                            <documentation>PCD,
+                   A segment specifying the details of the percentage
+                   used for calculating the charges and/or allowances.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment identifying the single amount of charges
+                   and/or allowances and specifying the basis amount
+                   from which these charges and/or allowances are
+                   calculated if different from the transaction
+                   amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                            <documentation>CUX,
+                   A segment indicating any exchange rate related to
+                   the charges and/or allowances, where relevant.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment specifying the effective date and/or time
+                   the rate of exchange quoted in the preceding CUX
+                   segment was fixed.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="6" minOccurs="0" xmltag="Segment_group_22">
+                            <documentation>Segment group 22:
+                   A group of segments describing any taxes associated
+                   with the charges, their amount, exchange rates and
+                   date of exchange rates.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                                <documentation>TAX,
+                      A segment identifying taxes computed to the
+                      charges in the preceding segment group.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                                <documentation>MOA,
+                      A segment identifying the basis amount from
+                      which the tax is calculated, if different from
+                      the amount in the preceding MOA segment,
+                      providing a detailed breakdown of all charges
+                      and/or allowances.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                                <documentation>CUX,
+                      A segment specifying the rate of exchange
+                      related to the tax amount.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      A segment specifying the effective date and/or
+                      time the rate of exchange quoted in the
+                      preceding CUX segment was fixed.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_23">
+                    <documentation>Segment group 23:
+             A group of segments containing the details of payment.
+             The content of these segments is passed through the
+             banking chain from the ordering customer to the
+             beneficiary.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="Process_identification">
+                        <documentation>PRC,
+                A segment identifying the kind of process on the
+                beneficiary's side.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment providing free text instructions relating to
+                the payment details.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_24">
+                        <documentation>Segment group 24:
+                A group of segments providing details of all
+                documents, e.g., invoices, statements, despatch
+                advices, etc. to which the message refers. It includes
+                information on the monetary amounts for each document
+                and on any adjustments (with an indication of the
+                reason for adjustments) and discounts. For information
+                purposes an indication of the tax element can be
+                provided.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                            <documentation>DOC,
+                   A segment identifying the reference document
+                   against which payment is being made.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment giving the monetary amounts of each
+                   reference document (e.g., original amount, discount
+                   amount etc.). The amount due and the amount
+                   remitted are mandatory.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment specifying the date of the referenced
+                   document and indicating any other relevant dates
+                   applicable.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment including any additional references
+                   related to the reference document.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                            <documentation>NAD,
+                   A segment identifying a party name and address,
+                   either by coded identification or in a clear form.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_25">
+                            <documentation>Segment group 25:
+                   A group of segments specifying the currencies and
+                   the related dates and/or periods valid for the
+                   referenced document where different to the
+                   reference currency.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                                <documentation>CUX,
+                      A segment identifying the currency and
+                      associated exchange rate of the referenced
+                      document where different to the remittance
+                      currency.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      A segment specifying the date and/or time and/or
+                      period related to the rate of exchange.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="100" minOccurs="0" xmltag="Segment_group_26">
+                            <documentation>Segment group 26:
+                   A group of segments indicating adjustment amounts
+                   and their referenced documents.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AJT" segcode="AJT" truncatable="true" xmltag="Adjustment_details">
+                                <documentation>AJT,
+                      A segment indicating any adjustments to the
+                      amounts originally specified in the referenced
+                      document, and to which items such adjustments
+                      apply with the associated reason for adjustment.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                                <documentation>MOA,
+                      A segment giving the monetary amounts of the
+                      adjustments of each reference document (e.g.
+                      original amounts, discount amounts, etc.).</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                                <documentation>RFF,
+                      A segment including any additional references
+                      related to the reference documents.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      A segment providing free text information
+                      related to the payment details.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_27">
+                            <documentation>Segment group 27:
+                   A group of segments providing details of individual
+                   line items in the referenced document.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DLI" segcode="DLI" truncatable="true" xmltag="Document_line_identification">
+                                <documentation>DLI,
+                      A segment identifying a specific line item
+                      within the referenced document.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                                <documentation>MOA,
+                      A segment giving the monetary amounts for this
+                      line item.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                                <documentation>PIA,
+                      A segment specifying item identification codes
+                      where required.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      A segment specifying the date and/or time and/or
+                      period related to the line item.</documentation>
+                            </segment>
+                            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_28">
+                                <documentation>Segment group 28:
+                      A group of segments identifying the currency and
+                      the related dates and/or periods of the line
+                      item where different to the remittance and
+                      document currency.</documentation>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                                    <documentation>CUX,
+                         A segment identifying the currency and
+                         associated exchange rate of the line item,
+                         where different to the source and target
+                         currency.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                    <documentation>DTM,
+                         A segment specifying the effective date
+                         and/or time the rate of exchange was fixed.</documentation>
+                                </segment>
+                            </segmentGroup>
+                            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_29">
+                                <documentation>Segment group 29:
+                      A group of segments indicating adjustment
+                      amounts and their referenced documents for this
+                      line item.</documentation>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AJT" segcode="AJT" truncatable="true" xmltag="Adjustment_details">
+                                    <documentation>AJT,
+                         A segment indicating any adjustments to the
+                         amounts originally specified for this line
+                         item and the reason for the adjustments.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                                    <documentation>MOA,
+                         A segment giving the monetary amounts of the
+                         adjustment for this line item.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                                    <documentation>RFF,
+                         A segment including any additional references
+                         related to the line item.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                    <documentation>FTX,
+                         A segment providing free text information
+                         related to the payment details.</documentation>
+                                </segment>
+                            </segmentGroup>
+                        </segmentGroup>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_30">
+                        <documentation>Segment group 30:
+                A group of segments indicating the end of the details
+                of payment and specifying total amounts for control
+                purposes.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                            <documentation>GEI,
+                   A segment identifying the end of the details of
+                   payment.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment indicating total amounts for control
+                   purposes.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+            <documentation>CNT,
+       A segment providing information on control totals.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_31">
+            <documentation>Segment group 31:
+       A group of segments indicating the total amount to be
+       transferred in the message together with the date of
+       availability.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment indicating the total amount to be transferred in
+          the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment indicating the date of availability.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_32">
+            <documentation>Segment group 32:
+       A group of segments specifying the details of any
+       authentication (validation) procedures applied to the message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+                <documentation>AUT,
+          A segment specifying details of any authentication
+          (validation) procedures applied to the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment identifying the validation date and/or time.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,406 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="SAFHAZ" version="D:00B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="SAFHAZ">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment for unique identification of the Safety and Hazard
+       Data Message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>RFF,
+       A segment for referencing documents that relate to the entire
+       message, e.g. an EEC regulation number, and EPA regulation id,
+       etc.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying the dates, times, and/or periods that are
+       relevant to the whole message. The segment must be specified at
+       least once to identify the document date.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment with free text information, in coded or clear form,
+       that applies to the entire message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments identifying the parties involved in the
+       transaction, the contact method(s) and mean(s), and optionally
+       any reference required for a specific party.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment to identify a party name and address, either by
+          coded identification or in clear form. The identity of the
+          party responsible for placing the substances/materials on
+          the market must be identified in accordance with legal
+          requirements. It is recommended that where possible only the
+          coded form of the party ID should be specified, e.g. the
+          Buyer and Seller of Goods are known to each other, thus only
+          the coded ID is required.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment for referencing documents that relate to a
+          specific party, e.g. contract number, order number, etc.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments identifying the contact person or
+          department for a trading partner and specifying the
+          communication channel and number. This segment must appear
+          at least once to identify the emergency contact of the goods
+          supplier.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify a person or department and their
+             function, to whom communications should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment specifying the communication method, e.g.
+             telephone and means, e.g. telephone number, for the
+             specified contact.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1000" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments providing the safety and hazard details of
+       a substance to enable appropriate precautions to be taken. Each
+       occurrence of the detail section relates directly to one Safety
+       Data Sheet, i.e. one substance or product.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          A segment for identifying the start of the data relevant to
+          a specific substance and, where possible, identifying the
+          suppliers product id.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                <documentation>IMD,
+          A segment for identifying or describing the substance. This
+          must be identical to the identification information provided
+          on the label. Other means of identification available may
+          also be given.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                <documentation>PIA,
+          A segment providing additional codes to further identify the
+          substance specified in the LIN segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <documentation>MEA,
+          A segment enabling the physical measurements of the
+          substance to be specified where this is required for full
+          identification.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                <documentation>RCS,
+          A segment enabling any necessary industry/national/
+          international regulations relating to the substance to be
+          identified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment for referencing documents that relate to the
+          specific product or substance.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the date of issue and/or change Safety
+          data.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment with text information, in coded or clear form,
+          used when additional information relating to the substance
+          is needed but cannot be accommodated within other segments.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments identifying the parties involved in the
+          transaction, the contact method(s) and mean(s), and
+          optionally any reference required for a specific party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+             A segment to identify a party name and address, either by
+             coded identification or in clear form. The identity of
+             the party responsible for placing substances/materials on
+             the market must be identified in accordance with legal
+             requirements. It is recommended that where possible only
+             the coded form of the party ID should be specified, e.g.
+             the Buyer and Seller of Goods are known to each other,
+             thus only the coded is required.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment for referencing documents that related to a
+             specific party, e.g. order number, contract number, etc.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             A group of segments identifying the contact person or
+             department for a trading partner and specifying the
+             communication channel and number. This segment must
+             appear at least once to identify the emergency contact of
+             the goods supplier.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment to identify a person or department and their
+                function, to whom communications should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment specifying the communication method, e.g.
+                telephone and means e.g. telephone number, for the
+                specified contact.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="20" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments specifying the relevant information for
+          one aspect of Safety and Hazard data.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SFI" segcode="SFI" truncatable="true" xmltag="Safety_information">
+                    <documentation>SFI,
+             A segment identifying the hazard/safety report section
+             (e.g. one of the 16 sections required by EEC law) or type
+             that the group of segments is associated with.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <documentation>PIA,
+             A segment identifying the specific substance related to
+             the hazard.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+                    <documentation>EQD,
+             A segment identifying a type or specific piece of
+             equipment required to handle, store or transport the
+             substance.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment with text information, in coded or clear form,
+             used when additional information related to the specific
+             hazard is needed but cannot be accommodated within other
+             segments.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+             A group of segments identifying the parties involved in
+             the transaction, the contact method(s) and mean(s), and
+             optionally any reference required for specific party.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                A segment to identify a party name and address, either
+                by coded identification or in clear form. The identity
+                of the party responsible for placing the
+                substances/materials on the market must be identified
+                in accordance with legal requirements. It is
+                recommended that where possible only the coded form of
+                the party ID should be specified, e.g. the Buyer and
+                Seller of Goods are known to each other, thus only the
+                coded ID is required.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment for referencing documents that relate to a
+                specific party, e.g. order number, contract number,
+                etc.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_8">
+                        <documentation>Segment group 8:
+                A group of segments identifying the contact person or
+                department for a trading partner and specifying the
+                communications channel and number. This segment must
+                appear at least once to identify the emergency contact
+                of the good supplier.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                            <documentation>CTA,
+                   A segment to identify a person or department and
+                   their function, to whom communications should be
+                   directed.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                            <documentation>COM,
+                   A segment specifying the communication method, e.g.
+                   telephone and means, e.g. telephone number, for the
+                   specified contact.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+             A group of segments giving any necessary handling
+             information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                        <documentation>HAN,
+                A segment providing information on the handling of
+                hazardous materials.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with text information, in coded or clear
+                form, used when additional information related to the
+                handling or storage of the substance is needed but
+                cannot be accommodated within other segments.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_10">
+                    <documentation>Segment group 10:
+             A group of segments providing safety and health hazard
+             information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                        <documentation>IMD,
+                A segment identifying a hazardous component of the
+                substance.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <documentation>MEA,
+                A segment specifying measurements and tolerances of
+                exposure, storage conditions, etc. for the component.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                A segment specifying the percentage of the hazardous
+                substance that the component occupies.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment identifying documents or regulations
+                relevant to the specific component of the hazardous
+                substance.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with text information, in coded or clear
+                form, used when additional information related to the
+                safety or health hazard information is needed but
+                cannot be accommodated within other segments.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_11">
+                    <documentation>Segment group 11:
+             A group of segments providing information relating to the
+             transportation of a substance.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="Dangerous_goods">
+                        <documentation>DGS,
+                A segment identifying transport related information
+                for the movement of hazardous goods.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment identifying additional documents or
+                regulations relevant to the movement of hazardous
+                goods.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with text information, in coded or clear
+                form, used when additional information related to the
+                transport of the hazardous goods is needed but cannot
+                be accommodated within other segments.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_12">
+                        <documentation>Segment group 12:
+                A group of segments providing information relating to
+                the packaging of a substance.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                            <documentation>PAC,
+                   A segment describing the type of packages/physical
+                   units in which the substance is transported or
+                   stored.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="Package_identification">
+                            <documentation>PCI,
+                   A segment identifying the markings and labels on
+                   the packages containing the substance, i.e. the
+                   package/box label.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+             A group of segments providing information relating to the
+             physical and chemical characteristics and properties of a
+             substance. When required other related information will
+             be given, e.g. stability, ecological, etc.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <documentation>CCI,
+                A segment identifying particular characteristic about
+                which information will be required.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                        <documentation>IMD,
+                A segment further describing the characteristic of a
+                substance or component of a substance.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment with text information, in coded or clear
+                form, used when additional information related to the
+                physical of chemical property is needed but cannot be
+                accommodated within other segments.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                        <documentation>CAV,
+                A segment identifying the value of attributes.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_14">
+                        <documentation>Segment group 14:
+                A group of segments identifying documents/regulations
+                and, if required, their dates relevant to the
+                characteristic.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment identifying additional documents or
+                   regulations relevant to the specific
+                   characteristic.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment specifying the dates, times, and/or
+                   periods that are relevant for the document or
+                   regulation.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_15">
+                        <documentation>Segment group 15:
+                A group of segments providing measurements and test
+                results related to the substances physical and
+                chemical property.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                            <documentation>MEA,
+                   A segment specifying the physical/chemical property
+                   measurements, e.g. melting point, boiling point,
+                   etc.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+                            <documentation>TEM,
+                   A segment specifying the type and nature of the
+                   test performed to obtain the measurement.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment identifying the date/time/period when the
+                   test result was obtained.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment identifying documents or regulations
+                   relevant to the specific test result.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment with text information, in coded or clear
+                   form, used to give additional information relating
+                   to the test.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

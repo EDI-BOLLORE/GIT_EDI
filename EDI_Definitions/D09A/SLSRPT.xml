@@ -1,0 +1,402 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="SLSRPT" version="D:09A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="SLSRPT">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment by which the sender must uniquely identify the sales data
+       report by means of its type and number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying general dates and, when relevant, times related
+       to the whole message. The sales report preparation date and the
+       sales period covered by the report must be specified using this
+       segment.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MKS" segcode="MKS" truncatable="true" xmltag="Market_sales_channel_information">
+            <documentation>MKS,
+       To identify market and sales channel details for products and
+       services information.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments for giving references and where necessary, their
+       dates, relating to the whole message e.g. contract number.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment identifying the reference by its number and where
+          appropriate a line number within the document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the date/time related to the reference.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the parties with associated
+       information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment identifying names and addresses of the parties, in
+          coded or clear form, and their functions relevant to the sales
+          data report. Identification of the sender of the report and the
+          recipient is mandatory for the sales data report message. It is
+          recommended that where possible only the coded form of the party
+          ID should be specified e.g. the sender and receiver of the report
+          are known to each other, thus only the coded ID is required, but
+          when a new address might have to be clearly specified, this
+          should be done preferably in structured format.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments giving contact details of the specific person
+          or department within the party identified in the NAD segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify a person or department, and their
+             function, to whom communications should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to identify a communications type and number for the
+             contact specified in the CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments for giving references and where necessary,
+          their dates, relating to the party specified in the preceding
+          name and address segment, e.g. tax reference number.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment identifying the reference by its number and where
+             appropriate a line number within the document.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the date/time related to the reference.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+       A group of segments specifying the currencies, related dates/periods
+       and status for the rate of exchange valid for the whole sales data
+       report. The Segment Group 4 may be omitted in national applications
+       but will be required for international exchanges.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <documentation>CUX,
+          A segment identifying the currencies specified in the sales data
+          report e.g. the currency in which the sales amounts or product
+          prices are expressed in. A rate of exchange may be given to
+          convert a reference currency into a target currency.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying the date/time/period related to the rate of
+          exchange.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                <documentation>STS,
+          A segment giving a status for the range of exchange, e.g. if the
+          exchange rate is preliminary or accurate.
+4.1.2  Detail section
+       Information to be provided in the Detail section:</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="200000" minOccurs="0" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+       A group of segments providing activity, e.g. sales, data by line
+       item within a specific location. This segment group is mutually
+       exclusive with segment group 10. If segment group 10 is not used,
+       there shall be at least on occurrence of segment group 5.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          A segment to identify the activity, e.g. sales, the quantity of
+          the activity, and other data related to the specific activity
+          such as buying party, selling price, date sold, etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment identifying the sub-period during which the sales being
+          reported occurred if different than the period specified in the
+          heading section e.g. within a biweekly sales data report as
+          specified in the heading section, sales are reported in sub-
+          periods of one week.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment with free text information, in coded or clear form,
+          used when additional information is needed but cannot be
+          accommodated within other segments. In computer to computer
+          exchanges such text will normally require the receiver to process
+          this segment manually.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A group of segments giving references at an intermediate level
+          relating to several lines items, e.g. an invoice, shipment,
+          notification, etc.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             To specify a reference.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify date, and/or time, or period.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="200000" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+                            PAI-SG10
+          A group of segments to identify the product or service and the
+          activity, e.g. sales, which applies to the product or service. In
+          addition other data related to the activity may be specified.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                    <documentation>LIN,
+             A segment identifying the line item by the line number and
+             configuration level. In addition it may identify the product
+             or service to which the activity, e.g sales is applicable.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <documentation>PIA,
+             A segment providing either additional identification to the
+             product specified in the LIN segment or providing any
+             substitute product identification. In the Sales Data Report
+             the PIA segment can be used when a product specified in LIN
+             has to be associated with a group or family of products whose
+             identity could be specified in PIA.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+             A segment for describing the product in the line item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the date/time related to the sale of the
+             product specified in the LIN segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                    <documentation>PAC,
+             A segment specifying the number and type of packages.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment for referencing documents or other numbers pertinent
+             to the line item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             A segment identifying and providing information relating to
+             documents.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                    <documentation>ALI,
+             A segment indicating that the line item is subject to special
+             conditions owing to origin, customs preference, embargo
+             regulations or commercial factors. In the Sales Data Report
+             the ALI segment can be used to specify promotional flags, e.g.
+             to indicate what type of promotion if any was in effect when
+             the product specified in LIN was sold.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment specifying any monetary amounts relating to the
+             product. For the sales data report the MOA segment can be used
+             to express the total monetary amount of the product sold in
+             one location for one period.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                    <documentation>GIN,
+             A segment to specify identity numbers related to units of the
+             product identified in the LIN segment, e.g. serial number.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+             A group of segments providing prices and currencies per
+             location and period.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                        <documentation>PRI,
+                A segment to specify the price type and amount. The price
+                used in the calculation of the total sales monetary amount
+                will normally be the selling price.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                        <documentation>CUX,
+                A segment identifying the currencies and rate of exchange
+                for each line item.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+                    <documentation>PAI,
+             A segment to report the means of payment for the current
+             product (e.g. cash payment).</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_10">
+                    <documentation>Segment group 10:
+             A group of segments to identify the activity, e.g. sales, the
+             quantity of the activity, and other data related to the
+             specific activity such as buying party, selling price, date
+             sold, status for the quantity, etc.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                A segment identifying the quantity and activity, e.g.
+                quantity sold.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MKS" segcode="MKS" truncatable="true" xmltag="Market_sales_channel_information">
+                        <documentation>MKS,
+                To identify market and sales channel details for products
+                and services information.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <documentation>NAD,
+                To specify the name and address of a party related to the
+                specific activity quantity identified in the previous QTY
+                segment, e.g. the party the product(s) were sold to.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                        <documentation>PRI,
+                A segment specifying the price type and amount associated
+                with the activity quantity.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment identifying the date/time or period during which
+                the activity quantity occurred if different than the
+                date/time or period specified in either the header section
+                or segment group 5.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment to specify reference numbers associated with the
+                activity quantity.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                        <documentation>STS,
+                A segment giving a status for the quantity, e.g. metered,
+                estimated or corrected.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_11">
+            <documentation>Segment group 11:
+       A group of segments providing activity data, e.g. sales, by location
+       within a specific line item. This segment group is mutually
+       exclusive with segment group 5. If segment group 5 is not used,
+       there shall be at least one occurrence of segment group 10.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <documentation>GEI,
+          This segment is used to initiate reporting by line item.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999999" minOccurs="0" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+          A group of segments providing activity data, e.g. sales, by
+          location within specific line item.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                    <documentation>LIN,
+             A segment identifying the line item by the line number and
+             configuration level, and additionally identifying the product
+             or service for which activity data is being reported.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <documentation>PIA,
+             A segment providing additional or alternate product
+             identification, e.g. product group, identified in the LIN
+             segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+             A segment used to provide the item description for the item
+             identified in the LIN or PIA segments.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                    <documentation>PAC,
+             A segment specifying the number and type of packages.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             A segment used to specify monetary amounts applicable to the
+             line item, e.g. total sales.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+             A group of segments to identify the location of the activity,
+             e.g. sales, the quantity of the activity, and other data
+             related to the specific activity such as buying party, selling
+             price, date sold, etc.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                A segment indicating in coded form the location to which
+                the sales data being reported apply, e.g. a retail outlet,
+                a geographic area.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                A segment to specify reference numbers associated with the
+                location.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment identifying the date, time or period during which
+                all the activity quantities occurred for the location if
+                different than the date, time or period specified in the
+                header section.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment used to specify monetary amounts applicable to
+                the location, e.g. total sales.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                        <documentation>Segment group 14:
+                A group of segments to identify the activity, e.g. sales,
+                the quantity of the activity, and other data related to the
+                specific activity such as, selling price, date sold, status
+                for the quantity, etc.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                            <documentation>QTY,
+                   A segment identifying the quantity and activity, e.g.
+                   quantity sold.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                            <documentation>PRI,
+                   A segment specifying the price type and amount
+                   associated with the quantity.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment identifying the date, time or period during
+                   which the activity quantity occurred if different than
+                   the date, time or period specified in either the header
+                   section or segment group 5.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   A segment to specify reference numbers associated with
+                   the activity quantity.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                            <documentation>STS,
+                   A segment giving a status for the quantity, e.g.
+                   metered, estimated or corrected.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+            <documentation>UNS,
+       A service segment placed at the start of the summary section to
+       avoid segment collision.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+            <documentation>MOA,
+       A segment to specify monetary amounts relevant to the whole message,
+       such as the goods and services tax amounts.</documentation>
+        </segment>
+    </segments>
+</edimap>

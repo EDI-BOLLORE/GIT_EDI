@@ -1,0 +1,106 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CASRES" version="D:07A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CASRES">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment for unique identification of the message type, its
+       function, and the reference number for the response.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment identifying the relevant dates and times associated
+       with the response. The segment must be specified at least once
+       to specify the processing date of the response message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ERC" segcode="ERC" truncatable="true" xmltag="Application_error_information">
+            <documentation>ERC,
+       A segment identifying the type of application errors within the
+       message to which CASRES is a response.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <documentation>LOC,
+       A segment identifying the jurisdiction and court or tribunal
+       locations associated with the response message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>RFF,
+       A segment to specify a particular reference associated with the
+       response when required, e.g. reference number for a legal case.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+            <documentation>MOA,
+       A segment identifying a monetary amount involved in the
+       dispute.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment for free text information in coded or clear form, to
+       give further clarification to the response message, e.g. the
+       type of complaint, the nature of complaint.
+4.1.2  Detail section
+       Information to be provided in the Detail section:</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments identifying the particulars of a party to a
+       dispute.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment identifying the name and address of a party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                <documentation>SEQ,
+          A segment to provide for the allocation of a sequence number
+          (referenced in the GIR of Segment group 2) to a party
+          involved in a dispute.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment for free text information in coded or clear form,
+          to give further clarification when required of a party, e.g.
+          'trading as' and other legal descriptions.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the particular details
+       applicable to a court or tribunal order.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          A segment to provide relevant descriptive information
+          relating to a court or tribunal order (certificate).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                <documentation>GIR,
+          A segment to identify a group of parties (via the sequence
+          numbers allocated in Segment group 1) related to an order,
+          e.g. all the parties that the order is on behalf of, or all
+          the parties to which the order applies.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="Payment_terms">
+                <documentation>PYT,
+          A segment identifying the terms of payment, e.g. by
+          instalment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment identifying the relevant date, time or period
+          associated with the order, e.g. date order made, instalment
+          periods.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          A segment identifying a monetary amount involved in the
+          order.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment for free text information in coded or clear form,
+          to give further clarification when required to a court or
+          tribunal order.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

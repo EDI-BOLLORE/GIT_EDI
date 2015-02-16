@@ -1,0 +1,123 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="APERAK" version="D:05A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="APERAK">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment to indicate the type and function of the message and
+       to transmit the identifying number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment to specify related date/time.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment to specify free form or processable supplementary
+       information related to the whole message. In computer-to-
+       computer exchanges free form text will normally require the
+       receiver to process this segment manually.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+            <documentation>CNT,
+       A segment to provide message control totals.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A segment group to provide information on the document being
+       acknowledged.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          A segment to provide the necessary identification
+          information about the document being acknowledged.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to provide the relevant dates concerning the
+          document being acknowledged.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments to specify the document/message to which
+       the current message relates, and related date and time.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to indicate the reference number of the
+          document/message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to specify the date and time of the referenced
+          document/message.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to specify the identifications of message
+       sender and message receiver with their contacts and
+       communication channels.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment to specify the identification of the message
+          issuer and message receiver.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <documentation>CTA,
+          A segment to specify a person or department inside the
+          party's organization, to which communication should be
+          directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <documentation>COM,
+          A segment to indicate communication channel type and number
+          inside the party's organization, to which communication
+          should be directed.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments to identify the application error(s) within
+       a specified received message and to give specific details
+       related to the error type or to precise the type of
+       acknowledgement.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ERC" segcode="ERC" truncatable="true" xmltag="Application_error_information">
+                <documentation>ERC,
+          A segment identifying the type of application error or
+          acknowledgement within the referenced message.
+          In case of an error, the error code may specify the error in
+          detail (e.g. a measurement relating to a piece of equipment
+          is wrong) or as a rough indication (e.g. a measurement is
+          wrong).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment to provide explanation and/or supplementary
+          information related to the specified application error or
+          acknowledgement.
+          For example, the explanation may provide exact details
+          relating to a generic error code.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments to specify the functional entity
+          reference (e.g. goods item level, equipment level) relating
+          to the specified error; further details can be added to
+          identify the error more precisely.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             A segment to provide a reference relating to the
+             acknowledgement type or the specified error (e.g.
+             functional entity reference such as equipment level).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment to provide additional details relating to the
+             reference, e.g. the content of the wrong data (and its
+             exact place in the message).</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,1283 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="IPPOMO" version="D:06B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="IPPOMO">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       To specify the type of transaction contained within the
+       message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+            <documentation>GEI,
+       To indicate whether the transaction should be processed as a
+       temporary or permanent change to the policy.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+            <documentation>ATT,
+       To provide coded attributes that describe the type of business
+       transaction, such as 'Quotation Type'.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+            <documentation>CTA,
+       To provide contact information for a party who provided
+       authorisation for the business transaction.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <documentation>RFF,
+       To provide references for the transaction, such as 'Quote
+       Authorisation Reference', 'Broker Transaction Reference',
+       'Insurer Transaction Reference' etc.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+            <documentation>QTY,
+       To identify the total number of transactions in a set of
+       related transactions for one risk or policy.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+            <documentation>SEQ,
+       To identify the sequence number of this transaction in a set of
+       transactions for one risk or policy.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       To provide dates for the transaction, such as 'Response Date',
+       'Transaction Date', 'Transaction Expiry Date'.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments to identify the software which created the
+       business transaction contained within this message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          To identify a software supplier that provided software used
+          in the creation of the business transaction as well as the
+          transaction originator and addressee.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          To provide declarations about the software supplier, such as
+          accreditation.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments that provide details of one particular
+          software component or product.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             Contains a reference to identify a software component or
+             product.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify dates for the software component, such as
+             'Date Installed' and 'Date Effective'.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to identify and specify the policy package
+       and product.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                <documentation>ICD,
+          Identifies an insurance package, product or scheme.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To specify identification numbers for the policy, such as
+          'Broker Risk Reference' and 'Insurer's Policy Number'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Contains dates relating to the insurance policy, such as
+          'Inception Date', 'Expiry Date', 'Renewal Date'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          Contains coded attributes relating to the policy, such as
+          'Policy Accounting Type', 'Policy Status', 'Cancellation
+          Reason'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <documentation>PCD,
+          To specify percentages relating to the policy, such as
+          'Brokerage Percent', 'Percentage of Co-insurance'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          To specify monetary values relating to the policy, such as
+          'Maximum Value At Any One Location', 'Commission Amount'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          To specify declarations for the policy, such as 'Is the
+          policy renewable?', 'Is the broker the holding broker?'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <documentation>QTY,
+          To specify quantities relating to the policy, such as
+          'Number Of Drivers Covered', 'Maximum Number Of Vehicles At
+          Any One Location'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          To specify policy endorsements and to convey text variables
+          with which to complete the endorsement text; and to provide
+          text descriptions.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group giving details of documents that have been provided
+          in addition to the message to support the business
+          transaction; or requests for such documents.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             Provides details of a document needed to support the
+             business transaction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             To provide coded attributes that relate to the document,
+             such as whether the document is open or closed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide a text description of the document.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             To indicate premiums and excesses that apply at policy
+             level.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCC" segcode="PCC" truncatable="true" xmltag="Premium_calculation_component_details">
+                        <documentation>PCC,
+                To identify one premium or component that applies to
+                the policy, such as 'Gross Premium', 'Policy Excess'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                Provides a coded indication of how the premium
+                component group is to be processed, such as 'Added',
+                'Deleted', 'Replaced'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                Contains monetary values associated with the premium
+                component, such as 'Gross Premium', 'Base Premium',
+                'Loading or Discount Amount'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                Contains percentages associated with the premium
+                component, such as 'Loading or Discount Percentage'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                Contains quantities associated with the premium
+                component, such as 'Loading or Discount Points'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                Contains dates associated with the premium component,
+                such as 'Review Date'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                To specify policy endorsements and to convey text
+                variables with which to complete the endorsement text.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                        <documentation>Segment group 6:
+                To specify excesses that apply to the policy.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   To identify the type of excess, such as
+                   'Compulsory', 'Voluntary'.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                            <documentation>PCD,
+                   To specify the amount of excess as a percentage.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   Contains monetary values associated with the
+                   excess, such as 'Excess Amount', 'Maximum Excess
+                   Amount', 'Minimum Excess Amount'.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To describe the reason for the excess.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_7">
+            <documentation>Segment group 7:
+                         QRS-FTX-SG8-SG9-SG10-SG12
+       To provide information relating to the parties involved in the
+       insurance policy.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          To provide the name details of one party related to the
+          policy, such as 'Insurer', 'Broker', 'Insured' and 'Driver'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <documentation>GEI,
+          Contains a coded indication of how the party is to be
+          processed if the message is being used to update a policy,
+          such as 'Added', 'Deleted' or 'Changed'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          To specify coded attributes for the party, such as 'Gender',
+          'Marital Status', 'Legal Status', 'VAT Status'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <documentation>PCD,
+          To specify the percentage of liability for Value Added Tax
+          (VAT or TVA).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To specify references associated with the party, such as
+          'VAT registration number', 'SIRENE code'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                <documentation>EMP,
+          To specify occupations or trades for the party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Contains dates associated with the party, such as 'Birth
+          date', 'Date of national residency', 'Registered disabled
+          date'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEM" segcode="MEM" truncatable="true" xmltag="Membership_details">
+                <documentation>MEM,
+          To specify details of professional bodies to which the party
+          belongs, such as motoring organisations.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <documentation>QTY,
+          Contains quantities associated with the party, such as
+          'Number of children', 'Number of vehicles owned', 'Number of
+          vehicles accessible'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                <documentation>REL,
+          To specify the relationship of the party to the proposer.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          To specify the place of birth of the party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          Contains declarations made by the party, such as 'Any
+          convictions?', 'Any claims?', 'Any disabilities?'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          To provide a text description where any of the party's coded
+          attributes indicate that text will be provided.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+          To provide addresses for the party and associated dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <documentation>ADR,
+             To specify details of one address for the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             Contains the date that the party was established at the
+             address.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+          Contains details of contacts for the party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             To identify one contact for a party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             To provide details of communication numbers for a
+             contact.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+                            FTX-SG11
+          A group of segments that provides details of historical
+          events related to the party, such as claims and convictions.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                    <documentation>EVE,
+             To identify one event that has relevance to a party's
+             insurance history.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Contains a coded indication of how the historical event
+             is to be processed if the message is being used to update
+             a policy, such as 'Added', 'Deleted' or 'Changed'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                    <documentation>QRS,
+             Contains declarations about the historical event, such as
+             'Claim made for loss?' and 'Was no claims bonus
+             affected?'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             Contains references related to the historical event, such
+             as 'Claim number', 'Broker loss reference'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Contains coded attributes related to the historical
+             event, such as 'Cause Code', 'Consequence Code'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                    <documentation>ICD,
+             To specify the cover that applied at the time of the
+             historical event.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             To provide details of monetary amounts relating to the
+             historical event, such as 'Claim Amount', 'Fine Amount'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify dates related to the historical event, such as
+             'Loss Date', 'Conviction Date'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+             To specify quantities related to the historical event,
+             such as 'Conviction Penalty Points', 'Total Licence
+             Penalty Points'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             To provide percentages related to the historical event,
+             such as 'Percentage of Responsibility', 'Percentage of
+             Disability'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide text descriptions relating to the historical
+             event.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_11">
+                    <documentation>Segment group 11:
+             A group giving details of the insurer and broker for the
+             party's historical claim.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                        <documentation>PNA,
+                To identify one party that played a role in a
+                historical claim, such as insurer and broker.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                        <documentation>ADR,
+                To provide an address for a party related to the
+                historical claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                To provide references for the party and the historical
+                claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                To specify a contact at the party who handles the
+                historical claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                To provide communication numbers for the historical
+                claim party.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+          To provide details of licences held by a party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             To identify one licence held by a party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             Contains dates related to the licence, such as 'Issue
+             Date', 'Expiry Date'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             To specify coded restrictions that apply to a licence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             To indicate the location of the authority that issued the
+             licence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide a text description of the licence.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_13">
+            <documentation>Segment group 13:
+       To provide details of total premiums and total amounts to be
+       paid.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="Payment_terms">
+                <documentation>PYT,
+          To specify one payment plan.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Contains dates related to the payment plan, such as
+          'Instalment Start Date', 'Instalment Payment day-of-month'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          Contains coded attributes related to the payment, such as
+          'Payment method', 'Collection Responsibility'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+                <documentation>FII,
+          To identify the financial account from which payment is
+          being made.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          Contains references related to the payment plan, such as
+          'Instalment Agreement Number'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <documentation>PCD,
+          To specify percentages related to the payment, such as
+          'Interest Rate', 'Early Payment Discount'.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+          To identify parties involved in the payment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             Identifies one party making payments.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <documentation>ADR,
+             Contains the address of the party making payment, or the
+             address of the payer's bank.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                <documentation>Segment group 15:
+          Contains details of payments to be made under the payment
+          plan.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             The monetary value of a payment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             Contains the date or dates when the payment or
+             instalments are due.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Contains the payment method for a particular payment, if
+             different from the main payment method for the payment
+             plan, as may occur with the first payment.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+             To provide details of additions and deductions (taxes) to
+             the premium.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
+                        <documentation>TAX,
+                To identify one premium tax, fee or commission.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To provide monetary values for the premium addition or
+                deduction as well as the base premium.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                To specify the location of the tax authority.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                To specify the premium addition or deduction as a
+                percentage.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_17">
+            <documentation>Segment group 17:
+                         FTX-SG18-SG19-SG20-SG21-SG23
+       To provide information relating to vehicles involved in the
+       insurance contract and the insurance cover they have or are
+       applying for.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ROD" segcode="ROD" truncatable="true" xmltag="Risk_object_type">
+                <documentation>ROD,
+          To specify one vehicle or a category of vehicles (for
+          fleets).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <documentation>GEI,
+          Contains a coded indication of how the vehicle is to be
+          processed if the message is being used to update a policy,
+          such as 'Added', 'Deleted' or 'Changed'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To specify reference numbers related to the vehicle, such as
+          'Registration Number', 'VIN Number', 'Engine Number'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          To specify dates related to the vehicle, such as 'First
+          Registered Date', 'Date Purchased'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          To specify coded attributes relating to the vehicle, such as
+          'Fuel Type', 'Body Type', 'Owner Code', 'Colour Code'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <documentation>QTY,
+          To specify quantities related to the vehicle, such as
+          'Number of Seats', 'Odometer Reading', 'Engine Power'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <documentation>MOA,
+          To specify monetary values relating to the vehicle, such as
+          'Market Value', 'Paid Value', 'Agreed Value'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <documentation>MEA,
+          To specify measurements relating to the vehicle, such as
+          'Maximum Movement Height and Depth'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          To specify addresses or locations where the vehicle is
+          garaged, kept and used.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <documentation>PCD,
+          To specify percentages relating to the vehicle, such as
+          'Premium Rate per Vehicle'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          To provide declarations about the vehicle, such as
+          'Hazardous Goods Carried?', 'Vehicle Used For Transportation
+          of Employees Only?'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          To provide additional textual information relating to the
+          vehicle where it has been inadequately described by code.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_18">
+                <documentation>Segment group 18:
+          A group to provide information about parties that have an
+          interest in the vehicle, such as owner, leasing company,
+          keeper.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             To identify one party that has an interest in a vehicle.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Coded indication of how the interested party should be
+             processed if the message is being used to update a
+             policy, such as 'Added', 'Deleted' or 'Changed'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <documentation>ADR,
+             To specify the address of the interested party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             Contains a description of the interest.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_19">
+                <documentation>Segment group 19:
+          A group to specify details of security devices fitted to the
+          vehicle.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+                    <documentation>EQD,
+             To identify one security device.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Coded indication of how the security device is to be
+             processed if the message is being used to update a
+             policy, such as 'Added', 'Deleted' or 'Changed'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             To specify coded attributes relating to the security
+             device, such as 'Accreditation Code', 'Installer Status'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify the installation date.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             To identify parties that manufactured and installed the
+             security device.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                    <documentation>QRS,
+             To provide coded declarations relating to the security
+             device, such as 'Security Device Certificate Seen by
+             Broker?'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             To specify references relating to the security device,
+             such 'Certificate Reference'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide additional textual information about the
+             security device.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_20">
+                <documentation>Segment group 20:
+          To provide details of insurance certificates and
+          declarations.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <documentation>DOC,
+             To identify one type of insurance certificate or
+             declaration.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             To specify the reason for issue of an insurance
+             certificate or declaration.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify start and end dates for the certificate and
+             dates upon which the declaration must be made.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             To specify a percentage for the certificate.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide textual information about the certificate or
+             declaration.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_21">
+                <documentation>Segment group 21:
+                            FTX-SG22
+          A group that provides claims history for the vehicle.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                    <documentation>EVE,
+             To identify one previous claim that has relevance to the
+             vehicle's insurance cover.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Contains a coded indication of how the claim group is to
+             be processed if the message is being used to update a
+             policy, such as 'Added', 'Deleted' or 'Changed'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                    <documentation>QRS,
+             Contains coded declarations about the previous claim,
+             such as 'Claim made for loss?' and 'Was No Claims Bonus
+             affected?'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             Contains references related to the vehicle's claim, such
+             as 'Claim Number', 'Broker Loss Reference'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Contains coded attributes related to the vehicle's claim,
+             such as 'Cause Code', 'Consequence Code'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                    <documentation>ICD,
+             To specify the cover that applied to the vehicle at the
+             time of the claim.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             To provide details of monetary amounts relating to the
+             vehicle's claim, such as 'Loss Amount', 'Claim Amount'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify dates related to the vehicle's claim, such as
+             'Incident date', 'Claim Paid Date'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+             To specify quantities related to the vehicle's claim.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             To provide percentages related to the vehicle's claim,
+             such as 'Percentage of Responsibility'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide additional text description relating to the
+             vehicle's claim.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_22">
+                    <documentation>Segment group 22:
+             A group giving details of the handling insurer and broker
+             at the time of the previous claim.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                        <documentation>PNA,
+                To identify one party that played a role in the
+                vehicle's claim, such as insurer and broker.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                        <documentation>ADR,
+                To provide an address for a party related to the
+                previous claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                To provide references for the party and the previous
+                claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                To specify a contact at the party who handles the
+                claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                To provide communication numbers for the previous
+                claim party.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_23">
+                <documentation>Segment group 23:
+                            SG26-SG30-SG31
+          A group of segments used to proved details of cover that
+          applies to the vehicle.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                    <documentation>ICD,
+             To identify one insurance cover that applies to a
+             vehicle.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Contains a coded indication of how this cover is to be
+             processed if the message is being used to update a
+             policy, such as 'Added', 'Deleted' or 'Changed'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify dates for the cover, such as 'Commencement
+             Date', 'Expiry Date'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             To specify references for the cover, such as 'Cover
+             Reference', 'Add-On Policy Number'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             To specify coded attributes of the cover, such as 'Class
+             of Use'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                    <documentation>QRS,
+             To specify coded declarations about the cover, such as
+             'Foreign Use Included?', 'Cover Excluded?'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+             To specify limits of cover by quantity, such as 'Number
+             Of Seats', 'Maximum Number Of Drivers'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide descriptions and wordings for the cover.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_24">
+                    <documentation>Segment group 24:
+             To provide monetary values related to the insurance
+             cover, such as premium, commission, tax.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To identify and specify one monetary value related to
+                the insurance cover.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                To specify the percentage related to the previous MOA
+                segment if it was used to indicate commission or tax.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                To indicate the country in which tax is payable.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_25">
+                    <documentation>Segment group 25:
+             A group of segments used to indicate additional or add-on
+             risks to the standard cover, such as personal belongings
+             and in-car entertainment.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ROD" segcode="ROD" truncatable="true" xmltag="Risk_object_type">
+                        <documentation>ROD,
+                To identify one additional or add-on risk.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                Contains a coded indication of how this additional
+                risk is to be processed if the message is being used
+                to update a policy, such as 'Added', 'Deleted' or
+                'Changed'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To specify monetary values relating to the additional
+                risk, such as 'Value', 'Sum Insured'.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_26">
+                    <documentation>Segment group 26:
+             A group that contains the premium calculation components
+             that are used to derive the premium for the cover.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COD" segcode="COD" truncatable="true" xmltag="Component_details">
+                        <documentation>COD,
+                To identify a set of premium calculation components.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                Contains a coded indication of how the set of premium
+                calculation components should be processed, such as
+                'Replace Set', 'Add Set' or 'Delete Set'.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_27">
+                        <documentation>Segment group 27:
+                                  SG28-SG29
+                A group of segments to describe how the premium for
+                the cover was derived and conditions that relate to
+                it. It is used for the base premium and all other
+                premium components, such as additions, deductions,
+                loadings and discounts.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCC" segcode="PCC" truncatable="true" xmltag="Premium_calculation_component_details">
+                            <documentation>PCC,
+                   To identify one premium calculation component.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                            <documentation>GEI,
+                   A coded indication of how the premium calculation
+                   component is to be processed.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   To specify monetary values related to the premium
+                   component, such as 'Base Premium', 'Premium
+                   Component Value'.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                            <documentation>PCD,
+                   To specify a premium component as a percentage.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                            <documentation>QRS,
+                   To specify declarations about the premium component
+                   when it is a condition or endorsement, such as 'Has
+                   Condition Been Met?', 'Brokers Wording Used?'.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                            <documentation>QTY,
+                   To specify the premium components as a number of
+                   units.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   To specify dates related to the premium component
+                   or condition, such as start and end date.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   To specify endorsements to the cover and to convey
+                   text variables with which to complete the
+                   endorsement text.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_28">
+                            <documentation>Segment group 28:
+                   A group that provides details of non-standard or
+                   amended cover for drivers.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                                <documentation>PNA,
+                      To identify one driver for which amended cover
+                      applies.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                                <documentation>ICD,
+                      To specify details of the amended cover for the
+                      driver identified by the previous PNA segment.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_29">
+                            <documentation>Segment group 29:
+                   To specify excesses that apply to the cover for a
+                   vehicle.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                                <documentation>ATT,
+                      To identify one type of excess.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                                <documentation>PCD,
+                      Contains details of the excess when expressed as
+                      a percentage.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                                <documentation>MOA,
+                      Contains monetary amounts related to the excess,
+                      such as 'Excess Value', 'Minimum Excess Amount',
+                      'Maximum Excess Amount'.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      To provide free format or coded text for the
+                      excess.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_30">
+                    <documentation>Segment group 30:
+             A group that provides information about additional
+             insurers for a cover, assistance companies, passengers
+             named under personal accident insurance and previous
+             insurers for this cover.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                        <documentation>PNA,
+                To identify one party associated with the cover.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                Contains a coded indication of how the party
+                associated with the cover is to be processed if the
+                message is being used to update a policy, such as
+                'Added', 'Deleted' or 'Changed'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                To specify references related to the party, such as
+                'Policy Number', 'Assistance Contract Number',
+                'Previous Policy Number'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To specify dates related to the party associated to
+                the cover, such as 'Start Date', 'End Date'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To specify monetary values related to the party
+                associated with the cover, such as 'Premium Amount',
+                'Cover Limit'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                To specify percentages related to the party associated
+                with the cover, such as 'Percentage of Driving Time'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                To specify quantities related to the party associated
+                with the cover, such as 'Number of Previous Claims'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                        <documentation>QRS,
+                To specify declarations about the party associated
+                with the cover, such as 'Party is main Driver under
+                this cover?', 'Party Is Excluded from this cover?'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                        <documentation>REL,
+                To specify the relationship that this party has with
+                the proposer.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_31">
+                    <documentation>Segment group 31:
+                               PCC-LOC-FTX-SG32
+             A group that provides the history details for claims
+             against one insurance cover.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                        <documentation>EVE,
+                To identify one claim that has been made against the
+                insurance cover.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <documentation>GEI,
+                Contains a coded indication of how the claim is to be
+                processed if the message is being used to update a
+                policy, such as 'Added', 'Deleted' or 'Changed'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                Contains coded attributed relating to the claim, such
+                as 'Cause Code', 'Consequence Code'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                To specify dates related to the date, such as
+                'Incident Date', 'Claim Date'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To specify monetary amounts relating to the claim,
+                such as 'Claim Value', 'Amount Paid'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                To specify percentages related to the claim, such as
+                'Percentage of Responsibility'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                        <documentation>QRS,
+                To specify declarations about the claim, such as
+                'Bonus/Malus Affected?', 'Claim Fully Settled?'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                To specify quantities relating to the claim.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                To provide references relating to the claim, such as
+                'Claim Number'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PCC" segcode="PCC" truncatable="true" xmltag="Premium_calculation_component_details">
+                        <documentation>PCC,
+                To specify premium components that this claim gave
+                rise to.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                        <documentation>LOC,
+                To specify the location of the incident.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                To provide additional text information about the
+                claim.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_32">
+                        <documentation>Segment group 32:
+                To provide information about the holding insurer and
+                broker at the time of the claim.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                            <documentation>PNA,
+                   To identify one party for the claim, such as broker
+                   and insurer.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                            <documentation>ADR,
+                   To provide the address for the party associated
+                   with the claim.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   To specify references for the party and the claim.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                            <documentation>CTA,
+                   To specify a contact at the party who handles the
+                   claim.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                            <documentation>COM,
+                   To provide communication numbers for the claim
+                   party.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+            <documentation>UNS,
+       A mandatory service segment placed before the first user
+       segment in the detail section to avoid segment collision.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_33">
+            <documentation>Segment group 33:
+       A group that provides details of previous fleet claims
+       experience. This section is only used for commercial fleet
+       insurance.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          To specify the duration of one period of fleet experience.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          To specify references related to the fleet experience, such
+          as 'Insurer's Policy Number', 'Broker's Risk Reference'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                <documentation>QRS,
+          To specify declarations for the fleet experience, such as
+          'Is claims history confirmed?', 'Is foreign use included?'.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          To provide text details of why the claims history is
+          unconfirmed (if appropriate).</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_34">
+                <documentation>Segment group 34:
+          To provide details for the holding insurer and broker at the
+          time of the fleet experience.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             To identify one party relating to the fleet experience,
+             such as insurer and broker.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <documentation>ADR,
+             To provide address details for the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             To provide a contact name for the party that handles the
+             fleet experience.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             To provide communication numbers for the party.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_35">
+                <documentation>Segment group 35:
+          A group that provides a breakdown of figures for the fleet
+          experience.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Coded indication of whether the breakdown figures should
+             be processed as being the same as at the date of the
+             previous fleet experience or as being updated.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify dates relating to the fleet experience, such
+             as 'Calculated To Date', 'Event Date of Last Claim
+             Included'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+             To specify quantities relating to the fleet experience,
+             such as 'Total Claims Reported', 'Claims Reported
+             Outstanding Number'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             To specify monetary amounts relating to the fleet
+             experience, such as 'Claims Paid and Outstanding Cost',
+             'Claims Outstanding Cost'.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_36">
+                    <documentation>Segment group 36:
+             To provide a breakdown by cover for the fleet experience
+             figures.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                        <documentation>ICD,
+                To identify one type of insurance cover.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                To specify coded attributes relating to the fleet
+                experience cover breakdown, such as 'Type of Excess
+                Applying', 'Excess Application Code'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                To specify monetary amounts relating to the cover
+                breakdown, such as 'Excess Value', 'Claims Cost Paid'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <documentation>QTY,
+                To specify quantities relating to the cover breakdown,
+                such as 'Number of Claims', 'Number of Claims
+                Outstanding'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                To provide additional description of the cover.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_37">
+                <documentation>Segment group 37:
+          To specify individual claim details that occurred during the
+          fleet experience.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                    <documentation>EVE,
+             To identify one claim.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <documentation>GEI,
+             Coded indication of how this claim is to be processed if
+             the message is being used to update a policy.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             Coded attributes relating to the claim, such as 'Cause
+             Code', 'Consequence Code'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             To specify dates relating to the claim, such as 'Incident
+             Date', 'Claim Date'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                    <documentation>ICD,
+             To specify the cover against which this claim was made.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <documentation>MOA,
+             To specify monetary amounts relating to the claim, such
+             as 'Claim Value', 'Paid Amount'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             To specify references for the claim, such as 'Insurer
+             Claim Number', 'Broker Claim Reference'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="Query_and_response">
+                    <documentation>QRS,
+             To specify declarations about the claim, such as
+             'Bonus/Malus Affected?'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             To provide additional text details about the claim.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

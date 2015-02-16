@@ -1,0 +1,353 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CLASET" version="D:01B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CLASET">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment specifying the functional use (e.g. request) of the
+       Classification information set message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment identifying the message preparation date/time.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments to specify references such as the request
+       message to which the current message relates, and related date
+       and time.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment to specify the reference number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment to specify the date and time of the reference.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the sender, the requester (if
+       the message function is a response to a request) and other
+       relevant parties, their reference and the communication contact
+       inside the corresponding organisations.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <documentation>PNA,
+          A segment identifying a party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <documentation>ADR,
+          A segment identifying the address of the party.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments giving contact information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment identifying a person or department for the
+             party identified in the PNA segment and to whom
+             communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment containing communication information for the
+             contact identified in the CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments identifying a classification or a table of
+       links, and defining the items and, if the list is hierarchic,
+       the levels in the classification or table of links.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:VLI" segcode="VLI" truncatable="true" xmltag="Value_list_identification">
+                <documentation>VLI,
+          A segment identifying a classification or a table of links.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment defining the interval of validity and other
+          relevant dates for the classification, or the table of
+          links.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                <documentation>EQN,
+          A segment defining the number of objects (e.g. levels or
+          items) in the classification or the table of links.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments identifying a responsible agency for the
+          classification or the table of links and its role (e.g.
+          compilation, ongoing maintenance, dissemination).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             A segment identifying an agency and its role.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="Language">
+                    <documentation>LAN,
+             A segment identifying the language of the agency.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+             A group of segments giving contact information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment identifying a person or a department for the
+                agency and to whom communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                        <documentation>ADR,
+                A segment defining address details for the contact
+                person or department.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment containing communication details for the
+                person or the department identified in the CTA
+                segment.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A group of segments defining a status event for the
+          classification or the table of links such as created,
+          updated or deleted and the relevant dates of the status
+          event.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                    <documentation>STS,
+             A segment identifying a status event for the
+             classification or the table of links.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment defining relevant dates for the status event.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+          A group of segments identifying a property for the
+          classification, or table of links.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             A segment identifying a property function and a property
+             type.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment defining an interval of validity and other
+             relevant dates for the property.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ELM" segcode="ELM" truncatable="true" xmltag="Simple_data_element_details">
+                    <documentation>ELM,
+             A segment identifying the data type and format of the
+             property value.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+             A group of segments defining a textual property value.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                        <documentation>CAV,
+                A segment defining a characteristic of a textual
+                property value.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment defining a textual property value and the
+                language of the text.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                    <documentation>Segment group 10:
+             A group of segments defining a status event for the
+             property and the relevant dates of the status event.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                        <documentation>STS,
+                A segment identifying a status event for the property.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment defining relevant dates for the status
+                event.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999999" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+          A group of segments identifying a structure component in a
+          classification, or a table of links.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCD" segcode="SCD" truncatable="true" xmltag="Structure_component_definition">
+                    <documentation>SCD,
+             A segment identifying the type of structure component
+             (e.g. level, item or link) and the component itself.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment defining the interval of validity and other
+             relevant dates for the structure component.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                    <documentation>EQN,
+             A segment defining the number of structure components in
+             the identified level of hierarchy structure, such as the
+             number of items in the level.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_12">
+                    <documentation>Segment group 12:
+             A group of segments defining a status event for the
+             structure component and the relevant dates of the status
+             event.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                        <documentation>STS,
+                A segment identifying a status event for the structure
+                component.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment defining relevant dates for the status
+                event.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+             A group of segments identifying a property of the
+             structure component.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment identifying a property function and a
+                property type.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment defining an interval of validity and other
+                relevant dates for the property.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ELM" segcode="ELM" truncatable="true" xmltag="Simple_data_element_details">
+                        <documentation>ELM,
+                A segment identifying the data type and format of the
+                property value.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                        <documentation>Segment group 14:
+                A group of segments defining a textual property value.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                            <documentation>CAV,
+                   A segment defining a characteristic of a textual
+                   property value.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment defining a textual property value and the
+                   language of the text.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                        <documentation>Segment group 15:
+                A group of segments defining a status event for the
+                property and the relevant dates of the status event.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                            <documentation>STS,
+                   A segment defining a status event for the property.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment defining relevant dates for the status
+                   event.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+             A group of segments identifying a source or a target
+             related structure component (e.g. item or level) of a
+             link and defining the status and properties of this
+             component.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                        <documentation>IDE,
+                A segment identifying the related structure component
+                such as a level or an item in a link.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment defining an interval of validity and other
+                relevant dates for the related structure component.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                        <documentation>EQN,
+                A segment defining the number of structure components
+                in the identified level of hierarchy structure, such
+                as the number of items in the level.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_17">
+                        <documentation>Segment group 17:
+                A group of segments defining a status event for the
+                related structure component and the relevant dates of
+                the status event.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                            <documentation>STS,
+                   A segment identifying a status event for the
+                   related structure component.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment defining relevant dates for the status
+                   event.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_18">
+                        <documentation>Segment group 18:
+                A group of segments defining a property for the
+                related structure component.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                            <documentation>ATT,
+                   A segment identifying the property function and the
+                   property type.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   A segment defining an interval of validity and
+                   other relevant dates of the property.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ELM" segcode="ELM" truncatable="true" xmltag="Simple_data_element_details">
+                            <documentation>ELM,
+                   A segment defining the data type and format of the
+                   property.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_19">
+                            <documentation>Segment group 19:
+                   A group of segments identifying a textual property
+                   value.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                                <documentation>CAV,
+                      A segment identifying a characteristic of the
+                      textual property value.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      A segment defining a textual property value and
+                      the language of the text.</documentation>
+                            </segment>
+                        </segmentGroup>
+                        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_20">
+                            <documentation>Segment group 20:
+                   A group of segments defining a status event for the
+                   property and relevant dates of the status event.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                                <documentation>STS,
+                      A segment identifying a status event for the
+                      property.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                                <documentation>DTM,
+                      A segment defining relevant dates for the status
+                      event.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,359 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CONDRA" version="D:00B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CONDRA">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment for unique identification of the Drawing
+       administration document name, number and function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying the dates relevant to this document; e.g.
+       the date, when the drawing administration in this message has
+       been defined.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+            <documentation>AUT,
+       A segment used to authenticate the message by exchanging a
+       password or some other form of identification agreed between
+       the business partners.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="Agreement_identification">
+            <documentation>AGR,
+       A segment will be used to identify the "type of agreement of
+       the organisation of engineering or CAD files" that apply to the
+       information given by this message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment with free text information, in coded or clear form,
+       used for any textual information. In computer to computer
+       exchanges, such text will require the receiver to process this
+       segment manually.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+            <documentation>QTY,
+       This segment conveys exchange information like the number of
+       engineering/CAD files and their total size (volume) that form
+       part of the exchange of this message and to which this message
+       refers.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="10" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments used for quoting references and their
+       relevant dates applicable to the message. For the building
+       industry the following recommendation is given: in the first
+       occurrence of this segment group the project references, if
+       relevant, can be given, in order to identify the project to
+       which this message relates. In any subsequent recurrence of
+       this segment group, references to other messages (e.g. the
+       original CONDRO when it is an update) or documents, relevant to
+       this message, may be quoted.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment for quoting the unique references which can be the
+          project number to which this message is relevant, or, in the
+          case of a reference to another message or document, that
+          message or document's unique identifier.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <documentation>DOC,
+          Document details of the reference quoted in the previous RFF
+          segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          Date of a reference quoted in the previous RFF segment, e.g.
+          project date or message/document date.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          This segment can contain any textual information relevant to
+          the reference quoted in the previous RFF segment, e.g. a
+          small project or message/document description and/or other
+          narrative, for additional information.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying all the relevant parties with
+       specific information about them that other business partner
+       should know.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment identifying name and address of a party, in coded
+          or clear form, and its function relevant to the Drawing
+          Administration Message. This is to identify each partner
+          involved in the future exchange of CAD files. It is
+          recommended that where possible only the coded form of the
+          party ID should be specified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <documentation>LOC,
+          A segment giving more specific location information of the
+          party specified in the NAD segment e.g. internal
+          site/building number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          This segment allows any narrative that may be needed to
+          accompany the party name and address information specified
+          in the previous NAD segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                <documentation>INP,
+          A segment that gives each of the receivers their specific
+          instructions for what they should do with this message and
+          the files to which this message refers.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                <documentation>RCS,
+          A segment that gives specific requirements to each of the
+          receivers of this message, e.g. action request.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          This segment group can be used to quote specific references
+          for each partner, that may be needed for internal use.
+          Examples of references that a partner may require are
+          internal project number or a DP number.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <documentation>RFF,
+             In this segment specific internal references will be
+             quoted, as and when required.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment specifying the date and/or time details related
+             to the party's specific internal references.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments giving contact details of the specific
+          person or department within the party identified in the NAD
+          segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment to identify a person or department, and their
+             function, to whom communications should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment to identify a communication type and number for
+             the contact specified in the CTA segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             This segment specifies the location of the contact
+             specified in the previous CTA segment. In large
+             organisations and construction projects it is possible
+             that persons are not necessarily on the same internal
+             site or construction site specified in the previous LOC
+             segment in segment group 2. This segment also enables the
+             specification of a more accurate internal site location.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+       A group of segments that refers through an external file
+       identification to each of the external engineering/CAD files
+       and giving additional information about each of the files.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="External_file_link_identification">
+                <documentation>EFI,
+          This segment will identify the external files by indicating
+          the file name, file number and its sequence number in an
+          exchange.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:CED" segcode="CED" truncatable="true" xmltag="Computer_environment_details">
+                <documentation>CED,
+          A segment that gives details of a computer or software
+          environment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment giving reference related to the file, identified
+          by the previous EFI segment. This reference number is
+          specific to the sender, and the receivers may be informed
+          about its full meaning through another message (e.g. for the
+          building industry message CONDRO) if this feature is used.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          This segment will convey the date/time details of the
+          external engineering/CAD file.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <documentation>QTY,
+          The size/volume of the external engineering/CAD file
+          identified in the previous EFI segment.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="100000" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+                            LOC-DIM-MEA-SG7
+          A group of segments that records more detailed information
+          about the contents of the external engineering/CAD file is
+          identified in the previous EFI segment. This information is
+          organised hierarchically. First, each hierarchy is
+          identified, followed by the type of hierarchy.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="Structure_identification">
+                    <documentation>BII,
+             This segment will, through a structured index code,
+             uniquely identify the level described in the following
+             segments.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                    <documentation>GIS,
+             This segment is used to define the level type identified
+             by the previous BII segment, like, for example, drawing
+             sheet, view, layer group, and layer, but also phase etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             Date and time details of the level identified in the
+             previous BII segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+             This segment contains the name of the level that is
+             identified in the previous BII segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <documentation>QTY,
+             This segment conveys quantity details of the level
+             identified in the previous BII segment. This quantity
+             details concern the precision or the number of objects in
+             the lower level, e.g. number of drawing views.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             The person or department responsible (author) of this
+             specific part (level) of the contents is recorded in this
+             segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+                    <documentation>AUT,
+             A segment used to authenticate the part of the message
+             identified in the previous BII segment by exchanging a
+             password or some other form of identification agreed
+             between the business partners.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="Agreement_identification">
+                    <documentation>AGR,
+             This segment will be used to identify the "type of
+             agreement" that applies to the information defined in the
+             previous BII segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                    <documentation>INP,
+             Instructions for the receiver for this specific part
+             (level) of the contents are recorded in this segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                    <documentation>RCS,
+             Requirements for the receiver for this specific part
+             (level) of the contents are recorded in this segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             This location of the level (e.g. layer) in a co-ordinate
+             system is given in this segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="Dimensions">
+                    <documentation>DIM,
+             Dimensions (like size, unit of measurements) are given in
+             this segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <documentation>MEA,
+             The scale used can be quoted in this segment.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+             For each of the levels that are identified in the
+             previous BII segment it is possible to refer to other
+             messages/documents on other levels of the structure of
+             the engineering/CAD file identified in the previous EFI
+             segment. It is also possible to refer to other levels
+             which are part of a different engineering/CAD file than
+             the one identified in the previous EFI segment. If
+             needed, here should also be made a reference to a
+             contractual document or to a revision number.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <documentation>RFF,
+                An ID number will be used to refer to either another
+                message/document or to another engineering/CAD file.
+                If needed, here should also be made a reference to a
+                contractual document or to a revision number.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+                        <documentation>Segment group 8:
+                If the reference number quoted in the previous RFF
+                segment is a reference to another message/document,
+                this segment group is used to give more details about
+                this message/document.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                            <documentation>DOC,
+                   The details of the message/document referred to are
+                   quoted in this segment.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   Date/time details of the message/document referred
+                   to are quoted in this segment.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_9">
+                        <documentation>Segment group 9:
+                This segment group will be used when a reference is
+                made to another specific level in the structure of an
+                engineering/CAD file.
+                If in the previous RFF segment a standard dummy value
+                is quoted, the level referred to is part of the
+                engineering/CAD file identified in the previous EFI
+                segment. If, however, in the previous RFF segment any
+                other value is quoted, the level described in the
+                following BII segment is part of the engineering/CAD
+                file identified by the ID number.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                            <documentation>SEQ,
+                   A segment identifying the beginning of a CAD-file
+                   by a sequential number.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="Structure_identification">
+                            <documentation>BII,
+                   This segment will through a structured index code
+                   uniquely identify the level referred to.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <documentation>RFF,
+                   Through an "index system", updates (versions) can
+                   be recorded in a reference number. In this segment
+                   the version of the level referred to can be quoted.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                            <documentation>GIS,
+                   This segment is used to define the level type
+                   identified in the previous BII segment; like, for
+                   example, drawing sheet, view, layer group and
+                   layer.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <documentation>DTM,
+                   Date/time details of the level that is referred to
+                   are quoted here.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                            <documentation>IMD,
+                   A detailed description of the level referred to can
+                   be quoted in this segment.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

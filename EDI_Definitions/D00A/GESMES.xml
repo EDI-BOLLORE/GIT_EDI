@@ -1,0 +1,459 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="GESMES" version="D:00A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="GESMES">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       A segment specifying the functional use (e.g. sub-set) of the
+       Generic Statistical Message and identifying the message sent.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment identifying dates which are relevant to the whole of
+       the message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments containing textual footnotes related to
+       value lists or definitions of the content and structure of an
+       array.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="Footnote">
+                <documentation>FNT,
+          A segment containing the unique identifier of the footnote.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment containing the text relevant to the footnote.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments identifying the sender and other relevant
+       parties, their reference and the communication contact inside
+       the corresponding organisations.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <documentation>NAD,
+          A segment identifying the name and address of a party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                <documentation>IDE,
+          A segment giving the identity number of the data transmitted
+          as it is known by the organisation described in the NAD
+          segment.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments giving contact information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <documentation>CTA,
+             A segment identifying a person or a department for the
+             party specified in the NAD segment and to whom
+             communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <documentation>COM,
+             A segment providing a communication number for the
+             contact identified in the CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments containing either a coded or non coded list
+       of items and related information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:VLI" segcode="VLI" truncatable="true" xmltag="Value_list_identification">
+                <documentation>VLI,
+          A segment identifying the value list.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment identifying the period of validity of the value
+          list and, if the value list is a date list, then a date
+          value in that list.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment containing text associated with the value list.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments containing the identification of an
+          object related to the value list and the period of validity.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                    <documentation>IDE,
+             A segment containing an identifier of an object related
+             to the value list (e.g. a statistical nomenclature from
+             which the codes in the list are derived, or a footnote).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment containing date information related to the
+             identified object of the value list such as validity date
+             or date range.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+          A group of segments containing the related identification
+          number and the period of validity.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                    <documentation>GIR,
+             A segment containing additional identifiers associated
+             with the value list (e.g. for a statistical nomenclature
+             this could be a revision number or level number).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment identifying the period of validity relating to
+             the object identified in the GIR of this group.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+          A group of segments containing the codes or names in a value
+          list.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="Code_value_definition">
+                    <documentation>CDV,
+             A segment identifying a particular value of a code.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment containing the textual description of the code.
+             Multi-lingual definitions may be present in different
+             occurrences of this segment.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+             A group of segments containing the identification of an
+             object related to the code value and the period of
+             validity.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                        <documentation>IDE,
+                A segment containing an identifier of an object
+                related to the code value (e.g. a related code list
+                containing a list of code values for the code, or a
+                footnote).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment identifying the period of validity relating
+                to the object identification.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_9">
+            <documentation>Segment group 9:
+       A group of segments specifying a statistical concept.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STC" segcode="STC" truncatable="true" xmltag="Statistical_concept">
+                <documentation>STC,
+          A segment identifying a statistical concept.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment containing the name, definition or description of
+          the statistical concept.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                <documentation>IDE,
+          A segment containing the identity of a footnote relevant to
+          the statistical concept.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_10">
+            <documentation>Segment group 10:
+       A group of segments which identifies and defines the structure
+       of an array.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ASI" segcode="ASI" truncatable="true" xmltag="Array_structure_identification">
+                <documentation>ASI,
+          A segment containing the unique identifier of the array
+          structure.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                <documentation>GIS,
+          A segment containing a processing indicator associated with
+          the array structure.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment containing a name/title or description of the
+          structure of an array.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                <documentation>IDE,
+          A segment containing the identity of a footnote relevant to
+          the structure.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+          A group of segments which defines the structure of an array.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCD" segcode="SCD" truncatable="true" xmltag="Structure_component_definition">
+                    <documentation>SCD,
+             A segment that defines a statistical concept or other
+             object (such as a value list) used by an array and its
+             position in the array.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <documentation>ATT,
+             A segment containing an attribute that further defines
+             the structure component (e.g. type of value, type of
+             measurement, etc.).</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_12">
+                    <documentation>Segment group 12:
+             A group of segments identifying a value list or a value
+             in a value list which is used by the statistical concept.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                        <documentation>IDE,
+                A segment identifying the value list or value.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment containing an attribute that further defines
+                the value (e.g. type of value, type of measurement
+                etc.).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment identifying period of validity of the value
+                list or other dates relevant to the value list.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_13">
+            <documentation>Segment group 13:
+       A group of segments identifying the data set, its status, the
+       source of the data, the array data itself, the structure
+       definition of the data set and definition of the scope of the
+       data and local values, details on the originator of a data, and
+       footnotes associated with the array data.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DSI" segcode="DSI" truncatable="true" xmltag="Data_set_identification">
+                <documentation>DSI,
+          A segment containing the unique identifier of the data set.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                <documentation>STS,
+          A segment containing information on the status of the
+          information in the data set, e.g. its elaboration or privacy
+          status.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment identifying a date relevant to the data set, e.g.
+          date of original elaboration.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment containing a textual description of the data set.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                <documentation>GIR,
+          A segment containing additional identifiers associated with
+          the data set (e.g. identification of the source or
+          destination of the data in the data set).</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+          A group of segments containing an identifier relevant to the
+          data set, a processing indicator and a date.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                    <documentation>IDE,
+             A segment containing an identifier relevant to the data
+             set, such as the scope or structure definition used by
+             the data set.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                    <documentation>GIS,
+             A segment containing a processing indicator associated
+             with the array data.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <documentation>DTM,
+             A segment identifying a date relevant to the identity
+             e.g. date relating to the scope of the data.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+             A group of segments containing the codes or names in a
+             value list that are relevant to the object identified in
+             the IDE segment of the group e.g. one or more codes that
+             specify the scope of the data set.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="Code_value_definition">
+                        <documentation>CDV,
+                A segment identifying a particular value of a code.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <documentation>FTX,
+                A segment containing the textual description of the
+                code.
+                Multi-lingual definitions may be present in different
+                occurrences of this segment.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+             A group of segments which identifies a structure
+             component of the array and defines attributes or codes
+             which are local to the data set identified in the DSI
+             segment.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCD" segcode="SCD" truncatable="true" xmltag="Structure_component_definition">
+                        <documentation>SCD,
+                A segment that identifies the structure component.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment containing an attribute that further defines
+                the structure component (e.g. type of value, type of
+                measurement etc.).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment specifying a date relevant to the structure
+                component e.g. a date for time series data.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_17">
+                        <documentation>Segment group 17:
+                A group of segments containing the codes or names in a
+                value list that are relevant to the structure
+                component identified in the SCD segment.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="Code_value_definition">
+                            <documentation>CDV,
+                   A segment identifying a particular value of a code.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment containing the textual description of the
+                   code.
+                   Multi-lingual definitions may be present in
+                   different occurrences of this segment.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+            <segment ignoreUnmappedFields="false" maxOccurs="999999" minOccurs="0" nodeTypeRef="UN:ARR" segcode="ARR" truncatable="true" xmltag="Array_information">
+                <documentation>ARR,
+          A segment containing the data in the data set.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_18">
+                <documentation>Segment group 18:
+          A group of segments identifying the department and contact
+          person within the sending organisation responsible for a
+          particular aspect of the data set (e.g. compilation).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <documentation>NAD,
+             A segment identifying a particular department in an
+             organisation responsible for the data set.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                    <documentation>IDE,
+             A segment containing an identifier used by the sender or
+             receiver to identify the data set.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_19">
+                    <documentation>Segment group 19:
+             A group of segments giving contact information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                        <documentation>CTA,
+                A segment identifying a person or a department for the
+                party specified in the NAD segment and to whom
+                communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                        <documentation>COM,
+                A segment providing a communication number for the
+                contact identified in the CTA segment.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_20">
+                <documentation>Segment group 20:
+          A group of segments identifying the location in the data set
+          to which a footnote is relevant.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FNS" segcode="FNS" truncatable="true" xmltag="Footnote_set">
+                    <documentation>FNS,
+             A segment identifying a set of footnotes, which are
+             either defined in this group or have been defined
+             previously.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_21">
+                    <documentation>Segment group 21:
+             A group of segments identifying the scope of the
+             footnote, the location in the data set to which a
+             footnote is relevant, and the identity number of that
+             footnote.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                        <documentation>REL,
+                A segment defining the scope of a footnote in terms of
+                the relationship between the data in the ARR segment
+                in segment group 22 and the data in the ARR segment in
+                segment group 13.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_22">
+                        <documentation>Segment group 22:
+                A group of segments which identifies the set of values
+                in the array to which the footnotes or attributes
+                apply, and which give the data value of the footnotes
+                or attributes.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ARR" segcode="ARR" truncatable="true" xmltag="Array_information">
+                            <documentation>ARR,
+                   A segment containing data values that identify the
+                   location in the data set to which a footnote is
+                   relevant.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <documentation>FTX,
+                   A segment containing a footnote value.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_23">
+                            <documentation>Segment group 23:
+                   A group of segments which identify an attribute and
+                   give its value.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="Identity">
+                                <documentation>IDE,
+                      A segment containing the identity of a footnote
+                      relevant to the data in the data set.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                <documentation>FTX,
+                      A segment containing an uncoded attribute value.</documentation>
+                            </segment>
+                            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_24">
+                                <documentation>Segment group 24:
+                      A group of segments which specifies a coded
+                      attribute value and its name, description, or
+                      definition.</documentation>
+                                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="Code_value_definition">
+                                    <documentation>CDV,
+                         A segment which specifies a coded attribute
+                         value.</documentation>
+                                </segment>
+                                <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                                    <documentation>FTX,
+                         A segment which specifies the name,
+                         description or definition of a coded
+                         attribute value.</documentation>
+                                </segment>
+                            </segmentGroup>
+                        </segmentGroup>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_25">
+                <documentation>Segment group 25:
+          A group of segments containing textual footnotes related to
+          data in the data set.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="Footnote">
+                    <documentation>FNT,
+             A segment containing the unique identifier of the
+             footnote.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <documentation>FTX,
+             A segment containing the text of the footnote.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

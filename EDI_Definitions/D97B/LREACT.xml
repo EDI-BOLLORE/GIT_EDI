@@ -1,0 +1,282 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="LREACT" version="D:97B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="LREACT">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <documentation>BGM,
+       This segment specifies a message code which indicates whether
+       this message contains policy status information, policy
+       activity information or both.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <documentation>DTM,
+       A segment specifying the reporting period ending date.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+            <documentation>CUX,
+       A segment identifying the default currency and its scaling
+       factor for monetary amounts in this message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+            <documentation>CTA,
+       A segment identifying a person(s) or department(s), and their
+       function(s), to whom communications should be directed.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <documentation>FTX,
+       A segment with free text information, in coded or clear form,
+       used when additional information is needed but cannot be
+       accommodated within other segments. In computer to computer
+       exchanges such text will normally require the receiver to
+       process this segment manually.
+4.1.2  Detail section
+       Information to be provided in the Detail section:</documentation>
+        </segment>
+        <segmentGroup maxOccurs="999999" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments containing policy , insured, coverage or
+       relationship data. Depending on the contents of this parent
+       segment group, the segment group can also contain a policy
+       segment group, insured segment group or coverage segment group.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                <documentation>GIS,
+          This indicator specifies a code which indicates whether this
+          group is a policy, insured, coverage or relationship group.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <documentation>RFF,
+          A segment identifying references conditional upon the
+          general indicator above: 
+           
+          - for a policy group: the policy number and case identifier.
+           
+          - for an insured group: a unique number identifying each of
+          the insureds and optionally an original policy number from
+          which a continuation resulted.
+           
+          - for a coverage group: a unique number identifying each of
+          the coverages on a policy, the policy form number, the plan
+          code and the rate band indicator.
+           
+          - for a relationship group: the unique number identifying
+          the insured and the unique number identifying the coverage
+          applied to that insured. This allows insured groups and
+          coverage groups to be related to each other.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <documentation>ATT,
+          A segment providing attributes conditional upon the general
+          indicator above: 
+              
+          - for a policy group: the policy activity currently being
+          reported
+           
+          - for an insured group: the insured's gender
+           
+          - for a coverage group: the attributes of the coverage are
+          described.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <documentation>DTM,
+          A segment specifying general dates or durations related to
+          the policy, the insured or the coverage.
+           
+          - for a policy group: the transaction effective date
+           
+          - for an insured group: the insured's birth date and the
+          mortality rating expiry date
+           
+          - for a coverage group: dates associated with the coverage
+          are defined.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <documentation>FTX,
+          A segment with free text information, in coded or clear
+          form, used when additional information is needed but cannot
+          be accommodated within other segments. In computer to
+          computer exchanges such text will normally require the
+          receiver to process this segment manually.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments in which is detailed policy information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <documentation>IMD,
+             A segment indicating if the policy is single life or
+             joint life.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment giving location information for the place of
+             issue and the owner place of residence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                    <documentation>SEQ,
+             A segment providing the transaction sequence number. This
+             segment is required when the BGM indicates that the
+             message contains transaction activity.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                    <documentation>CUX,
+             A segment identifying the default currency and its
+             multiplying factor for all monetary amounts in this
+             policy.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             A segment identifying the names of the parties, in coded
+             or clear form, and their functions relevant to the
+             message. Identification of the direct writing company of
+             this policy and any intermediary, third party
+             administrator, of this policy. It is recommended that
+             where possible only the coded form of the party
+             identification should be specified; e.g. if the direct
+             writer and intermediary names are known to the sender and
+             receiver, then only the coded identification is required.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+          A group of segments in which is detailed insured
+          information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             A segment specifying the mortality or morbidity rating of
+             the insured. The underwriting table rating assigned to
+             the insured is generally expressed as a percentage where
+             100% is standard. Any rating scheme, however, can be used
+             with agreement between the sending and receiving
+             companies.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                    <documentation>PNA,
+             A segment identifying the name and universal identifier
+             of the insured.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             A segment giving the location of the insured's place of
+             residence.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments in which is detailed coverage
+          information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
+                    <documentation>ICD,
+             A segment giving insurance cover risk type.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                    <documentation>PCD,
+             A segment specifying the mortality or morbidity rating,
+             the Cost of Living Adjustment benefit for disability
+             income riders and mortgage interest rate associated with
+             mortgage plans.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                    <documentation>EMP,
+             A segment providing the occupation class of the insured
+             for purposes of this coverage as defined by the issuing
+             company (required for disability income coverages).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="Agreement_identification">
+                    <documentation>AGR,
+             This segment will be used to provide both the reinsurer's
+             and the cedent's treaty identification for this coverage.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <documentation>LOC,
+             This segment identifies the insured's place of residence
+             for this coverage.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+             A group of segments in which is detailed monetary amounts
+             and their purpose for the coverage.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                        <documentation>MOA,
+                A segment specifying a monetary amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="Amounts_relationship_details">
+                        <documentation>ARD,
+                A segment specifying the purpose of the monetary
+                amount.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+             A group of segments which details flat extra premiums
+             associated with this coverage.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="Rate_details">
+                        <documentation>RTE,
+                A segment specifying the rate at which the flat extra
+                premium is calculated per unit.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment specifying the basis for calculating the
+                flat extra premium e.g. face or net amount at risk.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <documentation>DTM,
+                A segment specifying the duration for charging the
+                additional flat extra premium.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                        <documentation>Segment group 7:
+                A group of segments in which is detailed monetary
+                amounts and their purpose for the flat extra premium.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment specifying a monetary amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="Amounts_relationship_details">
+                            <documentation>ARD,
+                   A segment specifying the purpose of the monetary
+                   amount.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+             A group of segments which details the valuations
+             associated with this coverage.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="Process_identification">
+                        <documentation>PRC,
+                A segment providing the purpose of the valuation e.g.
+                United States Tax, Generally Accepted Accounting
+                Principles, etc.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                        <documentation>ATT,
+                A segment identifying the standard mortality or
+                morbidity table, the standard function, the standard
+                method and substandard method used in calculating this
+                reserve.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                        <documentation>PCD,
+                A segment specifying the standard interest rate used
+                in calculating reserves for this coverage.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                        <documentation>Segment group 9:
+                A group of segments in which is detailed monetary
+                amounts and their purpose for the valuations.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                            <documentation>MOA,
+                   A segment specifying a monetary amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="Amounts_relationship_details">
+                            <documentation>ARD,
+                   A segment specifying the purpose of the monetary
+                   amount.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>
