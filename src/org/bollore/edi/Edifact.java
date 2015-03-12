@@ -204,7 +204,7 @@ public class Edifact {
 			String interchange_recipient_id, String recipient_code_qualifier,
 			Date date,
 
-			String interchange_control_reference) throws EDIException
+			String interchange_control_reference,String Application_Reference) throws EDIException
 
 	{
 
@@ -251,7 +251,7 @@ public class Edifact {
 
 			this.BuildStructureSegment();
 			this.lineseparator = lineseparator;
-			this.Application_reference="";
+			this.Application_reference=Application_Reference;
 			Utils.CreateDir(this.filepath);
 
 		} catch (FileNotFoundException e) {
