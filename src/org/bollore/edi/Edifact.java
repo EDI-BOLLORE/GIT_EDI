@@ -53,10 +53,8 @@ public class Edifact {
 	public String interchange_recipient_id; // exemple SNCUSTOMS
 	public String date; // Date du jour au format
 	public String time; // Heure du jour
-	public String interchange_control_reference; // Auto-incr�ment du nombre de
-													// fichiers �chang�s avec
-													// interchange_sender_id
-													// durant l'ann�e courante
+	public String interchange_control_reference; // Auto-incr�ment du nombre de fichiers echanges avec interchange_sender_id durant l'annee
+	public String Application_reference;
 	// Fin
 
 	// Attributs utilis�s pour le segment UNH
@@ -137,7 +135,7 @@ public class Edifact {
 			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String sender_code_qualifier,
 			String interchange_recipient_id, String recipient_code_qualifier,
-			Date date, String interchange_control_reference)
+			Date date, String interchange_control_reference,String Application_reference)
 			throws EDIException
 
 	{
@@ -177,6 +175,7 @@ public class Edifact {
 			this.time = (date == null) ? Utils.getCurrentDate("HHmmss") : Utils
 					.formatDate("HHmmss", date);
 			this.interchange_control_reference = interchange_control_reference;
+			this.Application_reference=Application_reference;
 
 			// Instantiation des attributs du segment UNH
 			this.edi_version = edi_version;
@@ -252,6 +251,7 @@ public class Edifact {
 
 			this.BuildStructureSegment();
 			this.lineseparator = lineseparator;
+			this.Application_reference="";
 			Utils.CreateDir(this.filepath);
 
 		} catch (FileNotFoundException e) {
@@ -597,6 +597,15 @@ public class Edifact {
 		E0020_element.setValue(this.interchange_control_reference);
 
 		seg_unb.elements.add(E0020_element);
+		
+		// Creation de l'element 0026
+		org.bollore.edi.Element E0026_element = new org.bollore.edi.Element(
+				"S0026",
+				true,
+				false,
+				"Application reference",
+				"Application reference");
+		E0020_element.setValue(this.Application_reference);
 
 		// Cr�ation de l'�l�ment 0035
 
@@ -1238,8 +1247,8 @@ public class Edifact {
 
 		try {
 			
-			document = sxb.build(Edifact.class.getResourceAsStream("/"
-					+ this.edi_version + "/__modelset_definitions.xml"));
+			document = sxb.build(Edifact.class.getResourceAsStream("/D"
+					+ this.edi_version.substring(1,4) + "/__modelset_definitions.xml"));
 
 			racine = document.getRootElement();
 			List<org.jdom2.Element> nodes = racine.getChildren("segments");

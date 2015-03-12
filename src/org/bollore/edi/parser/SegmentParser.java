@@ -26,7 +26,7 @@ public class SegmentParser {
 
 		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"","", "SNCUSTOMS", date, "identifiant de mon voyage");
+				"","", "SNCUSTOMS", date, "identifiant de mon voyage","");
 
 		Message message1 = new Message(message_reference_number);
 

@@ -31,9 +31,9 @@ public class EdifactTest extends TestCase {
 			temp.delete();
 		}
 
-		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path, 1, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
 		String input = "A?B+C'D.E:F";
 		String result = "A??B?+C?'D.E?:F";
@@ -46,7 +46,7 @@ public class EdifactTest extends TestCase {
 				UtilsTest.tempdir.concat("Cuscar_Test.edi"), 6, '+', ':', ' ',
 				'.', '?', '\'',"CUSCAR", "D95B", "UN", "UNOC", "2",
 				"GRIMALDI","recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date,
-				"identifiant de mon voyage");
+				"identifiant de mon voyage","CUSCAR");
 
 		assertTrue(edi_cuscar.isGrammarCharValid());
 
@@ -68,7 +68,7 @@ public class EdifactTest extends TestCase {
 		
 		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
 		edi_cuscar.setValueElement(message_reference_number, "DTM/C507","I1,  ,L1", ",", true);
 		
@@ -95,9 +95,9 @@ public class EdifactTest extends TestCase {
 
 		String message_reference_number = "1234";
 
-		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':', ' ', '.', '?',
-				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "sender_id"
-				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage");
+		Edifact edi_cuscar = new Edifact("\n",path,1, '+', ':', ' ', '.', '?',
+				'\'',"CUSCAR", "195B", "UN", "UNOC", "2", "sender_id"
+				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
 		ArrayList<String> cst = new ArrayList<String>();
 
@@ -225,18 +225,20 @@ public class EdifactTest extends TestCase {
  		edi_cuscar.messages.get(0).segments.add(new Segment());
 		edi_cuscar.messages.get(0).segments.add(new Segment());
 		edi_cuscar.print();
-		assertEquals("c09d7022a102d382a2d679bf6c00481f", Utils.checkSum(edi_cuscar.filepath));
-		//System.out.println(Utils.checkSum(edi_cuscar.filepath));
+		System.out.println(edi_cuscar.filepath);
+		System.out.println(Utils.checkSum(edi_cuscar.filepath));
+		assertEquals("efef32ac595a667560cf0947df08dc62", Utils.checkSum(edi_cuscar.filepath));
+		
 
 	}
 
 	public void testgetMessage() throws EDIException {
 
 		String path = UtilsTest.tempdir.concat("Tata.edi");
-		System.out.println(path);
+		//System.out.println(path);
 		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'', "CUSCAR", "D95B", "UN", "UNOC", "2", "sender_id"
-				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage");
+				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
 		assertTrue(edi_cuscar.messages.isEmpty());
 		edi_cuscar.getMessage("Blabla");
@@ -257,7 +259,7 @@ public class EdifactTest extends TestCase {
 		
 		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
 		HashMap<String,Segment> seg_def=edi_cuscar.buildStructureSegmentDefinition();
 		
@@ -281,11 +283,10 @@ public class EdifactTest extends TestCase {
 		assertNull(edi.element_separator);
 		assertNull(edi.escape_character);
 		//assertNull(edi.space_character);
-		//System.out.println("A"+edi.space_character+"A");
 		
 		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':',' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
 		edi_cuscar.setValueElement("message_reference_number", "DTM/C507","I1,  ,L1", ",", true);
 		
@@ -305,7 +306,7 @@ public class EdifactTest extends TestCase {
 		
 		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':',' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage");
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
 		
 		// On crée un message "message 1" avec un unique segment CST
