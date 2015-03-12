@@ -2,6 +2,7 @@ package org.bollore.edi.tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,12 +17,13 @@ import org.bollore.edi.Edifact;
 import org.bollore.edi.Message;
 import org.bollore.edi.Segment;
 import org.bollore.edi.Utils;
+
 import junit.*;
 import junit.framework.*;
 
 public class EdifactTest extends TestCase {
 
-	public void testReplaceGrammarChar() throws EDIException {
+	public void testReplaceGrammarChar() throws EDIException, UnsupportedEncodingException {
 
 		String path = UtilsTest.tempdir.concat("Cuscar_Test1.edi");
 
@@ -31,7 +33,7 @@ public class EdifactTest extends TestCase {
 			temp.delete();
 		}
 
-		Edifact edi_cuscar = new Edifact("\n",path, 1, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252", 1, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
@@ -41,9 +43,9 @@ public class EdifactTest extends TestCase {
 		assertEquals("", edi_cuscar.replaceGrammarChar(null));
 	}
 
-	public void testisGrammarCharValid() throws EDIException {
+	public void testisGrammarCharValid() throws EDIException, UnsupportedEncodingException {
 		Edifact edi_cuscar = new Edifact("\n",
-				UtilsTest.tempdir.concat("Cuscar_Test.edi"), 6, '+', ':', ' ',
+				UtilsTest.tempdir.concat("Cuscar_Test.edi"),"Cp1252",6, '+', ':', ' ',
 				'.', '?', '\'',"CUSCAR", "D95B", "UN", "UNOC", "2",
 				"GRIMALDI","recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date,
 				"identifiant de mon voyage","CUSCAR");
@@ -54,8 +56,9 @@ public class EdifactTest extends TestCase {
 	/**
 	 * Ce test permet de valider que l'arborescence de l'EDI que l'on va générer sera créer si elle n'existe pas
 	 * @throws EDIException
+	 * @throws UnsupportedEncodingException 
 	 */
-	public void testCreateDir() throws EDIException {
+	public void testCreateDir() throws EDIException, UnsupportedEncodingException {
 		String fs=System.getProperty("file.separator");
 		
 		
@@ -66,7 +69,7 @@ public class EdifactTest extends TestCase {
 		String message_reference_number = "1234";
 		
 		
-		Edifact edi_cuscar = new Edifact("\n",dir, 0, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",dir,"Cp1252",0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
@@ -95,7 +98,7 @@ public class EdifactTest extends TestCase {
 
 		String message_reference_number = "1234";
 
-		Edifact edi_cuscar = new Edifact("\n",path,1, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252",1, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "195B", "UN", "UNOC", "2", "sender_id"
 				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
@@ -232,11 +235,11 @@ public class EdifactTest extends TestCase {
 
 	}
 
-	public void testgetMessage() throws EDIException {
+	public void testgetMessage() throws EDIException, UnsupportedEncodingException {
 
 		String path = UtilsTest.tempdir.concat("Tata.edi");
 		//System.out.println(path);
-		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252", 6, '+', ':', ' ', '.', '?',
 				'\'', "CUSCAR", "D95B", "UN", "UNOC", "2", "sender_id"
 				,"sender_code_qualifier","recipient_id","recipient_code_qualifier", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
@@ -253,11 +256,11 @@ public class EdifactTest extends TestCase {
 
 	}
 	
-	public void testMapSegmentsStructureInfo() throws EDIException {
+	public void testMapSegmentsStructureInfo() throws EDIException, UnsupportedEncodingException {
 		
 		String path = UtilsTest.tempdir.concat("Tata.edi");
 		
-		Edifact edi_cuscar = new Edifact("\n",path, 6, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252", 6, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
@@ -274,7 +277,7 @@ public class EdifactTest extends TestCase {
 		
 	}
 
-	public static void testparseGrammar() throws EDIException {
+	public static void testparseGrammar() throws EDIException, UnsupportedEncodingException {
 		String path = UtilsTest.tempdir.concat("testparseGrammar.edi");
 		Edifact edi=new Edifact(path);
 		assertNull(edi.component_separator);
@@ -284,7 +287,7 @@ public class EdifactTest extends TestCase {
 		assertNull(edi.escape_character);
 		//assertNull(edi.space_character);
 		
-		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':',' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252", 0, '+', ':',' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		
@@ -299,12 +302,12 @@ public class EdifactTest extends TestCase {
 		assertEquals(String.valueOf(edi_cuscar.escape_character),"?");
 	}
 	
-	public static void testMessages() throws EDIException {
+	public static void testMessages() throws EDIException, UnsupportedEncodingException {
 		
 		// On crée la structure vide d'un cuscar
 		String path = UtilsTest.tempdir.concat("testparseGrammar.edi");
 		
-		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':',' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252", 0, '+', ':',' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 		

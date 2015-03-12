@@ -1,5 +1,6 @@
 package org.bollore.edi.parser;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,7 +16,7 @@ public class SegmentParser {
 
 
 	public static void main(String[] args) throws EDIParseException,
-			EDIException {
+			EDIException, UnsupportedEncodingException {
 		String path = UtilsTest.tempdir.concat("Cuscar_Test2.edi");
 		String seg_string = "TDT+20+0214+1+GBN:172:166+GBN:146::vesselname not found:countryname not mapped'";
 		String message_reference_number = "1234";
@@ -24,7 +25,7 @@ public class SegmentParser {
 		cal.set(2014, 1, 1, 1, 1, 0);
 		Date date = cal.getTime();
 
-		Edifact edi_cuscar = new Edifact("\n",path, 0, '+', ':', ' ', '.', '?',
+		Edifact edi_cuscar = new Edifact("\n",path,"Cp1252", 0, '+', ':', ' ', '.', '?',
 				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
 				"","", "SNCUSTOMS", date, "identifiant de mon voyage","");
 

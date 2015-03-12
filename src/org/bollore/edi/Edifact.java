@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 //import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +32,7 @@ public class Edifact {
 
 	// Attributs lies à la generation de fichier
 	public String filepath;
+	public String encoding;
 	public String lineseparator;
 	public PrintWriter printwriter;
 	public Integer isTest;
@@ -84,6 +86,7 @@ public class Edifact {
 
 	public Edifact(String filepath) {
 		this.filepath = filepath;
+		this.encoding="Cp1252";
 		Utils.CreateDir(this.filepath);
 		this.messages = new ArrayList<org.bollore.edi.Message>();
 	}
@@ -91,6 +94,7 @@ public class Edifact {
 	public Edifact(String filepath, String edi_type, String edi_version) {
 		this.filepath = filepath;
 		Utils.CreateDir(this.filepath);
+		this.encoding="Cp1252";
 		this.edi_type = edi_type;
 		this.edi_version = edi_version;
 		this.lineseparator = "\n";
@@ -124,8 +128,9 @@ public class Edifact {
 	 * @param date
 	 * @param interchange_control_reference
 	 * @throws EDIException
+	 * @throws UnsupportedEncodingException 
 	 */
-	public Edifact(String lineseparator, String filepath, Integer isTest,
+	public Edifact(String lineseparator, String filepath,String encoding,Integer isTest,
 			Character element_separator, Character component_separator,
 			Character space_character, Character decimal_separator,
 			Character escape_character, Character segment_separator,
@@ -136,7 +141,7 @@ public class Edifact {
 			String interchange_sender_id, String sender_code_qualifier,
 			String interchange_recipient_id, String recipient_code_qualifier,
 			Date date, String interchange_control_reference,String Application_reference)
-			throws EDIException
+			throws EDIException, UnsupportedEncodingException
 
 	{
 
@@ -146,9 +151,16 @@ public class Edifact {
 			this.filepath = filepath;
 
 			Utils.CreateDir(this.filepath);
+			
+			if(encoding!=null&&!"".equals(encoding.trim())) {
+				this.encoding=encoding;
+			} else {
+				this.encoding="Cp1252";
+			}
 
 			this.isTest = isTest;
-			this.printwriter = new PrintWriter(new File(filepath));
+			//PrintWriter pw=new PrintWriter("C:/Temp/test.xml","Cp1252");
+			this.printwriter = new PrintWriter(filepath,this.encoding);
 
 			// Instantiation des attributs li�s au segment UNA
 
@@ -195,7 +207,7 @@ public class Edifact {
 		}
 	}
 
-	public Edifact(String lineseparator, String filepath, Integer isTest,
+	public Edifact(String lineseparator, String filepath,String encoding, Integer isTest,
 
 	String edi_version, String edi_type, String controlling_agency,
 
@@ -204,7 +216,7 @@ public class Edifact {
 			String interchange_recipient_id, String recipient_code_qualifier,
 			Date date,
 
-			String interchange_control_reference,String Application_Reference) throws EDIException
+			String interchange_control_reference,String Application_Reference) throws EDIException, UnsupportedEncodingException
 
 	{
 
@@ -213,8 +225,13 @@ public class Edifact {
 			// Instantiation des attributs de fichier
 			this.filepath = filepath;
 			Utils.CreateDir(this.filepath);
+			if(encoding!=null&&!"".equals(encoding.trim())) {
+				this.encoding=encoding;
+			} else {
+				this.encoding="Cp1252";
+			}
 			this.isTest = isTest;
-			this.printwriter = new PrintWriter(new File(filepath));
+			this.printwriter = new PrintWriter(filepath,encoding);
 
 			// Instantiation des attributs li�s au segment UNA
 			this.element_separator = '+';
@@ -256,7 +273,7 @@ public class Edifact {
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	public Boolean isGrammarCharValid() throws EDIException {
@@ -1067,10 +1084,11 @@ public class Edifact {
 
 			try {
 				if (this.printwriter != null) {
+					this.printwriter.flush();
 					this.printwriter.close();
-				}
+				}			
 
-			} catch (Exception e2) {
+			}  catch (Exception e2) {
 				System.err.println(e2.getMessage());
 				e2.printStackTrace();
 			}
