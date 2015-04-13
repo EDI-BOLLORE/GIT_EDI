@@ -831,9 +831,6 @@ public class Edifact {
 			this.getMessage(message_ref).segments.add(this
 					.getSegmentStructure(segment_path));
 			
-			this
-			.getSegmentStructure(segment_path).printSegment();
-			
 		}
 
 		// On recupere le dernier segment en cours de traitement de l'EDI
@@ -1770,49 +1767,6 @@ public class Edifact {
 		// cur_seg.printSegment();
 
 		// System.out.println(replace_special_regex_char("+?+:A"));
-		
-		Edifact edi_cuscar = new Edifact("\n","C:/Temp/Test.edi","Cp1252", 1, '+', ':', ' ', '.', '?',
-				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
-				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
-
-		String message_reference_number="test à nuno";
-		
-		ArrayList<String> gid_1496 = new ArrayList<String>();
-
-		gid_1496.add("gid_1");
-		
-		ArrayList<String> gid_c213_1 = new ArrayList<String>();
-		
-		gid_c213_1.add("gid_11");
-		gid_c213_1.add("gid_12");
-		gid_c213_1.add("gid_13");
-		gid_c213_1.add("gid_14");
-		gid_c213_1.add("gid_15");
-
-		// On peut utiliser l'un ou l'autre
-		
-		edi_cuscar.setValueElement(message_reference_number, "GRP4/GRP5/GRP10/GID/1496", gid_1496,
-				true);
-		
-		gid_1496.clear();
-		
-		edi_cuscar.setValueElement(message_reference_number, "GRP4/GRP5/GRP10/GID/C213", gid_c213_1,
-				false);
-		
-		gid_c213_1.clear();
-		
-		gid_c213_1.add("gid_21");
-		gid_c213_1.add("gid_22");
-		gid_c213_1.add("gid_23");
-		gid_c213_1.add("gid_24");
-		gid_c213_1.add("gid_25");
-		
-		edi_cuscar.setValueElement(message_reference_number, "GRP4/GRP5/GRP10/GID/C213", gid_c213_1,
-				false);
-		
-		gid_1496.clear();
-		
-		edi_cuscar.print();
 	}
 
 }
