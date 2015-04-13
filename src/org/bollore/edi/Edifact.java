@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.bollore.edi.parser.EDIParseException;
 import org.bollore.edi.tests.UtilsTest;
 //import org.bollore.edi.tests.UtilsTest;
 import org.jdom2.Document;
@@ -55,12 +56,14 @@ public class Edifact {
 	public String interchange_recipient_id; // exemple SNCUSTOMS
 	public String date; // Date du jour au format
 	public String time; // Heure du jour
-	public String interchange_control_reference; // Auto-incr�ment du nombre de fichiers echanges avec interchange_sender_id durant l'annee
+	public String interchange_control_reference; // Auto-incr�ment du nombre de
+													// fichiers echanges avec
+													// interchange_sender_id
+													// durant l'annee
 	public String Application_reference;
 	// Fin
 
-	// Attributs utilis�s pour le segment UNH
-	// public String message_reference_number;
+	// Attributs utilises pour le segment UNH
 	public String edi_version;
 	public String edi_type;
 	public String controlling_agency;
@@ -86,7 +89,7 @@ public class Edifact {
 
 	public Edifact(String filepath) {
 		this.filepath = filepath;
-		this.encoding="Cp1252";
+		this.encoding = "Cp1252";
 		Utils.CreateDir(this.filepath);
 		this.messages = new ArrayList<org.bollore.edi.Message>();
 	}
@@ -94,7 +97,7 @@ public class Edifact {
 	public Edifact(String filepath, String edi_type, String edi_version) {
 		this.filepath = filepath;
 		Utils.CreateDir(this.filepath);
-		this.encoding="Cp1252";
+		this.encoding = "Cp1252";
 		this.edi_type = edi_type;
 		this.edi_version = edi_version;
 		this.lineseparator = "\n";
@@ -107,7 +110,8 @@ public class Edifact {
 	/**
 	 * Constructeur de la classe Edifact
 	 * 
-	 * @param lineseparator: séparateur de ligne
+	 * @param lineseparator
+	 *            : séparateur de ligne
 	 * @param filepath
 	 * @param isTest
 	 * @param element_separator
@@ -128,20 +132,22 @@ public class Edifact {
 	 * @param date
 	 * @param interchange_control_reference
 	 * @throws EDIException
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
-	public Edifact(String lineseparator, String filepath,String encoding,Integer isTest,
-			Character element_separator, Character component_separator,
-			Character space_character, Character decimal_separator,
-			Character escape_character, Character segment_separator,
+	public Edifact(String lineseparator, String filepath, String encoding,
+			Integer isTest, Character element_separator,
+			Character component_separator, Character space_character,
+			Character decimal_separator, Character escape_character,
+			Character segment_separator,
 
 			String edi_type, String edi_version, String controlling_agency,
 
 			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String sender_code_qualifier,
 			String interchange_recipient_id, String recipient_code_qualifier,
-			Date date, String interchange_control_reference,String Application_reference)
-			throws EDIException, UnsupportedEncodingException
+			Date date, String interchange_control_reference,
+			String Application_reference) throws EDIException,
+			UnsupportedEncodingException
 
 	{
 
@@ -151,16 +157,16 @@ public class Edifact {
 			this.filepath = filepath;
 
 			Utils.CreateDir(this.filepath);
-			
-			if(encoding!=null&&!"".equals(encoding.trim())) {
-				this.encoding=encoding;
+
+			if (encoding != null && !"".equals(encoding.trim())) {
+				this.encoding = encoding;
 			} else {
-				this.encoding="Cp1252";
+				this.encoding = "Cp1252";
 			}
 
 			this.isTest = isTest;
-			//PrintWriter pw=new PrintWriter("C:/Temp/test.xml","Cp1252");
-			this.printwriter = new PrintWriter(filepath,this.encoding);
+			// PrintWriter pw=new PrintWriter("C:/Temp/test.xml","Cp1252");
+			this.printwriter = new PrintWriter(filepath, this.encoding);
 
 			// Instantiation des attributs li�s au segment UNA
 
@@ -187,7 +193,7 @@ public class Edifact {
 			this.time = (date == null) ? Utils.getCurrentDate("HHmmss") : Utils
 					.formatDate("HHmmss", date);
 			this.interchange_control_reference = interchange_control_reference;
-			this.Application_reference=Application_reference;
+			this.Application_reference = Application_reference;
 
 			// Instantiation des attributs du segment UNH
 			this.edi_version = edi_version;
@@ -207,16 +213,18 @@ public class Edifact {
 		}
 	}
 
-	public Edifact(String lineseparator, String filepath,String encoding, Integer isTest,
+	public Edifact(String lineseparator, String filepath, String encoding,
+			Integer isTest,
 
-	String edi_version, String edi_type, String controlling_agency,
+			String edi_version, String edi_type, String controlling_agency,
 
-	String syntax_id, String syntax_version_number,
+			String syntax_id, String syntax_version_number,
 			String interchange_sender_id, String sender_code_qualifier,
 			String interchange_recipient_id, String recipient_code_qualifier,
 			Date date,
 
-			String interchange_control_reference,String Application_Reference) throws EDIException, UnsupportedEncodingException
+			String interchange_control_reference, String Application_Reference)
+			throws EDIException, UnsupportedEncodingException
 
 	{
 
@@ -225,13 +233,13 @@ public class Edifact {
 			// Instantiation des attributs de fichier
 			this.filepath = filepath;
 			Utils.CreateDir(this.filepath);
-			if(encoding!=null&&!"".equals(encoding.trim())) {
-				this.encoding=encoding;
+			if (encoding != null && !"".equals(encoding.trim())) {
+				this.encoding = encoding;
 			} else {
-				this.encoding="Cp1252";
+				this.encoding = "Cp1252";
 			}
 			this.isTest = isTest;
-			this.printwriter = new PrintWriter(filepath,encoding);
+			this.printwriter = new PrintWriter(filepath, encoding);
 
 			// Instantiation des attributs li�s au segment UNA
 			this.element_separator = '+';
@@ -268,12 +276,12 @@ public class Edifact {
 
 			this.BuildStructureSegment();
 			this.lineseparator = lineseparator;
-			this.Application_reference=Application_Reference;
+			this.Application_reference = Application_Reference;
 			Utils.CreateDir(this.filepath);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
 
 	public Boolean isGrammarCharValid() throws EDIException {
@@ -614,13 +622,10 @@ public class Edifact {
 		E0020_element.setValue(this.interchange_control_reference);
 
 		seg_unb.elements.add(E0020_element);
-		
+
 		// Creation de l'element 0026
 		org.bollore.edi.Element E0026_element = new org.bollore.edi.Element(
-				"S0026",
-				true,
-				false,
-				"Application reference",
+				"S0026", true, false, "Application reference",
 				"Application reference");
 		E0020_element.setValue(this.Application_reference);
 
@@ -825,7 +830,10 @@ public class Edifact {
 					element_path.lastIndexOf("/"));
 			this.getMessage(message_ref).segments.add(this
 					.getSegmentStructure(segment_path));
-			// this.segments.add(this.getSegmentStructure(split[0]));
+			
+			this
+			.getSegmentStructure(segment_path).printSegment();
+			
 		}
 
 		// On recupere le dernier segment en cours de traitement de l'EDI
@@ -834,7 +842,6 @@ public class Edifact {
 
 		// On recupere l'element que l'on souhaite instancier
 
-		// org.bollore.edi.Element element=null;
 		ArrayList<org.bollore.edi.Element> elements = segment.elements;
 
 		org.bollore.edi.Element element = null;
@@ -846,7 +853,9 @@ public class Edifact {
 
 			element_name = element_path.substring(
 					element_path.lastIndexOf("/") + 1, element_path.length());
-			if (element.code.equals(element_name)) {
+			//element.isEmpty() a été rajouté pour traiter le cas des éléments qui peuvent avoir plusieur composants du même type
+			// ex pour GRP4/GRP5/GRP10/GID il possède 3 composants C213. Sans ce test supplémentaire seul le premier est instancié
+			if (element.code.equals(element_name)&&element.isEmpty()) {
 
 				break;
 			}
@@ -1086,9 +1095,9 @@ public class Edifact {
 				if (this.printwriter != null) {
 					this.printwriter.flush();
 					this.printwriter.close();
-				}			
+				}
 
-			}  catch (Exception e2) {
+			} catch (Exception e2) {
 				System.err.println(e2.getMessage());
 				e2.printStackTrace();
 			}
@@ -1264,9 +1273,10 @@ public class Edifact {
 		HashMap<String, org.bollore.edi.Segment> segments = new HashMap<String, org.bollore.edi.Segment>();
 
 		try {
-			
+
 			document = sxb.build(Edifact.class.getResourceAsStream("/D"
-					+ this.edi_version.substring(1,4) + "/__modelset_definitions.xml"));
+					+ this.edi_version.substring(1, 4)
+					+ "/__modelset_definitions.xml"));
 
 			racine = document.getRootElement();
 			List<org.jdom2.Element> nodes = racine.getChildren("segments");
@@ -1395,135 +1405,6 @@ public class Edifact {
 		return result;
 	}
 
-	public void parseEDI() {
-		// Variable mise en place pour compter le nombre de segments de l'EDI
-		// hos UNA, UNB, UNZ
-		Integer nb_segments = -4;
-		HashMap<String, org.bollore.edi.Segment> segments = new HashMap<String, org.bollore.edi.Segment>();
-		org.bollore.edi.Segment cur_seg;
-
-		try {
-
-			FileInputStream fstream = new FileInputStream(filepath);
-
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			String strLine = "";
-
-			this.lineseparator = "\n";
-
-			// On lit chaque ligne du fichier une à une
-			while ((strLine = br.readLine()) != null) {
-				// On incrémente le nombre de segments lus
-				nb_segments++;
-				// Si le segment commence par 3 caractères alphabétiques
-				if (Utils.PatternCheck(strLine, "^[A-Z]{3}.*")) {
-					String segname = strLine.substring(0, 3);
-
-					// S'il s'agit du segment UNA
-					if (strLine.startsWith("UNA")) {
-						this.component_separator = strLine.substring(4, 5)
-								.charAt(0);
-						this.segment_separator = strLine.substring(8, 9)
-								.charAt(0);
-						this.element_separator = strLine.substring(3, 4)
-								.charAt(0);
-						this.escape_character = strLine.substring(6, 7).charAt(
-								0);
-						this.space_character = strLine.substring(7, 8)
-								.charAt(0);
-						this.decimal_separator = strLine.substring(5, 6)
-								.charAt(0);
-						// S'il s'agit du segment UNB
-					} else if (strLine.startsWith("UNB")) {
-						String[] unb_elements = strLine
-								.split(replaceSpecialGrammarChar(this.component_separator));
-						if (unb_elements.length == 7
-								&& "1".equals(unb_elements[6].substring(0, 1))) {
-							this.isTest = 1;
-						} else {
-							this.isTest = 0;
-						}
-
-						String[] syntax = unb_elements[1]
-								.split(replaceSpecialGrammarChar(this.element_separator));
-						this.syntax_id = syntax[0];
-						this.syntax_version_number = syntax[1];
-						if (Utils.PatternCheck(unb_elements[4],
-								"[0-9]{6}.{1}[0-9]{4}")) {
-							this.date = unb_elements[4].substring(0, 6);
-							this.time = unb_elements[4].substring(7, 11)
-									.concat("00");
-						}
-						this.interchange_control_reference = unb_elements[5]
-								.replaceAll(this.segment_separator.toString(),
-										"");
-						nb_segments++;
-						// S'il s'agit du segment UNH
-					} else if (strLine.startsWith("UNH")) {
-						String[] unh_elements = strLine
-								.split(replaceSpecialGrammarChar(this.component_separator));
-
-						this.messages.add(new Message(unh_elements[1]));
-
-						String[] unh_components = (unh_elements[2])
-								.split(replaceSpecialGrammarChar(this.element_separator));
-
-						this.edi_type = unh_components[0];
-						// On récupère la version sous la forme "D99B"
-						this.edi_version =unh_components[1]+unh_components[2];
-						//this.edi_version = "D95B";
-
-						segments = this.buildStructureSegmentDefinition();
-						this.controlling_agency = unh_components[3];
-
-						for (int i = 0; i < unh_elements.length; i++) {
-							// System.out.println(unh_elements[i]);
-						}
-					}
-					// S'il s'agit du segment UNT
-					else if (strLine.startsWith("UNT")) {
-
-						System.out.println("UNT");
-					}
-					// S'il s'agit du segment UNZ
-					else if (strLine.startsWith("UNZ")) {
-
-						System.out.println("UNZ");
-						// Il s'agit d'un segment autre que UNA, UNB,UNH,UNT,UNZ
-					} else {
-						// Le segment UNH a déjà été parsé. La structure de
-						// l'EDI est donc connue
-						// On teste si le nom du segment est connu dans la
-						// définition
-						if (segments.containsKey(strLine.substring(0, 3))) {
-							cur_seg = segments.get(segname);
-							
-							//
-
-							if ("LOC".equals(segname)) {
-								this.messages.get(0).addSegment(this.buildSegment(strLine));
-							}
-						}
-					}
-
-					// Le segment ne commence pas par 3 caractères alphabétiques
-				} else {
-
-					throw new EDIException(
-							"Le segment ne commence pas par 3 caractères alphabétiques : "
-									+ strLine);
-
-				}
-
-				// Fin de la lecture de l'EDI
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		this.printEDI();
-	}
 
 	public static String replace_special_regex_char(String input) {
 		String result = null;
@@ -1535,112 +1416,403 @@ public class Edifact {
 		return result;
 	}
 
+	public void setGrammar() {
+
+		try {
+
+			InputStreamReader ipsr = new InputStreamReader(new FileInputStream(
+					this.filepath));
+
+			BufferedReader br = new BufferedReader(ipsr);
+
+			// On lit la première ligne de l'edifact qui doit contenir le
+			// segment UNA
+			String una = br.readLine();
+
+			// Si le segment est présent
+			if (una != null && una.startsWith("UNA")) {
+
+				this.element_separator = una.charAt(3);
+				this.component_separator = una.charAt(4);
+				this.decimal_separator = una.charAt(5);
+				this.escape_character = una.charAt(6);
+				this.space_character = una.charAt(7);
+				this.segment_separator = una.charAt(8);
+			} else {
+
+				this.element_separator = '+';
+				this.component_separator = ':';
+				this.decimal_separator = '.';
+				this.escape_character = '?';
+				this.space_character = ' ';
+				this.segment_separator = '\'';
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
+	public ArrayList<String> splitSegments() throws IOException {
+
+		ArrayList<String> result = new ArrayList<String>();
+
+		InputStreamReader ipsr = new InputStreamReader(new FileInputStream(
+				this.filepath));
+		BufferedReader br = new BufferedReader(ipsr);
+		String cur_line;
+
+		try {
+
+			// Le fichier est multiligne
+			if (Utils.FileNbLines(filepath) > 1) {
+
+				while ((cur_line = br.readLine()) != null) {
+					if (!"".equals(cur_line.replaceAll("[\\s]+", ""))) {
+						result.add(cur_line.substring(0,
+								cur_line.indexOf(String
+										.valueOf(this.segment_separator)) ));
+					}
+				}
+
+				this.lineseparator = "\r\n";
+
+				// Le fichier ne comporte de retour à la ligne
+			} else {
+				String[] segments = br.readLine().split(
+						String.valueOf(this.segment_separator));
+				for (int i = 0; i < segments.length; i++) {
+					result.add(segments[i]);
+				}
+				this.lineseparator = "";
+			}
+
+		} catch (Exception e) {
+
+		} finally {
+			br.close();
+		}
+
+		return result;
+
+	}
+
+	public void buildEDI() throws IOException, EDIException {
+
+		InputStreamReader ipsr = new InputStreamReader(new FileInputStream(
+				this.filepath));
+		this.encoding = ipsr.getEncoding();
+
+		BufferedReader br = new BufferedReader(ipsr);
+
+		// On récupère la grammaire de l'EDI
+		this.setGrammar();
+
+		// On récupère les segments en fonction de la grammaire
+		ArrayList<String> segments = this.splitSegments();
+
+		// On gère le cas particulier du segment UNB
+		String seg_unb = segments.get(0);
+
+		String[] segs_unb = seg_unb
+				.split(replaceSpecialGrammarChar(this.element_separator));
+
+		String[] syntax = segs_unb[1]
+				.split(replaceSpecialGrammarChar(this.component_separator));
+
+		if (syntax.length == 2) {
+			this.syntax_id = syntax[0];
+			this.syntax_version_number = syntax[1];
+		} else if (syntax.length == 1) {
+			this.syntax_id = syntax[0];
+			this.syntax_version_number = "";
+		}
+
+		String[] interchange_sender = segs_unb[2].split(Edifact
+				.replaceSpecialGrammarChar(this.component_separator));
+
+		if (interchange_sender.length == 2) {
+			this.interchange_sender_id = interchange_sender[0];
+			this.sender_code_qualifier = interchange_sender[1];
+		} else if (interchange_sender.length == 1) {
+			this.interchange_sender_id = interchange_sender[0];
+			this.sender_code_qualifier = "";
+		}
+
+		String[] interchange_receiver = segs_unb[3].split(Edifact
+				.replaceSpecialGrammarChar(this.component_separator));
+
+		if (interchange_receiver.length == 2) {
+			this.interchange_recipient_id = interchange_receiver[0];
+			this.recipient_code_qualifier = interchange_receiver[1];
+		} else if (interchange_sender.length == 1) {
+			this.interchange_recipient_id = interchange_receiver[0];
+			this.recipient_code_qualifier = "";
+		}
+
+		String[] date = segs_unb[4].split(Edifact
+				.replaceSpecialGrammarChar(this.component_separator));
+
+		if (date.length == 2) {
+			this.date = date[0];
+			this.time = date[1];
+		} else if (date.length == 1) {
+			this.date = date[0];
+			this.time = "";
+		}
+
+		this.Application_reference = segs_unb[5];
+
+		// On gère le cas particulier du segment UNH pour ne récupérer que le
+		// type d'information concernant le type d'EDI.
+
+		String seg_unh = segments.get(1);
+
+		String[] segs_unh = seg_unh.split(Edifact
+				.replaceSpecialGrammarChar(this.element_separator));
+
+		String[] edi_info = segs_unh[2].split(Edifact
+				.replaceSpecialGrammarChar(this.component_separator));
+
+		this.edi_type = edi_info[0];
+		this.edi_version = edi_info[1] + edi_info[2];
+		this.controlling_agency = edi_info[3];
+
+		// On construit la définition de la structure de l'EDI courant
+		this.BuildStructureSegment();
+
+		HashMap<String, org.bollore.edi.Segment> segts_def = this
+				.buildStructureSegmentDefinition();
+
+		//System.out.println(segments.get(2));
+		this.buildSegments(segments, segts_def);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public void buildSegments(ArrayList<String> file_segments,
+			HashMap<String, org.bollore.edi.Segment> hash_segs)
+			throws EDIException {
+
+		// On construit tous les segments sauf le segment UNB d'où i=1
+		for (int i = 1; i < file_segments.size(); i++) {
+
+			String cur_file_seg_s = file_segments.get(i);			
+
+			String seg_code = cur_file_seg_s.substring(0, 3);
+
+			org.bollore.edi.Segment cur_def_segment;
+
+			if (seg_code.equals("UNH")) {
+
+				String[] unh_elements = cur_file_seg_s
+						.split(replace_special_regex_char(String
+								.valueOf(this.element_separator)));
+
+				this.messages.add(new Message(unh_elements[1]));
+
+			} else if (!seg_code.equals("UNH") && !seg_code.equals("UNT")
+					&& !seg_code.equals("UNZ")) {
+				cur_def_segment = ((org.bollore.edi.Segment) hash_segs
+						.get(seg_code)).clone();
+				
+				
+
+				String[] seg_file_elements = cur_file_seg_s
+						.split(replace_special_regex_char(String
+								.valueOf(this.element_separator)));
+
+				// Si le nombre de valeurs à affecter est inférieur au nombre de
+				// variables
+				// length-1 c'est pour exclure le nom du segment qui n'est pas une valeur à affecter
+				if (cur_def_segment.elements.size() >= seg_file_elements.length-1) {
+					ArrayList<String> seg_file_elements_a=new ArrayList<String>();
+					
+					for (int j = 0; j < seg_file_elements.length; j++) {
+						seg_file_elements_a.add(seg_file_elements[j]);
+					}
+					
+					for (int j = 0; j < cur_def_segment.elements.size() - seg_file_elements.length; j++) {
+						seg_file_elements_a.add("");
+					}
+					
+					// On instancie les valeurs des éléments à partir de l'arraylist généré ci-dessus.					
+					ArrayList<org.bollore.edi.Element> cur_def_elements=cur_def_segment.elements;
+					org.bollore.edi.Element cur_def_element=null;
+					
+					//for (int k = 0; k < seg_file_elements_a.size(); k++) {
+						for (int j = 0; j < cur_def_elements.size(); j++) {
+						cur_def_element=(org.bollore.edi.Element)cur_def_elements.get(j).clone();
+						
+						//if(cur_elements.get(j).code.startsWith("C")&&)
+						//System.out.println(j+"  "+cur_def_element.code);
+						
+						
+							//seg_file_elements_a
+							System.out.println(cur_def_segment.code+"      "+cur_def_element.code+"         "+seg_file_elements_a.get(j));
+						}
+					//}
+					
+					
+
+				} else {
+					throw new EDIException("buildEDI: le nombre de valeurs est supérieur au nombre d'éléments pour le segment "+cur_file_seg_s);
+				}
+			}
+		}
+
+	}
+
+	public Message getLastMessage() {
+		Message result = new Message();
+
+		if (this.messages.size() >= 1) {
+			result = this.messages.get(this.messages.size() - 1);
+		} else {
+			result = null;
+		}
+		return result;
+	}
+
 	public org.bollore.edi.Segment buildSegment(String edi_line)
 			throws EDIException {
 		org.bollore.edi.Segment result = new org.bollore.edi.Segment();
 
-		// Pour l'instant c'est la seule version gérée par le JAR:
-		//this.edi_version = "D95B";
-		
-		
-		
 		HashMap<String, org.bollore.edi.Segment> segments = this
 				.buildStructureSegmentDefinition();
 
 		String temp_replace_string = "abcdefghijklmnopqrstuvwxyz";
 
-		if (edi_line != null) {
-			// On retire le caractère de séparation de segments
-			edi_line = edi_line.replaceAll(
-					replace_special_regex_char(this.segment_separator
-							.toString()), "");
+		if (Utils.PatternCheck(edi_line, "^[A-Z]{3}[^A-Z]{1}.*")) {
+			String seg_name = edi_line.substring(0, 3);
 
-			if (Utils.PatternCheck(edi_line, "^[A-Z]{3}[^A-Z]{1}.*")) {
-				String seg_name = edi_line.substring(0, 3);
+			// Si le nom du segment n'existe pas dans la définition on sort
+			if (!segments.containsKey(seg_name)) {
+				throw new EDIException("buildSegment: Le segment : " + seg_name
+						+ " n'existe pas dans la norme EDIFACT.");
+			} else {
+				result = segments.get(seg_name);
 
-				// Si le nom du segment n'existe pas dans la définition on sort
-				if (!segments.containsKey(seg_name)) {
-					throw new EDIException("buildSegment: Le segment : "
-							+ seg_name + " n'existe pas dans la norme EDIFACT.");
-				} else {
-					result = segments.get(seg_name);
+				// On va découper la ligne en composants
 
-					// On va découper la ligne en composants
+				// On retire de la ligne courante les 4 premiers caractères
+				// qui ne nous servent plus maintenant ( NAD+ ou BGM+,...)
+				edi_line = edi_line.substring(4);
+				// On remplace ?+ par une chaine temporaire
+				edi_line = edi_line
+						.replaceAll(
+								replace_special_regex_char(
+										this.escape_character.toString())
+										.concat(replace_special_regex_char(this.component_separator
+												.toString())),
+								temp_replace_string);
 
-					// On retire de la ligne courante les 4 premiers caractères
-					// qui ne nous servent plus maintenant ( NAD+ ou BGM+,...)
-					edi_line = edi_line.substring(4);
-					// On remplace ?+ par une chaine temporaire
-					edi_line = edi_line
-							.replaceAll(
-									replace_special_regex_char(
-											this.escape_character.toString())
-											.concat(replace_special_regex_char(this.component_separator
-													.toString())),
-									temp_replace_string);
+				// On découpe le segment en composants
+				String[] components = edi_line
+						.split(replace_special_regex_char(this.component_separator
+								.toString()));
 
-					// System.out.println(edi_line);
-					// On découpe le segment en composants
-					String[] components = edi_line
-							.split(replace_special_regex_char(this.component_separator
+				for (int i = 0; i < components.length; i++) {
+					// On remplace la chaine spécial catchée par l'ancienne
+					// sans le caractère d'échappement
+					String component = components[i].replaceAll(
+							temp_replace_string,
+							replace_special_regex_char(this.component_separator
 									.toString()));
 
-					for (int i = 0; i < components.length; i++) {
-						// On remplace la chaine spécial catchée par l'ancienne
-						// sans le caractère d'échappement
-						String component = components[i].replaceAll(temp_replace_string,replace_special_regex_char(this.component_separator.toString()));
+					// Si la chaine de caractère ne contient pas de
+					// séparateur d'élément, l'élément n'a pas de composants
+					// if
+					// (!component.contains(replace_special_regex_char(this.element_separator.toString())))
+					if (result.elements.get(i).components.size() == 0) {
+						result.elements.get(i).value = component;
+						// L'élément possède des composants
+					} else {
 
-						// Si la chaine de caractère ne contient pas de
-						// séparateur d'élément, l'élément n'a pas de composants
-						//if (!component.contains(replace_special_regex_char(this.element_separator.toString()))) 
-						if(result.elements.get(i).components.size()==0)
-						{
-							result.elements.get(i).value = component;
-							// L'élément possède des composants
-						} else {
+						// On récupère les composants de l'élément
+						ArrayList<org.bollore.edi.Component> cur_components = result.elements
+								.get(i).components;
 
-							// On récupère les composants de l'élément
-							ArrayList<org.bollore.edi.Component> cur_components = result.elements
-									.get(i).components;
+						// org.bollore.edi.Component cur_component =
+						// result.elements.get(i).components.get(0);
 
-							//org.bollore.edi.Component cur_component = result.elements.get(i).components.get(0);
-
-						}
 					}
-
-					//result.printSegment();
 				}
-				// Le segment ne commence pas par 3 caractères alphabétiques
-			} else {
-				throw new EDIException(
-						"buildSegment: La ligne du segment ne commence pas par 3 caractères alphabétiques : "
-								+ edi_line);
+
 			}
+			// Le segment ne commence pas par 3 caractères alphabétiques
 		} else {
-			throw new EDIException("buildSegment: La ligne est null : "
-					+ edi_line);
+			throw new EDIException(
+					"buildSegment: La ligne du segment ne commence pas par 3 caractères alphabétiques : "
+							+ edi_line);
 		}
 
 		return result;
 	}
 
-	public static void main(String[] args) throws IOException, EDIException {
-		Edifact edi = new Edifact(
-				"C:/Bollore/Projets/EDI/Arkas/Sample/IFTMCS_Sample.txt");
+	public static void main(String[] args) throws IOException, EDIException,
+			EDIParseException {
+//		Edifact edi = new Edifact("C:/Bollore/Projets/EDI/Coreor/COREOR.txt");
+//
+//		edi.buildEDI();
+//
+//		System.out.println(edi.getLastMessage().reference_number);
 
-		// edi.parseEDI();
-		String seg = "NAD+CA+ARKU:160:ZZZ+ARKAS CONTAINER TRANSPORT S.A.::+KASAP SOKAK ARKAS BINASI NO?:2 KAT?:6: ESENTEPE:++:::+34394+TR'";
-		// org.bollore.edi.Segment cur_seg=edi.buildSegment(seg);
-
-		edi.parseEDI();
-		System.out.println(edi.edi_version);
-		//edi.buildSegment(seg);
+		// edi.buildSegment(seg);
 
 		// Utils.PatternExtract(input, regex, group_rank)
 		// cur_seg.printSegment();
 
 		// System.out.println(replace_special_regex_char("+?+:A"));
+		
+		Edifact edi_cuscar = new Edifact("\n","C:/Temp/Test.edi","Cp1252", 1, '+', ':', ' ', '.', '?',
+				'\'',"CUSCAR", "D95B", "UN", "UNOC", "2", "GRIMALDI",
+				"recipient_code_qualifier","sender_code_qualifier", "SNCUSTOMS", UtilsTest.date, "identifiant de mon voyage","CUSCAR");
 
+		String message_reference_number="test à nuno";
+		
+		ArrayList<String> gid_1496 = new ArrayList<String>();
+
+		gid_1496.add("gid_1");
+		
+		ArrayList<String> gid_c213_1 = new ArrayList<String>();
+		
+		gid_c213_1.add("gid_11");
+		gid_c213_1.add("gid_12");
+		gid_c213_1.add("gid_13");
+		gid_c213_1.add("gid_14");
+		gid_c213_1.add("gid_15");
+
+		// On peut utiliser l'un ou l'autre
+		
+		edi_cuscar.setValueElement(message_reference_number, "GRP4/GRP5/GRP10/GID/1496", gid_1496,
+				true);
+		
+		gid_1496.clear();
+		
+		edi_cuscar.setValueElement(message_reference_number, "GRP4/GRP5/GRP10/GID/C213", gid_c213_1,
+				false);
+		
+		gid_c213_1.clear();
+		
+		gid_c213_1.add("gid_21");
+		gid_c213_1.add("gid_22");
+		gid_c213_1.add("gid_23");
+		gid_c213_1.add("gid_24");
+		gid_c213_1.add("gid_25");
+		
+		edi_cuscar.setValueElement(message_reference_number, "GRP4/GRP5/GRP10/GID/C213", gid_c213_1,
+				false);
+		
+		gid_1496.clear();
+		
+		edi_cuscar.print();
 	}
 
 }

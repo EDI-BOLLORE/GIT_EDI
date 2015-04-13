@@ -10,6 +10,13 @@ import org.bollore.edi.*;
 import org.bollore.edi.tests.UtilsTest;
 
 public class SegmentParser {
+	
+	
+	public static void parse(String input) {
+		
+		
+		
+	}
 
 
 

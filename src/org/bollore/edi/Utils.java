@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -66,6 +67,8 @@ public class Utils {
 			file.getParentFile().mkdirs();
 		}
 	}
+	
+
 	
 	public static String RandomString() {
 		SecureRandom random = new SecureRandom();
@@ -274,12 +277,44 @@ public class Utils {
         
         Files.write(path, lines, Charset.defaultCharset());
     }
+	
+	public static Integer FileNbLines(String filepath) {
+		Integer result=0;
+		
+		try {			
+
+			InputStream ips = new FileInputStream(filepath);
+
+			InputStreamReader ipsr = new InputStreamReader(ips);
+
+			BufferedReader br = new BufferedReader(ipsr);
+
+			String cur_line;
+
+			while((cur_line=br.readLine())!=null) {
+				if(!"".equals(cur_line.replaceAll("[\\s]+",""))) {
+				result++;
+				}
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
+		
+	}
 		
 	
 	
 	public static void main(String[] args) throws IOException {
 
-		Utils.replaceInFile("C:/Bollore/Projets/EDI/Baplie/Output/CUSCAR/CUSCAR_DOUANE.edi", "");
+		String filepath="C:/Bollore/Projets/EDI/Coreor/1line.txt";
+		//String filepath="C:/Bollore/Projets/EDI/Coreor/COREOR.txt";
+		//String filepath="C:/Bollore/Projets/EDI/Coreor/Empty.txt";
+		
+		//Utils.replaceInFile("C:/Bollore/Projets/EDI/Baplie/Output/CUSCAR/CUSCAR_DOUANE.edi", "");
+		System.out.println(Utils.FileNbLines(filepath));
+		
 		
 		
 		

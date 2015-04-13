@@ -11,6 +11,7 @@ public class Element implements Cloneable {
 	public String label;
 	public String documentation;
 	public String value;
+	public String element_path;
 	public ArrayList<org.bollore.edi.Component> components;
 
 	//
@@ -30,6 +31,7 @@ public class Element implements Cloneable {
 		this.label = null;
 		this.documentation = null;
 		this.components = new ArrayList<Component>();
+		this.element_path="";
 
 	}
 	
@@ -42,6 +44,7 @@ public class Element implements Cloneable {
 		this.label = null;
 		this.documentation = null;
 		this.components = new ArrayList<Component>();
+		this.element_path="";
 	}
 
 	public Element(String code, Boolean required, Boolean truncatable,
@@ -53,6 +56,18 @@ public class Element implements Cloneable {
 		this.label = label;
 		this.documentation = documentation;
 		this.components = components;
+	}
+	
+	public Element(String code, Boolean required, Boolean truncatable,
+			String label, String documentation, ArrayList<Component> components,String element_path) {
+		super();
+		this.code = code;
+		this.required = required;
+		this.truncatable = truncatable;
+		this.label = label;
+		this.documentation = documentation;
+		this.components = components;
+		this.element_path=element_path;
 	}
 
 	Element(String code, Boolean required, Boolean truncatable, String label,
@@ -242,6 +257,14 @@ public class Element implements Cloneable {
 		return result;
 	}
 	
+	public String getElement_path() {
+		return element_path;
+	}
+
+	public void setElement_path(String element_path) {
+		this.element_path = element_path;
+	}
+
 	public static void main(String[] args) {
 		String input="A;B;C";
 		org.bollore.edi.Element element=Element.parseElement(input, ";");

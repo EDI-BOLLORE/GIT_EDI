@@ -21,6 +21,12 @@ public class Message {
 		this.segments = new ArrayList<org.bollore.edi.Segment>();
 	}
 	
+	public Message() {
+		super();
+		this.reference_number = "";
+		this.segments = new ArrayList<org.bollore.edi.Segment>();
+	}
+	
 	
 	
 	public void addSegment(Segment segment) {
