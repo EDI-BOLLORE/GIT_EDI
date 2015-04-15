@@ -1158,13 +1158,16 @@ public class Edifact {
 						ArrayList<org.bollore.edi.Component> components = element.components;
 
 						if (!element.isEmpty()) {
+							
+							//System.out.println(element.code+"  "+element.isEmpty());
 
 							// Il s'agit d'un élément simple: on l'écrit dans le
 							// fichier
 							if (components == null || components.size() <= 0) {
 								String value = this
 										.replaceGrammarChar(element.value);
-								if (value != null && !"".equals(value.trim())) {
+								//if (value != null && !"".equals(value.trim())) {
+								if (value != null) {
 									this.printwriter
 											.append(this.element_separator
 													+ value);
@@ -1175,9 +1178,15 @@ public class Edifact {
 
 							}
 							// L'élément possède des composants
-							else {
+							else {							
+								
 								Integer max_non_null = element
 										.MaxRankComponentNonNull();
+								
+								// Si aucun composant n'a de valeur à affecter
+								if(max_non_null==0) {
+									this.printwriter.append(this.element_separator);
+								} else {
 
 								for (int k = 0; k < max_non_null; k++) {
 									org.bollore.edi.Component component = components
@@ -1202,6 +1211,12 @@ public class Edifact {
 
 									}
 								}
+								
+								
+							}
+								
+								
+								
 							}
 						} else {
 							this.printwriter.append(this.element_separator);

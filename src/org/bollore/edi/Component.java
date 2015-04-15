@@ -108,8 +108,6 @@ public class Component implements Cloneable {
 		}
 		return result;
 	}
-	
-	public void mapComponent(){}
 
 	public void printComponent() {
 

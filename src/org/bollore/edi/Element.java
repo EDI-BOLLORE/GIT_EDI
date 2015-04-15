@@ -159,10 +159,14 @@ public class Element implements Cloneable {
 
 					result--;
 
-				} else if (component.value.trim().equals("")) {
+				} 
+				
+				else if (component.value.trim().equals("")) {
 
 					result--;
-				} else {
+				} 
+				
+				else {
 					// Si la valeur est renseignée, on sort de la boucle
 					break;
 				}
@@ -203,7 +207,8 @@ public class Element implements Cloneable {
 	public Boolean isEmpty(){
 		Boolean result=true;
 		
-		if(this.value!=null&&!"".equals(this.value.trim())) {
+		//if(this.value!=null&&!"".equals(this.value.trim())) {
+		if(this.value!=null) {
 			result=false;
 			return result;
 		}
@@ -211,7 +216,8 @@ public class Element implements Cloneable {
 		if(this.components!=null){
 		
 		for (int i = 0; i < this.components.size(); i++) {
-			if(this.components.get(i).value!=null&&!"".equals(this.components.get(i).value)) {
+			//if(this.components.get(i).value!=null&&!"".equals(this.components.get(i).value)) {
+			if(this.components.get(i).value!=null) {
 				result=false;
 				return result;
 			}
@@ -252,7 +258,7 @@ public class Element implements Cloneable {
 					// On ajoute finalement l'élément
 					//result.add(result);
 							}				
-				}			
+				}	
 		}		
 		return result;
 	}
@@ -264,6 +270,8 @@ public class Element implements Cloneable {
 	public void setElement_path(String element_path) {
 		this.element_path = element_path;
 	}
+	
+	//public Boolean isEmptyComponent() {}
 
 	public static void main(String[] args) {
 		String input="A;B;C";
