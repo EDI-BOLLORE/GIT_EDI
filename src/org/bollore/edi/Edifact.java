@@ -1042,15 +1042,21 @@ public class Edifact {
 		List<org.jdom2.Element> nodes = _Node.getChildren();
 
 		for (int i = 0; i < nodes.size(); i++) {
-			if ("segment".equals(nodes.get(i).getName())
-					|| "segmentGroup".equals(nodes.get(i).getName())) {
+			org.bollore.edi.Segment cur_seg=segments_definition.get(
+					nodes.get(i).getAttributeValue("segcode"));
+			
+//					if(cur_seg.segment_path==null) {
+//						cur_seg.segment_path="/".concat(cur_seg.code);
+//					} else {
+//						cur_seg.segment_path=cur_seg.segment_path.concat("/").concat(cur_seg.code);
+//					}
+				
 				if ("segment".equals(nodes.get(i).getName())) {
-					// _Segments.add(segments_definition.get(nodes.get(i).getAttributeValue("segcode")));
-					_Segments.add(segments_definition.get(
-							nodes.get(i).getAttributeValue("segcode")).clone());
+					//_Segments.add(segments_definition.get(nodes.get(i).getAttributeValue("segcode")));
+					_Segments.add(cur_seg);
 				}
-				// if ("segmentGroup".equals(nodes.get(i).getName())) {
-				else {
+
+				else if("segmentGroup".equals(nodes.get(i).getName())){
 					org.bollore.edi.Segment segment = new org.bollore.edi.Segment(
 
 					nodes.get(i).getAttributeValue("xmltag"), "GRP"
@@ -1064,7 +1070,7 @@ public class Edifact {
 					_Segments.add(segment);
 				}
 			}
-		}
+		
 
 		this.structure = _Segments;
 	}
@@ -1202,21 +1208,14 @@ public class Edifact {
 										this.printwriter
 												.append(this.element_separator
 														+ value2);
-
 									} else {
 
 										this.printwriter
 												.append(this.component_separator
 														+ value2);
-
 									}
-								}
-								
-								
-							}
-								
-								
-								
+								}							
+							}								
 							}
 						} else {
 							this.printwriter.append(this.element_separator);
@@ -1225,12 +1224,9 @@ public class Edifact {
 
 					this.printwriter.append(this.segment_separator
 							+ this.lineseparator);
-
 				}
-
 			}
 		}
-
 	}
 
 	public void printfooter() {
@@ -1591,11 +1587,25 @@ public class Edifact {
 
 		// On construit la définition de la structure de l'EDI courant
 		this.BuildStructureSegment();
+		
+		this.setSegmentPath(null);
+		
+		
+		
+		for (int i = 0; i < this.structure.size(); i++) {
+			System.out.println(this.structure.get(i).segment_path+"    "+this.structure.get(i).code+"    "+this.structure.get(i).name);
+			if(this.structure.get(i).code.startsWith("GRP")) {
+				ArrayList<org.bollore.edi.Segment> sous_seg=this.structure.get(i).segments;
+				
+				for (int j = 0; j < sous_seg.size(); j++) {
+					System.out.println("           "+sous_seg.get(j).code+"    "+sous_seg.get(j).name);
+				}
+			}
+		}
+		
 
 		HashMap<String, org.bollore.edi.Segment> segts_def = this
 				.buildStructureSegmentDefinition();
-
-		//System.out.println(segments.get(2));
 		this.buildSegments(segments, segts_def);
 	}
 	
@@ -1634,44 +1644,36 @@ public class Edifact {
 				cur_def_segment = ((org.bollore.edi.Segment) hash_segs
 						.get(seg_code)).clone();
 				
+				ArrayList<org.bollore.edi.Element> cur_seg_elements=cur_def_segment.elements;
 				
-
-				String[] seg_file_elements = cur_file_seg_s
+				// Pour chaque élément
+				String[] seg_file_elements_s = cur_file_seg_s
 						.split(replace_special_regex_char(String
 								.valueOf(this.element_separator)));
-
+				
 				// Si le nombre de valeurs à affecter est inférieur au nombre de
 				// variables
 				// length-1 c'est pour exclure le nom du segment qui n'est pas une valeur à affecter
-				if (cur_def_segment.elements.size() >= seg_file_elements.length-1) {
-					ArrayList<String> seg_file_elements_a=new ArrayList<String>();
+				if (cur_def_segment.elements.size() >= seg_file_elements_s.length-1) {
+				
+				for (int j = 0; j < seg_file_elements_s.length-1; j++) {
+					org.bollore.edi.Element cur_element=cur_seg_elements.get(j);
 					
-					for (int j = 0; j < seg_file_elements.length; j++) {
-						seg_file_elements_a.add(seg_file_elements[j]);
-					}
-					
-					for (int j = 0; j < cur_def_segment.elements.size() - seg_file_elements.length; j++) {
-						seg_file_elements_a.add("");
-					}
-					
-					// On instancie les valeurs des éléments à partir de l'arraylist généré ci-dessus.					
-					ArrayList<org.bollore.edi.Element> cur_def_elements=cur_def_segment.elements;
-					org.bollore.edi.Element cur_def_element=null;
-					
-					//for (int k = 0; k < seg_file_elements_a.size(); k++) {
-						for (int j = 0; j < cur_def_elements.size(); j++) {
-						cur_def_element=(org.bollore.edi.Element)cur_def_elements.get(j).clone();
+					//S'il s'agit d'un élément composé
+					if("C".equals(cur_element.code.substring(0,1))) {
+						String[] cur_element_components=seg_file_elements_s[j+1].split(replace_special_regex_char(String
+								.valueOf(this.component_separator)));
 						
-						//if(cur_elements.get(j).code.startsWith("C")&&)
-						//System.out.println(j+"  "+cur_def_element.code);
-						
-						
-							//seg_file_elements_a
-							System.out.println(cur_def_segment.code+"      "+cur_def_element.code+"         "+seg_file_elements_a.get(j));
+						for (int k = 0; k < cur_element_components.length; k++) {
+							cur_element.components.get(k).value=cur_element_components[k];
 						}
-					//}
-					
-					
+						
+						
+					// il s'agit d'un élément simple
+					} else {						
+						cur_element.value=seg_file_elements_s[j+1];					
+					}					
+				}	
 
 				} else {
 					throw new EDIException("buildEDI: le nombre de valeurs est supérieur au nombre d'éléments pour le segment "+cur_file_seg_s);
@@ -1698,6 +1700,8 @@ public class Edifact {
 
 		HashMap<String, org.bollore.edi.Segment> segments = this
 				.buildStructureSegmentDefinition();
+		
+
 
 		String temp_replace_string = "abcdefghijklmnopqrstuvwxyz";
 
@@ -1751,9 +1755,6 @@ public class Edifact {
 						ArrayList<org.bollore.edi.Component> cur_components = result.elements
 								.get(i).components;
 
-						// org.bollore.edi.Component cur_component =
-						// result.elements.get(i).components.get(0);
-
 					}
 				}
 
@@ -1767,14 +1768,41 @@ public class Edifact {
 
 		return result;
 	}
+	
+	public void setSegmentPath(ArrayList<org.bollore.edi.Segment> segments){
+		
+		if(segments==null) {
+			segments=this.structure;
+		}
+		
+		for (int i = 0; i < this.structure.size(); i++) {
+			org.bollore.edi.Segment cur_seg=this.structure.get(i);
+			
+			if(cur_seg.segments.size()==0||cur_seg.segments==null){
+				if(cur_seg.segment_path==null) {
+					cur_seg.segment_path="/".concat(cur_seg.code);
+				} else {
+					cur_seg.segment_path=cur_seg.segment_path.concat("/").concat(cur_seg.name);
+				}
+			} else {
+				//cur_seg.segment_path=cur_seg.segment_path.concat("/").concat(cur_seg.name);
+				//this.setSegmentPath(cur_seg.segments);
+			}
+			
+		}
+	}
+	
+	public ArrayList<String> getValue(String element_path){
+		ArrayList<String> result=new ArrayList<String>();
+		
+		return result;
+	}
 
 	public static void main(String[] args) throws IOException, EDIException,
 			EDIParseException {
-//		Edifact edi = new Edifact("C:/Bollore/Projets/EDI/Coreor/COREOR.txt");
-//
-//		edi.buildEDI();
-//
-//		System.out.println(edi.getLastMessage().reference_number);
+		Edifact edi = new Edifact("C:/Bollore/Projets/EDI/Coreor/COREOR.txt");
+
+		edi.buildEDI();
 
 		// edi.buildSegment(seg);
 
