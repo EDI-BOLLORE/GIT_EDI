@@ -831,6 +831,9 @@ public class Edifact {
 			this.getMessage(message_ref).segments.add(this
 					.getSegmentStructure(segment_path));
 			
+//			System.out.println("Edifact : setValueElement : "+this
+//					.getSegmentStructure(segment_path).segment_path);
+			
 		}
 
 		// On recupere le dernier segment en cours de traitement de l'EDI
@@ -1271,8 +1274,12 @@ public class Edifact {
 	}
 
 	public void printEDI() {
+		
+		System.out.println("Edifact.printEDI() : nb_messages = "+this.messages.size());
 
 		for (int i = 0; i < this.messages.size(); i++) {
+			
+			
 
 			org.bollore.edi.Message message = this.messages.get(i);
 			for (int j = 0; j < message.segments.size(); j++) {
@@ -1478,7 +1485,7 @@ public class Edifact {
 				this.segment_separator = '\'';
 			}
 			
-			System.out.println("Méthode setGrammar : elt: "+this.element_separator+" comp: "+this.component_separator+" dec "+this.decimal_separator+" esc "+this.escape_character+this.space_character+" seg "+this.segment_separator);
+			//System.out.println("Méthode setGrammar : elt: "+this.element_separator+" comp: "+this.component_separator+" dec "+this.decimal_separator+" esc "+this.escape_character+this.space_character+" seg "+this.segment_separator);
 			
 		} catch (Exception e) {
 
@@ -1636,12 +1643,12 @@ public class Edifact {
 		this.BuildStructureSegment();		
 		
 		for (int i = 0; i < this.structure.size(); i++) {
-			System.out.println(this.structure.get(i).segment_path+"    "+this.structure.get(i).code+"    "+this.structure.get(i).name);
+			//System.out.println(this.structure.get(i).segment_path+"    "+this.structure.get(i).code+"    "+this.structure.get(i).name);
 			if(this.structure.get(i).code.startsWith("GRP")) {
 				ArrayList<org.bollore.edi.Segment> sous_seg=this.structure.get(i).segments;
 				
 				for (int j = 0; j < sous_seg.size(); j++) {
-					System.out.println("           "+sous_seg.get(j).segment_path+"    "+sous_seg.get(j).code+"    "+sous_seg.get(j).name);
+					//System.out.println("           "+sous_seg.get(j).segment_path+"    "+sous_seg.get(j).code+"    "+sous_seg.get(j).name);
 				}
 			}
 		}
@@ -1844,7 +1851,7 @@ public class Edifact {
 
 		edi.buildEDI();
 		
-		//edi.printEDI();
+		edi.printEDIStructure();
 
 		// edi.buildSegment(seg);
 

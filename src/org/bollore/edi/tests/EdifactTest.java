@@ -87,6 +87,7 @@ public class EdifactTest extends TestCase {
 	public void testEDIDefinitionDir() {
 		
 		String path = UtilsTest.tempdir.concat("Cuscar_Test2.edi");
+		System.out.println(path);
 		Edifact edi=new Edifact(path, "CUSCAR","D95B");
 		
 	}
@@ -417,5 +418,27 @@ public class EdifactTest extends TestCase {
 
 		
 	}
+	
+	public static void testBuildEDI()  {
+		
+		try {	
+			String path=System.getProperty("user.dir")+"/TestFiles/Cuscar_Douanes_GHTKD_TEST.edi";
+			
+		Edifact edi = new Edifact(path);
+
+		edi.buildEDI();
+		
+		System.out.println("before");
+		edi.printEDI();
+		System.out.println("after");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		
+	}
+	
+	
 
 }
