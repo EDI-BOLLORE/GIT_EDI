@@ -42,6 +42,19 @@ public class Segment implements Cloneable {
 		this.elements = new ArrayList<org.bollore.edi.Element>();
 		this.segments = new ArrayList<org.bollore.edi.Segment>();
 	}
+	
+	public Segment(String name, String code, Integer min_occurence,
+			Integer max_occurence, String description,String segment_path) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.min_occurence = min_occurence;
+		this.max_occurence = max_occurence;
+		this.description = description;
+		this.elements = new ArrayList<org.bollore.edi.Element>();
+		this.segments = new ArrayList<org.bollore.edi.Segment>();
+		this.segment_path=segment_path;
+	}
 
 	public Segment(String name, String code, Integer min_occurence,
 			Integer max_occurence, String description,
@@ -141,7 +154,7 @@ public class Segment implements Cloneable {
 
 	public void printSegment() {
 		System.out.println(this.code
-				+ " - Le segment possède les éléments suivants : ");
+				+ " - Le segment "+this.segment_path+" possède les éléments suivants : ");
 
 		if (this.segments.size() > 0) {
 			for (int i = 0; i < this.segments.size(); i++)
