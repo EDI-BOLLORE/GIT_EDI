@@ -1,4 +1,4 @@
-package Bollore;
+package org.bollore.toolbox;
 
 import com.ibm.as400.access.*;
 
