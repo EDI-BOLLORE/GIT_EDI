@@ -2,7 +2,7 @@ package org.bollore.toolbox;
 
 import com.ibm.as400.access.*;
 
-public class API_IRIS {
+public class API_AS400 {
 	
 	/* OpenAS400Connection: Opens an AS400 connection */
 	public static AS400 OpenAS400Connection(String host, String login, String pwd)
