@@ -1,15 +1,15 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="WKGRRE" version="D:05B:UN"/>
+    <description name="WKGRRE" namespace="urn:org.milyn.edi.unedifact:un:d05b:wkgrre" version="D:05B:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="WKGRRE">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment by which the sender must uniquely identify the work
        grant request by means of its type and number and, when
        necessary, its function.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying general dates and, when relevant, times
        related to the whole message. The segment must be specified at
@@ -18,7 +18,7 @@
        be used whenever the date or time or period requires to be
        logically related to another specified data item.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
             <documentation>QTY,
        A segment identifying the quantity of employees of an
        enterprise, divided into workers and remunerated staff and each
@@ -28,7 +28,7 @@
             <documentation>Segment group 1:
        A group of segments identifying the parties with associated
        information.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
                 <documentation>PNA,
           A segment identifying names of the parties, in coded or
           clear form, and their functions relevant to the Work Grant
@@ -42,17 +42,17 @@
           application address (interview) may vary and would have to
           be clearly specified, preferably in structured format.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                 <documentation>ADR,
           A segment specifying the address of the relevant party.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
           A segment giving more specific location information of the
           party specified in the ADR segment, e.g. internal site or
           building number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the relevant date or time.</documentation>
             </segment>
@@ -61,12 +61,12 @@
           A group of segments giving contact details of the specific
           person or department within the party identified in the PNA
           segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment to identify a person or department and their
              function, to whom communications should be directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment to identify a communications type and number
              for the contact specified in the CTA segment, e.g.
@@ -78,12 +78,12 @@
             <documentation>Segment group 3:
        A group of segments for giving references and, where necessary,
        their dates, relating to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying the reference by its number related to
           the whole message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the date or time related to the
           reference.</documentation>
@@ -94,23 +94,25 @@
        A group of segments specifying general processing indicators
        and, when necessary, additional textual information, relevant
        for the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                 <documentation>GEI,
           A segment specifying general indicators for the whole
           message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment with free text information, in coded or clear
           form, used when additional information is needed but cannot
           be accommodated within other segments. In computer to
           computer exchanges such text will normally require the
           receiver to process this segment manually.
+
 4.1.2  Detail section
+
        Information to be provided in the Detail section:</documentation>
             </segment>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
             <documentation>UNS,
        A mandatory service segment placed before the first user
        segment in the detail section to avoid segment collision.</documentation>
@@ -126,12 +128,12 @@
        person, the profession, the location of the executed job and
        may give additional information of the job, the remuneration
        and, when necessary, the address of the related job center.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying the administrative operation of the
           work grant request by a number given by employment agency.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying date and, when relevant, time relating
           to the work grant request.
@@ -142,45 +144,45 @@
                 <documentation>Segment group 6:
           A group of segments specifying identity and related
           information regarding a person expected to be employed.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
                     <documentation>PNA,
              A segment giving the identity, in coded and/or clear
              form, of the person expected to be employed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                     <documentation>ADR,
              A segment identifying the address of a person and its
              function relevant to the Work grant request message.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment indicating the date of birth of the person
              concerned by the work grant or permit.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment giving more specific location information of
              the party specified in the ADR segment, e.g.
              administrative location of a person.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="Nationality">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Nationality" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="NAT">
                     <documentation>NAT,
              A segment indicating nationality of the person expected
              to be employed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="Person_demographic_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Person demographic information" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="PDI">
                     <documentation>PDI,
              A segment indicating some addition information relating
              to the person expected for an employment i.e. gender,
              marital status...</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
                     <documentation>DOC,
              A segment giving the list of documents the person may
              produce.</documentation>
                 </segment>
             </segmentGroup>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment giving, in coded or free format, any additional
           information regarding the identity and status of the person:
@@ -192,14 +194,14 @@
           A group of segments specifying general processing indicators
           and, when necessary, additional textual information,
           relevant for a work grant request.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                     <documentation>GEI,
              A segment specifying general indicators related to a work
              grant request, e.g. indicator for a new work grant
              request, indicator for an extension of an existing work
              grant request.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in coded or clear
              form, used when additional information is needed but
@@ -212,13 +214,13 @@
                 <documentation>Segment group 8:
           A group of segments for giving references and, where
           necessary, their dates, relevant to a work grant request.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment for specifying references relevant to a work
              grant request, e.g. social insurance number of the
              foreigner.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date or time related to the
              reference.</documentation>
@@ -228,13 +230,13 @@
                 <documentation>Segment group 9:
           A group of segments identifying the profession for a job and
           attributes, such as education and experience for this job.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Employment details" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="EMP">
                     <documentation>EMP,
              A segment to identify the related area or sector of a
              qualification and the qualification, in coded or clear
              form, related to a job.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment indicating the location, where the job should
              be performed regarding work grant request.</documentation>
@@ -245,14 +247,14 @@
              requirements of a profession or job regarding educational
              qualifications and experience and, when necessary,
              additional textual information.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                         <documentation>ATT,
                 A segment identifying the attributes of a job or
                 profession. The codes are related to education, job
                 experience, special knowledge and required
                 qualifications.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in coded or
                 clear form, used when additional information is needed
@@ -268,13 +270,13 @@
           remuneration and the basic conditions of the remuneration.
           It may contain the remuneration amount or a remuneration
           range and additional remuneration benefits.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SAL" segcode="SAL" truncatable="true" xmltag="Remuneration_type_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Remuneration type identification" nodeTypeRef="UN:SAL" segcode="SAL" truncatable="true" xmltag="SAL">
                     <documentation>SAL,
              A segment identifying the type of the remuneration and,
              if required, the name of the remuneration type or
              contract.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information for the remuneration
              type or contract, in coded or clear form, used when
@@ -283,7 +285,7 @@
              computer exchanges such text will normally require the
              receiver to process this segment manually.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the dates and/or times related to
              the remuneration.</documentation>
@@ -293,7 +295,7 @@
              A group of segments giving attribute information, in
              coded form, for the remuneration and, where necessary,
              additional textual information.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                         <documentation>ATT,
                 A segment identifying in coded form additional
                 remuneration information and other benefits. The codes
@@ -301,7 +303,7 @@
                 employment contract, piece of work and remuneration
                 benefits.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information for additional
                 remuneration benefits, in coded or clear form, used
@@ -316,12 +318,12 @@
              A group of segments specifying general processing
              indicators and, when necessary, additional textual
              information, relevant for the remuneration.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                         <documentation>GEI,
                 A segment specifying general indicators related to the
                 remuneration.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in coded or
                 clear form, used when additional information is needed
@@ -334,19 +336,19 @@
                     <documentation>Segment group 14:
              A group of segments specifying the type and the amount of
              the remuneration or a remuneration range.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                         <documentation>MOA,
                 A segment giving information about the type and the
                 amount of the remuneration.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
                         <documentation>RNG,
                 A segment to identify a remuneration range, when an
                 exact remuneration amount in the MOA segment is not
                 available. The remuneration range is related to the
                 type of remuneration in the MOA segment.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in coded or
                 clear form, used when additional information is needed
@@ -360,7 +362,7 @@
                 <documentation>Segment group 15:
           A group of segments identifying the parties involved with
           the work grant request with associated information.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
                     <documentation>PNA,
              A segment identifying names of the parties, in coded or
              clear form, and their functions relevant to the work
@@ -374,22 +376,22 @@
              have to be clearly specified, preferably in structured
              format.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                     <documentation>ADR,
              A segment giving the address of the relevant party.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment giving more specific location information of
              the party specified in the ADR segment, e.g. internal
              site or building number.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date or time related to the
              party given in the PNA segment.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in coded or clear
              form, used when additional information is needed but
@@ -403,12 +405,12 @@
              specific person or department within the party identified
              in the PNA segment, e.g. person in the job center
              department.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                         <documentation>CTA,
                 A segment to identify a person or department and their
                 function, to whom communications should be directed.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                         <documentation>COM,
                 A segment to identify a communications type and number
                 for the contact specified in the CTA segment, e.g.

@@ -1,0 +1,178 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="PROINQ" namespace="urn:org.milyn.edi.unedifact:un:d14b:proinq" version="D:14B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="PROINQ">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment by which the sender must uniquely identify the Product
+        inquiry message by means of its number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment specifying general dates and, when relevant, times
+        related to the whole message. The Product Inquiry message
+        preparation date must be specified using this segment.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+            <documentation>CUX,
+        A segment identifying the currency in which all product prices are
+        expressed in the Product inquiry message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments identifying the parties with associated
+        information relevant to the whole Product inquiry message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment identifying names and addresses of the parties, in
+           coded or clear form, and their functions relevant to the Product
+           inquiry message. Identification of the requesting party and the
+           party asked for information is mandatory for the Product inquiry
+           message. It is recommended that where possible only the coded
+           form of the party ID should be specified e.g. the sender and
+           receiver of the report are known to each other, thus only the
+           coded ID is required, but when a new address might have to be
+           clearly specified, this should be done preferably in structured
+           format.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+           A group of segments giving contact details of the specific
+           person or department within the party identified in NAD segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              A segment to identify a person or department, and their
+              function, to whom communications should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              A segment to identify a communications type and number for
+              the contact specified in the CTA segment.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A group of segments for giving references and where necessary,
+        their dates, relating to the whole message e.g. contract number.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying the reference by its number and where
+           appropriate a line number within the document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the date and/or time related to the
+           reference.
+
+4.1.2  Detail section
+
+       Information to be provided in the Detail section:</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+        A group of segments identifying the product or attributes of the
+        product for which information is required.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <documentation>LIN,
+           A segment specifying the inquiry request line and if available,
+           the identification of the product or service for which the
+           inquiry is being made.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+           A group of segments providing product characteristics and values
+           or measurements associated with the characteristics. Repeating
+           CCI segments provide additional characteristics e.g. colour,
+           size, pattern (AND linkage).
+           Repeating CCI segments provide a choice of characteristic values
+           (OR linkage).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
+                    <documentation>CCI,
+              A segment to identify a product characteristic and/or the
+              characteristic name and characteristic relevance for the
+              business process.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
+                    <documentation>CAV,
+              A segment to specify product characteristic by value in
+              either coded form or in free format.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+              A segment indicating characteristic values being physical
+              measurements (including measurable quantities and
+              percentages) related to specific product characteristic (e.g.
+              voltage, percentage of material contained) and where relevant
+              measurement ranges.
+              The MEA segment is repeatable to allow the indication of a
+              number of applicable measurable values, for example one
+              electric appliance may be suitable for different voltages:
+              110V, 220V, 240V and 380V.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+           A group of segments specifying the type of requested information
+           and optionally product identification(s), measurements, parties
+           related to the product, dates and price ranges.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Information required" nodeTypeRef="UN:IRQ" segcode="IRQ" truncatable="true" xmltag="IRQ">
+                    <documentation>IRQ,
+              A segment specifying the type of information requested by the
+              Product inquiry message, e.g. a price/sales catalogue,
+              allowances and charges information, delivery lead times, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
+                    <documentation>PIA,
+              A segment providing either additional identification to the
+              product specified in the LIN segment or providing a
+              substitute product identification.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                    <documentation>IMD,
+              A segment for describing the product or service inquired.
+              This segment should be used for products that cannot be fully
+              identified by an article number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+              A segment specifying the physical measurements for a product.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying the name and address of a party related
+              to the product for which an inquiry is being made, e.g.
+              supplier, ultimate customer, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Product group information" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="PGI">
+                    <documentation>PGI,
+              A segment specifying product or price group information
+              requested for the current product.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment identifying relevant dates or periods for a
+              product, e.g. availability date, lead time, delivery date,
+              etc.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+              A group of segments providing pricing information and price
+              ranges for the product identified in the detail section.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                        <documentation>PRI,
+                 A segment to specify the price type and amount, e.g.
+                 proposed purchase price, suggested retail price, etc.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                        <documentation>RNG,
+                 A segment providing range information related to prices,
+                 e.g. price range between 1000 - 1500 BEF.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

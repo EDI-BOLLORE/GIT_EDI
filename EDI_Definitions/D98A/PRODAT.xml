@@ -1,16 +1,16 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="PRODAT" version="D:98A:UN"/>
+    <description name="PRODAT" namespace="urn:org.milyn.edi.unedifact:un:d98a:prodat" version="D:98A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="PRODAT">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment by which the sender must uniquely identify the
        Product Data Message by means of its name and number and when
        necessary its function. Data element 1225 may be used to
        identify updates to a previously sent PRODAT message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying general dates and, when relevant, times
        related to the whole message. The segment must be specified at
@@ -21,18 +21,18 @@
        availability date for a specified line item (SG8-DTM following
        LIN).</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
             <documentation>ALI,
        A segment indicating country of origin.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
             <documentation>IMD,
        A segment providing the product family name commonly used with
        all products identified within the message in free format and
        when necessary identifying the language used. It may be
        repeated as well to provide the name in other languages.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment with free text information, in coded or clear form,
        used when additional information is needed relevant for all
@@ -41,7 +41,7 @@
        exchanges such text will normally require the receiver to
        process this segment manually.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="Product_group_information">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Product group information" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="PGI">
             <documentation>PGI,
        A segment to identify a product group, price group or tariff
        group which is applicable to the whole message.</documentation>
@@ -51,12 +51,12 @@
        A group of segments to identify technical rules applicable for
        all products contained in the message and the rules' issue
        dates.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TRU" segcode="TRU" truncatable="true" xmltag="Technical_rules">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Technical rules" nodeTypeRef="UN:TRU" segcode="TRU" truncatable="true" xmltag="TRU">
                 <documentation>TRU,
           A segment identifying technical rules and conditions
           relevant for the whole message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the technical rules' issue date.</documentation>
             </segment>
@@ -65,13 +65,13 @@
             <documentation>Segment group 2:
        A group of segments to identify governmental or legal trade
        restrictions and relevant commodities.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
                 <documentation>RCS,
           A segment indicating that and which governmental or legal
           trade restrictions apply to all products described in the
           actual message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                 <documentation>PIA,
           A segment to identify the commodities relevant for the
           identified trade restrictions.</documentation>
@@ -81,11 +81,11 @@
             <documentation>Segment group 3:
        A group of segments for giving references and where necessary,
        their dates, relating to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying a reference by its type and number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the date and, or related to the
           reference.</documentation>
@@ -95,7 +95,7 @@
             <documentation>Segment group 4:
        A group of segments identifying the parties with associated
        information relevant to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment identifying names and addresses of the parties, in
           coded or clear form, and their functions relevant to the
@@ -109,13 +109,13 @@
           A group of segments giving contact details of a specific
           person and, or department within the party identified in the
           NAD segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment to identify a person and, or department, and
              their function, to whom communications should be
              directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment to identify a communication type and number for
              the contact specified in the CTA segment.</documentation>
@@ -126,11 +126,11 @@
           A group of segments used to provide references and where
           necessary, their dates, related to the party identified in
           the NAD segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment identifying a reference by its type and number.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date and, or time related to the
              reference.</documentation>
@@ -141,18 +141,18 @@
             <documentation>Segment group 7:
        A group of segments providing common product characteristic and
        common characteristic details.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                 <documentation>CCI,
           A segment to identify common product characteristic and, or
           the characteristic name and characteristic relevance for the
           business process.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                 <documentation>CAV,
           A segment to specify common product characteristic by value
           in either coded form or in free format.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
           A segment indicating characteristic values being physical
           measurements (including measurable quantities and
@@ -163,7 +163,9 @@
           number of applicable measurable values, for example one
           electric appliance may be switchable for different voltages:
           110V, 220V, 240V and 380V.
+
 4.1.2  Detail section
+
        Information to be provided in the Detail section:</documentation>
             </segment>
         </segmentGroup>
@@ -173,7 +175,7 @@
                          SG21
        A group of segments providing details of a single product. This
        segment group may be repeated to give subline details.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
                 <documentation>LIN,
           A segment identifying the line item by the line item number
           and the product by its item number. Detailed product
@@ -182,19 +184,19 @@
           identify the current line item updating the correspondent
           line item of a previously sent PRODAT message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                 <documentation>PIA,
           A segment providing either additional identification of the
           product specified in the LIN segment or any substitute
           product identification.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying date and, ,or time or period details
           relating to the line item only, for example the date of
           first or last availability of specified product.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
           A segment enabling the physical measurements of the item to
           be specified where this is required for full identification
@@ -204,18 +206,18 @@
           characteristics are to be given by MEA within the item
           characteristic group.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                 <documentation>HAN,
           A segment providing information on required handling of the
           actual line item's product and additionally, if required,
           notifying hazardous materials.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
                 <documentation>DOC,
           A segment to identify documents required with the identified
           product, for example the SAFHAZ message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment with free text information, in coded or clear
           form, used when additional information on the actual product
@@ -225,7 +227,7 @@
           text will normally require the receiver to process this
           segment manually.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="Product_group_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Product group information" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="PGI">
                 <documentation>PGI,
           A segment to identify a product group, price group or tariff
           group which is applicable to the current line item only.</documentation>
@@ -236,14 +238,14 @@
           description of the product specified within the PRODAT
           message line item. This group may be repeated to provide
           name and, or description in one or more other languages.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                     <documentation>IMD,
              Segment providing the given product name in free format
              and when necessary identifying the language used. It may
              be repeated as well to provide name in one more other
              languages.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in clear form, to
              describe the named product and when necessary identifying
@@ -256,12 +258,12 @@
                 <documentation>Segment group 10:
           A group of segments to identify technical rules applicable
           for the actual product and the rules' issue dates.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TRU" segcode="TRU" truncatable="true" xmltag="Technical_rules">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Technical rules" nodeTypeRef="UN:TRU" segcode="TRU" truncatable="true" xmltag="TRU">
                     <documentation>TRU,
              A segment identifying technical rules and conditions
              relevant for the whole message.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the technical rules' issue date.</documentation>
                 </segment>
@@ -270,12 +272,12 @@
                 <documentation>Segment group 11:
           A group of segments to identify governmental or legal trade
           restrictions and relevant commodities.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
                     <documentation>RCS,
              A segment indicating that and which governmental or legal
              trade restrictions apply to the actual product.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                     <documentation>PIA,
              A segment to identify the commodities relevant for the
              identified trade restrictions.</documentation>
@@ -287,11 +289,11 @@
           product and where relevant related date and time information
           for example minimum delivery batch, indication of
           manufacturer's capacity within a given period.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment to specify quantities related to the product.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment indicating that date or time details relate to
              the quantity, for example number of time units needed to
@@ -304,16 +306,16 @@
           only for budgetary purposes. This segment group may specify
           values over a given quantity range and for a current
           currency.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
                     <documentation>PRI,
              A segment to specify the estimated value of an item for
              information purposes only.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
                     <documentation>CUX,
              A segment to specify the currency of the value.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
                     <documentation>RNG,
              A segment to specify the quantity range where the
              estimated value is applicable.</documentation>
@@ -323,18 +325,18 @@
                 <documentation>Segment group 14:
           A group of segments providing product characteristic
           and-product characteristic details.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                     <documentation>CCI,
              A segment to identify product characteristic and, or the
              characteristic name and characteristic relevance for the
              business process.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                     <documentation>CAV,
              A segment to specify common product characteristic by
              value in either coded form or in free format.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                     <documentation>MEA,
              A segment indicating characteristic values being physical
              measurements (including measurable quantities and
@@ -352,13 +354,13 @@
           A group of segments providing information on origin and, or
           special conditions applicable to the product and - if
           required - relevant percentages.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
                     <documentation>ALI,
              A segment indicating that the product is subject to
              special conditions owing to origin, customs preference or
              commercial factors.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
                     <documentation>PCD,
              A segment providing a percentage and percentage basis
              related to the additional information.</documentation>
@@ -368,13 +370,13 @@
                 <documentation>Segment group 16:
           A group of segments giving references related to the product
           specified in the LIN segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment identifying the reference related to the
              product by its number and type and where appropriate a
              line within a document.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date and, or time related to the
              reference.</documentation>
@@ -384,7 +386,7 @@
                 <documentation>Segment group 17:
           A group of segments identifying the parties with associated
           information.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                     <documentation>NAD,
              A segment identifying names and addresses of the parties
              related to the identified product, in coded or clear
@@ -392,12 +394,12 @@
              warehouse, service. It is recommended that, if possible,
              only the coded form of the party ID should be specified.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment identifying a reference related to the party
              described in the preceding NAD segment.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment enabling the specification of quantities
              required to satisfy the specified level of service for a
@@ -408,13 +410,13 @@
              A group of segments giving contact details of a specific
              person and, or department within the party identified in
              the NAD segment.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                         <documentation>CTA,
                 A segment to identify a person and, or department, and
                 their function, to whom communications should be
                 directed.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                         <documentation>COM,
                 A segment to identify a communication type and number
                 for the contact specified in the CTA segment.</documentation>
@@ -425,17 +427,17 @@
                 <documentation>Segment group 19:
           A group of segments containing information about dangerous
           goods.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="Dangerous_goods">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Dangerous goods" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="DGS">
                     <documentation>DGS,
              A segment providing dangerous goods information by using
              relevant dangerous goods identification.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment to specify quantity for the given dangerous
              goods.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in clear form, to
              identify dangerous goods. In computer to computer
@@ -449,31 +451,31 @@
           of the goods identified in the line item, its physical
           dimensions and marks (for example special packaging relevant
           for the product).</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
                     <documentation>PAC,
              A segment specifying the number of packages and the
              physical type of packaging for the product, for example,
              package type.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                     <documentation>MEA,
              A segment specifying physical measurements of packages
              described in the PAC segment,-for example cube or gross
              weight, stack factor.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment identifying the type of quantity and the
              quantity related to the package, for example quantity of
              products packed into the package.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                     <documentation>HAN,
              A segment providing information on required handling of
              the actual line item's product depending on packaging and
              additionally, if required, notifying hazardous materials.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="Package_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
                     <documentation>PCI,
              A segment specifying markings and labels used on
              individual physical units (packages) described in the PAC
@@ -484,7 +486,7 @@
                 <documentation>Segment group 21:
           A group of segments to specify hierarchical connections from
           the given product to higher or lower leveled products.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:HYN" segcode="HYN" truncatable="true" xmltag="Hierarchy_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Hierarchy information" nodeTypeRef="UN:HYN" segcode="HYN" truncatable="true" xmltag="HYN">
                     <documentation>HYN,
              A segment to identify hierarchical connections from the
              given product to higher or lower leveled products and its
@@ -494,18 +496,18 @@
              hierarchical structure of a previously sent PRODAT
              message.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                     <documentation>PIA,
              A segment providing either additional identification of
              the product specified in the HYN segment or any
              substitute product identification.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment identifying the child product's quantity
              contained within the identified parent product.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in coded or clear
              form, used when additional information on the actual
@@ -515,13 +517,13 @@
                     <documentation>Segment group 22:
              A group of segments to provide references linked to the
              hierarchical item and where necessary the reference date.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 A segment identifying the reference linked to the
                 hierarchical item, for example the drawing number on a
                 wiring diagram.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment specifying the date and, or time related to
                 the reference.</documentation>
@@ -531,18 +533,18 @@
                     <documentation>Segment group 23:
              A group of segments to identify characteristics depending
              on the product's use within the specified hierarchy.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>CCI,
                 A segment to identify product characteristic and, or
                 the characteristic name and characteristic relevance
                 for the business process.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                         <documentation>CAV,
                 A segment to specify product characteristic by value
                 in either coded form or in free format.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                         <documentation>MEA,
                 A segment indicating characteristic values being
                 physical measurements (including measurable quantities
@@ -560,13 +562,13 @@
                     <documentation>Segment group 24:
              A segment group to specify party dependent information
              for the actual product in the given hierarchy.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>NAD,
                 A segment identifying a party preferably in coded form
                 to which specific product and hierarchical item
                 characteristics apply.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                         <documentation>PIA,
                 A segment providing additional identification(s) of
                 the hierarchically linked product that are specific to
@@ -574,7 +576,7 @@
                 from another origin to identify the higher or lower
                 leveled product relevant to the identified party.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                         <documentation>QTY,
                 A segment identifying the child product's quantity
                 contained within the identified parent product if
@@ -585,18 +587,18 @@
                 A group of segments to identify characteristics
                 depending on the product's use within the hierarchy
                 specific to the identified party.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                             <documentation>CCI,
                    A segment to identify product characteristic and,
                    or the characteristic name and characteristic
                    relevance for the business process.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                             <documentation>CAV,
                    A segment to specify product-characteristic by
                    value in either coded form or in free format.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>MEA,
                    A segment indicating characteristic values being
                    physical measurements (including measurable

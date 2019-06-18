@@ -1,10 +1,10 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
-    <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="PARTIN" version="D:96B:UN"/>
-    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
-    <segments xmltag="PARTIN">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
-            <documentation>BGM,
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="PARTIN" namespace="urn:org.milyn.edi.unedifact:un:d96b:partin" version="D:96B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="PARTIN">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
        A segment for unique identification of the Document name and
        number.
        The message function code (DE 1225) applies to all transactions
@@ -21,198 +21,200 @@
        partner. All the segments relating to the party including the
        address to be modified need to be sent.
        - Confirmation (DE 1225 = 6). This code is used when party
-       information is sent again for confirmation.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-            <documentation>DTM,
+       information is sent again for confirmation.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
        A segment specifying general dates, and when relevant, times
-       related to the whole message.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
-            <documentation>FII,
+       related to the whole message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+            <medi:documentation>FII,
        A segment identifying the financial institution (e.g. bank) and
        relevant account numbers valid for all the parties described in
-       the detail section of the message.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
-            <documentation>FTX,
+       the detail section of the message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <medi:documentation>FTX,
        A segment with free text information, in coded or clear form,
        used when additional information is needed but cannot be
        accommodated within other segments. In computer to computer
        exchanges such text will normally require the receiver to
-       process this segment manually.</documentation>
-        </segment>
-        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_1">
-            <documentation>Segment group 1:
+       process this segment manually.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
        A group of segments indicating reference numbers and optionally
-       date of the reference relating to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                <documentation>RFF,
+       date of the reference relating to the whole message.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
           A segment for referencing documents relating to the whole
           message, e.g. previously sent PARTIN message number,
-          Interchange Agreement contract.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                <documentation>DTM,
+          Interchange Agreement contract.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
           A segment specifying the date of the reference number
-          indicated in the RFF segment.</documentation>
-            </segment>
-        </segmentGroup>
-        <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_2">
-            <documentation>Segment group 2:
+          indicated in the RFF segment.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_2">
+            <medi:documentation>Segment group 2:
        A group of segments identifying Names, Addresses, Contacts and
        Communication numbers relevant to the sender and the receiver
-       of the message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                <documentation>NAD,
+       of the message.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
           A segment for identifying the Sender and Receiver name and
-          address.</documentation>
-            </segment>
-            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
-                <documentation>Segment group 3:
+          address.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_3">
+                <medi:documentation>Segment group 3:
           A group of segments giving details of the specific person or
-          department within the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
-                    <documentation>CTA,
+          department within the party.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <medi:documentation>CTA,
              A segment giving additional contact information relating
              to the party specified in the NAD segment, e.g. contact
-             person or department in a particular function.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
-                    <documentation>COM,
+             person or department in a particular function.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
              A segment to identify communication numbers of
              departments or persons related to the contact information
              provided in CTA.
+
 4.1.2  Detail section
-       Information to be provided in the Detail section:</documentation>
-                </segment>
-            </segmentGroup>
-        </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
-            <documentation>UNS,
+
+       Information to be provided in the Detail section:</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
+            <medi:documentation>UNS,
        A service segment placed at the start of the detail section to
-       avoid segment collision.</documentation>
-        </segment>
-        <segmentGroup maxOccurs="200000" minOccurs="0" xmltag="Segment_group_4">
-            <documentation>Segment group 4:
-       A group of segments for giving the details of a party.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                <documentation>NAD,
+       avoid segment collision.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="200000" minOccurs="0" xmltag="Segment_group_4">
+            <medi:documentation>Segment group 4:
+       A group of segments for giving the details of a party.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
           A segment for identifying the party identification code and
           the corresponding function, name and address. The party
           identification code is mandatory, and the structured address
-          form is preferred.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                <documentation>DTM,
+          form is preferred.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
           A segment specifying the date and the time details relevant
-          to the party information identified in the NAD segment.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
-                <documentation>FII,
+          to the party information identified in the NAD segment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <medi:documentation>FII,
           A segment identifying the financial institution, (e.g. bank)
           and relevant account numbers for the party identified in the
-          NAD segment.</documentation>
-            </segment>
-            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
-                <documentation>Segment group 5:
+          NAD segment.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                <medi:documentation>Segment group 5:
           A group of segments for giving locations and dates relevant
-          to party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
-                    <documentation>LOC,
+          to party.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
              A segment specifying the locations relevant to the party
              identified in the NAD segment, e.g. internal building
-             number on a site.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                    <documentation>DTM,
+             number on a site.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
              A segment specifying dates and times relevant to the LOC
-             segment.</documentation>
-                </segment>
-            </segmentGroup>
-            <segmentGroup maxOccurs="15" minOccurs="0" xmltag="Segment_group_6">
-                <documentation>Segment group 6:
+             segment.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="15" minOccurs="0" xmltag="Segment_group_6">
+                <medi:documentation>Segment group 6:
           A group of segments for giving references relevant to the
-          party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                    <documentation>RFF,
+          party.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
              A segment for referencing numbers related to the party
-             such as Party Tax Identification Number.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                    <documentation>DTM,
+             such as Party Tax Identification Number.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
              A segment specifying the date of the reference number
-             indicated in the RFF segment.</documentation>
-                </segment>
-            </segmentGroup>
-            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_7">
-                <documentation>Segment group 7:
+             indicated in the RFF segment.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_7">
+                <medi:documentation>Segment group 7:
           A group of segments giving contact details of the specific
-          person or department within the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
-                    <documentation>CTA,
+          person or department within the party.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <medi:documentation>CTA,
              A segment giving additional contact information relating
              to the party specified in the NAD segment, e.g. contact
-             person of department in a particular function.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
-                    <documentation>COM,
+             person of department in a particular function.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
              A segment to identify communication numbers of
              departments or persons related to the contact information
-             provided in CTA.</documentation>
-                </segment>
-            </segmentGroup>
-            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_8">
-                <documentation>Segment group 8:
+             provided in CTA.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_8">
+                <medi:documentation>Segment group 8:
           A group of segment specifying schedules related to the party
-          identified in the NAD segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="Scheduling_conditions">
-                    <documentation>SCC,
+          identified in the NAD segment.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Scheduling conditions" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="SCC">
+                    <medi:documentation>SCC,
              A segment specifying the type and status of the schedule
              being given, and optionally defining a pattern to be
              established, e.g. firm or proposed schedule for a weekly
-             pattern of delivery hours.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                    <documentation>DTM,
+             pattern of delivery hours.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
              A segment indicating the date/time details relevant to
              the schedule details in the SCC segment. This segment may
-             be used to indicate date/time ranges.</documentation>
-                </segment>
-            </segmentGroup>
-            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
-                <documentation>Segment group 9:
+             be used to indicate date/time ranges.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
+                <medi:documentation>Segment group 9:
           A group of segments specifying the standard terms of
-          delivery.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="Terms_of_delivery_or_transport">
-                    <documentation>TOD,
+          delivery.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                    <medi:documentation>TOD,
              A segment indicating terms of delivery related to the
-             referenced NAD segment.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
-                    <documentation>LOC,
+             referenced NAD segment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
              A segment specifying location for the referenced terms of
-             delivery.</documentation>
-                </segment>
-            </segmentGroup>
-            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_10">
-                <documentation>Segment group 10:
+             delivery.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_10">
+                <medi:documentation>Segment group 10:
           A group of segments relating to the standard payment
           instructions, payment terms, the reference and the payment
-          currencies.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
-                    <documentation>PAI,
-             A segment giving information on payment instructions.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
-                    <documentation>PAT,
-             A segment giving information on the payment terms basis.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
-                    <documentation>CUX,
-             A segment giving information on the currencies.</documentation>
-                </segment>
-            </segmentGroup>
-        </segmentGroup>
-    </segments>
-</edimap>
+          currencies.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
+                    <medi:documentation>PAI,
+             A segment giving information on payment instructions.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Payment terms basis" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="PAT">
+                    <medi:documentation>PAT,
+             A segment giving information on the payment terms basis.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                    <medi:documentation>CUX,
+             A segment giving information on the currencies.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>

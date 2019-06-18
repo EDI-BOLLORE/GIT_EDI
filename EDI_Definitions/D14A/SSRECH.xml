@@ -1,0 +1,201 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="SSRECH" namespace="urn:org.milyn.edi.unedifact:un:d14a:ssrech" version="D:14A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="SSRECH">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment identifying the function of the message (details on the
+        worker's insurance history) and, if necessary, the number of the
+        message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment indicating the date of preparation of the message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+        A segment indicating the type of process the message is belonging
+        to.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments identifying a previous message sent regarding
+        the person.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying the reference of a previously sent or
+           received message related to the current message (for instance,
+           the reference of a received SSREGW message to which the current
+           message is answering).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment indicating the date of preparation of the previous
+           message whose reference is given in the above RFF segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="2" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments identifying the parties and giving the worker's
+        insurance number for each party.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+           A segment identifying names of the parties, and their functions
+           relevant to a Worker's insurance history message (sending
+           institution, receiving institution, ...).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                <documentation>ADR,
+           A segment indicating the country of the party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                <documentation>GIR,
+           A segment indicating the Insurance or identification numbers of
+           the worker in the country identified in the related ADR segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A group of segments used to describe a period of insurance.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Index details" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="IND">
+                <documentation>IND,
+           A segment giving the index value relevant to the period
+           described in the current group.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment indicating dates related to the period (starting
+           and/or ending dates, year of reference, ...) and duration of a
+           period of insurance.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" name="Contribution details" nodeTypeRef="UN:COT" segcode="COT" truncatable="true" xmltag="COT">
+                <documentation>COT,
+           A segment describing the social regulations applied during this
+           period of insurance (scheme, nature or type of insurance).</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           A group of segments describing the insured person's employment
+           during this period of insurance.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Employment details" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="EMP">
+                    <documentation>EMP,
+              A segment giving details on the job.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <documentation>PNA,
+              A segment indicating the name of the employer.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <documentation>ADR,
+              A segment indicating the address of the employer.
+
+4.1.2  Detail section
+
+       Information to be provided in the Detail section:</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
+            <documentation>UNS,
+        A mandatory service segment placed before the first user segment in
+        the detail section to avoid segment collision.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="6" minOccurs="1" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+        A group of segments identifying the worker and his relatives and
+        giving related information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+           A segment giving a person's surnames and forenames and his
+           function in the message (worker, worker's mother, father,
+           spouse).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Nationality" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="NAT">
+                <documentation>NAT,
+           A segment indicating the nationality of the person identified in
+           the related PNA segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                <documentation>DOC,
+           A segment specifying the type and the number of an identity
+           document (identity card or passport) belonging to the person
+           identified in the related PNA segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                <documentation>ADR,
+           A segment indicating current and previous addresses of the
+           person.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <documentation>ATT,
+           A segment specifying person's natural, professional or academic
+           titles.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+           A group of segments giving the person's birth or death details.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment indicating date of birth or date of death of the
+              person.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <documentation>ADR,
+              A segment indicating place of birth or place of death. This
+              segment can be used to identify the country, province or
+              department and city of birth and/or death.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+           A group of segments giving details on the person's gender and/or
+           marital status.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Person demographic information" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="PDI">
+                    <documentation>PDI,
+              A segment specifying the gender, the marital status (married,
+              divorced, ...)of the person identified in the related PNA
+              segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment indicating relevant dates related to the civil
+              status (date of marriage, date of divorce, ...).</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+        A group of segments indicating for each type of social regulation,
+        the total of periods concerned by the regulation.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contribution details" nodeTypeRef="UN:COT" segcode="COT" truncatable="true" xmltag="COT">
+                <documentation>COT,
+           A segment identifying a regulation.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+                <documentation>CNT,
+           A segment indicating the total duration of periods concerned by
+           the regulation described in the related COT segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+        A segment giving additional information regarding the insured
+        person.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
+            <documentation>Segment group 9:
+        A group of segments specifying the details of authentication.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <documentation>AUT,
+           A segment specifying details of any authentication (validation)
+           procedure applied to the SSRECH message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment identifying the date and where necessary, the time of
+           authentication.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

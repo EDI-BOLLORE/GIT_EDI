@@ -1,0 +1,146 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="GENRAL" namespace="urn:org.milyn.edi.unedifact:un:d14b:genral" version="D:14B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="GENRAL">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment to indicate the type and function of the GENRAL message
+        and to transmit its unique identifying number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment specifying general dates, and when relevant, times
+        related to the whole message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments giving references where necessary, their dates
+        relating to the whole message, e.g. despatch advice, contract
+        number.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment for referencing documents relating to the whole
+           message, e.g. despatch advice, purchase orders, delivery
+           instructions.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           Date/time/period as applied to the referenced document.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments identifying names, addresses and locations, and
+        referred documents relevant for the whole message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment for identifying name and addresses of a party and
+           their functions relevant for the whole message. Identification
+           of the sender and receiver parties are mandatory for the
+           message.
+           It is recommended that where possible only the coded form of the
+           party ID should be specified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment indicating more details regarding specific
+           place/location related to the party specified in the NAD
+           segment, e.g. internal site/building number.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+           A group of segments giving references only relevant to the
+           specified party rather than to the whole message.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment for referencing documents relating to the party
+              specified by the NAD segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment for date/time/period as related to the referred
+              document.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           A group of segments giving contact details of the specific
+           person or department within the party identified in the NAD
+           segment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              A segment to identify the person, function, department to
+              whom communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              A segment to identify communication types and numbers for
+              person, function, department identified in CTA.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="100" minOccurs="0" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+        A group of segments enabling the specification of the text and
+        optionally, the identification of other parties or locations to
+        whom the information should be directed.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment to identify the text type and reason, and to specify
+           the relevant agreed information.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="100" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+           A group of segments allowing the specification of the name and
+           address of a party, within the receiving party identified in the
+           heading section, to whom the preceding text should be
+           distributed. It also allows to specify the name and address of a
+           party advised as copyreader of this text.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment for identifying names and addresses.
+              It is recommended that where possible the coded form of the
+              party identification should be specified.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+              A segment indicating more details regarding specific
+              place/location related to the party specified in the NAD
+              segment, e.g. internal site/building number.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+              A group of segments giving references only relevant to the
+              specified party rather than the whole message.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                 A segment for referencing documents relating to the party
+                 specified by the NAD segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment for date/time/period as related to the
+                 referenced document.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+              A group of segments giving contact details of the specific
+              person or department within the party identified in the NAD
+              segment.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                        <documentation>CTA,
+                 A segment to identify person, function, department to whom
+                 communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                        <documentation>COM,
+                 A segment to identify communication types and numbers for
+                 person, function, department identified in CTA.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

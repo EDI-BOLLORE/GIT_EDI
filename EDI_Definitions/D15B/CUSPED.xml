@@ -1,0 +1,719 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CUSPED" namespace="urn:org.milyn.edi.unedifact:un:d15b:cusped" version="D:15B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CUSPED">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment identifying the declaration type and reference.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Customs status of goods" nodeTypeRef="UN:CST" segcode="CST" truncatable="true" xmltag="CST">
+            <documentation>CST,
+        A segment identifying the customs procedure and status of the goods
+        relevant to the whole message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+            <documentation>LOC,
+        A segment identifying a place or location relevant to the entire
+        message. For example, office of assessment.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment identifying dates, times or periods relevant to the whole
+        message. For example, period covered by the declaration.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+        A segment identifying the various indicators required by a customs
+        system. For example, special programs.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+            <documentation>FII,
+        A segment identifying an account and a related financial
+        institution relevant to the whole message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments identifying various references relevant to the
+        whole message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying the various references relevant to the
+           whole message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment identifying a date related to the previous RFF
+           segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments identifying the parties relevant to the whole
+        message, with their related references, contacts and communication
+        numbers.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment identifying the parties relevant to the entire
+           message. For example, importer, ultimate consignee, etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying references relating to the party specified
+           within the group. For example, a special mailing request number
+           for refunds relating to the customs transaction.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+           A group of segments identifying the contacts and communication
+           numbers relevant to the NAD.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              A segment identifying a contact person(s) or department(s)
+              associated with the party specified in SG2.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              A segment identifying the phone number, fax number or other
+              communications number of the party and/or contact specified
+              within SG2.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+        A group of segments identifying monetary amounts, currencies and
+        their exchange rates, when required for the whole periodic
+        declaration.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+           A segment identifying a monetary function and up to five
+           monetary amounts.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+           A group of segments identifying currencies, a rate of exchange
+           and a related date for a monetary amount identified within this
+           group.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                    <documentation>CUX,
+              A segment identifying currencies and the rate of exchange for
+              a monetary amount identified within this group.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment identifying a date related to the information
+              contained in the CUX.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+        A group of segments identifying duties/taxes/fees and methods of
+        payment related to the whole periodic declaration.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                <documentation>TAX,
+           A segment identifying the tax type, rate and base associated
+           with the periodic declaration.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+           A segment identifying monetary amounts (e.g. tax/fee amount)
+           associated with the preceding TAX.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+           A segment identifying an indicator (e.g. method payment
+           indicator) associated with the preceding TAX.</documentation>
+            </segment>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+            <documentation>CNT,
+        A segment specifying control totals. For example, the number of
+        simplified Customs declarations.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_7">
+            <documentation>Segment group 7:
+                          SG11-SG12-SG14-SG15
+        A group of segments identifying detailed and complementary
+        information of a previous simplified Customs declaration.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message summary" nodeTypeRef="UN:DMS" segcode="DMS" truncatable="true" xmltag="DMS">
+                <documentation>DMS,
+           A segment identifying the reference number of the previous
+           simplified Customs declaration heading this group.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+                <documentation>CNT,
+           A segment specifying control totals within this group. E.g. the
+           total number of Customs items, and values.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying the various references relevant to the
+           whole previous simplified Customs declaration.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment identifying a date related to the whole previous
+           simplified Customs declaration identified in DMS.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+           A segment identifying any necessary processing indicators where
+           these are required.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment identifying a place or location related to the
+           document identified in the DMS. E.g. Customs office of entry,
+           country of purchase.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
+                <documentation>EQD,
+           A segment identifying the equipment (e.g. container id) used to
+           transport all the goods related to the whole declaration
+           identified in DMS.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                <documentation>PAC,
+           A segment identifying the number and type of packages related to
+           the whole declaration identified in DMS.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                <documentation>TDT,
+           A segment identifying the mode and means of transport used.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+           A group of segments identifying the parties relevant to the
+           whole declaration identified in DMS, with their related
+           references, contacts and communication numbers.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying the parties relevant to the entire
+              declaration. For example importer, ultimate consignee, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment identifying references relating to the party
+              specified within the group. For example, a special mailing
+              request number for refunds relating to the customs
+              transaction.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+              A group of segments identifying the contacts and
+              communication numbers relevant to the NAD.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                        <documentation>CTA,
+                 A segment identifying a contact person(s) or department(s)
+                 associated with the party specified in SG8.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                        <documentation>COM,
+                 A segment identifying the phone number, fax number or
+                 other communications number of the party and (or) contact
+                 specified within SG8.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+           A group of segments identifying documentary requirements related
+           to a previous simplified Customs declaration.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                    <documentation>DOC,
+              A segment identifying a document related to a previous
+              simplified customs declaration (e.g. preference invoice
+              etc.).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment identifying dates associated with the preceding
+              DOC.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+              A segment identifying a location associated with the
+              preceding LOC.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying the identity and address of the agency
+              related to the documentary requirements.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+           A group of segments identifying the terms of delivery pertinent
+           to the whole document.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                    <documentation>TOD,
+              A segment identifying, in a coded format, the terms of
+              delivery relevant to the entire document.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+              A segment identifying a location related to the information
+              contained in the TOD.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment identifying the terms of delivery in narrative
+              form.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+           A group of segments identifying various monetary amounts,
+           currencies and rates of exchange that pertain to the whole
+           declaration.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment identifying a monetary amount related to the whole
+              declaration.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+              A group of segments identifying currencies, rate of exchange
+              and an associated date.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                        <documentation>CUX,
+                 A segment identifying currency details and a rate of
+                 exchange related to the preceding MOA.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 The effective date of the rate of exchange reported in
+                 this group.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+           A group of segments identifying the totals and duty/tax/fee
+           levels due for the declaration and summarizing this total by
+           each accounting code included in the total due.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+              A segment identifying the summary tax type, rates and base
+              for a full declaration.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment identifying amounts associated with the preceding
+              TAX (e.g. total amounts for each duty/tax/fee).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+              A segment identifying an indicator related to the preceding
+              TAX (e.g. summary method of payment).</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_15">
+                <documentation>Segment group 15:
+                             SG22-SG23-SG24-SG25-SG26-SG27-SG29
+           A group of segments identifying detailed information for a
+           single customs item of a customs declaration.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Customs status of goods" nodeTypeRef="UN:CST" segcode="CST" truncatable="true" xmltag="CST">
+                    <documentation>CST,
+              A segment identifying the customs tariff of the goods, their
+              required treatment and, where these are different to the
+              header information, the type of declaration and the current
+              status of the goods.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment identifying the goods, related to the preceding
+              CST.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+              A segment identifying the places relevant to a customs item.
+              For example, country of origin, country of export, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment identifying dates particular to the customs item.
+              For example, date of original exportation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+              A segment identifying the necessary statistical information
+              requirements related to a tariff number. For example, net
+              weights, volumes, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying a party particular to the customs item
+              when required by customs. For example, manufacturer of the
+              goods.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                    <documentation>TDT,
+              A segment identifying transport details, for statistical
+              purposes, on goods crossing statistical boundaries.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+              A group of segments identifying the number, type and
+              reference of the packing units associated with the customs
+              item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                        <documentation>PAC,
+                 A segment identifying the number and type of packages
+                 relating to the customs item.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_17">
+                        <documentation>Segment group 17:
+                 A group of segments identifying marks and labels, and
+                 giving the description of single packages associated with
+                 a customs item.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
+                            <documentation>PCI,
+                    A segment identifying markings and labels on the type
+                    of packages reported in the preceding PAC.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                            <documentation>FTX,
+                    A segment describing the goods identified in PCI in
+                    narrative form.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_18">
+                    <documentation>Segment group 18:
+              A group of segments identifying various monetary amounts,
+              currencies and rates of exchange that pertain to the customs
+              item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment identifying the monetary amounts necessary for
+                 statistical and duty purposes.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_19">
+                        <documentation>Segment group 19:
+                 A group of segments identifying currencies, a rate of
+                 exchange and an associated date related to the preceding
+                 MOA.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                            <documentation>CUX,
+                    A segment identifying currencies and the rate of
+                    exchange for an amount reported in the preceding MOA.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <documentation>DTM,
+                    A segment identifying a date related to the preceding
+                    CUX.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_20">
+                    <documentation>Segment group 20:
+              A group of segments identifying report documentary
+              requirements of particular government agencies with the
+              optional name and address of the agency involved, description
+              and monetary amounts associated with a customs item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                        <documentation>DOC,
+                 A segment identifying a document related to a customs
+                 item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment identifying dates associated with the preceding
+                 DOC.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <documentation>LOC,
+                 A segment identifying a location associated with the
+                 preceding DOC.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <documentation>NAD,
+                 A segment identifying the identity and address of the
+                 agency related to the documentary requirement.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                        <documentation>GIN,
+                 A segment identifying any line or range of lines on the
+                 commercial document reported in the preceding RFF segment,
+                 that contains goods on this customs item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment identifying commercial document line monetary
+                 amounts where the Commercial Group is not offered but an
+                 administration requires this information.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_21">
+                        <documentation>Segment group 21:
+                 A group of segments identifying a commercial description
+                 for a documented commodity that is associated with this
+                 customs line item.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                            <documentation>IMD,
+                    A segment identifying the coded industry description of
+                    the merchandise on the document line(s) identified in
+                    the preceding GIN segment.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                            <documentation>FTX,
+                    A segment identifying the documented merchandise in
+                    narrative form.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_22">
+                    <documentation>Segment group 22:
+              A group of segments identifying references and dates relating
+              to the customs item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                 A segment identifying particular references relating to
+                 the customs item. For example, the invoice number of any
+                 invoice that contains merchandise on this customs item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment identifying a date associated with the preceding
+                 RFF.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_23">
+                    <documentation>Segment group 23:
+              A group of segments identifying the terms of delivery
+              pertinent to a customs item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                        <documentation>TOD,
+                 A segment identifying, in coded format, the terms of
+                 delivery of the entered goods, where these are specific to
+                 the customs item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <documentation>LOC,
+                 A segment identifying the place of delivery associated
+                 with the preceding TOD.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <documentation>FTX,
+                 A segment identifying the terms of delivery in narrative
+                 form.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_24">
+                    <documentation>Segment group 24:
+              A group of segments identifying the customs description of
+              merchandise entered on a customs item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Nature of cargo" nodeTypeRef="UN:GDS" segcode="GDS" truncatable="true" xmltag="GDS">
+                        <documentation>GDS,
+                 A segment identifying a customs description, in coded
+                 format, of the goods declared on the customs item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <documentation>FTX,
+                 A segment identifying the customs description in narrative
+                 form.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_25">
+                    <documentation>Segment group 25:
+              A group of segments identifying special indicators or value
+              data related to the customs item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 A segment identifying any necessary processing indicators
+                 where these are required by customs at the item level.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 A segment identifying percentage details related to
+                 adjustments where a relationship is identified between the
+                 buyer and seller.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment identifying a date related the preceding GEI.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                 A segment identifying a reference related to the preceding
+                 GEI.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_26">
+                    <documentation>Segment group 26:
+              A group of segments identifying duties/taxes/fees and methods
+              of payment related to a customs item.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                        <documentation>TAX,
+                 A segment identifying the tax type, rate and base
+                 associated with a customs item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment identifying monetary amounts (e.g. tax/fee
+                 amount) associated with the preceding TAX.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 A segment identifying an indicator (e.g. method payment
+                 indicator) associated with the preceding TAX.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_27">
+                    <documentation>Segment group 27:
+              A group of segments identifying variances between the
+              quantity commercially documented and/or produced to Customs
+              and the quantity declared.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity variances" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="QVR">
+                        <documentation>QVR,
+                 A segment identifying quantity difference and the reason
+                 for the difference between the declared and commercially
+                 documented amounts.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                 A segment identifying the quantity related to the
+                 preceding QVR.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_28">
+                        <documentation>Segment group 28:
+                 A group of segments identifying an earlier customs
+                 declaration in order to balance the total quantity
+                 declared with the total quantity presented to Customs.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <documentation>RFF,
+                    A segment identifying a reference to a previous customs
+                    declaration.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <documentation>DTM,
+                    A segment identifying a date associated with the
+                    preceding RFF.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_29">
+                    <documentation>Segment group 29:
+              A group of segments identifying customs reporting
+              requirements associated with a secondary tariff number.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                        <documentation>GIR,
+                 A segment identifying the tariff number where the
+                 published tariff requires more than one tariff number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 A segment identifying any necessary processing indicators
+                 related to the tariff number in the preceding GIR segment,
+                 where these are required by customs.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <documentation>NAD,
+                 A segment identifying a party particular to the goods
+                 governed by the tariff number in the preceding GIR
+                 segment. For example, manufacturer of the goods.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                        <documentation>MEA,
+                 A segment identifying the necessary statistical
+                 information requirements related to the tariff number in
+                 the GIR segment. For example, net weight, volume, etc.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_30">
+                        <documentation>Segment group 30:
+                 A group of segments identifying various monetary amounts,
+                 currencies and rates of exchange that pertain to a
+                 secondary tariff number within a customs item.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <documentation>MOA,
+                    A segment identifying the monetary amount necessary for
+                    statistical and/or duty purposes, as it relates to the
+                    tariff number in the preceding GIR segment.</documentation>
+                        </segment>
+                        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_31">
+                            <documentation>Segment group 31:
+                    A group of segments identifying currencies, a rate of
+                    exchange and related date for an amount reported in the
+                    preceding MOA.</documentation>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                                <documentation>CUX,
+                       A segment identifying currencies and the rate of
+                       exchange for an amount reported in the preceding MOA
+                       segment.</documentation>
+                            </segment>
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                                <documentation>DTM,
+                       A segment identifying a date related to the
+                       preceding CUX.</documentation>
+                            </segment>
+                        </segmentGroup>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_32">
+                        <documentation>Segment group 32:
+                 A group of segments identifying the duties, taxes, and/or
+                 fees pertinent to the tariff number reported in the GIR
+                 segment.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                            <documentation>TAX,
+                    A segment identifying the tax type, rate and base
+                    associated with the preceding GIR.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <documentation>MOA,
+                    A segment identifying monetary amounts (e.g. tax/fee
+                    amount) associated with the preceding TAX.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                            <documentation>GEI,
+                    A segment identifying an indicator associated with the
+                    preceding TAX, (e.g. method of payment indicator).</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_33">
+                        <documentation>Segment group 33:
+                 A group of segments identifying specific documentary
+                 information which may be required by the tariff number in
+                 the GIR segment. For example, a textile category number.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                            <documentation>DOC,
+                    A segment identifying a specific document related to
+                    the preceding GIR.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <documentation>DTM,
+                    A segment identifying a date associated with the
+                    preceding DOC.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                            <documentation>LOC,
+                    A segment identifying a place associated with the
+                    preceding DOC.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                            <documentation>NAD,
+                    A segment identifying the identity and address of the
+                    agency related to the documentary requirement.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_34">
+            <documentation>Segment group 34:
+        A group of segments permitting the verification of the authenticity
+        of the sender and the integrity of the data.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <documentation>AUT,
+           A segment containing the result of the algorithm permitting the
+           verification of the authenticity of the sender and the integrity
+           of the data.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment identifying a date associated with the preceding AUT.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

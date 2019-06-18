@@ -1,22 +1,22 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="INFCON" version="D:04A:UN"/>
+    <description name="INFCON" namespace="urn:org.milyn.edi.unedifact:un:d04a:infcon" version="D:04A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="INFCON">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment by which the sender uniquely identifies the
        Infrastructure condition message by means of its name and
        number and when necessary its function.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying general dates and, when relevant, times
        related to the whole message. The segment must be specified at
        least once to specify the message date as allocated by the
        sender.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment with free text information, in coded or clear form,
        used when additional information is needed, which is relevant
@@ -27,11 +27,11 @@
             <documentation>Segment group 1:
        A group of segments for giving references and where necessary,
        their dates, relating to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying a reference by its type and number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the date/time related to the referenced
           information.</documentation>
@@ -41,7 +41,7 @@
             <documentation>Segment group 2:
        A group of segments identifying the parties with associated
        information relevant to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment identifying names and addresses of the parties, in
           coded or clear form, and their functions relevant to the
@@ -54,17 +54,19 @@
                 <documentation>Segment group 3:
           A group of segments giving contact details of a specific
           person and/or department within the party identified.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment to identify a person and/or department, and
              their function, to whom communications should be
              directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment to identify a communication type and number for
              the contact specified.
+
 4.1.2  Detail section
+
        Information to be provided in the Detail section:</documentation>
                 </segment>
             </segmentGroup>
@@ -75,25 +77,25 @@
        This includes the party responsible for the component, the
        physical characteristics of the component, the reason for the
        downtime and the scheduled downtime of the component.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
           A segment to identify the location of the component being
           reported. It is recommended that, where possible, codes
           should be used to identify the component to facilitate
           automatic processing.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment to specify dates associated with the downtime,
           availability or occurrence of an event connected to the
           component.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment to identify parties and/or addresses related to
           the component, such as installation address.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment with free text information, in coded or clear
           form, used when additional information on the downtime,
@@ -107,13 +109,13 @@
                 <documentation>Segment group 5:
           A group of segments providing characteristics and
           characteristic details of the component.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                     <documentation>CCI,
              A segment to identify characteristic and/or the
              characteristic name and characteristic relevance for the
              component.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                     <documentation>CAV,
              A segment to specify characteristic of the component, by
              value in either coded form or in free format.</documentation>
@@ -125,11 +127,11 @@
           relevant quantities for the specified component and, where
           relevant, related date and time information, for example
           indication of capacity within a given period.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment to specify quantities related to the component.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment indicating date or time details relating to the
              quantity, for example indication of capacity within a
@@ -141,7 +143,7 @@
           A group of segment specifying schedules related to the
           downtime, availability or occurrence of an event connected
           to the component.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="Scheduling_conditions">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Scheduling conditions" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="SCC">
                     <documentation>SCC,
              A segment specifying the type and status of the schedule
              being given, and optionally defining a pattern to be
@@ -149,7 +151,7 @@
              availability or occurrence of an event connected to the
              component.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment indicating the date/time details relevant to
              the schedule details. This segment may be used to

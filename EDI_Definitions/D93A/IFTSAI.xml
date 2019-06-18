@@ -1,25 +1,25 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="IFTSAI" version="D:93A:UN"/>
+    <description name="IFTSAI" namespace="urn:org.milyn.edi.unedifact:un:d93a:iftsai" version="D:93A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="IFTSAI">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
 A segment to indicate the type and function of the message and to
 transmit the identifying number.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
 A segment to indicate date(s) and time(s) applying to the whole
 message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
 A segment to specify free form or processable supplementary
 information. In computer-to-computer exchanges free form text will
 normally require the receiver to process this segment manually.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
             <documentation>RFF,
 A segment to express a reference which applies to the entire message.</documentation>
         </segment>
@@ -27,11 +27,11 @@ A segment to express a reference which applies to the entire message.</documenta
             <documentation>Segment Group 1:
 A group of segments to identify the routing and date of the schedule
 or availability information.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
   A segment to identify a location, e.g. place of departure/arrival.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
   A segment to indicate date(s) and time(s) related to the location.</documentation>
             </segment>
@@ -39,26 +39,26 @@ or availability information.</documentation>
         <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_Group_2">
             <documentation>Segment Group 2:
 A group of segments to define requested or available equipment.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
                 <documentation>EQD,
   A segment to specify requested or available equipment and equipment
   size and type.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Number of units" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="EQN">
                 <documentation>EQN,
   A segment to specify the number of requested or available pieces of
   equipment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
   A segment to specify measurements, other than dimensions, associated
   with equipment, in terms of capacity.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="Dimensions">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dimensions" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="DIM">
                 <documentation>DIM,
   A segment to specify dimensions applicable to equipment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
   A segment to specify free form or processable supplementary
   information associated with the equipment.</documentation>
@@ -69,35 +69,35 @@ A group of segments to define requested or available equipment.</documentation>
 A group of segments to specify the schedule or availability selection
 criteria and to detail the schedule or availability information being
 provided.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Details of transport" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
                 <documentation>TDT,
   A segment to indicate information related to the mode and means of
   transport, eg. specific conveyance/carrier.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
   A segment to indicate date(s) and time(s), e.g. earliest departure
   date/time, latest arrival date/time.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:TSR" segcode="TSR" truncatable="true" xmltag="Transport_service_requirements">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Transport service requirements" nodeTypeRef="UN:TSR" segcode="TSR" truncatable="true" xmltag="TSR">
                 <documentation>TSR,
   A segment to identify contract, conditions of carriage, services and
   priority requirements.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
   A segment to specify free form or processable supplementary
   information related to the means of transport.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
                 <documentation>EQD,
   A segment to identify the equipment requested/available.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                 <documentation>QTY,
   A segment to indicate a quantity, e.g. number of intermediate stops.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
   A segment to indicate weight and/or volume selection criteria, e.g.
   minimum weight.</documentation>
@@ -106,11 +106,11 @@ provided.</documentation>
                 <documentation>Segment Group 4:
   A group of segments to identify the routing(s) and indicate
   corresponding date(s) and time(s).</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
     A segment to identify a location, e.g. place of departure/arrival.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
     A segment to indicate date(s) and time(s) related to the location,
     e.g. date/time of scheduled departure/arrival.</documentation>
@@ -122,11 +122,11 @@ provided.</documentation>
 A group of segments to indicate all parties involved in the
 transaction and relevant locations, contacts and communication
 channels.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
   A segment to identify the party's name, address and function.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
   A segment to identify a place/location/sub-location and where
   relevant the function. The present location must be associated with
@@ -136,11 +136,11 @@ channels.</documentation>
                 <documentation>Segment Group 6:
   A group of segments to identify a contact and its communication
   channels, related to the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
     A segment to identify a person or department within a party.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
     A segment to identify the communication numbers of person or
     department to whom communication should be directed.</documentation>
@@ -151,17 +151,17 @@ channels.</documentation>
             <documentation>Segment Group 7:
 A group of segments to describe the goods items for which schedule or
 availability is requested/provided.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GID" segcode="GID" truncatable="true" xmltag="Goods_item_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Goods item details" nodeTypeRef="UN:GID" segcode="GID" truncatable="true" xmltag="GID">
                 <documentation>GID,
   A segment to identify the goods item. A goods item can be identified
   by up to three levels of packaging within this segment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                 <documentation>HAN,
   A segment to specify handling instructions relating to the goods
   item.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
   A segment to specify free form or processable information relating
   to the goods item.</documentation>
@@ -169,11 +169,11 @@ availability is requested/provided.</documentation>
             <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_Group_8">
                 <documentation>Segment Group 8:
   A group of segments to identify and describe the goods.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GDS" segcode="GDS" truncatable="true" xmltag="Nature_of_cargo">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Nature of cargo" nodeTypeRef="UN:GDS" segcode="GDS" truncatable="true" xmltag="GDS">
                     <documentation>GDS,
     A segment to describe the nature of cargo.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
     A segment to describe the goods in free form.</documentation>
                 </segment>
@@ -182,12 +182,12 @@ availability is requested/provided.</documentation>
                 <documentation>Segment Group 9:
   A group of segments to specify measurements applicable to the goods
   item.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                     <documentation>MEA,
     A segment to specify measurements, other than dimensions,
     applicable to the goods item.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Number of units" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="EQN">
                     <documentation>EQN,
     A segment to specify the number of equipment units to which the
     measurement applies.</documentation>
@@ -197,11 +197,11 @@ availability is requested/provided.</documentation>
                 <documentation>Segment Group 10:
   A group of segments to specify dimensions applicable to the goods
   item.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="Dimensions">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Dimensions" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="DIM">
                     <documentation>DIM,
     A segment to specify dimensions applicable to the goods item.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Number of units" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="EQN">
                     <documentation>EQN,
     A segment to specify the number of equipment units to which the
     given dimensions apply.</documentation>
@@ -211,12 +211,12 @@ availability is requested/provided.</documentation>
                 <documentation>Segment Group 11:
   A group of segments to specify dangerous goods details related to
   the goods item.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="Dangerous_goods">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Dangerous goods" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="DGS">
                     <documentation>DGS,
     A segment to specify the class of dangerous goods, packing group,
     etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
     A segment to specify the dangerous goods technical name and any
     other additional dangerous goods information.</documentation>

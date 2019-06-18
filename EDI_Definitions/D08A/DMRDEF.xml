@@ -1,26 +1,26 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="DMRDEF" version="D:08A:UN"/>
+    <description name="DMRDEF" namespace="urn:org.milyn.edi.unedifact:un:d08a:dmrdef" version="D:08A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="DMRDEF">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment to indicate the beginning of the message and to
        transmit function, type and number of the message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DII" segcode="DII" truncatable="true" xmltag="Directory_identification">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Directory identification" nodeTypeRef="UN:DII" segcode="DII" truncatable="true" xmltag="DII">
             <documentation>DII,
        A segment specifying the identity of the reference directory
        set used in creating the DMR.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying date information, e.g., the date the
        submitter forwarded the DMR, preparation date, technical
        assessment review date, final approval date, etc. Date
        information is to be provided in CCYYMMDD format.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment specifying text information outlining the business
        requirement for this DMR. This segment may also be used by the
@@ -29,7 +29,7 @@
        the international assessment process. Other assessment groups
        will comment on a DMR via the DMSTAT message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+        <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
             <documentation>RFF,
        A segment identifying the type of and reference log number of
        this request, as well as any related DMRs.
@@ -66,7 +66,7 @@
        will be consulted by technical assessment for functional
        evaluations.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="External_file_link_identification">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="External file link identification" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="EFI">
             <documentation>EFI,
        A segment identifying associated documentation, including
        document reference and document type.</documentation>
@@ -76,7 +76,7 @@
        A group of segments identifying the party(ies) filing the Data
        maintenance request. In case of a jointly submitted DMR all
        parties shall be identified.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
                 <documentation>PNA,
           A segment identifying the originator of the Data maintenance
           request, e.g., the DMR submitter, Secretariat, etc. At least
@@ -85,7 +85,7 @@
           secretariat the sender must identify which entry point is
           forwarding the DMR.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                 <documentation>ADR,
           A segment identifying the DMR originator's address
           information.</documentation>
@@ -94,13 +94,13 @@
                 <documentation>Segment group 2:
           A group of segments identifying the DMR originator's
           communication type(s) and number(s).</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment identifying a person or a department for the
              party specified in the leading PNA segment to whom the
              communication should be directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment identifying communication type(s) and number(s)
              of person(s) or department(s) specified in the associated
@@ -111,18 +111,18 @@
         <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_3">
             <documentation>Segment group 3:
        A group of segments providing a message type directory.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MSG" segcode="MSG" truncatable="true" xmltag="Message_type_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Message type identification" nodeTypeRef="UN:MSG" segcode="MSG" truncatable="true" xmltag="MSG">
                 <documentation>MSG,
           A segment identifying a message type to be specified.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                 <documentation>ATT,
           A segment used to specify if the message is for use with the
           batch or interactive message directories. It also may
           indicate what modifications the DMR will make to the
           message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment providing textual information related to the
           message type, namely: Message type name, Introduction,
@@ -134,7 +134,7 @@
                 <documentation>Segment group 4:
           A group of segments specifying a message type structure and
           its related functional definition.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SGU" segcode="SGU" truncatable="true" xmltag="Segment_usage_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Segment usage details" nodeTypeRef="UN:SGU" segcode="SGU" truncatable="true" xmltag="SGU">
                     <documentation>SGU,
              A segment specifying the usage of a segment in a message
              type structure. The segment names for component segments
@@ -144,12 +144,12 @@
              occurrences of the segment name in the message
              boilerplate.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                     <documentation>ATT,
              A segment to indicate what modifications the DMR will
              make to the clarification text for the segment.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment providing textual information about segment
              usage. This information comprises part of the data
@@ -159,17 +159,17 @@
                     <documentation>Segment group 5:
              A group of segments identifying a segment group and
              providing details about segment group usage.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GRU" segcode="GRU" truncatable="true" xmltag="Segment_group_usage_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Segment group usage details" nodeTypeRef="UN:GRU" segcode="GRU" truncatable="true" xmltag="GRU">
                         <documentation>GRU,
                 A segment specifying the usage of a segment group in a
                 message type structure.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                         <documentation>ATT,
                 A segment to indicate what modifications the DMR will
                 make to the segment group's clarification text.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment providing the textual information about
                 segment group usage. This information comprises part
@@ -183,28 +183,28 @@
           and/or segment groups through dependency notes or other
           notes about the usage of segments or segment groups at
           identified positions in the message.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="Footnote">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Footnote" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="FNT">
                     <documentation>FNT,
              A segment to provide the footnote identification for a
              dependency note or other note to be applied against one
              or more segments and/or segment groups of a message.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
                     <documentation>REL,
              A segment to provide the type of dependency relationship,
              where one exists.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
                     <documentation>GIR,
              A segment to provide the position number(s) for segments
              and/or segment groups to which a note applies.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                     <documentation>ATT,
              A segment to provide the change indicators at the note
              level.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment to provide free text for a position relative
              note.</documentation>
@@ -214,22 +214,22 @@
         <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_7">
             <documentation>Segment group 7:
        A group of segments providing a segment directory.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEG" segcode="SEG" truncatable="true" xmltag="Segment_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Segment identification" nodeTypeRef="UN:SEG" segcode="SEG" truncatable="true" xmltag="SEG">
                 <documentation>SEG,
           A segment identifying a segment type and specifying its
           class and maintenance operation.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                 <documentation>ATT,
           A segment used to indicate what modifications the DMR will
           make to the segment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment specifying the name and functional definition of a
           segment type.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ELU" segcode="ELU" truncatable="true" xmltag="Data_element_usage_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Data element usage details" nodeTypeRef="UN:ELU" segcode="ELU" truncatable="true" xmltag="ELU">
                 <documentation>ELU,
           A segment specifying the simple and/or component data
           elements in a segment type. The component element names are
@@ -247,29 +247,29 @@
           composites and/or simple data elements through dependency
           notes or other notes about the usage of elements at
           identified positions in the segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="Footnote">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Footnote" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="FNT">
                     <documentation>FNT,
              A segment to provide the footnote identification for a
              dependency note or other note to be applied against one
              or more elements of a segment.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
                     <documentation>REL,
              A segment to provide the type of dependency relationship,
              where one exists.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
                     <documentation>GIR,
              A segment to provide the position number(s) for
              composites and/or simple data elements to which a note
              applies.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                     <documentation>ATT,
              A segment to provide the change indicators at the note
              level.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment to provide free text for a position relative
              note.</documentation>
@@ -280,22 +280,22 @@
             <documentation>Segment group 9:
        A group of segments providing a composite data element
        directory.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CMP" segcode="CMP" truncatable="true" xmltag="Composite_data_element_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Composite data element identification" nodeTypeRef="UN:CMP" segcode="CMP" truncatable="true" xmltag="CMP">
                 <documentation>CMP,
           A segment identifying a composite data element and
           specifying its class and maintenance operation.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                 <documentation>ATT,
           A segment used to indicate what modifications the DMR will
           make to the composite.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment specifying the name and functional definition of a
           composite data element type.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ELU" segcode="ELU" truncatable="true" xmltag="Data_element_usage_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Data element usage details" nodeTypeRef="UN:ELU" segcode="ELU" truncatable="true" xmltag="ELU">
                 <documentation>ELU,
           A segment specifying component data elements in a composite
           data element and its related information. The simple data
@@ -311,28 +311,28 @@
           data elements through dependency notes or other notes about
           the usage of the elements at identified positions in the
           composite.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="Footnote">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Footnote" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="FNT">
                     <documentation>FNT,
              A segment to provide the footnote identification for a
              dependency note or other note to be applied against one
              or more elements of a composite.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
                     <documentation>REL,
              A segment to provide the type of dependency relationship,
              where one exists.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
                     <documentation>GIR,
              A segment to provide the position number(s) for simple
              data elements to which a note applies.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                     <documentation>ATT,
              A segment to provide the change indicators at the note
              level.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment to provide free text for a position relative
              note.</documentation>
@@ -342,17 +342,17 @@
         <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_11">
             <documentation>Segment group 11:
        A group of segments providing a data element directory.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ELM" segcode="ELM" truncatable="true" xmltag="Simple_data_element_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Simple data element details" nodeTypeRef="UN:ELM" segcode="ELM" truncatable="true" xmltag="ELM">
                 <documentation>ELM,
           A segment identifying a simple data element and giving
           related information.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                 <documentation>ATT,
           A segment used to indicate what modifications the DMR will
           make to the simple data element.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment specifying the name and functional definition of a
           simple data element.</documentation>
@@ -361,11 +361,11 @@
         <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_12">
             <documentation>Segment group 12:
        A group of segments providing a code list directory.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDS" segcode="CDS" truncatable="true" xmltag="Code_set_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Code set identification" nodeTypeRef="UN:CDS" segcode="CDS" truncatable="true" xmltag="CDS">
                 <documentation>CDS,
           A segment specifying a code set.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment providing textual information related to the code
           list.</documentation>
@@ -374,18 +374,18 @@
                 <documentation>Segment group 13:
           A group of segments specifying a code value and its
           functional definition.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="Code_value_definition">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Code value definition" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="CDV">
                     <documentation>CDV,
              A segment specifying a code value. In DMRDEF use the
              associated free text segment to provide the code value's
              name.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                     <documentation>ATT,
              A segment used to indicate what modifications the DMR
              will make to the code.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment specifying the name and functional definition
              of a code value.</documentation>

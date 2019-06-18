@@ -1,192 +1,192 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
-    <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="INSPRE" version="D:96B:UN"/>
-    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
-    <segments xmltag="INSPRE">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
-            <documentation>BGM,
-       A segment for specifying message name and function.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-            <documentation>RFF,
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="INSPRE" namespace="urn:org.milyn.edi.unedifact:un:d96b:inspre" version="D:96B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="INSPRE">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
+       A segment for specifying message name and function.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+            <medi:documentation>RFF,
        A segment containing references to the Insurance Premium
        document and the Insurance Contract to which this Insurance
-       Premium message relates.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-            <documentation>DTM,
+       Premium message relates.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
        A segment specifying the dates related to the Insurance Premium
        message and the Insurance Contract to which this Insurance
-       Premium message relates.</documentation>
-        </segment>
-        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_1">
-            <documentation>Segment group 1:
+       Premium message relates.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
        A group of segments providing characteristics regarding the
-       Insurance Premium document.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
-                <documentation>ATT,
+       Insurance Premium document.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <medi:documentation>ATT,
           A segment specifying the type of Insurance Premium document,
           providing collection specification and coinsurance
-          information.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
-                <documentation>PCD,
+          information.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <medi:documentation>PCD,
           A segment to specify the percentage of the total premium for
           a coinsurance contract, covered by the Insurance Premium
-          document.</documentation>
-            </segment>
-        </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
-            <documentation>ICD,
-       A segment indicating the Main Class of Business.</documentation>
-        </segment>
-        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_2">
-            <documentation>Segment group 2:
+          document.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+            <medi:documentation>ICD,
+       A segment indicating the Main Class of Business.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_2">
+            <medi:documentation>Segment group 2:
        A group of segments providing identification, names and
-       addresses, contacts and references of the involved parties.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                <documentation>NAD,
+       addresses, contacts and references of the involved parties.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
           A segment for identifying either by name and address, or by
           code, the parties and their function in the Insurance
-          Premium message.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
-                <documentation>ATT,
-          A segment specifying characteristics of the involved party.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
-                <documentation>CTA,
+          Premium message.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <medi:documentation>ATT,
+          A segment specifying characteristics of the involved party.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <medi:documentation>CTA,
           A segment giving additional contact information of the party
-          specified in the NAD.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
-                <documentation>COM,
+          specified in the NAD.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <medi:documentation>COM,
           A segment specifying the communication channel and number
           for the contact specified in the CTA or the party specified
-          in the NAD.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                <documentation>RFF,
+          in the NAD.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
           A segment for additional identifying references of the party
-          specified in the NAD.</documentation>
-            </segment>
-        </segmentGroup>
-        <segmentGroup maxOccurs="3" minOccurs="1" xmltag="Segment_group_3">
-            <documentation>Segment group 3:
+          specified in the NAD.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="3" minOccurs="1" xmltag="Segment_group_3">
+            <medi:documentation>Segment group 3:
        A group of segments describing a set of insurance products,
        guarantees and risks covered by the insurance contract and the
-       amounts due in order to be covered during an indicated period.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                <documentation>DTM,
+       amounts due in order to be covered during an indicated period.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
           A segment specifying the starting date and the end date of
-          the period for which the premium is due.</documentation>
-            </segment>
-            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_4">
-                <documentation>Segment group 4:
+          the period for which the premium is due.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_4">
+                <medi:documentation>Segment group 4:
           A group of segments providing details of the insurance
           product, guarantees and riks covered by the insurance
           contract and the amounts due in order to be covered during
-          the above mentioned period.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="Insurance_cover_description">
-                    <documentation>ICD,
+          the above mentioned period.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                    <medi:documentation>ICD,
              A segment specifying the insurance product, guarantee and
-             risk covered by the insurance contract.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
-                    <documentation>FTX,
+             risk covered by the insurance contract.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
              A segment providing free format text or coded information
              that is not purely Insurance Premium related, but that is
              to be added to the Insurance Premium document following
-             national legal regulations.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                    <documentation>RFF,
-             A segment providing unique identification of the risk.</documentation>
-                </segment>
-                <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_5">
-                    <documentation>Segment group 5:
+             national legal regulations.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
+             A segment providing unique identification of the risk.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_5">
+                    <medi:documentation>Segment group 5:
              A group of segments providing details of the amouts due
              in order to be covered for the above mentioned guarantees
-             and risks during the above mentioned period.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-                        <documentation>MOA,
-                A segment specifying detailed amounts.</documentation>
-                    </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                        <documentation>DTM,
-                A segment specifying overriding periods.</documentation>
-                    </segment>
-                    <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_6">
-                        <documentation>Segment group 6:
+             and risks during the above mentioned period.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                A segment specifying detailed amounts.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                A segment specifying overriding periods.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_6">
+                        <medi:documentation>Segment group 6:
                 A group of segments providing details of indices used
-                to calculate premium amounts.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="Index_details">
-                            <documentation>IND,
-                   A segment specifying indices.</documentation>
-                        </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                            <documentation>DTM,
+                to calculate premium amounts.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Index details" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="IND">
+                            <medi:documentation>IND,
+                   A segment specifying indices.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <medi:documentation>DTM,
                    A segment specifying the reference year of an
-                   indice.</documentation>
-                        </segment>
-                    </segmentGroup>
-                    <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_7">
-                        <documentation>Segment group 7:
+                   indice.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_7">
+                        <medi:documentation>Segment group 7:
                 A group of segments providing details about commission
-                amounts.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
-                            <documentation>ATT,
+                amounts.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                            <medi:documentation>ATT,
                    A segment specifying collection and calculation of
-                   commission amounts.</documentation>
-                        </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
-                            <documentation>PCD,
+                   commission amounts.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                            <medi:documentation>PCD,
                    A segment specifying the percentage of the
-                   commission.</documentation>
-                        </segment>
-                    </segmentGroup>
-                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
-                        <documentation>Segment group 8:
+                   commission.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+                        <medi:documentation>Segment group 8:
                 A group of segments providing details about tax
-                amounts.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="Duty_tax_fee_details">
-                            <documentation>TAX,
-                   A segment specifying the tax amount.</documentation>
-                        </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
-                            <documentation>PCD,
-                   A segment specifying the percentage of the tax.</documentation>
-                        </segment>
-                    </segmentGroup>
-                </segmentGroup>
-            </segmentGroup>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
-                <documentation>CUX,
+                amounts.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                            <medi:documentation>TAX,
+                   A segment specifying the tax amount.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                            <medi:documentation>PCD,
+                   A segment specifying the percentage of the tax.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                <medi:documentation>CUX,
           A segment specifying the currency of the amounts and
-          relevant details for the rate of exchange.</documentation>
-            </segment>
-        </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-            <documentation>MOA,
+          relevant details for the rate of exchange.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+            <medi:documentation>MOA,
        A segment specifying total amounts of this Insurance Premium
-       message.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
-            <documentation>FTX,
+       message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <medi:documentation>FTX,
        A segment with free text information, in coded or clear text
-       form, relating to the Insurance Premium message.</documentation>
-        </segment>
-        <segmentGroup maxOccurs="15" minOccurs="0" xmltag="Segment_group_9">
-            <documentation>Segment group 9:
-       A group of segments providing details of instalments.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                <documentation>DTM,
-          A segment specifying the date of an instalment.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-                <documentation>MOA,
-          A segment specifying the amount payable for an instalment.</documentation>
-            </segment>
-        </segmentGroup>
-    </segments>
-</edimap>
+       form, relating to the Insurance Premium message.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="15" minOccurs="0" xmltag="Segment_group_9">
+            <medi:documentation>Segment group 9:
+       A group of segments providing details of instalments.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+          A segment specifying the date of an instalment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <medi:documentation>MOA,
+          A segment specifying the amount payable for an instalment.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>

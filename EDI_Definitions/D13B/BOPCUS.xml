@@ -1,0 +1,186 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="BOPCUS" namespace="urn:org.milyn.edi.unedifact:un:d13b:bopcus" version="D:13B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="BOPCUS">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment to indicate the type and function of the message and to
+        transmit its identifying number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment to specify the date and, when required, the time of the
+        creation of the message and optionally to specify other process
+        dates which apply to the whole message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments to specify references which apply to the whole
+        message and optionally to specify related dates.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment to specify a reference for the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment to specify dates related to the reference.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments to identify the parties associated with the
+        message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment to identify the reporting party (generally the bank)
+           or the bank on behalf of which the declaration is made when the
+           reporting party is a third party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <documentation>CTA,
+           A segment to identify a person or a department for the party to
+           whom communication should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <documentation>COM,
+           A segment to specify a communication number for the party, such
+           as phone number, E-mail or fax number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment to specify free text information relating to the
+           party.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A group of segments to provide the transaction details
+        corresponding to a payment ordered via a PAYORD/PAYMUL/PAYEXT
+        message or to a BOPINF message received during the relevant period.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <documentation>LIN,
+           A segment identifying the transaction by a current line number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <documentation>ATT,
+           A segment identifying the type of reported transaction.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <documentation>FII,
+           A segment specifying the identification of the foreign financial
+           institution also involved in the transaction and optionally the
+           account number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment to specify the processing date of the transaction.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           A segment group to specify references and dates relating to the
+           transaction.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment to specify the reference for the transaction such
+              as the serial number of the related PAYORD message or the
+              bank reference of the payment order.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment to specify the date related to the reference such
+              as the date of the related PAYORD message or the date when
+              the payment order was executed.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+           A group of segments identifying the parties related to the
+           transaction such as the Payee and the Payor and, for a
+           declaration on behalf of a third party, their "declaring agent".</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment to identify the party related to the transaction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              A segment to identify a person or a department for the party
+              and to whom communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              A segment to specify a communication number for the contact
+              such as the phone number or fax number.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+           A group of segments to specify the monetary amount of the
+           transaction and any relevant currencies.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment to specify the monetary amount of the transaction
+              and the currency.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                    <documentation>CUX,
+              A segment to specify the reference currency (e.g. the
+              currency of the account) and the target currency (e.g. the
+              currency of the transfer) of the payment when they are
+              different.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+           A group of segments to specify the reason for the transaction.
+           Where the transaction relates to different transactions such as
+           for example composite payments the details of each part of the
+           transaction can be individually specified.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                    <documentation>RCS,
+              A segment to specify the reason for the transaction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment to specify information in clear and free form about
+              the reason for the transaction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment to specify the amount and the currency of the
+              transaction.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+              A segment to indicate the different countries involved in the
+              transaction such as country of origin or destination of
+              goods, direct investment country, donation acting country,
+              payment transaction country (creditor or debtor), or the
+              country in which construction work is done.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+              A group of segments to specify the details related to
+              transactions on financial securities.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                        <documentation>GIR,
+                 A segment to identify the type of security (shares, bonds,
+                 etc.).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                 A segment to specify the quantity of the security.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                        <documentation>PRI,
+                 A segment to specify the face value of the security.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+            <documentation>CNT,
+        A segment to specify total values for control purposes.</documentation>
+        </segment>
+    </segments>
+</edimap>

@@ -1,27 +1,27 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="DOCAMI" version="D:99A:UN"/>
+    <description name="DOCAMI" namespace="urn:org.milyn.edi.unedifact:un:d99a:docami" version="D:99A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="DOCAMI">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment by means of which the sender must uniquely identify
        the DOCAMI message using its type and number and when necessary
        its function.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
             <documentation>RFF,
        A segment identifying the number of the referenced documentary
        credit. It also indicates the number of the amendment. This
        number should be the latest in the series of all amendments
        made.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="Financial_charges_allocation">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial charges allocation" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="FCA">
             <documentation>FCA,
        A segment specifying the allocation of charges due to an
        amendment.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying the date and/or time the message is
        created and, if applicable, the date of the original issue of
@@ -29,7 +29,7 @@
        the documentary credit and amendments to the date or period of
        shipment.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
             <documentation>MOA,
        A segment specifying either the currency and amount of an
        increase in the documentary credit amount or the currency and
@@ -37,17 +37,17 @@
        specifies the currency and total amount of the Documentary
        Credit after the amendment, disregarding any drawings.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
             <documentation>LOC,
        A segment specifying amendments to the place from where to
        where shipment(s) under the documentary credit must be made.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:TSR" segcode="TSR" truncatable="true" xmltag="Transport_service_requirements">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Transport service requirements" nodeTypeRef="UN:TSR" segcode="TSR" truncatable="true" xmltag="TSR">
             <documentation>TSR,
        A segment specifying the amendments to the part- shipment
        and/or transhipment instructions.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="20" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="20" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment with free text information used when additional
        information is needed but cannot be accommodated within other
@@ -58,24 +58,24 @@
        A group of segments identifying the financial institutions and
        account numbers involved in the documentary credit, their
        functions and notification references.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
                 <documentation>FII,
           A segment identifying the financial institution(s)
           associated with the documentary credit, in coded or uncoded
           form, their functions and account numbers involved.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment specifying reference numbers of parties specified
           in the leading FII segment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                 <documentation>CTA,
           A segment identifying a person or a department for the party
           specified in the leading FII segment to whom communication
           should be directed.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                 <documentation>COM,
           A segment identifying communication type(s) and number(s) of
           person(s) or department(s) specified in the associated CTA
@@ -87,24 +87,24 @@
        A group of segments identifying the name and address of each
        non-financial party involved in the transaction, their
        functions and notification references.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment identifying names and addresses of the parties
           associated with the documentary credit, in coded or uncoded
           form, and their functions.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment specifying reference numbers of parties specified
           in the leading NAD segment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                 <documentation>CTA,
           A segment identifying a person or a department for the party
           specified in the leading NAD segment to whom communication
           should be directed.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                 <documentation>COM,
           A segment identifying communication type(s) and number(s) of
           person(s) or department(s) specified in the associated CTA
@@ -115,12 +115,12 @@
             <documentation>Segment group 3:
        A group of segments specifying details of any authentication
        (validation) procedures applied to the DOCAMI message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
                 <documentation>AUT,
           A segment specifying details of any authentication
           (validation) procedures applied to the DOCAMI message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment identifying the validation date/time.</documentation>
             </segment>

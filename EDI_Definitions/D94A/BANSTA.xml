@@ -1,6 +1,6 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="BANSTA" version="D:94A:UN"/>
+    <description name="BANSTA" namespace="urn:org.milyn.edi.unedifact:un:d94a:bansta" version="D:94A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="BANSTA">
         <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_1">
@@ -9,12 +9,12 @@
        message, the date and time, the type of BANSTA message         
        (e.g. response to an original instruction, to a query,         
        etc.) and its function.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
                 <documentation>BGM,
           A segment identifying the BANSTA message, its type and      
           function.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the date and time of the status        
           message.</documentation>
@@ -27,12 +27,12 @@
        the query to which this Status information applies. When       
        several queries have been sent, the date/time information      
        identifies the specific query concerned.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying a previously sent message and/or      
           query.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment identifying the date/time of the previously       
           sent message and/or query.</documentation>
@@ -42,17 +42,17 @@
             <documentation>Segment group 3:
        A group of segments identifying the parties involved in the    
        exchange of the message, and their contacts.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment identifying the party and its function.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                 <documentation>CTA,
           A segment identifying a person or department for the        
           party specified in the NAD segment and to whom              
           communication should be directed.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                 <documentation>COM,
           A segment providing communication numbers for the party     
           identified in the NAD segment and, optionally, for the      
@@ -69,7 +69,7 @@
        part thereof. It indicates the acceptance or rejection of      
        the original message and may provide a means to report on      
        application errors, inconsistencies and queries.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
                 <documentation>SEQ,
           A segment referring to the original message. and one or     
           more specific line(s) or party(ies) of the original         
@@ -79,12 +79,12 @@
                 <documentation>Segment group 5:
           A group of segments identifying the original message or     
           part thereof.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment identifying the reference of the original      
              message or part thereof (i.e. LIN, SEQ,...).</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment identifying the date/time at which the         
              reference was created.</documentation>
@@ -95,12 +95,12 @@
           A group of segments indicating the response of the          
           receiving application and if relevant, an error. It can     
           also indicate the purpose of a query.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="General indicator" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="GIS">
                     <documentation>GIS,
              A segment indicating if the original message has been    
              accepted or rejected with or without error.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment identifying the date/time of the status of the 
              processing at a given moment.</documentation>
@@ -110,17 +110,17 @@
              A group of segments identifying an error, providing a    
              standard description of this error, and, if relevant, one
              to many documents related to this error.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ERC" segcode="ERC" truncatable="true" xmltag="Application_error_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Application error information" nodeTypeRef="UN:ERC" segcode="ERC" truncatable="true" xmltag="ERC">
                         <documentation>ERC,
                 A segment identifying the type of error detected in   
                 the original message.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment giving additional information to the error  
                 or information coded in the ERC segment.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
                         <documentation>DOC,
                 A segment to indicate a related document or a request 
                 from the recipient of the message, to receive one or  
@@ -136,12 +136,12 @@
         <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
             <documentation>Segment group 8:
        A group of segments specifying the details of authentication.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
                 <documentation>AUT,
           A segment specifying the details of any authentication      
           (validation) procedure applied to the BANSTA message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment identifying the date and if necessary, the        
           time of validation.</documentation>

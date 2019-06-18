@@ -1,16 +1,16 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="DAPLOS" version="D:06B:UN"/>
+    <description name="DAPLOS" namespace="urn:org.milyn.edi.unedifact:un:d06b:daplos" version="D:06B:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="DAPLOS">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment by which the sender must uniquely identify the 
        Data Plot Sheet Message by means of its name and number and
        when necessary its function. Data element 1225 may be used to
        identify updates to a previously sent DAPLOS message</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying general dates and, when relevant, times
        related to the whole message. The segment must be specified at
@@ -21,7 +21,7 @@
        availability date for a specified line item (DTM following
        LIN).</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
             <documentation>IMD,
        A segment providing the type of agriculture practised in the
        farm for all crops identified within the message in free format
@@ -33,7 +33,7 @@
             <documentation>Segment group 1:
        A group of segments identifying the parties with associated
        information relevant to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment identifying names and addresses of the parties, in
           coded or clear form, and their functions relevant to the
@@ -42,7 +42,7 @@
           generator. It is recommended that, if possible, only the
           coded ID of the party is specified.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying a reference by its type and number and
           when appropriate a line number within a document.</documentation>
@@ -52,23 +52,23 @@
             <documentation>Segment group 2:
        A group of segments providing details (e.g. crop) of a single
        plot.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
                 <documentation>LIN,
           A segment identifying the line item by the line item number,
           and identifying the plot through a unique plot key.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying general dates and, when relevant, times
           related to the line item. For example the intended year of
           harvest.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                 <documentation>PIA,
           A segment providing identification of the crop, e.g. to
           identify the botanical species, the variety sown.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                 <documentation>QTY,
           A segment identifying the plot expected harvest for the
           crop.</documentation>
@@ -77,12 +77,12 @@
                 <documentation>Segment group 3:
           A group of segments specifying the characteristics and their
           values of the crop mixture on the plot.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                     <documentation>CCI,
              A segment specifying the characteristics of the crop
              mixture on the plot.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                     <documentation>CAV,
              A segment to specify common characteristics by value in
              either coded form or free format.</documentation>
@@ -93,7 +93,7 @@
           A group of segment giving references to the line item (plot)
           e.g. providing the surface areas of the arable crop
           concerned.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment identifying a reference by its type and number.
              For example, it's the name of the arable plot, given by
@@ -104,7 +104,7 @@
                     <documentation>Segment group 5:
              A group of segments specifying physical measurements and
              the location related to the measurement.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                         <documentation>MEA,
                 A segment indicating characteristic values being
                 physical measurements (including measurable quantities
@@ -112,7 +112,7 @@
                 (for example, temperature, surface of the event) and
                 where relevant measurement ranges.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:GPO" segcode="GPO" truncatable="true" xmltag="Geographical_position">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" name="Geographical position" nodeTypeRef="UN:GPO" segcode="GPO" truncatable="true" xmltag="GPO">
                         <documentation>GPO,
                 A segment used to identify the geographical position
                 of the surface area.</documentation>
@@ -124,7 +124,7 @@
           A group of segment specifying characteristics details of the
           arable crop, such as the description, the quantities, the
           relevant parties and references.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                     <documentation>IMD,
              A segment providing the description of a characteristic
              of the arable crop by using specific codes or free text.
@@ -132,13 +132,13 @@
              soil acidity, the crop residues management, commitments,
              etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment identifying the quantity related to the
              characteristic specified in the Item description e.g.
              quantity of crop residues applied.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                     <documentation>NAD,
              A segment identifying names and addresses of the
              contractor, in coded form, and their functions relevant
@@ -149,12 +149,12 @@
              A group of segment specifying the references relevant to
              the characteristics specified in the Item description
              e.g. contract.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 A segment identifying a reference by its type and
                 number, e.g. contract number.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment specifying the date relevant to the referred
                 document, e.g. contract date.</documentation>
@@ -167,13 +167,13 @@
           content of hierarchically related groups of data. It used to
           identifying the previous crops which were harvested before
           and which have some consequences on the actual crop.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:HYN" segcode="HYN" truncatable="true" xmltag="Hierarchy_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Hierarchy information" nodeTypeRef="UN:HYN" segcode="HYN" truncatable="true" xmltag="HYN">
                     <documentation>HYN,
              A segment identifying the level of the previous crop. The
              previous arable plot key is based on the same structure
              of the current arable plot key.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                     <documentation>PIA,
              A segment to identify a product, e.g. the Botanical
              species, the variety sown for the previous crop.</documentation>
@@ -184,13 +184,13 @@
              crop (qualifiers of the botanical species, period of
              sowing, destination of the crop) and their values,
              concerning the previous crop.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>CCI,
                 A segment to identify the characteristics of the crop
                 (qualifiers of the botanical species, period of
                 sowing, destination of the crop)</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                         <documentation>CAV,
                 A segment to specify common characteristic by value in
                 either coded form or free format.</documentation>
@@ -200,25 +200,25 @@
                     <documentation>Segment group 10:
              A group of segment specifying the characteristics details
              of the crop improvement and residues management.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                         <documentation>IMD,
                 A segment providing the description of the
                 characteristics of the crop improvements and the type
                 of the crop residues.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment specifying the date relating to the
                 characteristics described in the Item description,
                 e.g. date of the improvement application.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                         <documentation>QTY,
                 A segment identifying the quantity related to the
                 characteristic described in the Item description, e.g.
                 quantity applied.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>NAD,
                 A segment identifying names and addresses valid for
                 the characteristics described in the Item description,
@@ -230,18 +230,18 @@
                 <documentation>Segment group 11:
           A group of segment identifying documents and the related
           party valid for the line item (plot).</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
                     <documentation>DOC,
              A segment identifying and providing information relating
              to the documents, e.g. a soil analysis document.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                     <documentation>NAD,
              A segment identifying names and addresses of the parties
              in code or clear form, and their functions relevant to
              the document, e.g. the analysis laboratory.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date and/or time of the
              document, e.g. the analysis date, the sampling date.</documentation>
@@ -251,32 +251,32 @@
                 <documentation>Segment group 12:
           A group of segments providing details of an event related to
           the line item (plot).</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="Event">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Event" nodeTypeRef="UN:EVE" segcode="EVE" truncatable="true" xmltag="EVE">
                     <documentation>EVE,
              A segment specifying details about an event. An event is
              all actions happen on the crop such an input application,
              a treatment etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying date and, or time or period details
              relating to the event item only, for example the date of
              treatment or the length of the treatment.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                     <documentation>IMD,
              Segment providing the description of some characteristics
              of the event by using specific codes or free text. For
              example, the stage of cultivation, the type of work, the
              weather conditions during the event etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                     <documentation>NAD,
              A segment identifying name and address of the person who
              does the event in coded or clear form and its functions.
              For example internal operator or external operator.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in clear form, to
              give some additional information about the event and when
@@ -289,14 +289,14 @@
              A group of segments providing characteristics details of
              the event. For example the target of the action (for
              example, crop disease, targets pests, etc.)</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>CCI,
                 A segment to identify target characteristic in, order
                 to justify a crop treatment (for example, target pests
                 for the use of a pesticide's application, targets
                 weeds for the use of an herbicide, targets diseases)</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                         <documentation>CAV,
                 A segment to specify characteristic by value either in
                 coded form or free format. For example, fusarium for a
@@ -307,7 +307,7 @@
                     <documentation>Segment group 14:
              A group of segments specifying physical measurements and
              the location related to the measurement.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                         <documentation>MEA,
                 A segment indicating characteristic values being
                 physical measurements (including measurable quantities
@@ -315,7 +315,7 @@
                 characteristics (for example temperature, surface of
                 the event) where relevant measurement ranges.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" nodeTypeRef="UN:GPO" segcode="GPO" truncatable="true" xmltag="Geographical_position">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" name="Geographical position" nodeTypeRef="UN:GPO" segcode="GPO" truncatable="true" xmltag="GPO">
                         <documentation>GPO,
                 A segment used to identify the geographical position
                 of the surface area of the event.</documentation>
@@ -326,24 +326,24 @@
              A group of segment specifying information details,
              quantities, Parties, component details, specific
              characteristics and references about an event.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IFD" segcode="IFD" truncatable="true" xmltag="Information_detail">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Information detail" nodeTypeRef="UN:IFD" segcode="IFD" truncatable="true" xmltag="IFD">
                         <documentation>IFD,
                 A segment specifying details about an event (type of
                 input applied on the crop) or an harvest.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                         <documentation>PIA,
                 A segment specifying additional or substitutional
                 product item (input or harvested product)
                 identification codes.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                         <documentation>QTY,
                 A segment specifying the quantities of an event
                 applied on the crop for example effective quantity of
                 input, Target dose per hectare etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>NAD,
                 A segment identifying names and addresses of the
                 parties relevant for the information details of an
@@ -354,12 +354,12 @@
                 A group of segment providing components details and
                 physical measurements of an object, such as its type
                 ant the material which it is composed.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COD" segcode="COD" truncatable="true" xmltag="Component_details">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Component details" nodeTypeRef="UN:COD" segcode="COD" truncatable="true" xmltag="COD">
                             <documentation>COD,
                    A segment providing components details of an
                    object, e.g. organic and/or mineral fertilization.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>MEA,
                    A segment specifying measured amount quantities of
                    the identified component, e.g. the weight of
@@ -371,11 +371,11 @@
                 A group of segment providing characteristics and its
                 relevance related to the specified details of an
                 event.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                             <documentation>CCI,
                    A segment to identify a specific characteristic.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                             <documentation>CAV,
                    A segment to specify common characteristic by value
                    in coded form of free format. For example livestock
@@ -388,20 +388,20 @@
                 A group of segments used to provide references and
                 where necessary, their quantities or measurements,
                 related to the specific details of an event.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>RFF,
                    A segment identifying a reference by its type and
                    number for example the batch number of the
                    manufacturer of the input or the batch number of
                    the farmer for the harvested product.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                             <documentation>QTY,
                    A segment to specify quantities related to the
                    reference, e.g. for the batch of input or the batch
                    of harvested product.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>MEA,
                    A segment enabling the physical measurement related
                    to the reference, e.g. of the main harvested
@@ -414,20 +414,20 @@
                         <documentation>Segment group 19:
                 A group of segment identifying documents and detail
                 directly related to a specific detail of an event.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
                             <documentation>DOC,
                    A segment identifying and providing information
                    relating to documents, e.g. an effluent analysis
                    document.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                             <documentation>NAD,
                    A segment identifying names and addresses of the
                    party in code or clear form, and their function
                    relevant to the document, e.g. of the analysis
                    laboratory.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
                    A segment specifying the date and/or time of the
                    document, e.g. the date of the analysis and the
@@ -441,7 +441,7 @@
              from the given event to higher or lower levelled like
              "decision indicator" type of event in link with an other
              arable plot and/or an other agricultural unit.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:HYN" segcode="HYN" truncatable="true" xmltag="Hierarchy_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Hierarchy information" nodeTypeRef="UN:HYN" segcode="HYN" truncatable="true" xmltag="HYN">
                         <documentation>HYN,
                 A segment to identify hierarchical connections from
                 the given event to higher or lower level with the
@@ -449,7 +449,7 @@
                 indicator" type of event in link with an other arable
                 plot and/or an other agricultural unit.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>NAD,
                 A segment specifying the names and addresses of the
                 party in code or clear form, and their function
@@ -457,7 +457,7 @@
                 agricultural unit if the given crop belonged to an
                 other farmer, the year before.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in clear form,
                 to give some additional information about the link
@@ -471,14 +471,14 @@
                 A group of segment identifying an event reference
                 number and an arable crop number and the date relevant
                 to the referred document.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>RFF,
                    A segment identifying an event reference number and
                    an arable plot number in order to do the link
                    between the actual crop and the previous event or
                    crop.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
                    A segment specifying the date relevant to the
                    referred document, e.g. the intended year of

@@ -1,0 +1,238 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="ISENDS" namespace="urn:org.milyn.edi.unedifact:un:d10b:isends" version="D:10B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="ISENDS">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+       To specify the function of the message as being an enablement or
+       disablement.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+            <documentation>ATT,
+       To specify the type of an enablement or disablement, e.g.
+       authorisation, new instruction etc.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+       To specify the creation date of the message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments used to identify all the parties involved in the
+       transaction.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+          To identify both the sender and intended receiver of the message,
+          and the insurer and the intermediary in every case. The software
+          house need only be identified when the sending party is the
+          intermediary or software house itself. The marketing group should
+          be identified where the Intermediary has membership of the
+          marketing group</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                <documentation>ADR,
+          To identify the network address of the party. This may only be
+          required when the message is to notify network address change.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments to identify any contacts for the insurance
+          company whether a representative for the whole company or for one
+          product. These may be contacts for underwriting referral, general
+          product support or EDI Help Desk etc.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+             To specify the name and department details of one contact for
+             the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+             To specify the contact number and applicable communication
+             channel.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+             To specify the action to be taken as regards the contact
+             information.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                    <documentation>SEQ,
+             To specify the order of preference for contacts if there is
+             more than one.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                    <documentation>ATT,
+             To specify the class of insurance product relevant to the
+             contact.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to specify one component of the software used to
+       produce the message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          To specify the identity of the software product and version
+          number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          To specify the dates relating to the software product. These are
+          the date the software was released from the software house and
+          the date the software was applied to the intermediaries system.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments to identify one policy accounting and/or
+       reporting class or one insurer product relating to the insurer
+       identified in the party group, depending on the transaction type.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                <documentation>ICD,
+          To specify the business class and identifier for the insurer
+          product.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          To specify the agency reference and the policy booklet version
+          for the intermediary for the insurer product. This may be
+          required when the message is an authorisation. When the message
+          is a new instruction, this information is only required if there
+          is a change to the agency number and/or policy booklet version.
+          This segment is used in conjunction with the date segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          To specify the date that the data in the corresponding reference
+          segment becomes effective. No associated date segment with the
+          reference identifies that it is effective immediately.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Market/sales channel information" nodeTypeRef="UN:MKS" segcode="MKS" truncatable="true" xmltag="MKS">
+                <documentation>MKS,
+          To specify the insurer product scheme and/or marketing group
+          identifier.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments to identify the business functions for one
+          insurer product. For a request message, the functions identified
+          will indicate what is available for the software loaded by the
+          intermediary's system. For every subsequent authorisation of new
+          instruction message from the insurer, there will be instructions
+          related to the functions. The group should be used when the
+          message is a request or authorisation and only in new instruction
+          if the instruction relates to business functionality.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Process identification" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="PRC">
+                    <documentation>PRC,
+             To specify one business function, e.g. new business, mid term
+             adjustment etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+             To specify the actions to be performed relative to the
+             authorities and documents for a business function.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             To specify the date and time that an authority comes into
+             effect, also supplies the expiry date and time of an authority
+             - for instance EDI, for a given business function.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+             A group of segments to identify individual attributes of a
+             business function that the intermediary has available on a
+             system when used from intermediary to insurer and additionally
+             indicates whether authority has been granted to use these
+             attributes and any conditions associated when used from
+             insurer to intermediary. The group should be used when the
+             message is a request or an authorisation and only in a new
+             instruction if the instruction relates to the attributes of
+             business functionality, e.g. premium override.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                        <documentation>ATT,
+                A segment to specify one attribute of a business function,
+                e.g. quote, EDI, etc.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                To specify monetary amounts associated with the business
+                function attribute.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                To specify percentage information associated with the
+                business function attribute.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                        <documentation>RCS,
+                To specify information on how to use the preceding
+                segments.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+             A group of segments to identify documents at point of sale for
+             one business function e.g. new business. In a request message
+             this will identify the documents currently available on the
+             Intermediary's system. When used from insurer to intermediary
+             this will be able to identify whether authority is granted,
+             refused or revoked to produce the document at point of sale.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                        <documentation>DOC,
+                To specify one document.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Query and response" nodeTypeRef="UN:QRS" segcode="QRS" truncatable="true" xmltag="QRS">
+                        <documentation>QRS,
+                To request use of document or grant or deny or revoke
+                authority to use the document.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+       A group of segments providing information on amounts, ranges, and
+       numbering associated with an insurer. Product identification, scheme
+       identification and associated marketing group are all restated (if
+       necessary) within this group. Group used in request when new ranges
+       etc. are identified as being required by the intermediary, otherwise
+       used in an authorisation and a new instruction.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                <documentation>RNG,
+          To specify one insurance consumable and its number range, if
+          applicable, that the range is for, e.g. covernotes.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+          To specify the action to be taken within the range stated.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+          To cater for monetary amounts instead of range numbers.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          To specify the prefix of a document number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          To specify the effective date and time and/or the expiry date and
+          time for one range identified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Market/sales channel information" nodeTypeRef="UN:MKS" segcode="MKS" truncatable="true" xmltag="MKS">
+                <documentation>MKS,
+          To specify the marketing group or scheme to which the range
+          applies if not applicable to all marketing groups or all schemes.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                <documentation>ICD,
+          To identify a specific insurer product to be associated with the
+          range. The absence of this segment indicates that the range
+          applies across all of the identified insurer's products.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

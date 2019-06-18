@@ -1,21 +1,21 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="MSCONS" version="D:05B:UN"/>
+    <description name="MSCONS" namespace="urn:org.milyn.edi.unedifact:un:d05b:mscons" version="D:05B:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="MSCONS">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment by which the sender must uniquely identify the
        metered services consumption report.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying the dates, and when relevant, the times
        related to the whole message. The segment must be specified at
        least once to specify the message date as allocated by the
        sender.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
             <documentation>CUX,
        A segment to specify currencies and relevant details for the
        rate of exchange.</documentation>
@@ -24,12 +24,12 @@
             <documentation>Segment group 1:
        A group of segments for specifying any references and their
        dates valid for the whole report.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment for the inclusion of any references related to the
           complete report, e.g. invoice number, contract number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the date and where necessary the time
           of the reference detailed in the preceding RFF segment.</documentation>
@@ -40,7 +40,7 @@
        A group of segments identifying the parties involved in the
        transaction, reference numbers associated with the parties, and
        any contact points and numbers.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment to identify the party name and address, either by
           coded identification or in clear form. It is recommended
@@ -53,13 +53,13 @@
                 <documentation>Segment group 3:
           A group of segments for specifying any references relating
           to the party identified in the NAD segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment for inclusion of any references related to the
              current party, e.g. fiscal number, government reference
              number, etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date and where necessary the
              time of the reference detailed in the preceding RFF
@@ -71,21 +71,23 @@
           A group of segments identifying the contact person or
           department for trading party and specifying the
           communication channel and number.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment to identify a person or department and their
              function, to whom communication should be directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment specifying the communication channel and number
              for the specified contact.
+
 4.1.2  Detail section
+
        Information to be provided in the Detail section:</documentation>
                 </segment>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
             <documentation>UNS,
        A segment placed at the start of the detail section to avoid
        segment collision.</documentation>
@@ -94,7 +96,7 @@
             <documentation>Segment group 5:
        A group of segments identifying the delivery party (premise)
        and the meter for which consumption is being reported.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment to identify the delivery party (premise) for which
           the following consumption information is being provided. It
@@ -107,14 +109,14 @@
           the date of the meter read, associated references, the
           physical characteristics of the meter, and the product or
           service for which consumption information is reported.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment to allow the identification of the meter to
              which the consumption information relates. It is
              recommended that where possible codes be used to identify
              the delivery party to facilitate automatic processing.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment to specify dates associated with the reading of
              the meter.</documentation>
@@ -124,13 +126,13 @@
              A group of segments for specifying any references and
              associated dates valid for the meter identified in the
              LOC segment.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 A segment identifying any references related to the
                 meter identified in the LOC segment (e.g. serial
                 number).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment to specify any dates associated with the
                 currently referenced document.</documentation>
@@ -140,13 +142,13 @@
                     <documentation>Segment group 8:
              A group of segments used to provide characteristic
              information and associated dates for the current meter.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>CCI,
                 A segment to describe the characteristics of the
                 currently identified meter (e.g. sealed meter, banded
                 meter).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment specifying the date and where necessary the
                 time related to the previously identified meter
@@ -159,37 +161,37 @@
              A group of segments providing details of the metered
              products or services, quantities, characteristics, and
              any associated dates.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
                         <documentation>LIN,
                 A segment identifying the metered product or service
                 for which consumption information is being provided.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                         <documentation>PIA,
                 A segment providing additional identification to the
                 product or service specified in the LIN segment (e.g.
                 buyer's or supplier's product codes).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                         <documentation>IMD,
                 A segment for describing the metered product or
                 service being reported. This segment should only be
                 used for metered products or services that cannot be
                 fully identified by an article number.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
                         <documentation>PRI,
                 A segment providing the unit price of the currently
                 identified product or service.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>NAD,
                 A segment to identify parties related to the supply of
                 the service (e.g. party telephoned) or related to the
                 party who supplied the service (e.g. a petrol filling
                 station).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                         <documentation>MOA,
                 A segment to specify the total cost of the product or
                 service currently being reported upon, e.g. the total
@@ -200,18 +202,18 @@
                 A group of segments providing details of the meter
                 read, consumption, correction quantities, and
                 associated dates.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                             <documentation>QTY,
                    A segment identifying the consumption details, e.g.
                    opening meter read, consumption, adjustments
                    (correction).</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
                    A segment to specify dates related to the
                    previously specified consumption information.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
                             <documentation>STS,
                    A segment giving a status for the quantity, e.g.
                    metered, estimated or corrected.</documentation>
@@ -222,30 +224,32 @@
                 A group of segments providing characteristic details,
                 measurements, and dates related to the details for the
                 currently identified line item.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                             <documentation>CCI,
                    A segment used to describe the characteristics of
                    the currently identified product or service (e.g.
                    calorific values, chlorine content).</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>MEA,
                    A segment enabling the indication of measurements
                    related to the characteristics identified in the
                    preceding CCI segment.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
                    A segment to specify dates related to the
                    previously specified characteristic information.
+
 4.1.3  Summary section
+
        Information to be provided in the Summary section:</documentation>
                         </segment>
                     </segmentGroup>
                 </segmentGroup>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
             <documentation>CNT,
        A segment by which control totals may be sent by the sender for
        checking by the receiver.</documentation>

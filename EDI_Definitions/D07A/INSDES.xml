@@ -1,27 +1,27 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="INSDES" version="D:07A:UN"/>
+    <description name="INSDES" namespace="urn:org.milyn.edi.unedifact:un:d07a:insdes" version="D:07A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="INSDES">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment for unique identification of the Instruction To
        Despatch message, by means of its name and its number.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        Date and or time, or period related to the whole message, e.g.,
        the date on which delivery should take place. This segment must
        be specified at least once to identify the Instruction To
        Despatch message date.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
             <documentation>INP,
        A segment to identify any instructions related to the delivery
        of goods which are relevant to the whole message, e.g., hold
        for quality control, release goods for despatch.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment providing additional free text pertinent to the
        complete Instruction to Despatch message. In computer to
@@ -33,13 +33,13 @@
        A group of segments giving references where necessary, their
        dates relating to the whole message, e.g., contract number,
        purchase order number, etc.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment for identifying references relating to the whole
           Instruction to Despatch message, e.g., purchase orders,
           delivery instructions, import license, export license.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment for specifying dates and or times, or periods
           related to the reference.</documentation>
@@ -50,7 +50,7 @@
        A group of segments identifying names, addresses, locations,
        and references relevant to the identified parties used for the
        whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment for identifying names, addresses, and their
           functions relevant to the whole Instruction to Despatch
@@ -63,7 +63,7 @@
           The consignee or delivery address may vary and would have to
           be clearly specified, preferably in structured format.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
           A segment indicating more details regarding specific places
           and, or locations related to the currently identified party,
@@ -75,12 +75,12 @@
                 <documentation>Segment group 3:
           A group of segments giving references relevant only to the
           specified party rather than the whole message.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment for referencing documents relating to the
              currently identified party.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment for specifying date and, or time, and, or
              period of the referred document.</documentation>
@@ -91,13 +91,13 @@
           A group of segments identifying the contact person or the
           department for the currently identified party and if
           required specifying the communications channel and number.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment to identify the person, function or department
              within the current party where communications should be
              directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment to identify communication types and numbers for
              the currently identified person, function or department.</documentation>
@@ -110,17 +110,17 @@
        delivery will be required by a third party service provider in
        order to arrange delivery according to the terms agreed in the
        order.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="Terms_of_delivery_or_transport">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
                 <documentation>TOD,
           A segment indicating the terms of delivery and transfer for
           the whole Instruction to Despatch message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
           A segment indicating locations relevant to the terms of
           delivery.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           Additional free text pertinent to terms of delivery. In
           computer to computer exchanges such text will normally
@@ -135,12 +135,12 @@
        transport details will be required by a third party service
        provider in order to arrange delivery according to the terms
        agreed in the order.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Transport_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
                 <documentation>TDT,
           A segment specifying the mode and means of transport for the
           whole Instruction to Despatch message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="Percentage_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
                 <documentation>PCD,
           A segment specifying the percentage of utilization of the
           capacity of the means of transport.</documentation>
@@ -149,12 +149,12 @@
                 <documentation>Segment group 7:
           A group of segments giving the location and date, and, or
           time information relative to the transportation.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment indicating locations relevant to the currently
              identified transport.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment giving the date and or time, or period
              information of departure and, or arrival of the
@@ -169,19 +169,19 @@
        whole Instruction to Despatch message. The equipment details
        will be required by a third party service provider in order to
        arrange delivery according to the terms agreed in the order.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
                 <documentation>EQD,
           A segment to define fixed information regarding equipment
           used in conjunction with the whole Instruction to Despatch
           message, and if required, to indicate responsibility for
           supply of the equipment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
           A segment specifying physical measurements of the currently
           described equipment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="Attached_equipment">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attached equipment" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="EQA">
                 <documentation>EQA,
           A segment identifying equipment which is attached to the
           currently described equipment.</documentation>
@@ -190,18 +190,20 @@
                 <documentation>Segment group 9:
           A group of segments providing information on hazardous goods
           and their handling.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                     <documentation>HAN,
              A segment providing information on handling and
              notification of hazardous materials in the specified
              equipment.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information in coded or clear
              form to give further clarification, when required, for
              hazardous material.
+
 4.1.2  Detail section
+
        Information to be provided in the Detail section:</documentation>
                 </segment>
             </segmentGroup>
@@ -212,49 +214,49 @@
        A group of segments providing details of individual line items
        for which Instruction to Despatch message information is being
        provided.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
                 <documentation>LIN,
           A segment identifying the line item for which Instruction to
           Despatch message information is being provided. All other
           segments in the detail section following this segment refer
           to this line item.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                 <documentation>PIA,
           A segment providing additional product identification to
           that currently provided.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                 <documentation>IMD,
           A segment for describing the line item for which Instruction
           to Despatch message information is being provided. This
           segment should be used for products that cannot be
           identified by a product code or article number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                 <documentation>QTY,
           A segment to give quantity information related to the
           current line item.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
                 <documentation>GIN,
           A segment providing identity numbers of the line item for
           which despatch instruction information is being provided,
           e.g., serial numbers of goods to be despatched or put on
           hold.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
                 <documentation>INP,
           A segment to identify any instructions related to the
           delivery of the current line item, e.g., hold until further
           notice.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment providing date, and or time information related to
           the line item, e.g., requested delivery date.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment with free text information in coded or clear form
           to give further clarification, when required, to the line
@@ -262,14 +264,14 @@
           normally require the receiver to process this segment
           manually.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                 <documentation>MOA,
           A segment identifying monetary amounts related to the
           current line item for which a Instruction to Despatch
           message is being given, e.g., customs value, insurance
           value, cash on delivery amount.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="Additional_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
                 <documentation>ALI,
           This segment is used to indicate the country of origin of
           the line item, special conditions due to origin, customs
@@ -279,12 +281,12 @@
                 <documentation>Segment group 11:
           A group of segments to give reference numbers and dates
           related to the current line item.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment identifying references related to the current
              line item.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment for specifying date and or time, or period
              relative to the current reference.</documentation>
@@ -295,7 +297,7 @@
           A group of segments providing party information related to
           the current line item and where relevant, quantities, date
           and time, and additional locations within the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                     <documentation>NAD,
              A segment for identifying names and addresses and their
              functions relevant to the Instruction to Despatch message
@@ -307,7 +309,7 @@
              would have to be clearly specified, preferably in
              structured format.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                     <documentation>QTY,
              A segment to specify a quantity related to the identified
              party for the current line item. The total value of the
@@ -315,12 +317,12 @@
              should equal the quantity value specified at the line
              item level.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment providing date and, or time information related
              to the quantity specified for the current party.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment identifying a specific location related to a
              quantity for the currently identified party.</documentation>
@@ -330,12 +332,12 @@
                 <documentation>Segment group 13:
           A group of segments identifying the marks and numbers on the
           package for the current line item.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="Package_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
                     <documentation>PCI,
              A segment specifying marking and labels on the packaging
              for the current line item.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
                     <documentation>GIN,
              A segment providing identification numbers marked on the
              packaging for the current line item.</documentation>
@@ -345,14 +347,14 @@
                 <documentation>Segment group 14:
           A group of segments to specify information about dangerous
           goods.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="Dangerous_goods">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Dangerous goods" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="DGS">
                     <documentation>DGS,
              A segment to indicate the dangerous goods regulations
              which apply, the class of the dangerous goods, additional
              dangerous goods codes, the United Nations Dangerous Goods
              (UNDG) number and the shipment flash point.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment to specify supplementary details regarding the
              dangerous goods such as dangerous goods technical name
@@ -361,33 +363,35 @@
                 <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_15">
                     <documentation>Segment group 15:
              A group of segments to specify contact information.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                         <documentation>CTA,
                 A segment to identify a person or department to be
                 contacted regarding dangerous goods.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                         <documentation>COM,
                 A segment to specify communication details of the
                 dangerous goods contact.
+
 4.1.3  Summary section
+
        Information to be provided in the Summary section:</documentation>
                     </segment>
                 </segmentGroup>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
             <documentation>UNS,
        A service segment separating the detail section of the message
        from the summary section.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
             <documentation>MOA,
        A segment identifying monetary amounts related to the complete
        Instruction to Despatch message, e.g., customs value, insurance
        value, cash on delivery amount.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
             <documentation>CNT,
        A segment by which control totals may be provided by sender for
        checking by the receiver.</documentation>

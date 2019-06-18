@@ -1,0 +1,190 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="REPREM" namespace="urn:org.milyn.edi.unedifact:un:d12b:reprem" version="D:12B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="REPREM">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+        A segment to give processing indicators relating to the whole
+        message.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group or segments to specify relevant parties for the whole
+        transaction.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment to specify the name and address and the related
+           function of the party involved.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <documentation>CTA,
+           A segment to identify a person or a department to whom
+           communication should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <documentation>COM,
+           A segment to identify a communication number of a department, or
+           a person to whom communication should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment to specify the reference of the party identified in
+           the leading NAD segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment to specify pertinent dates, times and periods relating to
+        the whole message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+        A segment to provide descriptive information regarding the message,
+        the reinsurance contract or the underlying contract.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments to identify the sections for which data
+        rendered, or to specify that data are reported at total contract
+        level, or to give the formula used at this level as well as its
+        relevant components.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                <documentation>REL,
+           A segment to identify the direct relationship between the data
+           contained in the segments of group 2.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment to identify the section for which data are rendered,
+           or to indicate the reinstatement number where various
+           reinstatement conditions are stated in the contract.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+           A segment to specify indicators relating to the section.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                <documentation>CUX,
+           A segment to specify the currency in which the amounts of the
+           MOA segment triggering group 4 will be expressed and used for
+           calculation purposes.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment to specify relevant years or periods, if data can be
+           grouped under this criterion.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                <documentation>QTY,
+           A segment to allow the identification of any figure used in the
+           calculation.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment to identify the geographical scope to which the
+           section data pertains.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <documentation>PCD,
+           A segment to allow the identification of percentages used in the
+           calculation.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment to specify non-standard section information.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_3">
+                <documentation>Segment group 3:
+           A group of segments used to group the amounts relating to the
+           premium, loss or result breakdown.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                    <documentation>ARD,
+              A segment to report amounts by their function.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_4">
+                    <documentation>Segment group 4:
+              A group of segments to report the amounts and additional
+              information for these amounts.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment to specify amounts that are used in the
+                 calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 A segment to specify indicators which define the method of
+                 processing the related amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 A segment to specify the rate used for the calculation of
+                 the amount in the leading MOA segment, or to express the
+                 order percentage or the receiver's share percentage, or to
+                 specify the reapportionment percentage that the amount
+                 represents in the aggregate total of all amounts of the
+                 same type.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <documentation>FTX,
+                 A segment to give the loss name or more information about
+                 the amount given in the leading MOA segment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment to specify date, time or period relating to the
+                 amount given in the leading MOA segment.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                        <documentation>Segment group 5:
+                 A group of segments to allow references and, if required,
+                 the type of communication and date of an associated
+                 message to be given.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <documentation>RFF,
+                    A segment to specify references of the associated
+                    message or document.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <documentation>DTM,
+                    A segment to give relevant date, time or period
+                    indications relating to the supported or supporting
+                    message or document.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                            <documentation>COM,
+                    A segment to specify the means by which the supported
+                    message or document has been, or will be transmitted.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                            <documentation>FTX,
+                    A segment to provide free text information regarding
+                    the document or message that is referenced.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_6">
+                        <documentation>Segment group 6:
+                 A group of segments to report the amounts in the original
+                 currency when applicable, and the exchange rate used.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                            <documentation>CUX,
+                    A segment to specify the original currency and exchange
+                    rate used to convert the original amount (possibly
+                    given in the underneath MOA segment) into the one given
+                    in the leading MOA segment.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <documentation>MOA,
+                    A segment to report the relevant monetary amount in the
+                    original currency.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Adjustment details" nodeTypeRef="UN:AJT" segcode="AJT" truncatable="true" xmltag="AJT">
+                            <documentation>AJT,
+                    A segment to identify the reason for an adjustment.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

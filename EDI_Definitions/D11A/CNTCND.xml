@@ -1,0 +1,955 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="CNTCND" namespace="urn:org.milyn.edi.unedifact:un:d11a:cntcnd" version="D:11A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="CNTCND">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+       A segment by which the sender uniquely identifies the Contractual
+       conditions message by means of its type and number (for example,
+       contract number).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+       A segment specifying general dates and, when relevant, times related
+       to the whole message. The segment must be specified at least once to
+       identify the emission date.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+            <documentation>ALI,
+       A segment specifying additional information such as special
+       conditions which are relevant to the whole contract.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Agreement identification" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="AGR">
+            <documentation>AGR,
+       A segment specifying specific agreements for the contract such as
+       contract breakdown.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+            <documentation>MOA,
+       A segment specifying the total monetary amounts for the contract
+       (for example, maximum contract amount, minimum contract amount, or
+       total contract amount).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+       A segment specifying general processing indicators such as whether
+       or not partial invoicing is permitted.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
+            <documentation>PAI,
+       A segment requesting or confirming conditions of payment, guarantee
+       and method of payment for the whole contract. An example of the use
+       of this segment is to specify that a documentary credit will be
+       used.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+            <documentation>TOD,
+       A segment identifying the delivery terms to be used e.g., UN
+       INCOTERMS code could be used to specify the delivery terms.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+       A segment with free text in coded or clear form, to give further
+       clarification, when required, for the contract, for example the
+       objective of the contract.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A segment group to provide information such as contract revisions
+       and, where necessary, their dates.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment identifying reference information about the contract,
+          such as contract revisions, by their number and where
+          appropriate, the version number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment specifying the date/time related to the referenced
+          information.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+       A group of segments specifying prices which will be applied to given
+       ranges of purchase quantities for the whole contract.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                <documentation>PRI,
+          A segment to specify the price type and amount. For example, the
+          price which is to be applied depending on a given range of
+          purchase quantities.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                <documentation>RNG,
+          A segment specifying, if required, a range for the application of
+          the price.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments specifying quantities which are provisional or
+       firm options to be taken up within a given date for the whole
+       contract.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                <documentation>QTY,
+          A segment specifying the maximum quantity as provisional of firm
+          option for the whole contract.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to indicate the validity period in relation to the
+          specified quantity.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments specifying information related to documents
+       which can modify the contractual conditions with any associated
+       dates and eventually a textual description.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                <documentation>DOC,
+          A segment identifying the document which can modify the
+          contractual conditions and eventually its type.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to indicate any associated dates such as the date of
+          issue of the document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment identifying reference information about the document,
+          such as the identification of a canceled service order.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+          A segment with free text in coded or clear form, to give further
+          clarification, when required, for the document, for example the
+          objective of the document.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+            <documentation>Segment group 5:
+       A group of segments specifying the currencies and related
+       dates/periods valid for the whole contract. Currency data may be
+       omitted in national applications but will be required for
+       international transactions.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                <documentation>CUX,
+          A segment identifying the currencies required in the contract
+          e.g., the order currency. A rate of exchange may be given to
+          convert a reference currency into a target currency.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment specifying the date, time or period related to the rate
+          of exchange.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+       A group of segments specifying tax related information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                <documentation>TAX,
+          A segment specifying a tax type, category and rate, or exemption,
+          relating to the whole contract e.g., Value Added Tax (VAT) at the
+          standard rate is applicable for all items.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+          A segment specifying the amount for the identified tax or fee.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+            <documentation>Segment group 7:
+       A segment group specifying the terms of payment and accounting
+       classifications applicable to the entire message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment terms" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="PYT">
+                <documentation>PYT,
+          A segment identifying the payment terms and date or time basis.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment giving the specific date, time or period, if needed, of
+          any payments, discounts, instalments etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <documentation>PCD,
+          A segment specifying the discount, interest, penalty as well as
+          instalment percentage.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+          A segment specifying the amount associated with the specified
+          accounting classification reference number data and payment
+          information.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+       A group of segments identifying the parties relevant to the whole
+       contract with associated information such as bank account
+       information, references, and free text information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                <documentation>SEQ,
+          A segment identifying a sequence for the names and addresses of
+          parties.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+          A segment identifying names and addresses of parties, in coded or
+          clear form, and their function relevant for the contract.
+          Identification of the supplier or suppliers and the contracting
+          customer is mandatory for the contractual conditions message.
+          Other parties such as the service or services which may issue
+          orders, quality control parties, accounting office, invoicing
+          office may also be identified.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+          A segment providing general processing indicators such as
+          processing characteristics for the parties.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <documentation>FII,
+          A segment specifying bank account information in relation to the
+          party being described.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+          A segment with free text in coded or clear form, to give further
+          clarification, when required.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+          A group of segments identifying references and eventually their
+          associated dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment specifying reference information such as the VAT
+             office, sub-contractors, the date or time related to the
+             referenced information.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date/time related to the referenced
+             information.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+          A segment group providing contacts and communications numbers
+          associated with the dangerous goods information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+             A segment identifying to whom communications should be
+             directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+             A segment identifying communication numbers of the contacts to
+             whom communications should be directed.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+          A segment group providing information about related parties and
+          any eventual references.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                    <documentation>REL,
+             A segment identifying the relationship a party has with
+             another party, such as to whom a given contractor sub-
+             contracts to.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+             A segment identifying the party in the relationship.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment identifying any references associated with the party
+             in the relationship.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_12">
+            <documentation>Segment group 12:
+       A group of segments specifying allowances and charges for the whole
+       contract.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Allowance or charge" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="ALC">
+                <documentation>ALC,
+          A segment identifying the charge or allowance and, where
+          necessary, its calculation sequence.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                <documentation>ALI,
+          A segment indicating that the allowance or charge specified is
+          subject to special conditions owing to origin, customs preference
+          or commercial factors.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to identify the date, time or period information
+          related to the allowance or charge, e.g., period of validity.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_13">
+                <documentation>Segment group 13:
+          A group of segments identifying the references to the allowances
+          and charges and eventually their associated dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment specifying reference information such as the VAT
+             office, sub-contractors, the date or time related to the
+             referenced information.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date/time related to the referenced
+             information.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+          A group of segments specifying the quantity of the allowance or
+          charge with its measure unit specifier. A range to which the
+          allowance or charge applies may be specified, e.g., an allowance
+          of a free quantity of 20 pieces may be specified if the goods
+          quantity contracted is greater than 1000 pieces.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+             A segment identifying the type of quantity and the quantity
+             related to the allowance or charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                    <documentation>RNG,
+             A segment specifying, if required, the range to which the
+             allowance or charge applies.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                <documentation>Segment group 15:
+          A group of segments specifying the percentage for the allowance
+          or charge e.g., The allowance/charge amount is calculated as 5%
+          of the goods value or a price reduction of 5% may be specified if
+          the goods quantity contracted is within the range 5 tons to 10
+          tons.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+             A segment identifying the percentage and the percentage basis
+             for the calculation of the allowance or charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                    <documentation>RNG,
+             A segment specifying, if required, a range for the application
+             of the percentage.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                <documentation>Segment group 16:
+          A group of segments specifying the rate per unit and basis to
+          which the allowance or charge applies e.g., The allowance or
+          charge amount is 3 DEM (Deutsche Mark) per 10 tons.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+             A segment specifying the rate per unit and the basis for
+             calculation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                    <documentation>RNG,
+             A segment specifying, if required, the range for the
+             application of the allowance or charge rate.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_17">
+                <documentation>Segment group 17:
+          A group of segments specifying a monetary amount for an allowance
+          or charge. A range to which the allowance or charge applies can
+          be specified e.g., an allowance of 5000 BEF (Belgian Francs) may
+          be specified if goods value contracted is greater than 100000 BEF
+          (Belgian Francs).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment identifying the monetary amount for the allowance or
+             charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                    <documentation>RNG,
+             A segment specifying, if required, a range for the application
+             of the allowance or charge amount.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date or time related to the
+             referenced information.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_18">
+                <documentation>Segment group 18:
+          A group of segments specifying tax related information for the
+          allowance or charge.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+             A segment specifying the tax type, category and rate, or
+             exemption, related to the allowance or charge.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment specifying the tax amount for the allowance or
+             charge.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_19">
+            <documentation>Segment group 19:
+       A segment group defining a formula, such as a price variation
+       formula.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Formula" nodeTypeRef="UN:FOR" segcode="FOR" truncatable="true" xmltag="FOR">
+                <documentation>FOR,
+          A segment identifying a specific formula, by its number and type.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+          A segment identifying general processing indicators for the
+          formula.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                <documentation>ALI,
+          A segment specifying additional information about the formula,
+          such as its degree of complexity.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment specifying the reference information in relation to the
+          formula, for example the number of an identified ceiling.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment specifying the date or time related to the formula,
+          such as dates of validity.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_20">
+                <documentation>Segment group 20:
+          A segment group defining each of the elements of a formula.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Formula sequence" nodeTypeRef="UN:FSQ" segcode="FSQ" truncatable="true" xmltag="FSQ">
+                    <documentation>FSQ,
+             A segment identifying a specific element of a formula. A
+             sequence number provides the mathematical positioning of the
+             element.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+             A segment specifying, where necessary, static coefficients
+             which are employed in the element of the formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+             A segment specifying, where necessary, static percentages
+             which are employed in the element of the formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+             A segment specifying the unit of measure for the element of
+             the formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment specifying any amounts required in the element of
+             the formula, such as the basis for the calculation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment identifying the complementary information in
+             relation to the element of the formula for example the number
+             of the ceiling formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date or time related to the element
+             of the formula.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_21">
+                    <documentation>Segment group 21:
+             A group of segments providing the different indexes which can
+             be used in the element of the formula. Within a formula
+             element only one index is generally used.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Index details" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="IND">
+                        <documentation>IND,
+                A segment identifying the index by its code and, where
+                necessary, its value.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                        <documentation>ALI,
+                A segment providing additional information in relation to
+                the index.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment specifying date, time or period details in
+                relation to the index for example its period of validity.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                A segment specifying quantities in relation to the index,
+                such as the number of months to be considered.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_22">
+            <documentation>Segment group 22:
+                         SG29-SG36-SG37-SG38-SG40
+       A group of segments identifying for a given contract decomposition,
+       the parties involved and associated information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <documentation>LIN,
+          A segment identifying the breakdown of the contract, such as
+          contract sections.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
+                <documentation>PIA,
+          A segment providing either additional identification to the
+          information specified in the LIN segment (e.g., Harmonized System
+          number), or provides any substitute identification.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                <documentation>IMD,
+          A segment for describing the information about the item being
+          described.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+          A segment indicating any monetary amounts associated the item
+          being described. For example the total amount contracted for the
+          part of the contract being described.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment specifying date, time or period details in relation to
+          the specific section, for example the duration of the section.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+          A segment with free text in coded or clear form, to give further
+          clarification, for example the objective of the section, when
+          required.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_23">
+                <documentation>Segment group 23:
+          A group of segments identifying the references for the item being
+          described and eventually their associated dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment identifying the complementary information in
+             relation to the section for example the number of the price
+             variation formula to be used for the section.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date/time related to the element of
+             the formula.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_24">
+                <documentation>Segment group 24:
+          A group of segments providing the tax values and their monetary
+          amounts for a section.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+             A segment indicating tax information in relation to the item
+             being described, such as the VAT value to be charged for a
+             section in the contract.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment specifying a monetary amount for the tax
+             information.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_25">
+                <documentation>Segment group 25:
+          A group of segments providing general process indicators
+          associated with the item being described segment and any
+          information associated with the processing indicator.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+             A segment indicating general processing information in
+             relation to the item being described, such as an indication of
+             whether or not cautions are required.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+             A segment indicating rates which are associated with the
+             processing indicator, such as indemnity rate.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment specifying a monetary amount in relation with the
+             processing indicator, such as indemnity amount.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+             A segment indicating tax information in relation to the
+             processing indicator, such as the VAT value to be charged.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+             A segment specifying percentages such as the percentage work
+             in progress necessary before recovering advance instalments.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date, time or period related to the
+             processing indicator, such as the period duration.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_26">
+                <documentation>Segment group 26:
+          A group of segments identifying quantities for the level in
+          question.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+             A segment identifying quantity information for the level in
+             question.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment providing date or time information for the
+             quantities.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_27">
+                <documentation>Segment group 27:
+          A group of segments identifying the formulas to be used in the
+          section of the contract. For example those used for the
+          calculation of penalties or bonuses.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Formula" nodeTypeRef="UN:FOR" segcode="FOR" truncatable="true" xmltag="FOR">
+                    <documentation>FOR,
+             A segment group defining a formula, such as a price variation
+             formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                    <documentation>ALI,
+             A segment specifying additional information about the formula,
+             such as its degree of complexity.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment specifying any monetary amounts associated with the
+             formula. For example minimum and maximum ceiling amounts.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment specifying the reference information in relation to
+             the formula, for example the number of an identified ceiling
+             formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment specifying the date or time related to the formula,
+             such as dates of validity.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+             A segment specifying general processing information associated
+             with the formula.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_28">
+                    <documentation>Segment group 28:
+             A segment group defining each of the elements of a formula.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Formula sequence" nodeTypeRef="UN:FSQ" segcode="FSQ" truncatable="true" xmltag="FSQ">
+                        <documentation>FSQ,
+                A segment identifying a specific element of a formula. A
+                sequence number provides the mathematical positioning of
+                the element.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                        <documentation>RTE,
+                A segment specifying, where necessary, static coefficients
+                which are employed in the element of the formula.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                A segment specifying, where necessary, static percentages
+                which are employed in the element of the formula.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                        <documentation>MEA,
+                A segment specifying the unit of measure for the element of
+                the formula.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                A segment specifying any amounts required in the element of
+                the formula, such as the basis for the calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                A segment identifying the complementary information in
+                relation to the element of the formula for example the
+                number of the ceiling formula.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment specifying the date/time related to the element
+                of the formula.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                A segment specifying general processing information in
+                relation with the formula sequence such as indications
+                about the calculation basis.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                A segment specifying quantities in relation with the
+                formula sequence.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_29">
+                <documentation>Segment group 29:
+          A group of segments specifying allowances and charges for the
+          whole contract.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Allowance or charge" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="ALC">
+                    <documentation>ALC,
+             A segment identifying the charge or allowance and, where
+             necessary, its calculation sequence.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                    <documentation>ALI,
+             A segment indicating that the allowance or charge specified is
+             subject to special conditions owing to origin, customs
+             preference or commercial factors.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the date, time or period information
+             related to the allowance or charge, e.g., period of validity.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_30">
+                    <documentation>Segment group 30:
+             A group of segments identifying the references to the
+             allowances and charges and eventually their associated dates.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                A segment specifying reference information such as the VAT
+                office, sub-contractors, the date or time related to the
+                referenced information.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment specifying the date or time related to the
+                referenced information.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_31">
+                    <documentation>Segment group 31:
+             A group of segments specifying the quantity of the allowance
+             or charge with its measure unit specifier. A range to which
+             the allowance or charge applies may be specified, e.g., an
+             allowance of a free quantity of 20 pieces may be specified if
+             the goods quantity contracted is greater than 1000 pieces.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                A segment identifying the type of quantity and the quantity
+                related to the allowance or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                        <documentation>RNG,
+                A segment specifying, if required, the range to which the
+                allowance or charge applies.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_32">
+                    <documentation>Segment group 32:
+             A group of segments specifying the percentage for the
+             allowance or charge e.g., The allowance/charge amount is
+             calculated as 5% of the goods value or a price reduction of 5%
+             may be specified if the goods quantity contracted is within
+             the range 5 tons to 10 tons.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                A segment identifying the percentage and the percentage
+                basis for the calculation of the allowance or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                        <documentation>RNG,
+                A segment specifying, if required, a range for the
+                application of the percentage.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_33">
+                    <documentation>Segment group 33:
+             A group of segments specifying the rate per unit and basis to
+             which the allowance or charge applies e.g., The allowance or
+             charge amount is 3 DEM (Deutsche Mark) per 10 tons.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                        <documentation>RTE,
+                A segment specifying the rate per unit and the basis for
+                calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                        <documentation>RNG,
+                A segment specifying, if required, the range for the
+                application of the allowance or charge rate.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_34">
+                    <documentation>Segment group 34:
+             A group of segments specifying a monetary amount for an
+             allowance or charge. A range to which the allowance or charge
+             applies can be specified e.g., an allowance of 5000 BEF
+             (Belgian Francs) may be specified if goods value contracted is
+             greater than 100000 BEF (Belgian Francs).</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                A segment identifying the monetary amount for the allowance
+                or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                        <documentation>RNG,
+                A segment specifying, if required, a range for the
+                application of the allowance or charge amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment specifying the date or time related to the
+                referenced information.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_35">
+                    <documentation>Segment group 35:
+             A group of segments specifying tax related information for the
+             allowance or charge.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                        <documentation>TAX,
+                A segment specifying the tax type, category and rate, or
+                exemption, related to the allowance or charge.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                A segment specifying the tax amount for the allowance or
+                charge.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_36">
+                <documentation>Segment group 36:
+          A group of segments identifying the relevant pricing information
+          for the information identified.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                    <documentation>PRI,
+             A segment to specify the price type and amount.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional price information" nodeTypeRef="UN:APR" segcode="APR" truncatable="true" xmltag="APR">
+                    <documentation>APR,
+             A segment to identify pricing information such as a price
+             multiplier, the class or type of trade and additionally
+             identifying the reason for any changes.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
+                    <documentation>RNG,
+             A segment to identify the ranges (quantity, amount, etc) to
+             which the additional price information applies.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                    <documentation>CUX,
+             A segment to allow to specify the currency of the price.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the date/time/period information related
+             to the price change e.g., period of validity.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_37">
+                <documentation>Segment group 37:
+          A group of segments indicating the terms of delivery.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                    <documentation>TOD,
+             A segment identifying the delivery terms to be used.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+             A segment identifying locations relevant to the delivery
+             terms.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_38">
+                <documentation>Segment group 38:
+          A group of segments identifying the packaging, physical
+          dimensions and marks and numbers for goods referenced.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                    <documentation>PAC,
+             A segment specifying the number and type of packages e.g.,
+             number and type of pallets.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+             A segment specifying physical measurements of packages being
+             described e.g., package length, weight.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_39">
+                    <documentation>Segment group 39:
+             A group of segments specifying the markings and labels on
+             individual physical units.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
+                        <documentation>PCI,
+                A segment specifying markings and labels used on individual
+                physical units (packages).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                A segment identifying the master label number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment specifying the dates relevant to the package
+                markings.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                        <documentation>GIN,
+                A segment identifying the number or ranges of numbers for
+                use with the package markings.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_40">
+                <documentation>Segment group 40:
+          A group of segments providing information about the parties
+          involved in the level of information being described. For example
+          parties responsible for the part of the contract being described.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+             A segment identifying the party involved in the item being
+             described.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+             A segment providing general processing information associated
+             with the party. For example, their type of creditor.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                    <documentation>FII,
+             A segment providing the financial institution identification
+             for the party, e.g., its bank account.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment providing monetary amount in relation with the
+             party. For example the instalment amount.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+             A segment indicating tax information in relation to the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment providing reference information in relation to the
+             party. For example the catalog number.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,15 +1,25 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="PARTIN" version="D:93A:UN"/>
+    <description name="PARTIN" namespace="urn:org.milyn.edi.unedifact:un:d93a:partin" version="D:93A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="PARTIN">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
 A segment for unique identification of the Document name and number.
 The message function code (DE 1225) applies to all transactions
 indicated in the message. Consequently, one separate message has to be
 provided per type of function required.
 The following rules apply:
+
+
+
+
+
+
+
+
+
+
 - Addition (DE 1225 = 2). This code is used for providing information
 about parties for the first time to the trading partner.
 - Deletion  (DE 1225 = 3). This code is used to delete parties from
@@ -22,18 +32,18 @@ need to be sent.
 - Confirmation (DE 1225 = 6). This code is used when  party
 information is sent again for confirmation.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
 A segment specifying general dates, and when relevant, times related
 to the whole message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
             <documentation>FII,
 A segment identifying the financial institution (e.g. bank) and
 relevant account numbers valid for all the parties described in the
 detail section of the message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
 A segment with free text information, in coded or clear form, used
 when additional information is needed but cannot be accommodated
@@ -44,13 +54,13 @@ will normally require the receiver to process this segment manually</documentati
             <documentation>Segment Group 1:
 A group of segments indicating reference numbers and optionally date
 of the reference relating to the whole message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
   A segment for referencing documents relating to the whole message,
   e.g. previously sent PARTIN message number, Interchange Agreement
   contract.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
   A segment specifying the date of the reference number indicated in
   the RFF segment.</documentation>
@@ -61,7 +71,7 @@ of the reference relating to the whole message.</documentation>
 A group of segments identifying Names, Addresses, Contacts and
 Communication numbers relevant to the sender and the receiver of the
 message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
   A segment for identifying the Sender and Receiver name and address.</documentation>
             </segment>
@@ -69,20 +79,20 @@ message.</documentation>
                 <documentation>Segment Group 3:
   A group of segments giving details of the specific person or
   department within the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
     A segment giving additional contact information relating to the
     party specified in the NAD segment, e.g. contact person or
     department in a particular function.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
     A segment to identify communication numbers of departments or
     persons related to the contact information provided in CTA.</documentation>
                 </segment>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
             <documentation>UNS,
 A service segment placed at the start of the detail section to avoid
 segment collision.</documentation>
@@ -90,18 +100,18 @@ segment collision.</documentation>
         <segmentGroup maxOccurs="200000" minOccurs="0" xmltag="Segment_Group_4">
             <documentation>Segment Group 4:
 A group of segments for giving the details of a party.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
   A segment for identifying the party identification code and the
   corresponding function, name and address. The party identification
   code is mandatory, and the structured address form is preferred.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
   A segment specifying the date and the time details relevant to the
   party information identified in the NAD segment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
                 <documentation>FII,
   A segment identifying the financial institution, (e.g. bank) and
   relevant account numbers for the party identified in the NAD
@@ -111,13 +121,13 @@ A group of segments for giving the details of a party.</documentation>
                 <documentation>Segment Group 5:
   A group of segments for giving locations and dates relevant to
   party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
     A segment specifying the locations relevant to the party
     identified in the NAD segment, e.g. internal building number on a
     site.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
     A segment specifying dates and times relevant to the LOC segment.</documentation>
                 </segment>
@@ -125,12 +135,12 @@ A group of segments for giving the details of a party.</documentation>
             <segmentGroup maxOccurs="15" minOccurs="0" xmltag="Segment_Group_6">
                 <documentation>Segment Group 6:
   A group of segments for giving references relevant to the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
     A segment for referencing numbers related to the party such as
     Party Tax Identification Number.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
     A segment specifying the date of the reference number indicated in
     the RFF segment.</documentation>
@@ -140,13 +150,13 @@ A group of segments for giving the details of a party.</documentation>
                 <documentation>Segment Group 7:
   A group of segments giving contact details of the specific person or
   department within the party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
     A segment giving additional contact information relating to the
     party specified in the NAD segment, e.g. contact person of
     department in a particular function.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
     A segment to identify communication numbers of departments or
     persons related to the contact information provided in CTA.</documentation>
@@ -156,13 +166,13 @@ A group of segments for giving the details of a party.</documentation>
                 <documentation>Segment Group 8:
   A group of segment specifying schedules related to the party
   identified in the NAD segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="Scheduling_conditions">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Scheduling conditions" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="SCC">
                     <documentation>SCC,
     A segment specifying the type and status of the schedule being
     given, and optionally defining a pattern to be established, e.g.
     firm or proposed schedule for a weekly pattern of delivery hours.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
     A segment indicating the date/time details relevant to the
     schedule details in the SCC segment. This segment may be used to

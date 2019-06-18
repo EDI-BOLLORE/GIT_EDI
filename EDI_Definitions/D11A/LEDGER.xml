@@ -1,0 +1,293 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="LEDGER" namespace="urn:org.milyn.edi.unedifact:un:d11a:ledger" version="D:11A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="LEDGER">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+       Segment identifying the type of LEDGER message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+       A segment containing the opening and closing dates of the accounting
+       period of the accounting entries and the preparation date of the
+       message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+            <documentation>RFF,
+       Segment containing the number of the used chart of accounts linked
+       to the message and its version number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+            <documentation>CUX,
+       A segment providing currencies which are specific to the LEDGER
+       message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+       A segment with free text information, in coded or clear form, for
+       the purpose of providing additional clarification.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A segment group giving information on sender, recipient and
+       intermediary.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+          A segment to identify a party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment to provide references which are specific to the
+          concerned party.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments to specify contacts and related communication
+          numbers.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+             A segment to provide contacts related to the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+             A segment to provide communication numbers of the contact.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to provide accounting, fiscal, social or legal
+       characteristics of the accounting ledger.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
+                <documentation>CCI,
+          A segment to identify a characteristic.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
+                <documentation>CAV,
+          A segment to provide the value of the characteristic.
+
+4.1.2  Detail section
+
+       Information to be provided in the Detail section:</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+       A group of segments providing information on accounting entries by
+       ledger.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                <documentation>SEQ,
+          A segment giving detailed information on the sequence of the
+          ledger.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" name="Account identification" nodeTypeRef="UN:CPT" segcode="CPT" truncatable="true" xmltag="CPT">
+                <documentation>CPT,
+          A segment containing detailed information identifying the active
+          ledger account number (general, cost or budget account), or for
+          evaluation, of the accounting record concerned or the subsidiary
+          account number of this ledger account number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <documentation>FII,
+          A segment for the purpose of specifying the bank account numbers
+          relating to the specified account.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99999" minOccurs="1" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A segment group providing the following relevant information for
+          a given period and a specified accounting ledger : record,
+          account number, references, stated value, date and time, quantity
+          and free text, together comprising an accounting record.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Index details" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="IND">
+                    <documentation>IND,
+             A segment containing the reference to an order number inside a
+             folio, or the sequential number allocated to the entry of an
+             accounting record for a given journal and period.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment containing the number of the source document
+             relating to the accounting record.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+             A segment with free text information, in coded or clear form,
+             to give an explanation of the accounting entry.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+                               MOA-SG7
+             A segment group containing all necessary information for an
+             accounting record.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                        <documentation>LIN,
+                A segment identifying the line item of the accounting
+                entries or records information sequence.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" name="Account identification" nodeTypeRef="UN:CPT" segcode="CPT" truncatable="true" xmltag="CPT">
+                        <documentation>CPT,
+                A segment containing detailed information identifying the
+                account number (general, cost or budget account), or for
+                evaluation of the accounting record concerned or the
+                subsidiary account number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Accounting journal identification" nodeTypeRef="UN:RJL" segcode="RJL" truncatable="true" xmltag="RJL">
+                        <documentation>RJL,
+                A segment identifying the source document and the type of
+                accounting records of accounting entries for a given
+                period.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment giving the accountancy dates concerning the
+                accounting record, date of capture, date of source
+                document, date of accounting validation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <documentation>FTX,
+                A segment with free text information, in coded or clear
+                form, to give a text for the entry describing whether the
+                record is cost, budgetary or have valuation purposes.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
+                        <documentation>PAI,
+                A segment specifying the settlement method of the
+                accounting record.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                A segment containing references to documents such as the
+                number of the source document, number of the related
+                document, the internal source document reference and the
+                checking reference and tax codes relating to the accounting
+                record.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                A segment for the purpose of specifying a quantity relating
+                to the monetary amount of the accounting record.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                        <documentation>TAX,
+                A segment for specifying the duties, tax or fee types
+                relating to the accounting record.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                        <documentation>FII,
+                A segment for the purpose of specifying the bank account
+                numbers relating to the specified record.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                        <documentation>CUX,
+                A segment containing the currency details, currencies or
+                currency rates used in the record.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                A segment containing detailed information on the debit or
+                credit trend of the monetary amount, the monetary amount
+                itself in the local currency and possibly the currency code
+                relating to this monetary amount.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_7">
+                        <documentation>Segment group 7:
+                A group of segments to provide accounting, fiscal, social
+                or legal characteristics of the accounting record.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
+                            <documentation>CCI,
+                   A segment to identify a characteristic.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
+                            <documentation>CAV,
+                   A segment to provide the value of the characteristic.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+             A segment group to provide authentication information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                        <documentation>AUT,
+                A segment to provide authentication results.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment to provide the date of the authentication.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+          A group of segments providing information on the totals and the
+          quantities corresponding to the accounting records for
+          verification purposes, this group summarizes all the monetary
+          amounts by account and by period.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+             A segment indicating the number of accounting entries for a
+             ledger and period.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment to provide references related to a ledger or a
+             period.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment containing the date related to a ledger or a period.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment adding up the total amounts of the accounting
+             records for a ledger and period in local currency and in
+             foreign currency.
+
+4.1.3  Summary section
+
+       Information to be provided in the Summary section:</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
+            <documentation>UNS,
+       A service segment used to separate the detail and summary sections.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_10">
+            <documentation>Segment group 10:
+       A segment group providing quantity and amount totals at message
+       level.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                <documentation>QTY,
+          A segment specifying the number of sub-periods included in the
+          period covered by the message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment providing references at message level.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment containing the date which are relevant at message level
+          for verification purpose.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+          A segment adding up the total amounts relating to the LEDGER
+          message.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_11">
+            <documentation>Segment group 11:
+       A segment group to provide authentication information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <documentation>AUT,
+          A segment to provide authentication results.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to provide the date of the authentication.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

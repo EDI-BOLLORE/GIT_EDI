@@ -1,0 +1,465 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="JUPREQ" namespace="urn:org.milyn.edi.unedifact:un:d16a:jupreq" version="D:16A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="JUPREQ">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment by which the sender uniquely identifies the Justified
+        payment request message by means of its number and type (for
+        example, investment payment, functional payment etc.).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment specifying general dates (accounting year, registration
+        date, etc.) and, when relevant, times related to the whole message.
+        The segment must be specified at least once to identify the date
+        the payment request was issued.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+            <documentation>MOA,
+        A segment specifying total monetary amounts for the payment request
+        (for example, total amount remaining to be deducted from future
+        payments).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+        A segment providing general processing information in respect to
+        the whole payment request, such as the budgetary nature of the
+        request, e.g., investment, operational, etc.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+        A segment specifying free text information eventually providing a
+        description of the payment justification.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A segment group to provide reference information about the payment
+        request such as the contract against which the payment is to be
+        made (budget references, reference documents) and where necessary,
+        their dates.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying reference information about the payment,
+           such as the contract concerned or budgeting information, by
+           their number and where appropriate, the version number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the date/time related to the referenced
+           information.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments identifying the parties relevant to the payment
+        request with associated information such as responsible service or
+        visa date.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment identifying names and addresses of parties, in coded
+           or clear form, and their relevant function for the payment
+           request. Identification of the sender of the request and the
+           payment service are mandatory for the Justified payment request
+           message. Other parties may also be identified as required.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <documentation>CTA,
+           A segment specifying specific contact information such as the
+           service involved related to the referenced information.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment identifying key dates relative to the payment such as
+           visa date of the service in question.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A group of segments providing information about the payment
+        requested as well as the documents which are required to justify
+        it. This includes information such as amounts, dates, results
+        formula calculations, article information, tax information, party
+        information and other references.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                <documentation>DOC,
+           A segment identifying the documents associated with the payment
+           request such as the payment request documents and their
+           associated justifications.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+           A segment providing general processing information, such as
+           economic indicators or credit categories.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying reference information about the payment,
+           such as budgeting information, by their number and where
+           appropriate, the version number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying date/time/period details such as the date
+           the request was posted in the accounts or the date of emission
+           of a justification document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+           A segment providing information about the amounts which the
+           document in question justifies. This includes amounts such as
+           credit requests and adjustment amounts.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment specifying free text information eventually providing
+           a description of the document in question.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           A group of segments identifying the parties involved in the
+           justification and eventually amounts due and bank account
+           information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying the party, such as the beneficiary,
+              factoring party, justification originator or co-contractor.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                    <documentation>FII,
+              A segment identifying information such as the beneficiary's
+              bank account.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment identifying monetary amounts, such as the amount
+              payable to the party if the distributed sum is being split
+              between different beneficiaries.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+              A group of segments identifying the parties involved in the
+              Justification, the amounts due to them, their bank account
+              information along with any eventual related parties and
+              associated banking information.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Anti-collision segment group header" nodeTypeRef="UN:UGH" segcode="UGH" truncatable="true" xmltag="UGH">
+                        <documentation>UGH,
+                 A segment to head, identify and specify an anti-collision
+                 segment group in order to permit the identification of
+                 beneficiary's, and any eventual related parties such as
+                 factors.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_6">
+                        <documentation>Segment group 6:
+                 A group of segments identifying any eventual related
+                 party, such as a factor, along with his bank information
+                 and the exact relationship between the two parties.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                            <documentation>REL,
+                    A segment identifying the exact relationship between
+                    the two parties.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                            <documentation>NAD,
+                    A segment identifying the related party, such as a
+                    factor.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                            <documentation>FII,
+                    A segment identifying information such as the bank
+                    account of the related party.</documentation>
+                        </segment>
+                    </segmentGroup>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Anti-collision segment group trailer" nodeTypeRef="UN:UGT" segcode="UGT" truncatable="true" xmltag="UGT">
+                        <documentation>UGT,
+                 A segment to end and check the completeness of an anti-
+                 collision segment group.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+           A group of segments identifying complementary documents which
+           may be associated with a justification and eventually other
+           references and any parties associated with it.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message summary" nodeTypeRef="UN:DMS" segcode="DMS" truncatable="true" xmltag="DMS">
+                    <documentation>DMS,
+              A segment identifying a document associated with a
+              justification by its type and identification, such as related
+              messages from other transmissions.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment identifying other reference information related to
+              the document being described.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying parties related to the document being
+              described, such as its sender.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+           A group of segments identifying tax and eventually monetary
+           information associated with the document being detailed.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+              A segment identifying the tax information, such as the rate
+              of value added tax (VAT) associated with the document being
+              detailed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment identifying monetary amounts, such as the amount of</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+           A group of segments identifying justification information about
+           calculation results using specific formulae, such as a price
+           revision formula, a penalty formula, or a bonus formula.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Formula" nodeTypeRef="UN:FOR" segcode="FOR" truncatable="true" xmltag="FOR">
+                    <documentation>FOR,
+              A segment identifying the formula used for the calculation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+              A segment identifying general processing information about
+              the formula, such as whether it is a provisional or
+              definitive calculation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment identifying date and eventually time information,
+              such as the number of days or months late.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+              A segment identifying the value of the coefficient calculated
+              by the formula.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment identifying information such as the amounts
+              calculated, amounts exonerated or the amount on which
+              penalties can be calculated.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+              A segment identifying information such as the rate of VAT
+              applicable to the value resulting from the calculation.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                    <documentation>Segment group 10:
+              A group of segments identifying index information and
+              eventually their dates of application and any specific
+              coefficients which were used in the calculation.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Index details" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="IND">
+                        <documentation>IND,
+                 A segment identifying the indexes and eventually the index
+                 values which were used in the formula calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment identifying date and eventually time
+                 information, such as the date of reading of the indexes.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                        <documentation>RTE,
+                 A segment identifying any coefficient details in relation
+                 with the index, such as the linking coefficient between
+                 index evolutions.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+                             SG14-SG15
+           A group of segments identifying detailed payment request
+           information or information about articles along with the
+           information which is related to them.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                    <documentation>LIN,
+              A segment identifying an item and eventually the line number
+              on which the item is to be found in the document. Items can
+              relate to information such as the payment breakdown, specific
+              articles, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
+                    <documentation>PIA,
+              A segment identifying an item by an additional identification
+              number such as a manufacturer's article number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+              A segment identifying the numbers related to the item in
+              question, such as the number of articles delivered or the
+              quantity invoiced.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment identifying date and eventually time information,
+              such as the effective delivery date, associated with the item
+              in question.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                    <documentation>TAX,
+              A segment identifying tax information, such as the applicable
+              rate of tax, associated with the item in question.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+              A segment identifying any rate details, such as the rate of
+              increase or discount, associated with the article in
+              question.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Document/message summary" nodeTypeRef="UN:DMS" segcode="DMS" truncatable="true" xmltag="DMS">
+                    <documentation>DMS,
+              A segment identifying documents related to the item in
+              question, such as the specific justification documents
+              associated with a payment request.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment identifying any references associated with the item
+              in question, such as the official reference of the
+              beneficiary.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+              A segment identifying general processing information about
+              the item in question such as the nature of the beneficiary.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_12">
+                    <documentation>Segment group 12:
+              A segment group specifying monetary amounts and eventually
+              their associated currencies and payment instructions.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment specifying monetary amounts such as the amount
+                 to be paid, the amount for the item with or without VAT,
+                 etc.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                        <documentation>CUX,
+                 A segment specifying the currency and eventually the
+                 exchange rate associated with the monetary amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
+                        <documentation>PAI,
+                 A segment specifying any eventual payment instructions for
+                 the amounts in question, such as the payment means.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+              A group of segments identifying parties and eventually their
+              bank account information in relation to the item in question.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <documentation>NAD,
+                 A segment identifying the party associated with the item
+                 in question, such as the beneficiary, or the manufacturer
+                 of the item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                        <documentation>FII,
+                 A segment identifying information such as the party's bank
+                 account.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                    <documentation>Segment group 14:
+              A group of segments identifying information about
+              calculations using specific formulae associated with the item
+              in question, such as penalties or bonuses.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Formula" nodeTypeRef="UN:FOR" segcode="FOR" truncatable="true" xmltag="FOR">
+                        <documentation>FOR,
+                 A segment identifying the formula used in a calculation,
+                 such as a bonus or penalty calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 A segment identifying general processing information about
+                 the formula, such as whether it is a provisional or
+                 definitive calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment identifying date and eventually time
+                 information, such as the number of days or months late, in
+                 respect to the formula calculation.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment identifying information such as the amounts
+                 calculated, amounts exonerated or the amount on which
+                 penalties can be calculated.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+              A group of segments identifying monetary information
+              associated with the item in question and eventually a
+              breakdown of the monetary information such as a budget
+              breakdown.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                        <documentation>ARD,
+                 A segment identifying the relationship between monetary
+                 amounts, such as principal, interests or adjustment
+                 amounts.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 A segment identifying monetary amounts, such as the amount
+                 of the principal.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 A segment identifying date and eventually time
+                 information, such as the number of days or months late in
+                 payment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                        <documentation>TAX,
+                 A segment identifying tax information such as the rate of
+                 VAT applied.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                        <documentation>Segment group 16:
+                 A group of segments identifying information such as a
+                 detailed budget breakdown.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                            <documentation>SEQ,
+                    A segment identifying sequence breakdown of the
+                    monetary amount identified previously.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                            <documentation>GEI,
+                    A segment general processing indicators related to the
+                    monetary amount breakdown, such as various budgetary
+                    indications.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <documentation>DTM,
+                    A segment identifying dates and eventually times
+                    related to the monetary amount breakdown, such as the
+                    budgetary year.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <documentation>MOA,
+                    A segment specifying monetary amounts such as the
+                    budgeted amount.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <documentation>RFF,
+                    A segment identifying references, such as the different
+                    budget references.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

@@ -1,0 +1,238 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="INSRPT" namespace="urn:org.milyn.edi.unedifact:un:d17b:insrpt" version="D:17B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="INSRPT">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment by which the sender uniquely identifies the Inspection
+        report message by means of its type and number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment specifying general dates and, when relevant, times
+        related to the whole message. The segment must be specified at
+        least once to identify the date of inspection.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A segment group for information on previous inspections, reference
+        documents and where necessary, their dates.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment identifying previous inspection requests, reports,
+           base documents etc., by their number and where appropriate, a
+           line number within the document.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the date or time related to the referenced
+           information.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments identifying the parties relevant to the whole
+        Inspection report message, with associated information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment identifying names and addresses of parties, in coded
+           or clear form, and their function relevant for the whole
+           Inspection report message. Identification of the supplier and
+           inspection party is mandatory for the Inspection report message.
+           They are to be given in this segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment indicating more details regarding specific locations
+           related to the party specified in the NAD segment, e.g.,
+           internal site or building number where the inspection was
+           carried out.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A segment group identifying the base document and line items to be
+        inspected.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                <documentation>DOC,
+           A segment identifying the base document (e.g., purchase order)
+           for the items in question by its number.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           A segment group providing complementary information relating to
+           the base document, such as contract number, purchase order
+           version, etc.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment identifying the complementary information in
+              relation to the base document.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment specifying the date/time related to the referenced
+              information.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+           A group of segments which identifies parties associated with the
+           document.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <documentation>NAD,
+              A segment identifying parties associated with the document
+              such as the issuer of the document.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+                    <documentation>Segment group 6:
+              A group of segments providing contacts and communication
+              numbers associated with the party.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                        <documentation>CTA,
+                 A segment identifying to whom communications should be
+                 directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                        <documentation>COM,
+                 A segment identifying communication numbers of the
+                 contacts to which communications should be directed.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+                             SG8
+           A group of segments providing the relevant information on the
+           articles inspected.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                    <documentation>LIN,
+              A segment identifying the line item by its number and
+              additionally, identifying the item involved by an
+              identification number. Other identification numbers may be
+              specified in the following PIA segment, e.g., manufacturer
+              part number, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
+                    <documentation>PIA,
+              A segment providing additional identification information of
+              the item being described, e.g., manufacturer part number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                    <documentation>IMD,
+              A segment for describing the item being described.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment specifying date, time or period details to the line
+              item only e.g., inspection history dates.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                    <documentation>STS,
+              A segment providing the decision status and eventual decision
+              code of the item inspected, for example, item to be reworked.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              A segment providing monetary amounts relating to the
+              specified item, for example the amount of a non conformity.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+              A segment to specify the quantities relating to the specified
+              item, for example the number of items not in conformity.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+              A segment to specify the measurements related to the line
+              item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                    <documentation>GIN,
+              A segment providing specific serial or batch numbers,
+              relating to the specified item, for example the serial
+              numbers of non-conform items. These may be single numbers or
+              ranges of numbers.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment identifying the complementary information in
+              relation to the line item.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment with free text in coded or clear form, to give
+              further clarification on the decision, when required, for the
+              line item. In computer to computer exchanges such text will
+              normally require the receiver to handle this segment
+              manually.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+              A group of segments identifying the parties to be delivered
+              and associated information, relevant to the line item only.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <documentation>NAD,
+                 A segment identifying names and addresses of parties to be
+                 delivered, in coded or clear form, and their function
+                 relevant for the line item.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 A segment indicating general processing information in
+                 concerning the party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <documentation>LOC,
+                 A segment indicating more details regarding specific
+                 locations related to the party specified in the NAD
+                 segment, e.g., internal site or building number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                 A segment to specify the quantity to be delivered to the
+                 delivery address.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity variances" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="QVR">
+                        <documentation>QVR,
+                 A segment identifying a quantity variance with the
+                 quantity expected and the reason for it.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                 A segment identifying the complementary information in
+                 relation to the despatch, for example the despatch
+                 inspection notice number.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <documentation>FTX,
+                 A segment with free text information to give further
+                 clarification.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_9">
+                        <documentation>Segment group 9:
+                 A segment group providing specific serial or batch numbers
+                 and their respective statuses, relating to the specified
+                 item.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                            <documentation>GIN,
+                    A segment providing specific serial or batch numbers.
+                    These may be single numbers or ranges of numbers.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <documentation>RFF,
+                    A segment identifying the complementary information in
+                    relation to the serial or batch number.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                            <documentation>STS,
+                    A segment providing the status of the serial or batch
+                    numbers inspected, for example, serial number or batch
+                    to be reworked.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

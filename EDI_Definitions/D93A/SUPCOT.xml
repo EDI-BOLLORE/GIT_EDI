@@ -1,47 +1,48 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="SUPCOT" version="D:93A:UN"/>
+    <description name="SUPCOT" namespace="urn:org.milyn.edi.unedifact:un:d93a:supcot" version="D:93A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="SUPCOT">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>UNH,
+
 Data element     0065 SUPCOT
                  0052 D
                  0054 93A
                  0051 UN</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+        <segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
             <documentation>BGM,
 A segment for unique identification of the Superannuation
 Contributions Advice Message, the type of Superannuation
 Contributions Advice and its function.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
             <documentation>RFF,
 A segment for referencing information related to the whole
 message. The scheme/ plan number is mandatory. In addition, the
 employer number and other references, such as references to
 payments, may be provided.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
             <documentation>PAI,
 A segment specifying the payment means (e.g. cheque or direct
 bank transfer) and, if required, the payment channel for the
 Superannuation Contributions Advice. The payment conditions may
 also be specified.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
             <documentation>CUX,
 A segment giving the currency  and the associated exchange rate
 of the total amount paid in relation to this advice.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>FII,
 A segment identifying the financial institution (e.g. bank) and
 account number of the issuing party, and, where required, the
 receiving party.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>DTM,
 A segment which may include the message date, the payment
 date, the cheque date, the date and time associated with any
@@ -54,7 +55,7 @@ A segment for free text information in coded or clear form, to
 give further clarification when required to the Superannuation
 Contributions Advice message. It should be noted that the use
 of clear text may require special processing of this segment.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>Segment Group 1:
 A group of segments identifying names and addresses relevant to
 the Superannuation Contributions Advice.</documentation>
@@ -66,12 +67,12 @@ the Superannuation Contributions Advice.</documentation>
   their functions. Examples are: the employer, the recipient
   system and the name and address of the payer's financial
   institution if required.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>Segment Group 2:
   A group of segments identifying contact persons or
   department and their communication number.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>CTA,
     A segment giving additional contact information of a
     person or department specified in the NAD segment and to
@@ -79,7 +80,7 @@ the Superannuation Contributions Advice.</documentation>
                 </segment>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control_-_-1">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS_-_-1">
             <documentation>COM,
     A segment specifying communication contact number.</documentation>
         </segment>
@@ -87,30 +88,30 @@ the Superannuation Contributions Advice.</documentation>
             <documentation>UNS,
 A service segment placed after the last user segment in the
 detail section to indicate the end of that section.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>Segment Group 3:
 A group of segments identifying member and employment details.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                 <documentation>NAD,
   A segment providing the member's identification number, and,
   if required, the member's name, title, and work address
   details.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>ATT,
   A segment providing the member's sex type.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>RFF,
   A segment for identifying the member's payroll number or an
   associated reference.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Employment details" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="EMP">
                 <documentation>DTM,
   A segment providing the member's birth date.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>EMP,
   A segment providing required employment details of the
   member, such as the member's employment category.</documentation>
@@ -122,13 +123,13 @@ A group of segments identifying member and employment details.</documentation>
   Coded text should be used where possible, as the use of
   clear text may require special processing of the FTX segment
   information.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment terms basis" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="PAT">
                     <documentation>Segment Group 4:
   A group of segments identifying contribution processing
   details. Any date details may be provided in either segment
   group 4 or in segment group 5, depending on requirements.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                     <documentation>PAT,
     A segment giving the number of payment periods
     associated with the contribution, and, if required, the
@@ -137,16 +138,16 @@ A group of segments identifying member and employment details.</documentation>
     whether regular or other (e.g.advanced payments)
     contributions are involved.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
                     <documentation>MOA,
     A segment providing the member's salary.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>CUX,
     A segment identifying the currency and associated
     exchange rate of the member's salary and contributions.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>DTM,
     A segment specifying the contribution start and end
     dates, and the date of any contribution termination.</documentation>
@@ -158,14 +159,14 @@ A group of segments identifying member and employment details.</documentation>
     required. Coded text should be used where possible, as
     the use of clear text may require special processing of
     the FTX segment information.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:COT" segcode="COT" truncatable="true" xmltag="Contribution_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contribution details" nodeTypeRef="UN:COT" segcode="COT" truncatable="true" xmltag="COT">
                         <documentation>Segment Group 5:
     A group of segments identifying member contribution
     amount details and their type. Dates may be provided in
     this segment group where needed. An investment
     instruction may also be provided as required.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                         <documentation>COT,
       A segment to qualify the nature of a contribution (e.g. a
       normal, special or a final/ceasing contribution), and
@@ -176,12 +177,12 @@ A group of segments identifying member and employment details.</documentation>
       contributions qualifier and the monetary amount
       (e.g. a final/ceasing contribution has been made).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>MOA,
       A segment giving the contribution amount paid for or
       by the member.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>DTM,
       A segment specifying the contribution start and end
       dates, and the date of any contribution termination
@@ -190,7 +191,7 @@ A group of segments identifying member and employment details.</documentation>
                 </segmentGroup>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control_-_-2">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS_-_-2">
             <documentation>FTX,
       A segment for free text information in coded or clear
       form, to give information on additional attributes if
@@ -198,17 +199,17 @@ A group of segments identifying member and employment details.</documentation>
       as the use of clear text may require special
       processing of the FTX segment information.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
             <documentation>UNS,
 A service segment placed after the last user segment in the
 detail section to indicate the end of that section.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
             <documentation>MOA,
 A segment giving the total amount being paid into the
 superannuation scheme as specified by this advice.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
             <documentation>CNT,
 A segment to provide message control totals as required. For
 example, the total number of individual contribution amounts

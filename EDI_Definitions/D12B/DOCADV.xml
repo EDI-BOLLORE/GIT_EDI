@@ -1,0 +1,405 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="DOCADV" namespace="urn:org.milyn.edi.unedifact:un:d12b:docadv" version="D:12B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="DOCADV">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment by means of which the sender must uniquely identify the
+        DOCADV message using its type and number and when necessary its
+        function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+            <documentation>RFF,
+        A segment identifying the documentary credit number.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Business function" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="BUS">
+            <documentation>BUS,
+        A segment providing information related to the type of documentary
+        credit (i.e. irrevocable or revocable, transferable or not
+        transferable). It may also identify the geographic environment of
+        the documentary credit.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
+            <documentation>INP,
+        A segment specifying special documentary credit instructions. It
+        specifies the confirmation instructions and, if applicable, any
+        additional conditions, the method of issuance of the documentary
+        credit, pre-advice instructions and documents delivery
+        instructions.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" name="Financial charges allocation" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="FCA">
+            <documentation>FCA,
+        A segment specifying the allocation of charges.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment specifying the date of issuance of the documentary
+        credit, the date and/or time the message is created and, if
+        applicable, the presentation period within which documents are to
+        be presented.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="20" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+        A segment with free text information used when additional
+        information is needed but cannot be accommodated within other
+        segments. This may be instructions and information about revolving
+        documentary credits and other supplementary information.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments identifying the financial institutions and
+        account numbers involved in the documentary credit, their functions
+        and notification references.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <documentation>FII,
+           A segment identifying the financial institution(s) associated
+           with the documentary credit, in coded or uncoded form, their
+           functions and account numbers involved.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment specifying reference numbers of parties specified in
+           the leading FII segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <documentation>CTA,
+           A segment identifying a person or a department for the party
+           specified in the leading FII segment to whom communication
+           should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <documentation>COM,
+           A segment identifying communication type(s) and number(s) of
+           person(s) or department(s) specified in the associated CTA
+           segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_2">
+            <documentation>Segment group 2:
+        A group of segments identifying the name and address of each non-
+        financial party involved in the transaction, their functions and
+        notification references.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <documentation>NAD,
+           A segment identifying names and addresses of the parties
+           associated with the documentary credit, in coded or uncoded
+           form, and their functions.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment specifying reference numbers of parties specified in
+           the leading NAD segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <documentation>CTA,
+           A segment identifying a person or a department for the party
+           specified in the leading NAD segment to whom communication
+           should be directed.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <documentation>COM,
+           A segment identifying communication type(s) and number(s) of
+           person(s) or department(s) specified in the associated CTA
+           segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A group of segments specifying the expiry date of the documentary
+        credit and the place where the documentary credit expires for the
+        presentation of the required documents.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the expiry date of the documentary credit.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment specifying the place where the documentary credit
+           expires for the presentation of the required documents.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="1" xmltag="Segment_group_4">
+            <documentation>Segment group 4:
+        A group of segments specifying the amount and currency of the
+        documentary credit and, if applicable, any additional amounts
+        covered under the documentary credit. It may also specify the
+        tolerance or any details of the amount(s).</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+           A segment specifying the amount and currency of the documentary
+           credit and, if applicable, any additional amounts covered under
+           the documentary credit.
+           
+           Specification of the documentary credit amount is mandatory for
+           the DOCADV message.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+           A group of segments specifying the tolerance or specification of
+           the amount(s) specified in Segment Group 4.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Allowance or charge" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="ALC">
+                    <documentation>ALC,
+              A segment specifying the tolerance or specification of the
+              amount(s) specified in Segment Group 4.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+              A segment specifying the amount tolerance in percentage.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="3" minOccurs="1" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+        A group of segments specifying from where and to where the
+        shipment(s)under the documentary credit must be made and relevant
+        dates for the transport of goods.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment specifying from where and to where shipment(s) under
+           the documentary credit must be made.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the date or period of shipment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_7">
+            <documentation>Segment group 7:
+        A group of segments specifying with whom the documentary credit is
+        available.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
+                <documentation>PAI,
+           A segment specifying with whom the documentary credit is
+           available.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <documentation>FII,
+           A segment identifying, when necessary, the named bank with whom
+           the documentary credit is available in coded or uncoded form.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment identifying the city and/or country where the
+           documentary credit is available with any bank.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="1" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+        A group of segments specifying the method of availability of the
+        documentary credit.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment terms" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="PYT">
+                <documentation>PYT,
+           A segment specifying the method of availability. It may also
+           specify at which maturity date payment is to be made and how the
+           maturity date is to be determined.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <documentation>FII,
+           A segment identifying, when necessary, the party on whom drafts
+           must be drawn.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying, when necessary, a specific maturity date.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+           A segment specifying in those cases that the documentary credit
+           should be available by mixed payment (e.g. sight payment and
+           deferred payment) the part of the documentary credit amount that
+           is payable by sight payment, deferred payment, etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <documentation>PCD,
+           A segment specifying in those cases that the documentary credit
+           should be available by mixed payment (e.g. sight payment and
+           deferred payment) the part of the documentary credit amount in
+           percentage which is payable by sight payment, deferred payment,
+           etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment specifying how the maturity date is to be determined
+           or indicate at which usance time draft(s) must be drawn in
+           uncoded form.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
+            <documentation>Segment group 9:
+        A group of segments indicating the terms of delivery.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                <documentation>TOD,
+           A segment identifying the terms of delivery.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment identifying locations relevant to the terms of
+           delivery specified in the leading TOD segment.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_10">
+            <documentation>Segment group 10:
+        A group of segments specifying instructions about transhipments and
+        partial shipments under the documentary credit.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Transport service requirements" nodeTypeRef="UN:TSR" segcode="TSR" truncatable="true" xmltag="TSR">
+                <documentation>TSR,
+           A segment specifying whether transhipments and/or partial
+           shipments are allowed or not.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment identifying a certain city and/or country where
+           transhipment is allowed or not.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_11">
+            <documentation>Segment group 11:
+        A group of segments specifying special instructions and related
+        information from the Applicant to parties identified in Segment
+        Group 1 and/or Segment Group 2.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
+                <documentation>INP,
+           A segment identifying the party which is to carry out the
+           instruction and the party to be contacted followed by the
+           instruction in coded form.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment specifying instructions in uncoded form.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the earliest and latest dates and/or times
+           by which the specified instructions must be carried out. It will
+           be repeated when more than one date or time is to be provided.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_12">
+            <documentation>Segment group 12:
+        A group of segments giving references and where necessary, their
+        dates, relating to the description of goods or services (e.g.
+        purchase order, delivery contract) followed by the description of
+        goods or services in uncoded form.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           A segment specifying the reference number of a purchase order,
+           delivery contract, etc.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the date related to the reference number
+           specified in the leading RFF segment.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment specifying the description of goods or services in
+           free text form.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="20" minOccurs="1" xmltag="Segment_group_13">
+            <documentation>Segment group 13:
+        A group of segments specifying the documents required under the
+        documentary credit and the requirements for each document. It may
+        also identify party(ies) related to these requirements.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                <documentation>DOC,
+           A segment specifying the documents required under the
+           documentary credit. It may also specify, when necessary, the
+           number of copies and originals of document required.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <documentation>MOA,
+           A segment specifying, when necessary, the value of insurance for
+           an insurance certificate or an insurance policy in monetary
+           amount and/or the amount of a debit or credit note.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <documentation>PCD,
+           A segment specifying, when necessary, the value of insurance for
+           an insurance certificate or an insurance policy in percentage
+           and/or the percentage of a debit or credit note.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <documentation>LOC,
+           A segment identifying the city and/or country where claims under
+           an insurance certificate or an insurance policy are payable.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment specifying the insured risks and/or documentary
+           requirements in uncoded form.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="20" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+           A segment group specifying the insurance covers required for an
+           insurance certificate/insurance policy specified in the DOC
+           segment of segment group 13.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                    <documentation>ICD,
+              A segment specifying the insurance covers required for an
+              insurance certificate/insurance policy in coded form.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              A segment specifying the version of standard cover clause
+              specified in the ICD segment.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment specifying the non-standard cover texts or
+              restrictions or expansions to the standard cover clause.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_15">
+                <documentation>Segment group 15:
+           A segment group specifying the documentary requirements in coded
+           form for documents specified in the DOC segment of Segment Group
+           13.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                    <documentation>ALI,
+              A segment specifying the documentary requirements in coded
+              form and, where necessary, the country of origin.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="3" minOccurs="0" xmltag="Segment_group_16">
+                    <documentation>Segment group 16:
+              A group of segments identifying party(ies) related to the ALI
+              segment in Segment Group 15. It may also include contact
+              information about each party, when necessary.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <documentation>NAD,
+                 A segment identifying party(ies) related to the ALI
+                 segment in Segment Group 15, in coded or uncoded form, and
+                 their functions.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                        <documentation>CTA,
+                 A segment identifying a person or a department for the
+                 party specified in the leading NAD segment to whom
+                 communication should be directed.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                        <documentation>COM,
+                 A segment identifying communication type(s) and number(s)
+                 of person(s) or department(s) specified in the associated
+                 CTA segment.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_17">
+            <documentation>Segment group 17:
+        A group of segments specifying details of any authentication
+        (validation) procedures applied to the DOCADV message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <documentation>AUT,
+           A segment specifying details of any authentication (validation)
+           procedures applied to the DOCADV message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment identifying the validation date/time.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

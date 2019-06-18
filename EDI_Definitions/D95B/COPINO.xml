@@ -1,22 +1,22 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="COPINO" version="D:95B:UN"/>
+    <description name="COPINO" namespace="urn:org.milyn.edi.unedifact:un:d95b:copino" version="D:95B:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="COPINO">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment to indicate the beginning of a message and to
        transmit identifying number and the further specification of
        the message type (in data element 1001: Document/message name,
        coded), such as Pick-up notice, Arrival notice.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment to specify free form or processable supplementary
        information, such as:
        -   change information</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
             <documentation>RFF,
        A segment to express a reference which applies to the entire
        message, such as:
@@ -28,19 +28,19 @@
        A group of segments to indicate details of the movement of
        containers by sea and by inland carriers, such as mode and
        means of transport, arrival date and time.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Details of transport" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
                 <documentation>TDT,
           A segment to indicate information related to the inland
           transport stage (road, rail or inland water), such as mode,
           voyage number/indication inland transport, identification
           and type of transport means and inland carrier.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
           A segment to indicate a location at which the means of
           transport is to arrive.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment to indicate the arrival date and time of an inland
           means of transport, such as:
@@ -51,14 +51,14 @@
             <documentation>Segment group 2:
        A group of segments to identify a party and/or addresses and
        related contacts.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment to identify the party's name and address, and
           function, such as:
           -   message recipient
           -   message sender</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                 <documentation>CTA,
           A segment to identify a person or department of a message
           sender and/or message recipient, such as:
@@ -69,33 +69,33 @@
             <documentation>Segment group 3:
        A group of segments to describe the goods items (to be) stuffed
        in containers.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GID" segcode="GID" truncatable="true" xmltag="Goods_item_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Goods item details" nodeTypeRef="UN:GID" segcode="GID" truncatable="true" xmltag="GID">
                 <documentation>GID,
           A segment to identify a goods item (to be) stuffed in
           containers. A goods item can be identified by a goods item
           number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                 <documentation>HAN,
           A segment to specify handling instructions relating to the
           goods item, such as:
           -   hazardous cargo</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:TMP" segcode="TMP" truncatable="true" xmltag="Temperature">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Temperature" nodeTypeRef="UN:TMP" segcode="TMP" truncatable="true" xmltag="TMP">
                 <documentation>TMP,
           A segment to specify a temperature setting for a goods item.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="Range_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Range details" nodeTypeRef="UN:RNG" segcode="RNG" truncatable="true" xmltag="RNG">
                 <documentation>RNG,
           A segment to specify a temperature range setting for a goods
           item.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" nodeTypeRef="UN:SGP" segcode="SGP" truncatable="true" xmltag="Split_goods_placement">
+            <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Split goods placement" nodeTypeRef="UN:SGP" segcode="SGP" truncatable="true" xmltag="SGP">
                 <documentation>SGP,
           A segment to identify the containers in which goods are
           transported.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="Dangerous_goods">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dangerous goods" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="DGS">
                 <documentation>DGS,
           A segment to indicate the dangerous goods regulations for
           the corresponding mode of transport, class of dangerous
@@ -106,14 +106,14 @@
             <documentation>Segment group 4:
        A group of segments to specify containers in which goods are
        transported.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
                 <documentation>EQD,
           A segment to specify a container, size and type used in the
           transport and full/empty indication; also to specify the
           type of rail car on which a related container is
           transported.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment to specify the identifying number associated with
           the container, such as:
@@ -121,30 +121,30 @@
           -   container announcement reference number
           -   referring container sequence number</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="Number_of_units">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Number of units" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="EQN">
                 <documentation>EQN,
           A segment which can be used in case container numbers are
           not yet known by the carrier.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
           A segment to specify measurement, other than dimensions,
           associated with the container, such as:
           -   gross weight</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="Dimensions">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dimensions" nodeTypeRef="UN:DIM" segcode="DIM" truncatable="true" xmltag="DIM">
                 <documentation>DIM,
           A segment to specify dimensions applicable to the container,
           such as:
           -   external equipment dimensions</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:SEL" segcode="SEL" truncatable="true" xmltag="Seal_number">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Seal number" nodeTypeRef="UN:SEL" segcode="SEL" truncatable="true" xmltag="SEL">
                 <documentation>SEL,
           A segment to identify seal and seal issuer associated with
           the container, such as shipper, consolidator, carrier (sea)
           and Customs.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="Attached_equipment">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Attached equipment" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="EQA">
                 <documentation>EQA,
           A segment to identify related container and means of
           transport details (rail), such as:
@@ -156,7 +156,7 @@
           A group of segments to indicate details of the movement of
           containers by sea and by inland carriers, such as mode and
           means of transport.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Details_of_transport">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Details of transport" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
                     <documentation>TDT,
              A segment to indicate information related to the main
              carriage stage of the transport (sea), such as
@@ -164,19 +164,19 @@
              pre-carriage stage can also be included, such as
              identification and type of means of transport.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>LOC,
              A segment to indicate locations such as (final) discharge
              ports and inland locations related to the corresponding
              transport stage.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment to specify a date/time relating to the
              transport stage.</documentation>
                 </segment>
             </segmentGroup>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment to specify a related address or party, such as:
           -   ordering customer (for container announcement)
@@ -185,7 +185,7 @@
           -   final place of positioning</documentation>
             </segment>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
             <documentation>CNT,
        A segment to specify the number of containers in the message,
        explicitly given by the sender.</documentation>

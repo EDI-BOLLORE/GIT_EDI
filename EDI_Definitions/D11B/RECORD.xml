@@ -1,0 +1,580 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="RECORD" namespace="urn:org.milyn.edi.unedifact:un:d11b:record" version="D:11B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="RECORD">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        To indicate the type of message, its function and its identifying
+        reference.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        To specify dates and times relating to the transaction and to the
+        process stage. The 'transaction creation date and time' and the
+        'contract version date and time' are required. The use of the other
+        values depends on the type of transaction.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Agreement identification" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="AGR">
+            <documentation>AGR,
+        A segment primarily used to specify the placing stage (i.e.
+        quotation, order, endorsement) and - in case of an endorsement -
+        the endorsement type. It can also be used to give some high- level
+        indicators regarding the nature of the risk (e.g. contract type).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+            <documentation>RFF,
+        The segment must be used to specify the risk reference: this is the
+        key reference that the risk will carry from the start to finish
+        throughout each of the cycles - supplemented with the placing stage
+        type and the contract version date/time stamp which can both
+        change. Other references that may be specified at this level
+        include: the 'link reference' which links this specific placement
+        to the placement of one or more other contracts (required to
+        indicate that a previous contract is renewed as a set of linked
+        contracts); the 'password access reference' which may be required
+        in some implementations to access the risk data; the 'authorising
+        market reference' which is required in some implementations of the
+        endorsement process (London practice only).</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+        Used to specify at header level whether information has been
+        modified. If both underlying policy and contract have the same
+        data, then there is no need to specify all the insurance policy
+        data: they are simply listed under the reinsurance contract, and a
+        flag here indicates this fact. The segment can equally be used to
+        indicate - specifically for an endorsement - if the data need to be
+        made available to the bureau members (London practice only). The
+        'reason for declining' can be specified here in a coded format.
+        A further code can be used to identify the character of the
+        transaction. Lastly, codes can be used to indicate the scope of the
+        requested common account protection.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+        Mainly used to specify the reason of the transaction in textual
+        format. Additionally, it can be used to specify the contract name
+        and to explain the nature of the revision or the endorsement. Even
+        though the message allows for text, it should be used sparsely.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        This group must be used to specify sender and receiver.
+        Additionally and when relevant, the information originator and
+        third parties receiving a copy of the message can equally be
+        specified.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+           To specify the sender and receiver of the transaction, and
+           optionally third parties such as the information originator (in
+           case the message is simply passed on) and courtesy copy
+           receivers.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Business function" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="BUS">
+                <documentation>BUS,
+           To describe the business function of the party named.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           To specify contract references for the party named. In case of
+           placement or endorsement of a single contract, the contract
+           reference will be specified. In case of a process that involves
+           a group of contracts (in reinsurance terms: set of layers or
+           bouquet), the contract group reference will be specified. In
+           case of renewal, the previous contract reference(s) need to be
+           specified. The original policy reference will only be used in
+           case of a facultative (i.e. individual risk) placement whereby
+           the policy details are not given as they are a subset of the
+           contract data. The parent contract reference is specified when a
+           declaration is placed. A reference may equally be specified in a
+           response flow to indicate the reference number of the
+           transaction to which this RECORD is a reply or addition.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+           This group is used to specify contact persons or departments
+           within the named party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              To specify the contact within the named party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              To specify the means of communicating with the named party
+              contact.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        This group is used to perform all basic reporting either at
+        contract level or per section, i.e.
+        - section criteria for sections; 
+        - clauses; 
+        - coverages, deductibles, premiums and deductions; 
+        - other types of provision (settlement terms, account submission
+        terms, deposit use terms, etc.); 
+        - parties and their involvement.
+        Clarification: The maximum of 99 repeats has been introduced for
+        practical reasons, and is to be understood as an overall limit on
+        the total number of sections and subsections in any one contract.
+        Even though in theory some data could be provided at contract level
+        (e.g. commission, brokerage) and others at section level (e.g.
+        coverages, deductibles), it is strongly advised to provide
+        coverage, deductible, deduction and premium data per section - even
+        when this represents a certain amount of duplication - in order to
+        ease treatment by computer systems.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                <documentation>IDE,
+           To identify the contract and/or section level.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <documentation>GEI,
+           To indicate what type of general conditions apply and to what
+           the amounts in the section relate (e.g. 100 % of policy, cedent
+           share of original risk, ceded share of risk, etc.). The segment
+           can also be used to indicate whether the primary source of the
+           information is paper-based or electronic.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                <documentation>ICD,
+           To describe the cover for the section.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           To specify the contract reference in case a contract group
+           reference was given in the header. It can also be used to
+           indicate the layer/surplus number of the cover if relevant. The
+           policy reference can be specified if a section is used to
+           describe a policy.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <documentation>ATT,
+           To specify the class(es) of business, the type(s) of occupancy,
+           the peril(s), the subject(s) of insurance and/or the origin of
+           business that have been used as section or contract level
+           criteria. The segment may also be used to specify the technical
+           nature of the (part of the) contract within this section.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                <documentation>CUX,
+           If all amounts in the section or contract are expressed in the
+           same currency, the segment can be used to specify this by means
+           of the reference currency; in case conversion agreements are
+           pre-arranged, further repeats can also be used to specify
+           original currencies (calculation base currency) and their
+           exchange rate.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           To specify the criterion used for the section or contract in
+           textual form, and/or to give further cover details. It can
+           equally be used to render a section heading.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           This group is used to specify any period relating to the section
+           or contract - in particular various coverage periods.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Period related details" nodeTypeRef="UN:PER" segcode="PER" truncatable="true" xmltag="PER">
+                    <documentation>PER,
+              To identify any periods relating to this section or contract.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+              This group allows to specify dates or durations of the
+              coverage period.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 To indicate dates and/or duration for the contract
+                 coverage. The first repeat of the date/time/period segment
+                 will typically be used to render the 'start date' of the
+                 period. It can however also be used to specify the period
+                 duration. The second repeat is typically to be used to
+                 render the end date of the period. In case the first
+                 segment was used to specify the duration, then the second
+                 one will be used to specify the (estimated) end date and
+                 time.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <documentation>GEI,
+                 To give date or period related indicators such as 'date
+                 included', 'date not known', etc.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+           This group allows to specify covered locations in terms of
+           country and address or (additionally) in terms of longitude and
+           latitude.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <documentation>LOC,
+              To identify the geographical scope(s) or specific coverage
+              location(s) that are used as selection criteria for this
+              section. In case the section is in respect of a voyage, the
+              various ports may be specified here as well.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+              To express a location in terms of longitude and latitude.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <documentation>ADR,
+              To express the risk location in address format if more
+              appropriate.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+           To specify clauses related to the section or contract and
+           important related information.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Clause identification" nodeTypeRef="UN:CLA" segcode="CLA" truncatable="true" xmltag="CLA">
+                    <documentation>CLA,
+              To identify which clause(s) are related to the contract or
+              policy.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Applicability" nodeTypeRef="UN:APP" segcode="APP" truncatable="true" xmltag="APP">
+                    <documentation>APP,
+              To specify the applicability of the clause.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              To express amounts for the clause.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+              To express the rates applicable for the clause.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              To indicate the clause reference data (e.g. the date from
+              which cancellation starts), and/or the clause duration. The
+              exact meaning will depend on the type of clause, e.g.
+              retroactive date (sunrise clause), cessation date (sunset
+              clause), etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+              To indicate that full details are to be found in the
+              contractual documentation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              To provide a clause description.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+                             SG9-SG10-SG11-SG12-SG13
+           This group is used to render all the basic data that are
+           involved in a contract or section: coverages, deductibles,
+           deductions and premiums. Additionally, it can be used to specify
+           other types of proviso such as settlement terms, bordereau and
+           account submission terms etc.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Proviso details" nodeTypeRef="UN:PRV" segcode="PRV" truncatable="true" xmltag="PRV">
+                    <documentation>PRV,
+              To render proviso data of any nature.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Applicability" nodeTypeRef="UN:APP" segcode="APP" truncatable="true" xmltag="APP">
+                    <documentation>APP,
+              To describe how the proviso applies.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+              To express the proviso and/or the proviso basis as an amount.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+              To express the proviso as a rate.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              To express the proviso as a duration or period.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+              To express the proviso and/or proviso basis (mainly for
+              premium) as a quantity. Additionally, it can be used to
+              specify the total number of reinstatements if the proviso =
+              'reinstatement coverage'.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Formula" nodeTypeRef="UN:FOR" segcode="FOR" truncatable="true" xmltag="FOR">
+                    <documentation>FOR,
+              To specify the formula used in calculating the proviso.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                    <documentation>CUX,
+              To render original currencies and pre-arranged exchange
+              rates.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Clause identification" nodeTypeRef="UN:CLA" segcode="CLA" truncatable="true" xmltag="CLA">
+                    <documentation>CLA,
+              To specify the clause(s) to which the proviso relates.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+              To indicate that full details are to be found in supporting
+              documentation. It can also be used in case the proviso =
+              reinstatement coverage to express that the number of
+              reinstatements is unlimited, and/or that the reinstatement
+              premiums need to be calculated in the loss currency. It may
+              also be used to specify general indicators related to the
+              proviso such as reserve deposit release method, proviso
+              frequency, loss adjustment expenses modality, reserve deposit
+              use, etc.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              To provide textual details relating to the proviso.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+              A group of segments to provide details of the basis of the
+              proviso and how the basis is applied.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Basis" nodeTypeRef="UN:BAS" segcode="BAS" truncatable="true" xmltag="BAS">
+                        <documentation>BAS,
+                 To specify one basis for the proviso.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Applicability" nodeTypeRef="UN:APP" segcode="APP" truncatable="true" xmltag="APP">
+                        <documentation>APP,
+                 To specify how the basis is to be applied.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                    <documentation>Segment group 10:
+              The group will be used to link specific perils, classes of
+              business, subject of insurance amongst other to a proviso.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                        <documentation>ATT,
+                 To specify the class of business, origin of business,
+                 subject of insurance, peril or type of occupancy that the
+                 proviso is in respect of.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 To specify the percentage that the accounting class
+                 represents in the total reporting.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_11">
+                    <documentation>Segment group 11:
+              To specify one or more locations linked to the proviso.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <documentation>LOC,
+                 To specify one location linked to the proviso.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                        <documentation>MEA,
+                 To describe a location in terms of longitude and latitude.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                        <documentation>ADR,
+                 To describe the location to which the coverage, deductible
+                 or premium relates as an address.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_12">
+                    <documentation>Segment group 12:
+              The group will typically be used to specify settlement terms
+              when settlement terms or reserve is the proviso. The group
+              can also be used if parts of the amounts due need to be
+              settled using various methods (e.g. 20 % of loss reserve
+              deposit via Letter of Credit, 80 % via bank transfer).</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment terms" nodeTypeRef="UN:PYT" segcode="PYT" truncatable="true" xmltag="PYT">
+                        <documentation>PYT,
+                 To specify settlement terms.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 To specify the percentage of the total due that needs to
+                 be settled.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_13">
+                    <documentation>Segment group 13:
+              This group serves multiple purposes : Each proviso must be
+              assigned a number in order to make identification easier. The
+              group may also be used to indicate the reinstated cover
+              number for which details are given. The group as such can be
+              used to specify instalment details in case that settlement
+              terms is the proviso. Finally, the group can also be used to
+              render commission related tables - particularly when they are
+              using variable steps.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                 To specify the relevant references.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 To specify the amount of the instalment.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 In case instalments are reported, the segment may be used
+                 to specify the percentage of the total amount to be
+                 settled in the instalment. The other usages are for
+                 commission tables as outlined in the group usage
+                 clarification.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 To specify instalment related dates.</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_14">
+                <documentation>Segment group 14:
+           To specify parties involved in the contract or policy, their
+           shares and conditions.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <documentation>PNA,
+              To identify the name of any party related to the reinsurance
+              contract or policy.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                    <documentation>ATT,
+              To specify further attributes of the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <documentation>ADR,
+              To indicate one or more addresses of the party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              To specify the name of the authorising underwriter.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              To identify means of communication with the authorising
+              underwriter.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              For responding parties to specify their quote reference or
+              (previous) contract references.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                    <documentation>Segment group 15:
+              This group is used to describe the share of the party in the
+              section. This can either be the requested, the previous or
+              the firm involvement or 'line', and it can either be attached
+              to conditions or not.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                        <documentation>STS,
+                 To describe the involvement of the party.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <documentation>RFF,
+                 To be used to indicate the line identification and when
+                 relevant the line number (the sequential number this
+                 specific line will have on the contract). Additionally,
+                 this segment may carry the 'broker system id', which is an
+                 identifying unique reference of the individual who
+                 accepted the reinsurers's conditions.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 To indicate the authorisation period linked to the line.
+                 It may be used when the message is used as a market status
+                 report to specify the response date/time of each party on
+                 the list.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 To express the involvement as an amount or to request it
+                 to be expressed in these terms.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 To express the involvement as a percentage or to indicate
+                 that the line is expected in this format. Additionally, it
+                 can be used to report specific condition percentages
+                 attached to the party's line in a 'party involvement
+                 report'.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                 To express the line as a quantity, or to request the line
+                 to be written in such a format.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <documentation>FTX,
+                 To give additional information regarding the format of the
+                 line. Additionally, it can be used to clarify the reason
+                 why a party declined interest in the risk.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_16">
+                        <documentation>Segment group 16:
+                 Used to specify the condition(s) attached to the line.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                            <documentation>RCS,
+                    To specify the general type of condition and its
+                    reference.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                            <documentation>FTX,
+                    To render the condition in a textual form and
+                    optionally the description of the response (to be)
+                    given.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                            <documentation>ATT,
+                    To specify the accounting class.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <documentation>RFF,
+                    To specify the reference for the accounting
+                    requirements.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                            <documentation>PCD,
+                    To specify the percentage split the underwriter wants
+                    to see for the specified accounting class.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_17">
+            <documentation>Segment group 17:
+        Used to reference supporting information related to the contract,
+        policy or a section of either.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                <documentation>DOC,
+           To identify supporting documents in the widest sense of the term
+           and details directly related to them.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           To provide a reference to a password which enables access to
+           supporting information.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                <documentation>IDE,
+           To identify whether the information is related to the contract
+           or to one of more specific sections, and if so, which ones.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <documentation>COM,
+           To specify the (possibly various) means of communication by
+           which the information can, will or should be put at the disposal
+           of the other parties involved.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="External file link identification" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="EFI">
+                <documentation>EFI,
+           To specify the link of a non-EDI document to an UN/EDIFACT
+           message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+           To specify the originator of the supporting information.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           To identify the date and time that the supporting information
+           was created and put at the disposal of the partners.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

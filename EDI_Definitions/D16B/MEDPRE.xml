@@ -1,0 +1,741 @@
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="MEDPRE" namespace="urn:org.milyn.edi.unedifact:un:d16b:medpre" version="D:16B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="MEDPRE">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
+        To indicate the type and function of a message and to transmit the
+        identification of the message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
+        To specify date and/or time relating to the message, such as the
+        date and time the message is generated.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <medi:documentation>FTX,
+        A segment with free text information, in coded or clear form, to
+        provide information related to the message.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
+        To represent information about involved healthcare parties.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                <medi:documentation>SEQ,
+           To allocate a unique reference number to an individual party
+           allowing each party to be referenced from other locations within
+           the message.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <medi:documentation>PNA,
+           To specify information necessary to establish the identity of a
+           healthcare party.
+           
+           One occurrence of the segment is used to specify the identity
+           details at one level. If both organisation, department and/or
+           physician are to be specified then a separate occurrence of this
+           segment has to be used for each of them.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                <medi:documentation>IDE,
+           To specify alternative identification numbers of a healthcare
+           party.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Organisation classification details" nodeTypeRef="UN:SPR" segcode="SPR" truncatable="true" xmltag="SPR">
+                <medi:documentation>SPR,
+           To specify the medical speciality and type of a healthcare
+           organisation.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Qualification" nodeTypeRef="UN:QUA" segcode="QUA" truncatable="true" xmltag="QUA">
+                <medi:documentation>QUA,
+           To specify the qualification of a healthcare professional.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Employment details" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="EMP">
+                <medi:documentation>EMP,
+           A segment to specify the type, medical speciality and the
+           position or military rank of a healthcare professional.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                <medi:documentation>ADR,
+           To specify an address of a healthcare party.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <medi:documentation>COM,
+           To specify a communication number of a party.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment to specify a link to a higher level healthcare
+           organisation which the actual healthcare organisation or
+           healthcare professional is a part of.
+           
+           This segment is only used if multiple occurrences of this
+           segment group is needed to express the information of a
+           healthcare party.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <medi:documentation>Segment group 2:
+           To specify a document or message to be returned to the actual
+           party as a response to this message.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                    <medi:documentation>DOC,
+              To specify the type of the requested document or message.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              To identify the requested communication method.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_3">
+            <medi:documentation>Segment group 3:
+                          SG4-SG5-SG6-SG7
+        A group of segments to describe the subject of care.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <medi:documentation>ATT,
+           To specify the type of subject of care such as a person, group
+           of persons, an animal or a group of animals.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <medi:documentation>PNA,
+           To specify the name and official ID of the person or the
+           identification of a group of persons, animal or animal group.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Person demographic information" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="PDI">
+                <medi:documentation>PDI,
+           To specify the gender of the person or animal.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                <medi:documentation>IDE,
+           To specify an alternative identification numbers for the subject
+           of care.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           To specify a date and/or time related to the subject of care
+           such as date and time of birth or age.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Nationality" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="NAT">
+                <medi:documentation>NAT,
+           To specify the nationality of the person.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Agreement identification" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="AGR">
+                <medi:documentation>AGR,
+           To specify the basis of entitlement to health services and  any
+           confidentiality constraint that applies to the handling of
+           information about the subject of care.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
+                <medi:documentation>CCI,
+           To specify the breed and species of an animal.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                <medi:documentation>STS,
+           To specify the authenticity of the person's identity by the
+           prescriber, such as person known by prescriber, person unknown,
+           etc.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <medi:documentation>FTX,
+           A segment with free text information, in coded or clear form, to
+           provide information relating to the subject of care, such as a
+           confidentiality constraint concerning a person or age of a group
+           of animals.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
+                <medi:documentation>LAN,
+           To specify the language of the person.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
+                <medi:documentation>CAV,
+           To specify the person's ability in the language.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <medi:documentation>Segment group 4:
+           A group of segments to specify any precaution advice concerning
+           the subject of care.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
+                    <medi:documentation>HAN,
+              To specify a precaution as a code.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment with free text information, in coded or clear form,
+              to specify a precaution.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              To specify an associated date for the precaution such as
+              start or end date and/or time.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <medi:documentation>Segment group 5:
+           A group of segments to specify an address and related
+           communication number(s) of the actual party.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <medi:documentation>ADR,
+              To specify an address of the subject of care.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              To specify a communication number for the subject of care at
+              the specific address.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+                <medi:documentation>Segment group 6:
+           A segment group to provide information about a related party
+           such as next-of-kin or animal carer.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                    <medi:documentation>REL,
+              To specify the type of relationship between the subject of
+              care and the related party.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              To specify information necessary to establish the identity of
+              a related party.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Person demographic information" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="PDI">
+                    <medi:documentation>PDI,
+              To specify the gender of the person.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <medi:documentation>ADR,
+              To specify an address of a patient related party.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              To specify a communication number of a patient related party.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
+                    <medi:documentation>LAN,
+              To specify a language of the person.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
+                    <medi:documentation>CAV,
+              To specify the person's ability in the language.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
+                <medi:documentation>Segment group 7:
+           This segment group contains clinical information about the
+           patient such as medical history, investigation results,
+           medication records or allergies.
+           
+           Each occurrence of this segment group provides information
+           concerning a single clinical information item.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                    <medi:documentation>LIN,
+              To allocate an identification number to the clinical
+              information item.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
+                    <medi:documentation>CIN,
+              To specify the type of clinical information item and possibly
+              a medical diagnosis.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              To specify start and/or end date and/or time for the clinical
+              information item and/or date and/or time of the origin of the
+              clinical information item.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              To specify information necessary to establish the identity of
+              the party providing the clinical information item.
+              
+              One occurrence of the segment is used to specify the identity
+              details at one level. If both organisation, department and/or
+              physician are to be specified then a separate occurrence of
+              this segment has to be used for each of them.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
+                    <medi:documentation>LAN,
+              To specify the language of the clinical information item.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment with free text information, in coded or clear form,
+              to specify an item of clinical information.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Result" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="RSL">
+                    <medi:documentation>RSL,
+              To specify a clinical investigation result item, such as the
+              height or weight of the subject of care or the result of a
+              laboratory investigation.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical intervention" nodeTypeRef="UN:CLI" segcode="CLI" truncatable="true" xmltag="CLI">
+                    <medi:documentation>CLI,
+              To specify a clinical examination such as a height
+              measurement.
+              
+              Multiple occurrences of this segment may be needed if a
+              multi-axial coding scheme is being used.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
+                    <medi:documentation>CCI,
+              To specify a characteristic of a laboratory investigation.
+              
+              Multiple occurrences of this segment may be needed if a
+              multi-axial coding scheme is being used.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+                    <medi:documentation>Segment group 8:
+              A group of segments to specify current or past medication or
+              known allergy.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                        <medi:documentation>IMD,
+                 A segment to identify a medicinal product item.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                        <medi:documentation>STS,
+                 To specify the medicinal treatment status such as
+                 commenced, stopped or a patient allergy.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dosage administration" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="DSG">
+                        <medi:documentation>DSG,
+                 To specify the form of presentation or the route of
+                 administration of the medicinal product as well as dosage
+                 administration or trigger for administration.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
+                        <medi:documentation>INP,
+                 To specify an instruction for use.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment with free text information, in coded or clear
+                 form, to provide comments to dosage administration.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Scheduling conditions" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="SCC">
+                        <medi:documentation>SCC,
+                 To specify a dosage pattern as structured information.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 To specify a quantity concerning the medicine such as a
+                 single dose or strength of tablet.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_9">
+            <medi:documentation>Segment group 9:
+                          SG14
+        A group of segments to specify a set of prescriptions issued for a
+        subject of care.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <medi:documentation>GEI,
+           To specify the service type of the prescription set such as a
+           new prescription, a modification of an earlier prescription or
+           cancellation of a prescription.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                <medi:documentation>IDE,
+           To identify the prescription set and the coding scheme used for
+           identification of the medicinal product(s).</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           A segment to specify a date and/or time relevant for the
+           prescription set such as issue date of prescription set or
+           requested date and time of dispensing.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Priority" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="PTY">
+                <medi:documentation>PTY,
+           A segment to specify the requested priority for dispensing.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Agreement identification" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="AGR">
+                <medi:documentation>AGR,
+           To specify the agreed disposal of the prescribed medicinal
+           product(s) such as to be used by the client or for distribution.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
+                <medi:documentation>LAN,
+           A segment to specify the language of the prescription set.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                <medi:documentation>STS,
+           To specify the status of the prescription set such as requested,
+           prescribed or dispensed.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <medi:documentation>FTX,
+           A segment with free text information, in coded or clear form, to
+           provide comments to the prescription set.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_10">
+                <medi:documentation>Segment group 10:
+           A group of segments to specify a reference to a related message
+           or document.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                    <medi:documentation>DOC,
+              To specify the type of message or document being referenced.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                    <medi:documentation>IDE,
+              To identify a referenced message or document.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              To specify issue date and/or time for a referenced message or
+              document.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_11">
+                <medi:documentation>Segment group 11:
+           A group of segments to specify where the dispensed medicine is
+           to be delivered or collected.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                    <medi:documentation>TOD,
+              To specify how the dispensed medicine(s) will be delivered or
+              collected.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                    <medi:documentation>TDT,
+              A segment to specify the mode of transport for the delivery
+              of dispensed medicine(s).</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment with free text information, in coded or clear form,
+              to specify the delivery of the dispensed medicine(s).</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to specify a date and/or time relevant for the
+              delivery of the dispensed medicine(s) such as date and time
+              of delivery.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                    <medi:documentation>ADR,
+              A segment to specify the address for delivery of the
+              dispensed medicine(s).</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              A segment to identify a telecommunication number for the
+              receiver at the dispensed medicine delivery point.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              A segment to identify the receiver of a dispensed medicine.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Priority" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="PTY">
+                    <medi:documentation>PTY,
+              A segment to specify the requested priority for the delivery
+              of the dispensed medicine(s).</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                    <medi:documentation>PAC,
+              To specify if special packaging is required.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_12">
+                <medi:documentation>Segment group 12:
+           A group of segments to specify the party responsible in part or
+           in whole for the payment and the related payment conditions for
+           the dispensed medicine(s) in the actual prescription set.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Financial charges allocation" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="FCA">
+                    <medi:documentation>FCA,
+              To specify the responsibility for the settlement of charges,
+              i.e. whether the costs are to be paid by the patient, by
+              private insurance, etc.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              To specify information necessary to establish the identity of
+              the payer.
+              
+              One occurrence of the segment is used to specify the identity
+              details at one level. Thus two occurrences of this segment
+              may be needed if both organisation and department are being
+              used.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                    <medi:documentation>IDE,
+              To identify a payer.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                    <medi:documentation>RCS,
+              To specify a national requirement or condition.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_13">
+                    <medi:documentation>Segment group 13:
+              A group of segments to specify a payment condition.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                        <medi:documentation>ICD,
+                 To specify insurance cover type and care coverage.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Allowance or charge" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="ALC">
+                        <medi:documentation>ALC,
+                 To specify a reason for reduced or no payment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <medi:documentation>PCD,
+                 To specify percentage to be paid as the contribution of
+                 the payer.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                 To specify a monetary amount as the contribution of the
+                 payer.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                        <medi:documentation>IDE,
+                 To specify a reference for the authorisation of this
+                 service.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment to specify a date and/or time relevant to this
+                 payment condition such as date of authorisation.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+                <medi:documentation>Segment group 14:
+                             DTM-STS-CIN-FTX-SG15-SG16-SG17
+           A group of segments to specify the information about a single
+           prescription item.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                    <medi:documentation>LIN,
+              A segment to specify a prescription item identification and
+              request for notification information related to variation in
+              delivery such as a substituted item or delivery failure.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dosage administration" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="DSG">
+                    <medi:documentation>DSG,
+              A segment to specify the form of presentation of the
+              medicinal product.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                    <medi:documentation>IMD,
+              A segment to identify a medicinal product item and the type
+              of the item.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <medi:documentation>QTY,
+              To specify a quantity concerning the medicine regime such as
+              number of units of supply or strength of tablet.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Product group information" nodeTypeRef="UN:PGI" segcode="PGI" truncatable="true" xmltag="PGI">
+                    <medi:documentation>PGI,
+              A segment to specify the group in which the medicine belongs
+              such as legal category or price category.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              A segment to specify the supplier of the medicinal product,
+              the manufacturer of the medicinal product or the initial
+              prescriber of the treatment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                    <medi:documentation>PAC,
+              A segment to specify the type of package and the number of
+              physical units.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                    <medi:documentation>IDE,
+              To identify the package or to give an alternative
+              identification of the initial authoriser.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Delivery limitations" nodeTypeRef="UN:DLM" segcode="DLM" truncatable="true" xmltag="DLM">
+                    <medi:documentation>DLM,
+              To specify limitations on dispensing such as allowed
+              substitution type if any.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Number of units" nodeTypeRef="UN:EQN" segcode="EQN" truncatable="true" xmltag="EQN">
+                    <medi:documentation>EQN,
+              To specify the number of times dispensing to be repeated.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Process identification" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="PRC">
+                    <medi:documentation>PRC,
+              A segment to specify information about the preparation of an
+              extemporaneously dispensed medicine.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to specify a date and/or time or period concerning
+              the prescribing of the dispensed medicine such as dispensing
+              interval or initial date of treatment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                    <medi:documentation>STS,
+              To specify the status of the dispensed medicine provided such
+              as requested, dispensed, etc.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
+                    <medi:documentation>CIN,
+              To specify the indication for the prescribed item and/or
+              comments concerning the prescribed item expressed as a
+              clinical code.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment with free text information, in coded or clear form,
+              expressing the indication for the prescribed item, package
+              description, comments concerning the prescribed item or other
+              information about this prescription item.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                    <medi:documentation>Segment group 15:
+              A group of segments to specify information about a single
+              ingredient.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
+                        <medi:documentation>CAV,
+                 A segment to specify the function of the ingredient such
+                 as active or excipient ingredient.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                        <medi:documentation>IMD,
+                 A segment to identify the ingredient.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 A segment to specify the quantity for an ingredient.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment with free text information, in coded or clear
+                 form, to provide comments about the ingredient.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                    <medi:documentation>Segment group 16:
+              A group of segments to specify how the dispensed medicine
+              should be administered and used.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                        <medi:documentation>SEQ,
+                 To allocate a sequential regimen phase number.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dosage administration" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="DSG">
+                        <medi:documentation>DSG,
+                 To specify how the dispensed medicine is administered.
+                 
+                 If this information is provided in a structured way then
+                 this segment is used for route of administration or
+                 trigger for administration.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 A segment to specify a quantity related to dosage of the
+                 dispensed medicine such as the single dose or maximum
+                 daily dose.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
+                        <medi:documentation>INP,
+                 To instruct the dispenser that an exceptional dosage
+                 regimen is intended.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment to specify a date and/or time or period
+                 concerning dosage of the dispensed medicine such as
+                 duration of treatment or time of administration.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment with free text information, in coded or clear
+                 form, to provide information relating to the medicine
+                 dosage and administration.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Scheduling conditions" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="SCC">
+                        <medi:documentation>SCC,
+                 To specify a dosage pattern and dosage frequency as
+                 structured information.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
+                        <medi:documentation>CIN,
+                 A segment to specify the indication for the use of the
+                 dispensed medicine.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
+                        <medi:documentation>PCI,
+                 To specify a cautionary or advisory label.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
+                        <medi:documentation>LAN,
+                 A segment to specify the language of the instructions.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attached equipment" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="EQA">
+                        <medi:documentation>EQA,
+                 To specify device or equipment to be used for the
+                 administration of the dispensed medicine.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_17">
+                    <medi:documentation>Segment group 17:
+              A group of segments to specify the party that is responsible
+              in part or in whole for the payment of the actual
+              prescription item and the related payment conditions.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Financial charges allocation" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="FCA">
+                        <medi:documentation>FCA,
+                 To specify the responsibility for the settlement of
+                 charges, i.e. whether the costs are to be paid by the
+                 patient, by private insurance, etc.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                        <medi:documentation>PNA,
+                 To specify information necessary to establish the identity
+                 of the payer.
+                 
+                 One occurrence of the segment is used to specify the
+                 identity details at one level. Thus two occurrences of
+                 this segment may be needed if both organisation and
+                 department are being used.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                        <medi:documentation>IDE,
+                 To identify a payer.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                        <medi:documentation>RCS,
+                 To specify a national requirement or condition.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_18">
+                        <medi:documentation>Segment group 18:
+                 A group of segments to specify a payment condition.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                            <medi:documentation>ICD,
+                    To specify the insurance cover type and care coverage.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Allowance or charge" nodeTypeRef="UN:ALC" segcode="ALC" truncatable="true" xmltag="ALC">
+                            <medi:documentation>ALC,
+                    To specify a reason for reduced or no payment.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                            <medi:documentation>PCD,
+                    To specify percentage to be paid as the contribution of
+                    the payer.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <medi:documentation>MOA,
+                    To specify a monetary amount as the contribution of the
+                    payer.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                            <medi:documentation>IDE,
+                    To specify a reference for the authorisation of this
+                    service.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <medi:documentation>DTM,
+                    A segment to specify a date and/or time relevant to
+                    this payment condition such as date of authorisation.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+            <medi:documentation>CNT,
+        A segment to provide the number of prescription items in the
+        message.</medi:documentation>
+        </medi:segment>
+    </medi:segments>
+</medi:edimap>

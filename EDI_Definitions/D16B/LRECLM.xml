@@ -1,0 +1,233 @@
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="LRECLM" namespace="urn:org.milyn.edi.unedifact:un:d16b:lreclm" version="D:16B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="LRECLM">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
+        A segment specifying the type of message contained in the
+        transmission.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
+        A segment specifying the reporting period ending date.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+            <medi:documentation>CUX,
+        A segment identifying the default currency and its scaling factor
+        for monetary amounts in this message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+            <medi:documentation>CTA,
+        A segment identifying a person(s) or department(s), and their
+        function(s), to whom communications should be directed.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <medi:documentation>FTX,
+        A segment with free text information, in coded or clear form, used
+        when additional information is needed but cannot be accommodated
+        within other segments.
+
+4.1.2  Detail section
+
+       Information to be provided in the Detail section:</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="999999" minOccurs="1" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
+        A group of segments in which is detailed claim information.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                <medi:documentation>IMD,
+           A segment defining the type of claim.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <medi:documentation>ATT,
+           A segment providing attributes of the claim.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           A segment specifying general dates or durations related to the
+           claim.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <medi:documentation>LOC,
+           A segment giving location information for the place of death or
+           location where the onset of the disability occurred.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <medi:documentation>PCD,
+           A segment specifying the extent of loss and the interest rate to
+           be used in calculating the claim payment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment specifying the claim numbers as assigned by the ceding
+           company and the reinsurer.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                <medi:documentation>CUX,
+           A segment identifying the default currency and its scaling
+           factor for monetary amounts for the claim.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <medi:documentation>FTX,
+           A segment with free text information, in coded or clear form,
+           used when additional information is needed regarding the claim.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <medi:documentation>Segment group 2:
+           A group of segments in which is detailed monetary amounts and
+           their purpose for the claim.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <medi:documentation>MOA,
+              A segment specifying a monetary amount.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                    <medi:documentation>ARD,
+              A segment specifying the purpose of the monetary amount.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_3">
+                <medi:documentation>Segment group 3:
+           A group of segments in which is detailed information regarding
+           the person for which this claim is being submitted.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              A segment identifying the name of the person on claim.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment specifying general date and durations associated
+              with the person on claim.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
+              A segment giving location information for the place of
+              residence of the person on claim at the time of loss.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Employment details" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="EMP">
+                    <medi:documentation>EMP,
+              A segment providing the occupation class of the person on
+              claim at time of loss for purposes of this claim as defined
+              by the issuing company.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                    <medi:documentation>Segment group 4:
+              A group of segments in which is detailed monetary amounts and
+              their purpose for this person on claim.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                 A segment specifying a monetary amount.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                        <medi:documentation>ARD,
+                 A segment specifying the purpose of the monetary amount.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_5">
+                <medi:documentation>Segment group 5:
+           A group of segments in which is detailed information regarding
+           the policy on claim and other policies related to the claim.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <medi:documentation>GEI,
+              An indicator specifying whether this policy is the policy on
+              claim or an associated policy.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
+              A segment specifying the policy number as assigned by the
+              ceding company.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <medi:documentation>PNA,
+              A segment identifying the original issuer of the policy, in
+              coded or clear form.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment specifying general dates and durations associated
+              with the policy on claim or related policy.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                    <medi:documentation>Segment group 6:
+              A group of segments in which is detailed monetary amounts and
+              their purpose for this policy.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                 A segment specifying a monetary amount.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                        <medi:documentation>ARD,
+                 A segment specifying the purpose of the monetary amount.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                    <medi:documentation>Segment group 7:
+              A group of segments in which is detailed information
+              regarding the insureds on this policy.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                        <medi:documentation>IDE,
+                 A segment identifying the party as the insured of record.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                        <medi:documentation>PNA,
+                 A segment identifying the insured's name and universal
+                 identifier.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment specifying the date of birth of the insured.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                        <medi:documentation>Segment group 8:
+                 A group of segments in which is detailed coverage
+                 information regarding the insured.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Insurance cover description" nodeTypeRef="UN:ICD" segcode="ICD" truncatable="true" xmltag="ICD">
+                            <medi:documentation>ICD,
+                    A segment giving the insurance cover type associated
+                    with this coverage.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <medi:documentation>DTM,
+                    A segment specifying general dates or durations related
+                    to this coverage.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <medi:documentation>RFF,
+                    A segment specifying general references for this
+                    coverage.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                            <medi:documentation>ATT,
+                    A segment providing attributes of the coverage.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                            <medi:documentation>PCD,
+                    A segment specifying the percentages associated with
+                    the claim.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Agreement identification" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="AGR">
+                            <medi:documentation>AGR,
+                    A segment identifying the treaty as assigned by the
+                    ceding company.</medi:documentation>
+                        </medi:segment>
+                        <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                            <medi:documentation>Segment group 9:
+                    A group of segments in which is detailed monetary
+                    amounts and their purpose for the coverage.</medi:documentation>
+                            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                                <medi:documentation>MOA,
+                       A segment specifying a monetary amount.</medi:documentation>
+                            </medi:segment>
+                            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                                <medi:documentation>ARD,
+                       A segment specifying the purpose of the monetary
+                       amount.</medi:documentation>
+                            </medi:segment>
+                        </medi:segmentGroup>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>

@@ -1,0 +1,752 @@
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="DESADV" namespace="urn:org.milyn.edi.unedifact:un:d16b:desadv" version="D:16B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="DESADV">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
+        A segment for unique identification of the Despatch Advice
+        document, by means of its name and its number.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
+        Date/time/period related to the whole message. The DTM segment must
+        be specified at least once to identify the Despatch Advice date.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+            <medi:documentation>ALI,
+        A segment indicating that the message is subject to special
+        conditions due to origin, customs preference or commercial factors.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+            <medi:documentation>MEA,
+        A segment specifying the weight and volume of the consignment.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+            <medi:documentation>MOA,
+        A segment to transmit monetary amounts for the whole despatch
+        required by the consignee to prepare customs clearance procedures.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+            <medi:documentation>CUX,
+        This segment is used to specify currencies and relevant details for
+        the rate of exchange.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
+        A group of segments giving references where necessary, their dates
+        relating to the whole message, e.g. contract number.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment for referencing documents relating to the whole
+           despatch advice message, e.g. purchase orders, delivery
+           instructions, import/export license.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           Date/time/period from the referred document.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+            <medi:documentation>Segment group 2:
+        A group of segments identifying names, addresses, locations, and
+        required supporting documents relevant to the whole Despatch
+        Advice.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
+           A segment for identifying names, addresses, and their functions
+           relevant to the whole Despatch Advice. Identification of the
+           parties involved is recommended for the Despatch Advice message,
+           and is to be given in the NAD segment.
+           
+           It is recommended that where possible, only the coded form of
+           the party ID should be specified, e.g. the buyer and seller are
+           known to each other, thus only the coded ID is required. The
+           consignee or delivery address may vary and would have to be
+           clearly specified, preferably in structured format.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <medi:documentation>LOC,
+           A segment indicating more details regarding specific
+           places/locations related to the party specified in the NAD
+           segment, e.g. internal site/building number.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_3">
+                <medi:documentation>Segment group 3:
+           A group of segments giving references relevant only to the
+           specified party rather than the whole message.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
+              A segment for referencing documents relating to the party
+              specified by the NAD segment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment for specifying Date/time/period of the referred
+              document.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_4">
+                <medi:documentation>Segment group 4:
+           A group of segments to identify the people, functions,
+           departments and appropriate numbers to whom communication should
+           be directed.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <medi:documentation>CTA,
+              A segment to identify the person, function or department to
+              whom communication should be directed.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              A segment to identify communication types and numbers for the
+              person, function or department identified in the CTA.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_5">
+            <medi:documentation>Segment group 5:
+        A group of segments indicating terms of delivery.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                <medi:documentation>TOD,
+           A segment indicating the terms of delivery and transfer for the
+           whole despatch advice.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9999" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <medi:documentation>LOC,
+           A segment indicating locations relevant to the TOD segment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <medi:documentation>FTX,
+           Additional free text pertinent to terms of delivery. In computer
+           to computer exchanges such text will normally require the
+           receiver to process this segment manually.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_6">
+            <medi:documentation>Segment group 6:
+        A group of segments specifying details of the mode, means and
+        method of transport and date/time of departure and destination
+        relevant to the whole despatch advice.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                <medi:documentation>TDT,
+           A segment specifying the carriage, and the mode and means of
+           transport of the goods being despatched.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <medi:documentation>PCD,
+           A segment specifying the percentage of utilization of the
+           capacity of the means of transport.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Transport movement details" nodeTypeRef="UN:TMD" segcode="TMD" truncatable="true" xmltag="TMD">
+                <medi:documentation>TMD,
+           A segment to specify transport movement details for a despatch.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_7">
+                <medi:documentation>Segment group 7:
+           A group of segments giving the location and date/time
+           information relative to the transportation.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
+              A segment indicating locations relevant to the transport
+              specified in the TDT segment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment giving the date/time/period information of
+              departure and/or arrival of the transported goods for the
+              specified location.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_8">
+            <medi:documentation>Segment group 8:
+        A group of segments providing information relative to the equipment
+        used for the transportation of goods relevant to the whole despatch
+        advice.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
+                <medi:documentation>EQD,
+           A segment to define fixed information regarding equipment used
+           in conjunction with the whole despatch advice, and if required,
+           to indicate responsibility for supply of the equipment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                <medi:documentation>MEA,
+           A segment specifying physical measurements of equipment
+           described in the EQD segment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="25" minOccurs="0" name="Seal number" nodeTypeRef="UN:SEL" segcode="SEL" truncatable="true" xmltag="SEL">
+                <medi:documentation>SEL,
+           A segment specifying a seal number connected to a specific
+           equipment named in the EQD.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Attached equipment" nodeTypeRef="UN:EQA" segcode="EQA" truncatable="true" xmltag="EQA">
+                <medi:documentation>EQA,
+           A segment identifying equipment either attached to the equipment
+           described in the EQD segment above, or equipment related to that
+           described in the EQD segment, and which is further defined in a
+           subsequent EQD segment.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_9">
+                <medi:documentation>Segment group 9:
+           A group of segments providing information on hazardous goods and
+           their handling.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
+                    <medi:documentation>HAN,
+              A segment providing information on handling and notification
+              of hazardous materials in the specified equipment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment with free text information in coded or clear form
+              to give further clarification, when required, for hazardous
+              material.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+            <medi:documentation>Segment group 10:
+        A group of segments that refers through an external file
+        identification to each of the external files and giving
+        additional information about each of the files.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="External file link identification" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="EFI">
+                <medi:documentation>EFI,
+           This segment will identify the external files by indicating
+           the file name, file number and its sequence number in an
+           exchange.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Computer environment details" nodeTypeRef="UN:CED" segcode="CED" truncatable="true" xmltag="CED">
+                <medi:documentation>CED,
+           To give precise definitions of all necessary elements
+           belonging to the configuration of a computer system, e.g.
+           hardware, firmware, operating system, communication and
+           application software.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <medi:documentation>COM,
+           To identify a communication number of a department or a
+           person to whom communication should be directed.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment giving reference related to the file identified by
+           a previous external file link identification segment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           This segment will convey the date/time details of the
+           external file.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                <medi:documentation>QTY,
+           The size/volume of the external file identified in the
+           previous external file link identification segment.
+
+4.1.2  Detail section
+
+       Information to be provided in the Detail section:</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_11">
+            <medi:documentation>Segment group 11:
+        A group of segments providing details of all package levels and of
+        the individual despatched items contained in the consignment. This
+        segment group provides the capability to give the hierarchical
+        packing relationships. The group defines a logical top-down order
+        structure.
+        The lowest level package information of the hierarchy is followed
+        by the detail product information.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Consignment packing sequence" nodeTypeRef="UN:CPS" segcode="CPS" truncatable="true" xmltag="CPS">
+                <medi:documentation>CPS,
+           A segment identifying the sequence in which packing of the
+           consignment occurs, e.g. boxes loaded onto a pallet.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <medi:documentation>FTX,
+           A segment with free text information in coded or clear form to
+           give further clarification, when required, as to the packing
+           sequence.
+           
+           In computer to computer exchanges such text will normally
+           require the receiver to process this segment manually.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity variances" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="QVR">
+                <medi:documentation>QVR,
+           A segment identifying a quantity variance and reason for the
+           variance.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_12">
+                <medi:documentation>Segment group 12:
+           A group of segments identifying packaging, physical dimensions,
+           marks and numbers, quantities, date and time information,
+           handling information and information about packing at this
+           level.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                    <medi:documentation>PAC,
+              A segment specifying the number and type of the
+              packages/physical units and the physical type of packaging
+              for the despatched goods.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <medi:documentation>MEA,
+              A segment specifying physical measurements of the
+              packages/physical units described in the PAC segment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <medi:documentation>QTY,
+              A segment to specify the quantity per package described in
+              the PAC segment.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_13">
+                    <medi:documentation>Segment group 13:
+              A group of segments providing information on hazardous goods
+              and handling.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
+                        <medi:documentation>HAN,
+                 A segment providing information on required handling and
+                 notification of hazardous materials in the specified
+                 package.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment with free text information in coded or clear
+                 form to give further clarification, when required, for
+                 hazardous materials.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="1000" minOccurs="0" xmltag="Segment_group_14">
+                    <medi:documentation>Segment group 14:
+              A group of segments specifying markings, labels, and packing
+              numbers.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
+                        <medi:documentation>PCI,
+                 A segment specifying markings and/or labels used on
+                 individual physical units (packages) described in the PAC
+                 segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <medi:documentation>RFF,
+                 A segment for referencing the package identification e.g.
+                 master label number.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment for specifying date/time/period related to the
+                 document referenced.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                        <medi:documentation>Segment group 15:
+                 A group of segments to give specific package related
+                 identifications and dates.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                            <medi:documentation>GIR,
+                    To specify a set of related identification numbers.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <medi:documentation>DTM,
+                    A segment to give specific dates of a package, e.g.
+                    production date, etc.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_16">
+                        <medi:documentation>Segment group 16:
+                 A group of segments giving package identification numbers
+                 and, where relevant, delivery limitation information.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                            <medi:documentation>GIN,
+                    A segment providing the identity numbers of packages
+                    being despatched.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Delivery limitations" nodeTypeRef="UN:DLM" segcode="DLM" truncatable="true" xmltag="DLM">
+                            <medi:documentation>DLM,
+                    A segment to identify any limitation on delivery of
+                    goods, e.g. hold until final approval by supplier.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_17">
+                        <medi:documentation>Segment group 17:
+                 A group of segments to indicate the ingredients of the
+                 packaging used to pack a product and to provide the
+                 quantity of material used in this actual packaging. This
+                 group needs to be repeated for the ingredients as
+                 relevant.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Component details" nodeTypeRef="UN:COD" segcode="COD" truncatable="true" xmltag="COD">
+                            <medi:documentation>COD,
+                    A segment to identify the ingredients used for
+                    packaging.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                            <medi:documentation>MEA,
+                    A segment to give the measurements of the identified
+                    ingredient as used for packaging.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                            <medi:documentation>QTY,
+                    A segment to give the quantity of the identified
+                    ingredient as used for packaging.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                            <medi:documentation>PCD,
+                    A segment to give the percentage of the ingredient
+                    within the packaging material.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_18">
+                    <medi:documentation>Segment group 18:
+              A group of segments that refers through an external file
+              identification to each of the external files and giving
+              additional information about each of the files.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="External file link identification" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="EFI">
+                        <medi:documentation>EFI,
+                 This segment will identify the external files by
+                 indicating the file name, file number and its sequence
+                 number in an exchange.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Computer environment details" nodeTypeRef="UN:CED" segcode="CED" truncatable="true" xmltag="CED">
+                        <medi:documentation>CED,
+                 To give precise definitions of all necessary elements
+                 belonging to the configuration of a computer system, e.g.
+                 application software.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                        <medi:documentation>COM,
+                 To identify a communication number of a department or a
+                 person to whom communication should be directed.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <medi:documentation>RFF,
+                 A segment giving reference related to the file identified
+                 by a previous external file link identification segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 This segment will convey the date/time details of the
+                 external file.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 The size/volume of the external file identified in the
+                 previous external file link identification segment.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_19">
+                <medi:documentation>Segment group 19:
+                             TDT-TMD-HAN-FTX-MOA-PAC-SG20-SG21-SG22-SG23-
+                             SG24-SG27-SG28
+           A group of segments providing details of the individual
+           despatched items.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                    <medi:documentation>LIN,
+              A segment identifying the product being despatched.
+              
+              All other segments in the detail section following the LIN
+              segment refer to that line item.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
+                    <medi:documentation>PIA,
+              A segment providing additional product identification.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                    <medi:documentation>IMD,
+              A segment for describing the product being despatched. This
+              segment should be used for products that cannot be identified
+              by a product code or article number.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <medi:documentation>MEA,
+              A segment specifying physical measurements of the despatched
+              item in original or unpacked form.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <medi:documentation>QTY,
+              A segment to give quantity information concerning the
+              product.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional information" nodeTypeRef="UN:ALI" segcode="ALI" truncatable="true" xmltag="ALI">
+                    <medi:documentation>ALI,
+              A segment indicating that the line item is subject to special
+              conditions due to origin, customs preference, or commercial
+              factors.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="100" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                    <medi:documentation>GIN,
+              A segment providing identity numbers of the goods being
+              despatched, e.g. serial numbers for assembled equipment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="100" minOccurs="0" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                    <medi:documentation>GIR,
+              A segment providing sets of related identification numbers
+              for a line item, e.g. engine number, chassis number and
+              transmission number for a vehicle.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="100" minOccurs="0" name="Delivery limitations" nodeTypeRef="UN:DLM" segcode="DLM" truncatable="true" xmltag="DLM">
+                    <medi:documentation>DLM,
+              A segment to identify any limitation on delivery of goods
+              e.g. hold until final approval by supplier.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment providing date, time information related to the
+              line item, e.g. production date.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <medi:documentation>NAD,
+              A segment for identifying names and addresses and their
+              functions relevant to the item, e.g. manufacturer.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                    <medi:documentation>TDT,
+              A segment specifying the carriage, and the mode and means of
+              transport of the goods being despatched, e.g.
+              shipment/consignment number, shipping method, carrier.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Transport movement details" nodeTypeRef="UN:TMD" segcode="TMD" truncatable="true" xmltag="TMD">
+                    <medi:documentation>TMD,
+              A segment to specify transport movement details for a
+              despatched item.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="20" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
+                    <medi:documentation>HAN,
+              A segment providing information on the handling and
+              notification of hazardous materials.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment with free text information in coded or clear form
+              to give further clarification, when required, to the line
+              item. In computer to computer exchanges such text will
+              normally require the receiver to process this segment
+              manually.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <medi:documentation>MOA,
+              A segment giving monetary amounts required by the consignee
+              to undertake customs clearance procedures.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                    <medi:documentation>PAC,
+              Segment giving information related to the instruction for the
+              type of packaging which is valid for the specified deliveries
+              of the line item.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_20">
+                    <medi:documentation>Segment group 20:
+              A group of segments to give reference numbers and dates.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <medi:documentation>RFF,
+                 A segment identifying documents related to the line item.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <medi:documentation>NAD,
+                 A segment for identifying names and addresses and their
+                 functions relevant to the originator of the document in
+                 the RFF segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                        <medi:documentation>CTA,
+                 A segment to identify the office, branch or department to
+                 whom communication relevant to the document should be
+                 directed.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment for date/time/period relative to the referred
+                 document.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_21">
+                    <medi:documentation>Segment group 21:
+              A group of segments giving information about dangerous goods.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Dangerous goods" nodeTypeRef="UN:DGS" segcode="DGS" truncatable="true" xmltag="DGS">
+                        <medi:documentation>DGS,
+                 A segment to indicate the class of dangerous goods.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 A segment to specify quantity of the given dangerous
+                 goods.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment to describe dangerous goods.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="100" minOccurs="0" xmltag="Segment_group_22">
+                    <medi:documentation>Segment group 22:
+              A group of segments giving location information and where
+              relevant, additional addresses, date and time, and
+              quantities.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <medi:documentation>LOC,
+                 A segment identifying a specific location to which
+                 products will be delivered.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <medi:documentation>NAD,
+                 A segment for identifying names and addresses and their
+                 functions relevant to the delivery point.
+                 
+                 It is recommended that where possible only the coded form
+                 of the party ID should be specified, e.g. the buyer and
+                 seller are known to each other, thus only the coded ID is
+                 required. The consignee or delivery address may vary and
+                 would have to be clearly specified, preferably in
+                 structured format.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment providing date/time information relevant for
+                 delivery to the specific location.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 A segment to specify quantity for the given location.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="1000" minOccurs="0" xmltag="Segment_group_23">
+                    <medi:documentation>Segment group 23:
+              A group of segments indicating the split placement of
+              packages or unpacked goods into equipment.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Split goods placement" nodeTypeRef="UN:SGP" segcode="SGP" truncatable="true" xmltag="SGP">
+                        <medi:documentation>SGP,
+                 A segment to specify the placement of goods in relation to
+                 one equipment. If goods are unpacked, their quantity would
+                 be given in the following QTY segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 A segment to specify the quantity of unpacked goods being
+                 placed in a specific equipment.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_24">
+                    <medi:documentation>Segment group 24:
+              A group of segments identifying one specific package or a
+              number of packages, their marks and numbers, measurements,
+              quantities, date and time information and handling
+              instructions.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
+                        <medi:documentation>PCI,
+                 A segment specifying marking and labels used on individual
+                 packages or a range of packages.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment giving the date/time details related to the
+                 goods within the packages e.g. expiration date.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                        <medi:documentation>MEA,
+                 A segment specifying physical measurements of packages.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 A segment to specify quantity per package.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_25">
+                        <medi:documentation>Segment group 25:
+                 A group of segments giving package identification numbers
+                 and, where relevant, delivery limitation information.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                            <medi:documentation>GIN,
+                    A segment providing identification numbers being
+                    applied to the packages despatched.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="100" minOccurs="0" name="Delivery limitations" nodeTypeRef="UN:DLM" segcode="DLM" truncatable="true" xmltag="DLM">
+                            <medi:documentation>DLM,
+                    A segment to identify any limitation on delivery of
+                    goods e.g. hold until final approval by supplier.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_26">
+                        <medi:documentation>Segment group 26:
+                 A group of segment providing information on hazardous
+                 materials and handling.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
+                            <medi:documentation>HAN,
+                    A segment providing information on handling and
+                    notification of hazardous materials.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                            <medi:documentation>FTX,
+                    A segment with free text information in coded or clear
+                    form to give further clarification, when required, for
+                    hazardous materials.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1000" minOccurs="0" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
+                            <medi:documentation>GIN,
+                    A segment providing identification numbers being
+                    applied to the packages containing hazardous goods.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_27">
+                    <medi:documentation>Segment group 27:
+              A group of segments identifying quantity variances, the
+              reason for the variance, and, when relevant, date and time
+              information.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity variances" nodeTypeRef="UN:QVR" segcode="QVR" truncatable="true" xmltag="QVR">
+                        <medi:documentation>QVR,
+                 A segment identifying a quantity variance and the reason
+                 for the variance.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment to give date and time information relative to
+                 the quantity variances, e.g. proposed delivery date on the
+                 back order.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_28">
+                    <medi:documentation>Segment group 28:
+              A group of segments that refers through an external file
+              identification to each of the external files and giving
+              additional information about each of the files.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="External file link identification" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="EFI">
+                        <medi:documentation>EFI,
+                 This segment will identify the external files by
+                 indicating the file name, file number and its sequence
+                 number in an exchange.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Computer environment details" nodeTypeRef="UN:CED" segcode="CED" truncatable="true" xmltag="CED">
+                        <medi:documentation>CED,
+                 To give precise definitions of all necessary elements
+                 belonging to the configuration of a computer system, e.g.
+                 hardware, firmware, operating system, communication and
+                 application software.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                        <medi:documentation>COM,
+                 To identify a communication number of a department or a
+                 person to whom communication should be directed.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <medi:documentation>RFF,
+                 A segment giving reference related to the file identified
+                 by a previous external file link identification segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 This segment will convey the date/time details of the
+                 external file.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                 The size/volume of the external file identified in the
+                 previous external file link identification segment.
+
+4.1.3  Summary section
+
+       Information to be provided in the Summary section:</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+            <medi:documentation>CNT,
+        A segment by which control totals may be provided by sender for
+        checking by the receiver.</medi:documentation>
+        </medi:segment>
+    </medi:segments>
+</medi:edimap>

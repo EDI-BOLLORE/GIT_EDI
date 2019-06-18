@@ -1,28 +1,28 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="PAYDUC" version="D:99A:UN"/>
+    <description name="PAYDUC" namespace="urn:org.milyn.edi.unedifact:un:d99a:payduc" version="D:99A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="PAYDUC">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment for unique identification of the Payroll Deductions
        Advice message, the type of Payroll Deductions Advice and its
        function.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="Payment_instructions">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Payment instructions" nodeTypeRef="UN:PAI" segcode="PAI" truncatable="true" xmltag="PAI">
             <documentation>PAI,
        A segment specifying the payment means (e.g. cheque or direct
        bank transfer) and, if required, the payment channel for the
        Payroll Deductions Advice. The payment conditions may also be
        specified.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
+        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
             <documentation>FII,
        A segment identifying the financial institution (e.g. bank) and
        account number of the issuing party, and, where required, the
        receiving party.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment specifying the date, and if required the time, that
        the payment associated with this Payroll Deductions Advice
@@ -31,19 +31,19 @@
        validation keys and other dates relevant to the whole of the
        message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
             <documentation>CUX,
        A segment giving the currency and the associated exchange rate
        of the total amount paid to the service organisation in
        relation to this advice.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Payment terms basis" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="PAT">
             <documentation>PAT,
        A segment to indicate payment terms applicable to the whole
        message, such as the number of periods covered by the payroll
        deductions advice.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment for free text information in coded or clear form, to
        give further clarification when required to the Payroll
@@ -55,12 +55,12 @@
        A group of segments specifying references and issue dates of
        payment instruments associated with this message. Examples are
        check payments or bank transfers.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment for referencing payment instruments, e.g. a
           reference to a check payment or bank transfer.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment specifying the issue date of a payment instrument
           associated with this message, e.g. the date of a cheque.</documentation>
@@ -70,7 +70,7 @@
             <documentation>Segment group 2:
        A group of segments identifying names and addresses relevant to
        the Payroll Deductions Advice.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
           A segment identifying the name and address of the parties
           associated with the Payroll Deductions Advice and their
@@ -82,16 +82,18 @@
                 <documentation>Segment group 3:
           A group of segments identifying contact persons or
           department and their communication number.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
              A segment giving additional contact information of a
              person or department specified in the NAD segment and to
              whom communication should be directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment specifying communication contact number.
+
 4.1.2  Detail section
+
        Information to be provided in the Detail section:</documentation>
                 </segment>
             </segmentGroup>
@@ -102,17 +104,17 @@
        the monetary amounts for each service group included in the
        total payment. If necessary, the amounts for each individual
        service group may be calculated in an agreed currency.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="General_indicator">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="General indicator" nodeTypeRef="UN:GIS" segcode="GIS" truncatable="true" xmltag="GIS">
                 <documentation>GIS,
           A segment relevant to the processing of segment group 6, to
           indicate whether all individual employee payment details, or
           only changes from a nominated standard payment are provided.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment identifying each individual service group.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                 <documentation>MOA,
           A segment giving the monetary amounts for standard payments
           (if applicable, both the previous and the new standard) for
@@ -121,12 +123,12 @@
           the total payment. If required, other monetary amounts
           relevant to a service group may also be given.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="Business_function">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Business function" nodeTypeRef="UN:BUS" segcode="BUS" truncatable="true" xmltag="BUS">
                 <documentation>BUS,
           A segment to provide additional identification for each
           individual service group.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
                 <documentation>CUX,
           A segment identifying the currency and associated exchange
           rate of the monetary amounts calculated for a service group.</documentation>
@@ -135,7 +137,7 @@
                 <documentation>Segment group 5:
           A group of segments specifying dates when payments were
           deducted from the payroll.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the date when a payment was deducted
              from the payroll.</documentation>
@@ -150,20 +152,20 @@
              remitted for an employee or the variation from the
              previous standard may be provided. Variations may be of a
              temporary or permanent type.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>NAD,
                 A segment identifying the name of the employee
                 (service group member) for whom payments are made by
                 pay deduction.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 A repeating segment providing the reference
                 identification of the employee as referred to by the
                 originating party (e.g. the employer) and by the
                 service group (these references may differ).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                         <documentation>MOA,
                 A segment giving the monetary amount deducted for an
                 employee to pay the service group. When changes only
@@ -176,18 +178,18 @@
                 If required, the current standard amount may also be
                 given.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:AJT" segcode="AJT" truncatable="true" xmltag="Adjustment_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Adjustment details" nodeTypeRef="UN:AJT" segcode="AJT" truncatable="true" xmltag="AJT">
                         <documentation>AJT,
                 A segment indicating the reason for an adjustment to
                 the standard payment amount.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="Payment_terms_basis">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Payment terms basis" nodeTypeRef="UN:PAT" segcode="PAT" truncatable="true" xmltag="PAT">
                         <documentation>PAT,
                 A segment giving the number of pay periods and, if
                 required, the pay frequency (as part of the type of
                 period).</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment for free text information in coded or clear
                 form, to give further information at the employee
@@ -196,29 +198,31 @@
                 standard monetary amount. It should be noted that the
                 use of clear text may require special processing of
                 the FTX segment information.
+
 4.1.3  Summary section
+
        Information to be provided in the Summary section:</documentation>
                     </segment>
                 </segmentGroup>
             </segmentGroup>
         </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
             <documentation>UNS,
        A service segment placed at the start of the summary section to
        avoid segment collision.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
             <documentation>MOA,
        A segment giving the total amount paid to the service
        organisation in relation to this advice.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="Control_total">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
             <documentation>CNT,
        A segment to provide message control totals as required. It
        should be noted that a balancing monetary total is always
        provided by the total amount paid to the service organisation.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
             <documentation>AUT,
        A segment to specify the results of the application of an
        authentication procedure, enabling to check the authenticity of

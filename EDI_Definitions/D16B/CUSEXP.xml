@@ -1,0 +1,328 @@
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="CUSEXP" namespace="urn:org.milyn.edi.unedifact:un:d16b:cusexp" version="D:16B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="CUSEXP">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
+        A segment for unique identification of the declaration type, i.e.
+        import, export, in-transit.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
+        A segment to specify the dates, times or periods relevant to the
+        whole message e.g. elected date of presentation, date of message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+            <medi:documentation>LOC,
+        A segment to identify a place or location relevant to the entire
+        message e.g., office of entry, clearance port.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+            <medi:documentation>CNT,
+        A segment specifying control totals e.g. total number of Express
+        Consignments reported, total number of master transport documents,
+        total number of packages.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
+        A group of segments to identify contact party details.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
+           A segment to specify the party name and address responsible for
+           the express consignment.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_2">
+                <medi:documentation>Segment group 2:
+           A group of segments indicating contact parties and contact
+           numbers.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <medi:documentation>CTA,
+              A segment identifying contact party.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              A segment identifying the contact party's telephone and/or
+              fax number.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_3">
+            <medi:documentation>Segment group 3:
+        A group of segments to identify details of transport, means of
+        transport, references and associated locations, dates and times.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                <medi:documentation>TDT,
+           A segment to indicate the name of the carrier, name/number of
+           vehicle or flight, conveyance reference number.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           A segment to specify the dates, times or periods relevant to the
+           transport used.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <medi:documentation>Segment group 4:
+           A group of segments to provide details of locations, dates and
+           times relevant to the means of transport.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
+              A segment to identify a place or location relevant to the
+              transport details.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to specify dates, times or periods relevant to the
+              transport details e.g. actual date/time of arrival.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+            <medi:documentation>Segment group 5:
+        A group of segments giving details of equipment and seals.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
+                <medi:documentation>EQD,
+           A segment to identify a unit of equipment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Seal number" nodeTypeRef="UN:SEL" segcode="SEL" truncatable="true" xmltag="SEL">
+                <medi:documentation>SEL,
+           A segment to specify a seal number related to equipment.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_6">
+            <medi:documentation>Segment group 6:
+        A group of segments giving details of all consignments covered by
+        an individual Master Transport Document reference.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment to identify Master Transport Document references or
+           similar documentation pertinent to the conveyance report.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
+           A segment to specify the party name and address of the sender
+           and receiver of the Master Transport Document.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+                <medi:documentation>CNT,
+           A segment to specify control totals e.g. total number of House
+           Transport Documents.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_7">
+                <medi:documentation>Segment group 7:
+                             SG13-SG14-SG15
+           A group of segments giving details of single express
+           consignments at the House Transport Document level.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Consignment information" nodeTypeRef="UN:CNI" segcode="CNI" truncatable="true" xmltag="CNI">
+                    <medi:documentation>CNI,
+              A segment to indicate the reference number of the House
+              Transport Document for the relevant consignment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Split goods placement" nodeTypeRef="UN:SGP" segcode="SGP" truncatable="true" xmltag="SGP">
+                    <medi:documentation>SGP,
+              A segment to specify the placement of the goods in relation
+              to equipment.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+                    <medi:documentation>CNT,
+              A segment specifying control totals e.g. total number of
+              Customs items reported.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <medi:documentation>MEA,
+              A segment providing for measurements requirements related to
+              the express consignment e.g. gross weight.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
+              A segment identifying place/location relevant to the express
+              consignment, e.g. country of consignment, place of
+              loading/unloading.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <medi:documentation>NAD,
+              A segment describing name and address of the shipper and
+              consignee of the express consignment.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_8">
+                    <medi:documentation>Segment group 8:
+              A group of segments giving information relevant to the nature
+              of the cargo.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Nature of cargo" nodeTypeRef="UN:GDS" segcode="GDS" truncatable="true" xmltag="GDS">
+                        <medi:documentation>GDS,
+                 A segment specifying the nature of the goods in accordance
+                 with the Customs Cooperation Council (CCC)/International
+                 Express Carriers Conference(IECC) Express Consignment
+                 Guidelines : i.e. Category 1 - Documents, Category 2 -
+                 Low-value non-dutiable goods, Category 3 - Low-value
+                 dutiable goods, Category 4 - High value goods.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment specifying the description in narrative form.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_9">
+                    <medi:documentation>Segment group 9:
+              A group of segments giving details of packages and markings.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
+                        <medi:documentation>PAC,
+                 A segment to identify the number and type of packages.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Package identification" nodeTypeRef="UN:PCI" segcode="PCI" truncatable="true" xmltag="PCI">
+                        <medi:documentation>PCI,
+                 A segment to identify markings and labels on the type of
+                 package reported.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_10">
+                    <medi:documentation>Segment group 10:
+              A group of segments to specify terms of delivery and related
+              locations.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Terms of delivery or transport" nodeTypeRef="UN:TOD" segcode="TOD" truncatable="true" xmltag="TOD">
+                        <medi:documentation>TOD,
+                 A segment identifying terms and places of delivery of the
+                 entered goods e.g. coded International Rules for the
+                 Interpretation of Trade Terms (INCOTERMS).</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <medi:documentation>LOC,
+                 A segment identifying the place/location relevant to the
+                 terms of delivery of the express consignment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment describing terms of delivery in narrative form.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_group_11">
+                    <medi:documentation>Segment group 11:
+              A group of segments to specify monetary amounts.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                 A segment specifying the monetary amounts relative to the
+                 express consignment e.g. declared value of a single
+                 consignment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_12">
+                        <medi:documentation>Segment group 12:
+                 A group of segments to specify rates of exchange and
+                 currencies.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                            <medi:documentation>CUX,
+                    A segment to specify rates of exchange/currencies
+                    reported in regard to value.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <medi:documentation>DTM,
+                    A segment to specify date and time relevant to exchange
+                    rates regarding the value of the express consignment.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_13">
+                    <medi:documentation>Segment group 13:
+              A group of segments giving the total of duties/taxes/fees and
+              methods of payment related to the consignment.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                        <medi:documentation>TAX,
+                 A segment identifying the tax type, rate and base
+                 associated with the consignment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                 A segment identifying monetary amounts (e.g. tax/fee
+                 amount) associated with the preceding TAX.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <medi:documentation>GEI,
+                 A segment identifying an indicator (e.g. method of payment
+                 indicator) associated with the preceding TAX.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_14">
+                    <medi:documentation>Segment group 14:
+              A group of segments to specify documentary requirements and
+              references related to the express consignment.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                        <medi:documentation>DOC,
+                 A segment specifying the documentation requirements for
+                 particular Customs/government agencies e.g. invoice,
+                 certificate of origin.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment specifying date/time/period information as
+                 related to the documentation requirements.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <medi:documentation>LOC,
+                 A segment identifying the place/location relevant to the
+                 documentation requirements.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_15">
+                    <medi:documentation>Segment group 15:
+              A group of segments giving information relevant to the
+              Customs treatment of the goods at Customs item level.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Customs status of goods" nodeTypeRef="UN:CST" segcode="CST" truncatable="true" xmltag="CST">
+                        <medi:documentation>CST,
+                 A segment describing the goods in terms of Customs
+                 entities, status and intended use i.e. the H.S. Tariff
+                 Codes.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                        <medi:documentation>FTX,
+                 A segment specifying the Customs description in narrative
+                 form.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                        <medi:documentation>LOC,
+                 A segment identifying place/location relevant to the
+                 Customs treatment of the goods e.g. country of origin.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                        <medi:documentation>MEA,
+                 A segment providing for measurements requirements related
+                 to the Customs item e.g. net weight and supplementary
+                 units.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_16">
+                        <medi:documentation>Segment group 16:
+                 A group of segments identifying duties/taxes/fees and
+                 methods of payment related to a Customs item.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Duty/tax/fee details" nodeTypeRef="UN:TAX" segcode="TAX" truncatable="true" xmltag="TAX">
+                            <medi:documentation>TAX,
+                    A segment identifying the tax type, rate and base
+                    associated with a Customs item.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <medi:documentation>MOA,
+                    A segment identifying monetary amounts (e.g. tax/fee
+                    amount) associated with the preceding TAX.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                            <medi:documentation>GEI,
+                    A segment identifying an indicator (e.g. method of
+                    payment indicator) associated with the preceding TAX.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_17">
+            <medi:documentation>Segment group 17:
+        A group of segments to specify authentication results.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <medi:documentation>AUT,
+           A segment that identifies and verifies the authenticity of the
+           sender and data integrity.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           A segment specifying date/time/period information related to the
+           authentication requirements.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>

@@ -1,51 +1,51 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
-    <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="BOPDIR" version="D:96B:UN"/>
-    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
-    <segments xmltag="BOPDIR">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
-            <documentation>BGM,
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="BOPDIR" namespace="urn:org.milyn.edi.unedifact:un:d96b:bopdir" version="D:96B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="BOPDIR">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
        A segment to indicate the type and function of the message and
-       to transmit its identifying number.</documentation>
-        </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-            <documentation>DTM,
+       to transmit its identifying number.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
        A segment to specify the date and, when required, the time at
        which the message has been created as well as other dates and
-       times relevant to the financial transaction (day, month, year).</documentation>
-        </segment>
-        <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_1">
-            <documentation>Segment group 1:
+       times relevant to the financial transaction (day, month, year).</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
        A group of segments to give auxiliary references and the
-       relevant dates for the message itself.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                <documentation>RFF,
-          A segment to give another reference for the message.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                <documentation>DTM,
+       relevant dates for the message itself.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+          A segment to give another reference for the message.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
           A segment to give the period reported in the message (for
-          example day/month/year).</documentation>
-            </segment>
-        </segmentGroup>
-        <segmentGroup maxOccurs="2" minOccurs="1" xmltag="Segment_group_2">
-            <documentation>Segment group 2:
+          example day/month/year).</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="2" minOccurs="1" xmltag="Segment_group_2">
+            <medi:documentation>Segment group 2:
        A group of segments to give the identification of the reporting
        agent (generally the enterprise) or, possibly with a second
        occurrence, the identification of the enterprise on behalf of
-       which the declaration is made.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                <documentation>NAD,
-          A segment to identify the resident party.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
-                <documentation>CTA,
+       which the declaration is made.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
+          A segment to identify the resident party.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <medi:documentation>CTA,
           A segment to identify a person or a department for the party
           specified in the NAD segment and to whom communication
-          should be directed.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
-                <documentation>COM,
+          should be directed.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <medi:documentation>COM,
           A segment to give a communication number for the party
           identified in the NAD segment.
           
@@ -54,86 +54,88 @@
                   
           This part of the message gives for all the resident bank
           accounts the requested information. The information is given
-          for each account separately.</documentation>
-            </segment>
-        </segmentGroup>
-        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_3">
-            <documentation>Segment group 3:
+          for each account separately.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_3">
+            <medi:documentation>Segment group 3:
        A group of segments to accommodate the details relevant to the
        transactions performed via one account during the relevant
-       period.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
-                <documentation>LIN,
+       period.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <medi:documentation>LIN,
           A segment identifying the report line item by a current line
-          number.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
-                <documentation>FII,
+          number.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <medi:documentation>FII,
           A segment giving the identification of the resident's
-          financial institution involved.</documentation>
-            </segment>
-            <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_4">
-                <documentation>Segment group 4:
+          financial institution involved.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_4">
+                <medi:documentation>Segment group 4:
           A group of segments to give the nature and the amount of
           each transaction processed via one account during the
-          relevant period.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
-                    <documentation>RCS,
-             A segment to give the nature of transaction.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
-                    <documentation>FTX,
+          relevant period.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                    <medi:documentation>RCS,
+             A segment to give the nature of transaction.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
              A segment to give information in clear and free form
-             about the nature of transaction.</documentation>
-                </segment>
-                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_5">
-                    <documentation>Segment group 5:
+             about the nature of transaction.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_5">
+                    <medi:documentation>Segment group 5:
              A group of segments to give references and dates of the
-             transaction.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                        <documentation>RFF,
+             transaction.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <medi:documentation>RFF,
                 A segment to give the serial number of the
-                transaction.</documentation>
-                    </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                        <documentation>DTM,
+                transaction.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
                 A segment to give the day, month and year of the
-                transaction.</documentation>
-                    </segment>
-                </segmentGroup>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                    <documentation>NAD,
+                transaction.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <medi:documentation>NAD,
              A segment to give the identification of the 2nd party
-             (either the Payor, the Payee or another non-bank party).</documentation>
-                </segment>
-                <segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_6">
-                    <documentation>Segment group 6:
+             (either the Payor, the Payee or another non-bank party).</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="1" minOccurs="1" xmltag="Segment_group_6">
+                    <medi:documentation>Segment group 6:
              A group of segments to give the amount and the currency
-             details of that transaction.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-                        <documentation>MOA,
+             details of that transaction.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
                 A segment to give the amount of the transaction and
-                the relevant currency.</documentation>
-                    </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="Currencies">
-                        <documentation>CUX,
+                the relevant currency.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                        <medi:documentation>CUX,
                 A segment to give the reference currency (e.g. the
                 currency of the account) and the target currency (e.g.
                 the currency of the transfer) of the transaction when
-                they are different.</documentation>
-                    </segment>
-                </segmentGroup>
-                <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
-                    <documentation>LOC,
+                they are different.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
              A segment to indicate one of the different countries
              involved in the transaction.
+
 4.1.2  Detail section
-       Information to be provided in the Detail section:</documentation>
-                </segment>
-            </segmentGroup>
-        </segmentGroup>
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="Section_control">
-            <documentation>UNS,
+
+       Information to be provided in the Detail section:</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
+            <medi:documentation>UNS,
        A service segment placed at the start of the detail section to
        avoid collision.
        
@@ -142,104 +144,104 @@
        
        This part of the message gives for all the accounts held abroad
        with banks or non-banks the requested information. The
-       information is given for each account separately.</documentation>
-        </segment>
-        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
-            <documentation>Segment group 7:
+       information is given for each account separately.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
+            <medi:documentation>Segment group 7:
        A group of segments to accommodate the details relevant to the
        transactions performed via one account during the relevant
-       period.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
-                <documentation>LIN,
+       period.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <medi:documentation>LIN,
           A segment identifying the report line item by a current line
-          number.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
-                <documentation>RCS,
+          number.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                <medi:documentation>RCS,
           A segment to give the type of the account or the reporting
-          form.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
-                <documentation>FII,
+          form.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                <medi:documentation>FII,
           A segment to identify the non-resident financial institution
-          where the resident's external account is held.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                <documentation>NAD,
+          where the resident's external account is held.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
           A segment to identify the non-resident non-bank institution
-          where the account is held.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-                <documentation>MOA,
+          where the account is held.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <medi:documentation>MOA,
           A segment to give the opening balance and the closing
-          balance of that account and the relevant currency.</documentation>
-            </segment>
-            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_8">
-                <documentation>Segment group 8:
+          balance of that account and the relevant currency.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_8">
+                <medi:documentation>Segment group 8:
           A group of segments to give the type, the amount and the
           relevant details of each different transaction performed via
-          the account.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
-                    <documentation>RCS,
+          the account.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                    <medi:documentation>RCS,
              A segment to give the nature of transaction (e.g. exports
-             of goods, transport services, purchase of shares).</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
-                    <documentation>FTX,
+             of goods, transport services, purchase of shares).</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
              A segment to give information in clear and free form
-             about the nature of that part of the transaction.</documentation>
-                </segment>
-                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
-                    <documentation>Segment group 9:
+             about the nature of that part of the transaction.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_9">
+                    <medi:documentation>Segment group 9:
              A group of segments to give the identification and the
-             quantity of security.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
-                        <documentation>GIR,
+             quantity of security.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                        <medi:documentation>GIR,
                 A segment to identify the type of security (shares,
-                bonds, etc).</documentation>
-                    </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
-                        <documentation>QTY,
-                A segment to specify the quantity of security.</documentation>
-                    </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
-                        <documentation>PRI,
-                A segment to give the face value of the security.</documentation>
-                    </segment>
-                </segmentGroup>
-                <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_10">
-                    <documentation>Segment group 10:
+                bonds, etc).</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <medi:documentation>QTY,
+                A segment to specify the quantity of security.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                        <medi:documentation>PRI,
+                A segment to give the face value of the security.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_10">
+                    <medi:documentation>Segment group 10:
              A group of segments to give references and dates of the
-             transaction.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                        <documentation>RFF,
+             transaction.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                        <medi:documentation>RFF,
                 A segment to give the serial number of the
-                transaction.</documentation>
-                    </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                        <documentation>DTM,
+                transaction.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
                 A segment to give the day, month and year of the
-                transaction.</documentation>
-                    </segment>
-                </segmentGroup>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="Financial_institution_information">
-                    <documentation>FII,
+                transaction.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Financial institution information" nodeTypeRef="UN:FII" segcode="FII" truncatable="true" xmltag="FII">
+                    <medi:documentation>FII,
              A segment to identify the domestic bank related to a
              specific flow of amount related to the transaction
              (provisioning or repatriating with an account held
-             locally).</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                    <documentation>NAD,
-             A segment to identify the counterparty.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-                    <documentation>MOA,
+             locally).</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <medi:documentation>NAD,
+             A segment to identify the counterparty.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <medi:documentation>MOA,
              A segment to give the amount and the currency of the
-             transaction.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
-                    <documentation>LOC,
+             transaction.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="4" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
              A segment to indicate one of the different countries
              involved.
              
@@ -254,92 +256,94 @@
              
              PLEASE NOTE. In the explanation below where survey and
              type of question is used the same goes for reporting form
-             and type of position.</documentation>
-                </segment>
-            </segmentGroup>
-        </segmentGroup>
-        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_11">
-            <documentation>Segment group 11:
+             and type of position.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_11">
+            <medi:documentation>Segment group 11:
        A group of segments to give for all type of surveys the
-       relevant information.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
-                <documentation>RFF,
-          A segment giving the type of survey.</documentation>
-            </segment>
-            <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_12">
-                <documentation>Segment group 12:
+       relevant information.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+          A segment giving the type of survey.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_12">
+                <medi:documentation>Segment group 12:
           A group of segments to give the relevant information for the
-          specific survey.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="Requirements_and_conditions">
-                    <documentation>RCS,
-             A segment giving the type of question of that survey.</documentation>
-                </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
-                    <documentation>FTX,
+          specific survey.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                    <medi:documentation>RCS,
+             A segment giving the type of question of that survey.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
              A segment for information in clear and free form about
-             the type of question on that reporting form.</documentation>
-                </segment>
-                <segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_13">
-                    <documentation>Segment group 13:
+             the type of question on that reporting form.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="9999" minOccurs="1" xmltag="Segment_group_13">
+                    <medi:documentation>Segment group 13:
              A group of segments to provide specific details on the
-             type of question for that specific survey.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
-                        <documentation>SEQ,
+             type of question for that specific survey.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
+                        <medi:documentation>SEQ,
                 A segment identifying the report line item by a
-                current number.</documentation>
-                    </segment>
-                    <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_14">
-                        <documentation>Segment group 14:
+                current number.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_14">
+                        <medi:documentation>Segment group 14:
                 A group of segments to give the identification and the
-                quantity of shares.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="Related_identification_numbers">
-                            <documentation>GIR,
+                quantity of shares.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                            <medi:documentation>GIR,
                    A segment to identify the type of security (shares,
-                   bonds, etc).</documentation>
-                        </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
-                            <documentation>QTY,
-                   A segment to specify the quantity of shares.</documentation>
-                        </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="Price_details">
-                            <documentation>PRI,
-                   A segment to give the face value of the security.</documentation>
-                        </segment>
-                    </segmentGroup>
-                    <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_15">
-                        <documentation>Segment group 15:
+                   bonds, etc).</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                            <medi:documentation>QTY,
+                   A segment to specify the quantity of shares.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                            <medi:documentation>PRI,
+                   A segment to give the face value of the security.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_15">
+                        <medi:documentation>Segment group 15:
                 A group of segments to give the amount/currency and
-                the identity of the non-resident debtor/creditor.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
-                            <documentation>MOA,
+                the identity of the non-resident debtor/creditor.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                            <medi:documentation>MOA,
                    A segment giving the amount of the position
-                   concerned by the question.</documentation>
-                        </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
-                            <documentation>NAD,
+                   concerned by the question.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                            <medi:documentation>NAD,
                    A segment to identify the non-resident debtor or
                    creditor (or more general, in the case of surveys
                    the counterparty).
+
 4.1.3  Summary section
-       Information to be provided in the Summary section:</documentation>
-                        </segment>
-                    </segmentGroup>
-                </segmentGroup>
-            </segmentGroup>
-        </segmentGroup>
-        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_16">
-            <documentation>Segment group 16:
-       A group of segments to specify the details of authentication.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
-                <documentation>AUT,
+
+       Information to be provided in the Summary section:</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_16">
+            <medi:documentation>Segment group 16:
+       A group of segments to specify the details of authentication.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <medi:documentation>AUT,
           A segment to specify the details of any authentication
-          (validation) procedure applied to the BOPDIR message.</documentation>
-            </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
-                <documentation>DTM,
+          (validation) procedure applied to the BOPDIR message.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
           A segment to identify the date and if necessary, the time of
-          validation.</documentation>
-            </segment>
-        </segmentGroup>
-    </segments>
-</edimap>
+          validation.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>

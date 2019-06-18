@@ -1,20 +1,20 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="MEDRPT" version="D:08B:UN"/>
+    <description name="MEDRPT" namespace="urn:org.milyn.edi.unedifact:un:d08b:medrpt" version="D:08B:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="MEDRPT">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
        A segment for unique identification of the message and
        specification of its function.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
        A segment identifying the date and/or time of message
        generation and/or other dates and/or times concerning the whole
        message.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
        A segment giving free text information, in coded or clear form,
        for specifying information concerning the whole message.</documentation>
@@ -28,30 +28,30 @@
        healthcare party, healthcare administrative information, sample
        collector, sample collector location and/or other parties
        related to the message.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
                 <documentation>PNA,
           A segment for specifying the identification, name and
           address of involved healthcare organisations or
           professionals.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                 <documentation>ADR,
           A segment for specifying the address of the actual
           healthcare party.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                 <documentation>COM,
           A segment giving communication numbers for the actual
           healthcare party.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment with free text information, in coded or clear
           form, for specifying unstructured telecommunication numbers
           of the actual healthcare party including electronic mail
           address.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment for specifying alternative identification numbers
           of the actual healthcare party assigned by the involved
@@ -61,28 +61,28 @@
           current party is related to another party such as department
           in a hospital, a physician in a department, etc.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
                 <documentation>SEQ,
           A segment for allocating a sequence number to the individual
           healthcare party allowing each healthcare party to be
           referenced from within the message.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="Language">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
                 <documentation>LAN,
           A segment for specifying the language used by the actual
           healthcare party.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SPR" segcode="SPR" truncatable="true" xmltag="Organisation_classification_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Organisation classification details" nodeTypeRef="UN:SPR" segcode="SPR" truncatable="true" xmltag="SPR">
                 <documentation>SPR,
           A segment for specifying the type and medical speciality of
           a healthcare organisation.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:QUA" segcode="QUA" truncatable="true" xmltag="Qualification">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Qualification" nodeTypeRef="UN:QUA" segcode="QUA" truncatable="true" xmltag="QUA">
                 <documentation>QUA,
           A segment for specifying the professional medical
           qualifications of a person.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="Employment_details">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Employment details" nodeTypeRef="UN:EMP" segcode="EMP" truncatable="true" xmltag="EMP">
                 <documentation>EMP,
           A segment for specifying the type, medical speciality and
           the position or military rank of a healthcare professional.</documentation>
@@ -93,18 +93,18 @@
                          SG6
        A group of segments giving information concerning a medical
        service report.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IRQ" segcode="IRQ" truncatable="true" xmltag="Information_required">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Information required" nodeTypeRef="UN:IRQ" segcode="IRQ" truncatable="true" xmltag="IRQ">
                 <documentation>IRQ,
           A segment for specifying the requirements concerning
           acknowledgment of the report.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                 <documentation>GEI,
           A segment for specifying the service type of the actual
           report, i.e. whether this is a new report, a modification to
           a previously issued report, etc.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
           A segment for specifying the identification of the service
           report as provided by the service provider.
@@ -113,34 +113,34 @@
           related to this service report which is specified in segment
           group 1.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment for specifying the issue date and/or time of the
           report and/or other dates and/or times relevant to the
           report.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
                 <documentation>STS,
           A segment for specifying the status of the service report,
           i.e. whether it is a partial report, a complete report, etc.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="Priority">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Priority" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="PTY">
                 <documentation>PTY,
           A segment for specifying the reporting priority of the
           service report.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="Language">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
                 <documentation>LAN,
           A segment specifying the language of the actual report.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>FTX,
           A segment with free text information, in coded or clear
           form, for specifying the comments of the service provider
           concerning the complete report and/or the reason for
           cancellation.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Test method" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="TEM">
                 <documentation>TEM,
           A segment for specifying the reason for cancellation of the
           complete report.</documentation>
@@ -149,12 +149,12 @@
                 <documentation>Segment group 3:
           A group of segments for specifying a reference to another
           service report.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment for specifying the identification number of the
              referenced service report.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the issue date and/or time of the
              referenced service report.</documentation>
@@ -164,12 +164,12 @@
                 <documentation>Segment group 4:
           A group of segments specifying a service order related to
           the actual service report.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="Financial_charges_allocation">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Financial charges allocation" nodeTypeRef="UN:FCA" segcode="FCA" truncatable="true" xmltag="FCA">
                     <documentation>FCA,
              A segment giving information concerning payment category
              for this order.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment for specifying the identification number of the
              order allocated by various healthcare parties, such as
@@ -178,35 +178,35 @@
              The segment is also used for referencing a related
              healthcare party specified in segment group 1.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                     <documentation>GEI,
              A segment to provide the service type of the service
              order, i.e. new order, order modification, etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment specifying the dates and/or times concerning
              the order such as issue date of order, date of receipt,
              due date of report, etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="Priority">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Priority" nodeTypeRef="UN:PTY" segcode="PTY" truncatable="true" xmltag="PTY">
                     <documentation>PTY,
              A segment specifying the requested reporting priority for
              the whole order.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="Clinical_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
                     <documentation>CIN,
              A segment for specifying the reason for request as well
              as comments from the requester as a diagnosis concerning
              this order.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in coded or clear
              form, for specifying the reason for request as well as
              comments from the requester concerning this order.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Test method" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="TEM">
                     <documentation>TEM,
              A segment for specifying the reason for the request.</documentation>
                 </segment>
@@ -214,16 +214,16 @@
                     <documentation>Segment group 5:
              A group of segments for specifying a reference to another
              service order.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="Document_message_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
                         <documentation>DOC,
                 A segment for specifying the document name.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 A segment for specifying the identification number of
                 the referenced order.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment for specifying the issue date and/or time of
                 the referenced order.</documentation>
@@ -234,75 +234,75 @@
                 <documentation>Segment group 6:
                             NAT-LAN-HAN-CCI-SG7-SG8-SG14-SG16
           A group of segments specifying the subject of investigation.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="Attribute">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
                     <documentation>ATT,
              A segment for specifying the type of subject of
              investigation.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
              A segment for specifying the identification numbers of
              the actual subject of investigation.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                     <documentation>ADR,
              A segment for specifying the address details of the
              subject of investigation.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
              A segment providing a telecommunication number of the
              subject or investigation.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
                     <documentation>REL,
              A segment for specifying the association between subjects
              of investigation such as donor, foetus, etc. as well as
              the relationship of a related person to the patient.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                     <documentation>IMD,
              A segment for specifying the description of the material
              being investigated if the subject of investigation is a
              material.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>FTX,
              A segment with free text information, in coded or clear
              form, for specifying additional information about the
              material as well as an unstructured telecommunication
              number of the subject of investigation.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="Party_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
                     <documentation>PNA,
              A segment for identifying the patient and related person
              or name by specifying various patient name details and
              official patient ID.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
              A segment for specifying relevant date and/or times for
              the patient such as date of birth, date of death, etc.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="Person_demographic_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Person demographic information" nodeTypeRef="UN:PDI" segcode="PDI" truncatable="true" xmltag="PDI">
                     <documentation>PDI,
              A segment for specifying demographic information such as
              sex, marital status and religion.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="Nationality">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Nationality" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="NAT">
                     <documentation>NAT,
              A segment for specifying the nationality of a person.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="Language">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
                     <documentation>LAN,
              A segment for specifying the language used by the person.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                     <documentation>HAN,
              A segment for specifying the confidentiality constraints
              on patient data.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                     <documentation>CCI,
              A segment for specifying the species or breed of an
              animal.</documentation>
@@ -312,25 +312,25 @@
              A group of segments for specifying healthcare
              administrative information concerning the actual subject
              of investigation.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PAS" segcode="PAS" truncatable="true" xmltag="Attendance">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attendance" nodeTypeRef="UN:PAS" segcode="PAS" truncatable="true" xmltag="PAS">
                         <documentation>PAS,
                 A segment for specifying patient administrative
                 information such as administrative status concerning
                 actual hospital stay or out-patient visit or ward stay
                 related to the subject of investigation.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                         <documentation>LOC,
                 A segment for specifying the physical patient care
                 location in terms of ward, room, bed, etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment for specifying admission and/or discharge
                 date and time or start and/or end date and time of a
                 ward stay.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 This segment keeps a reference to a healthcare party
                 for specifying healthcare administrative information
@@ -345,36 +345,36 @@
              information. The clinical information may be a symptom,
              physical sign, anamnesis (medical history), clinical
              observation, diagnosis, etc.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="Characteristic_value">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic value" nodeTypeRef="UN:CAV" segcode="CAV" truncatable="true" xmltag="CAV">
                         <documentation>CAV,
                 A segment for specifying the type of clinical
                 information.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="Clinical_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
                         <documentation>CIN,
                 A segment for specifying the type of clinical
                 observation, description of the clinical observation
                 itself as well as the degree of certainty concerning
                 the clinical observation.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="Language">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Language" nodeTypeRef="UN:LAN" segcode="LAN" truncatable="true" xmltag="LAN">
                         <documentation>LAN,
                 A segment for specifying the language related to the
                 clinical observation.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment for specifying date and times related to the
                 clinical information, the clinical observation itself
                 and the origin of clinical information.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in coded or
                 clear form, for description of the clinical
                 information.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 This segment keeps a reference to a healthcare party
                 for specifying origin of clinical information.</documentation>
@@ -385,53 +385,53 @@
                 A group of segments for specifying a clinical
                 investigation result item and the clinical
                 investigation itself.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
                             <documentation>STS,
                    A segment for specifying the status of the clinical
                    investigation, e.g. preliminary results, final
                    results, etc.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
                             <documentation>SEQ,
                    A segment for allocating a sequence number to a
                    clinical investigation result item to allow
                    referencing from within this message to a specific
                    clinical investigation result item.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                             <documentation>GEI,
                    A segment for specifying the service type of the
                    clinical investigation result item, e.g. new result
                    item.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="Result">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Result" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="RSL">
                             <documentation>RSL,
                    A segment for specifying the numerical value or a
                    coded text value of a clinical investigation result
                    item including unit of measurement, arithmetic
                    comparator and the deviating result indicator.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                             <documentation>CCI,
                    A segment for identifying the clinical
                    investigation and to describe specifications to the
                    clinical investigation.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="Clinical_information">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
                             <documentation>CIN,
                    A segment giving a text value of a clinical
                    investigation result item as well as a comment to
                    the clinical investigation result item as a
                    diagnosis.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
                    A segment for specifying relevant date and times
                    concerning the investigation such as date and time
                    for investigation performed, last status change and
                    a date value of a clinical observation.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                             <documentation>FTX,
                    A segment with free text information, in coded or
                    clear form, for specifying the text value of a
@@ -439,7 +439,7 @@
                    clinical investigation and the investigation result
                    item.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>RFF,
                    This segment keeps a reference to the "parent"
                    clinical investigation result item if needed.</documentation>
@@ -448,20 +448,20 @@
                             <documentation>Segment group 10:
                    A group of segments giving the reference limits of
                    a clinical investigation result item.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="Result">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Result" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="RSL">
                                 <documentation>RSL,
                       A segment for specifying the numerical reference
                       interval of an investigation result item and the
                       type of reference interval.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                                 <documentation>FTX,
                       A segment with free text information, in coded
                       or clear form, for specifying the textual
                       reference limits of an investigation result
                       item.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                                 <documentation>CCI,
                       A segment for specifying a reference population,
                       e.g. age, sex, smokers, etc.</documentation>
@@ -472,14 +472,14 @@
                    A group of segments for identifying the persons
                    and/or organisations involved in producing an
                    investigation result.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
                                 <documentation>REL,
                       A segment for specifying the type of
                       relationship of a related healthcare service
                       provider to the clinical investigation result
                       item.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>RFF,
                       A segment for specifying a reference to
                       healthcare parties in segment group 1 where the
@@ -492,7 +492,7 @@
                         <documentation>Segment group 12:
                 A group of segments for specifying a clinical
                 intervention.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CLI" segcode="CLI" truncatable="true" xmltag="Clinical_intervention">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Clinical intervention" nodeTypeRef="UN:CLI" segcode="CLI" truncatable="true" xmltag="CLI">
                             <documentation>CLI,
                    A segment for specifying the type of intervention
                    and the intervention itself.</documentation>
@@ -501,22 +501,22 @@
                             <documentation>Segment group 13:
                    A group of segments to describe interventions
                    involving drugs.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                                 <documentation>IMD,
                       A segment for identifying a drug.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="Dosage_administration">
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Dosage administration" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="DSG">
                                 <documentation>DSG,
                       A segment for specifying the dosage and
                       administration specifications of a drug.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                                 <documentation>FTX,
                       A segment with free text information, in coded
                       or clear form, for specifying dosage and
                       administration specification of a drug.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
                                 <documentation>INP,
                       A segment for specifying the dosage regime.</documentation>
                             </segment>
@@ -529,25 +529,25 @@
              A group of segments containing information about the
              samples collected or to be collected concerning the
              requested investigation.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
                         <documentation>SEQ,
                 A segment for allocating a sequence number to the
                 sample to allow referencing from within this message
                 to a specific sample.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                         <documentation>IMD,
                 A segment for specifying the characteristics of a
                 sample like type of sample, anatomical origin and
                 sample preservation material.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="Process_identification">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Process identification" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="PRC">
                         <documentation>PRC,
                 A segment for specifying information about type of
                 collection procedure and subsequent handling of the
                 sample.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 A segment for specifying the identification numbers of
                 the actual sample allocated by service requester and
@@ -561,24 +561,24 @@
                 "parent" sample if this sample is part of or derived
                 from another sample.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                         <documentation>QTY,
                 A segment for specifying information about sample
                 volume or weight.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment for specifying relevant dates and times
                 concerning the sample such as start and/or end date
                 and time or period for sample collection, sample
                 receipt date and time, etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="Package">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Package" nodeTypeRef="UN:PAC" segcode="PAC" truncatable="true" xmltag="PAC">
                         <documentation>PAC,
                 A segment specifying the number of sample containers
                 this sample consists of.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in coded or
                 clear form, expressing the comments of the sample
@@ -586,22 +586,22 @@
                 provider to the sample, anatomical origin of sample,
                 sample location description, etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="Transport_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
                         <documentation>TDT,
                 A segment for specifying the transport logistics of
                 the collected sample.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="Handling_instructions">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Handling instructions" nodeTypeRef="UN:HAN" segcode="HAN" truncatable="true" xmltag="HAN">
                         <documentation>HAN,
                 A segment for specifying sample handling warning.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                         <documentation>LOC,
                 A segment for specifying the location for sample
                 collection in terms of hospital ward, room and bed
                 number.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="Address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
                         <documentation>ADR,
                 A segment for specifying the address for the sample
                 collection.</documentation>
@@ -610,38 +610,38 @@
                         <documentation>Segment group 15:
                 A group of segments for specifying the pre-treatment
                 performed relating to a sample.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CLI" segcode="CLI" truncatable="true" xmltag="Clinical_intervention">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Clinical intervention" nodeTypeRef="UN:CLI" segcode="CLI" truncatable="true" xmltag="CLI">
                             <documentation>CLI,
                    A segment for describing the pre-treatment
                    administered.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                             <documentation>IMD,
                    A segment for specifying the substance administered
                    for pre-treatment.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="Dosage_administration">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Dosage administration" nodeTypeRef="UN:DSG" segcode="DSG" truncatable="true" xmltag="DSG">
                             <documentation>DSG,
                    A segment for specifying the route of
                    administration of the pre-treatment.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
                    A segment for specifying relevant date and times
                    for the pre-treatment like start, end or duration
                    of administration.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                             <documentation>FTX,
                    A segment with free text information, in coded or
                    clear form, for describing the pre-treatment.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                             <documentation>QTY,
                    A segment for specifying amount of substance
                    administered.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="Parties_and_instruction">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Parties and instruction" nodeTypeRef="UN:INP" segcode="INP" truncatable="true" xmltag="INP">
                             <documentation>INP,
                    A segment for specifying the dosage regime.</documentation>
                         </segment>
@@ -652,50 +652,50 @@
                                MOA-RFF-EQD-SG17-SG18
              A group of segments for specifying a requested
              investigation and the result of this investigation.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
                         <documentation>LIN,
                 A segment for specifying the line number of the
                 laboratory investigation result item.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="Processing_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
                         <documentation>GEI,
                 A segment for specifying the service type of the
                 result of this investigation, e.g. new result,
                 corrected result, etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="Result">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Result" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="RSL">
                         <documentation>RSL,
                 A segment for specifying the numerical value or a
                 coded text value of an investigation result item
                 including unit of measurement, arithmetic comparator
                 and the deviating result indicator.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>CCI,
                 A segment for specifying the characteristics of the
                 investigation. The characteristics may concern system,
                 component or property examined as well as method of
                 measurement, etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="Clinical_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Clinical information" nodeTypeRef="UN:CIN" segcode="CIN" truncatable="true" xmltag="CIN">
                         <documentation>CIN,
                 A segment for specifying the result of an
                 investigation or comments to a result item as a
                 diagnosis.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="Sequence_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Sequence details" nodeTypeRef="UN:SEQ" segcode="SEQ" truncatable="true" xmltag="SEQ">
                         <documentation>SEQ,
                 A segment for allocating a sequence number to this
                 result item to allow for referencing from within this
                 message to a specific result item.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="Status">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
                         <documentation>STS,
                 A segment for specifying the status of an
                 investigation or investigation result item, e.g.
                 unverified result, preliminary result, etc.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>DTM,
                 A segment for specifying date and times relevant for
                 this investigation result item such as date and time
@@ -705,20 +705,20 @@
                 investigation if this is expressed as a date or period
                 such as clinical dates.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>FTX,
                 A segment with free text information, in coded or
                 clear form, for specifying a result item as a text
                 value as well as comments to the result item or the
                 investigation itself.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="Monetary_amount">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
                         <documentation>MOA,
                 A segment for specifying the type of cost, the amount
                 of cost and possibly currency unit used concerning the
                 investigation.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>RFF,
                 This segment keeps a reference to one or more samples
                 related to this actual result item such as the
@@ -730,7 +730,7 @@
                 result item which this investigation result item is
                 part of.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="Equipment_details">
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
                         <documentation>EQD,
                 A segment for specifying the measuring equipment used
                 for obtaining this investigation result item.</documentation>
@@ -740,13 +740,13 @@
                 A group of segments for specifying a related
                 laboratory service provider involved in producing this
                 investigation result item.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="Relationship">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
                             <documentation>REL,
                    A segment for specifying the type of relationship a
                    service provider has to the produced investigation
                    result item.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>RFF,
                    This segment keeps a reference to a healthcare
                    party (healthcare professional or healthcare
@@ -758,19 +758,19 @@
                         <documentation>Segment group 18:
                 A group of segments for specifying the reference
                 limits of an investigation result item.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="Result">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Result" nodeTypeRef="UN:RSL" segcode="RSL" truncatable="true" xmltag="RSL">
                             <documentation>RSL,
                    A segment for specifying the reference interval for
                    the investigation and the type of reference
                    interval such as physiological, therapeutical, etc.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                             <documentation>FTX,
                    A segment with free text information, in coded or
                    clear form, for specifying textual reference limits
                    concerning the investigation.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                             <documentation>CCI,
                    A segment for specifying the reference population.</documentation>
                         </segment>
@@ -781,12 +781,12 @@
         <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_19">
             <documentation>Segment group 19:
        A group of segments for specifying authentication details.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="Authentication_result">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
                 <documentation>AUT,
           A segment for specifying results of an authentication
           procedure.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
           A segment for specifying the date and time for the validity
           of the authentication.</documentation>

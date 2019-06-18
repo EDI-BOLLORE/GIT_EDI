@@ -1,0 +1,615 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="PROTAP" namespace="urn:org.milyn.edi.unedifact:un:d11a:protap" version="D:11A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="PROTAP">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+       A segment to identify a single planning or scheduling reporting
+       document, its unique identifier, and specific message function.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <documentation>GEI,
+       A segment to identify the report detail type such as network logic,
+       barchart, milestone, line of balance, or task list type of
+       information.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+       A segment to identify the message preparation, effective, and
+       project baseline processing date information.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+       A group of segments to provide information about the project and
+       identify unique reference numbers for the message, to provide
+       descriptions, to identify structured index numbers, and to note
+       cross reference links with other projects.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment to identify references related to the plan or schedule
+          such as a project, program, contract, contract addendum, Request
+          for Quote, or Request for Proposal number.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                <documentation>IMD,
+          A segment to provide a description such as the name of the
+          program for any reference number or program.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Structure identification" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="BII">
+                <documentation>BII,
+          A segment to provide a structured index number for any reference
+          number, project, plan, or schedule.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+          A group of segments to provide related project, plan, or schedule
+          numbers and relationship type such as a parent, child, or peer.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                    <documentation>GIR,
+             A segment to identify related or linked project, plan, or
+             schedule identity numbers.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                    <documentation>REL,
+             A segment to identify the type of relationship such as a
+             parent, child, or peer (internal or external to the project).</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+       A group of segments to identify the parties relevant to the entire
+       message with related contact and communication information, provide
+       any applicable structured index number, and identify the type of
+       data processing environment in use at the sender or receiver site.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+          A segment to provide message sender and receiver information.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                <documentation>ADR,
+          A segment to provide address information for each named party.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Structure identification" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="BII">
+                <documentation>BII,
+          A segment to provide a structured index number associated with
+          each named party.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+          A group of segments to identify contact and communication numbers
+          for each named party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+             A segment to provide a contact person's name for each named
+             party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+             A segment to identify the phone number, fax number, e-mail, or
+             other communication number for the contact party.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+          A group of segments to provide information about the data
+          processing environment used by each named party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Computer environment details" nodeTypeRef="UN:CED" segcode="CED" truncatable="true" xmltag="CED">
+                    <documentation>CED,
+             A segment to describe the data processing environment such as
+             the software application name, version and release.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to provide the effective, processing, or other date
+             stamp for the named software application.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+            <documentation>Segment group 6:
+       A group of segments to provide information about other documents
+       that relate to the entire message such as cost, other planning or
+       scheduling, technical, text, or graphical files that provide
+       additional project reference or management control information.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="External file link identification" nodeTypeRef="UN:EFI" segcode="EFI" truncatable="true" xmltag="EFI">
+                <documentation>EFI,
+          A segment to identify a related file and provide details such as
+          the file name, file format, version, and data format.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Computer environment details" nodeTypeRef="UN:CED" segcode="CED" truncatable="true" xmltag="CED">
+                <documentation>CED,
+          A segment to describe the data processing environment used to
+          create the named file such as the name of the software
+          application, version and release.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to provide the created, effective, processing, or other
+          date stamp for the named file.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_7">
+            <documentation>Segment group 7:
+       A group of segments to identify index structures and contents of
+       indexing systems used for the plan or schedule.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Index details" nodeTypeRef="UN:IND" segcode="IND" truncatable="true" xmltag="IND">
+                <documentation>IND,
+          A segment to identify what the index applies to, such as the
+          entire project or part of a project. Used to indicate whether IND
+          and related segments describes the index structure or describes
+          the index contents. When used to describe a structure, the
+          segment is also used to indicate the structure hierarchical
+          level.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Structure identification" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="BII">
+                <documentation>BII,
+          A segment to identify a structured index number definition or
+          contents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                <documentation>IMD,
+          A segment to provide a description for the structured index
+          number definition or contents.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                <documentation>RCS,
+          A segment to identify an action (add, change, or delete) for the
+          index data.</documentation>
+            </segment>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_8">
+            <documentation>Segment group 8:
+       A group of segments to identify company-wide resources that are
+       available to complete work on any given project. These resources can
+       be assigned specific working calendars to indicate the days or times
+       they are available to do work.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <documentation>LIN,
+          A segment to identify the resource and related action code (add,
+          change, or delete).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Structure identification" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="BII">
+                <documentation>BII,
+          A segment to identify any structured index numbers for the
+          resources that are related to the project such as billing or
+          trade skill categories.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment to provide reference numbers for the resource such as a
+          working calendar number, charge number or organization code.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                <documentation>IMD,
+          A segment to provide a description of the resource or type of
+          resource such as labor or material in clear or coded form.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to provide start and end dates related to the resource.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+          A group of segments to provide information about the quantity or
+          number of resources available, a unit of measure for the resource
+          such as hours, and related dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+             A segment to identify the quantity of available resources and
+             associated unit of measure such as hours or days the resource
+             is available.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the effective date, or start and end
+             dates for the resource quantity.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+          A group of segments to provide a unit price of the resource and
+          effective dates of the price.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Price details" nodeTypeRef="UN:PRI" segcode="PRI" truncatable="true" xmltag="PRI">
+                    <documentation>PRI,
+             A segment to identify the resource unit price.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the effective date, or start and end
+             dates for the resource unit price.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+          A group of segments to provide availability or efficiency factors
+          for a given resource with any related dates. This segment group
+          can also be used to provide an escalation or inflation percentage
+          that may apply for the resource along with any associated
+          specific start and end dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+             A segment to identify the percentage of availability or
+             efficiency factor for the resource; also used to identify any
+             escalation or inflation percentages.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the effective date, or start and end
+             dates for the resource availability, efficiency, or escalation
+             percentage.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+          A group of segments to provide a rate per unit such as a rate per
+          hour for the resource and related dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                    <documentation>RTE,
+             A segment to provide the rate per unit such as a rate per hour
+             for the resource.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the effective date, or start and end
+             dates for the resource rate per unit.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_13">
+                <documentation>Segment group 13:
+          A group of segments to provide any monetary amounts associated
+          with the resource such as budgeted, planned, or estimated costs
+          and related dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment to identify a monetary amount for the resource.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to identify the effective date, or start and end
+             dates for the resource monetary amount.
+
+4.1.2  Detail section
+
+       Information to be provided in the Detail section:</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
+            <documentation>UNS,
+       A mandatory service segment placed before the first user segment in
+       the detail section to avoid segment collision.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_14">
+            <documentation>Segment group 14:
+       A group of segments to provide information about the working
+       calendars used for the tasks and resources assigned to a task.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment to provide the reference used to identify a given
+          calendar.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_15">
+                <documentation>Segment group 15:
+          A group of segments to describe a given calendar. Provides
+          information such as specific working patterns, quantity of
+          working time units per day or working shifts per day, and
+          specific date details such as non-working or holiday dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Scheduling conditions" nodeTypeRef="UN:SCC" segcode="SCC" truncatable="true" xmltag="SCC">
+                    <documentation>SCC,
+             A segment to provide details about a calendar work period
+             pattern such as Monday through Friday.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+             A segment to identify the quantity of working time units per
+             day, quantity of working shifts per day, or quantity of
+             working time units per shift for a given calendar.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to provide precise date details about a given
+             calendar such as specific non-working or holiday dates.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_16">
+            <documentation>Segment group 16:
+                         SG19-SG20-SG21
+       A group of segments to describe the tasks or milestones that must be
+       done to complete a project. Segments in the group provide structured
+       index numbers or reference numbers, descriptions, named responsible
+       person, named work team, information about the product or service
+       being performed, work status, dates, durations, other text details,
+       quantity with optional dates, percents with optional dates, and
+       monetary amounts with optional dates for the task or milestone.
+       
+       The subordinate segment group GIR-REL-RCS-BII-RFF-DTM-SG22- SG23-
+       SG24-SG25 provides related information for milestones assigned to a
+       main activity or task, interface activities, constraint activities,
+       or resources assigned to a task.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
+                <documentation>LIN,
+          A segment to identify the task, indicate if it is an activity or
+          milestone event, provide an action code (add, change, delete),
+          and provide a schedule level reference.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Status" nodeTypeRef="UN:STS" segcode="STS" truncatable="true" xmltag="STS">
+                <documentation>STS,
+          A segment to provide a work status indicator (work has begun or
+          work has been completed) for the task.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Structure identification" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="BII">
+                <documentation>BII,
+          A segment to identify any structured index numbers such as a bill
+          of materials or work breakdown structure for the task.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+          A segment to provide reference numbers associated with the line
+          item (task) such as charge numbers, cost accounts, statement of
+          work numbers, and calendar or work shift references.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                <documentation>IMD,
+          A segment to provide a description of the task.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+          A segment to provide the party name of a work team for a given
+          line item (task).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
+                <documentation>CCI,
+          A segment to provide information about a product or assembly
+          associated with a given line item (task).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+          A segment to provide planned start and finish dates, target
+          dates, actual start and finish dates, estimate start and finish
+          dates, and other related dates for the line item (task).</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+          A segment to provide additional text for the line item (task).
+          Can be used to provide additional details about the task, events
+          surrounding the task such as an explanation for a behind schedule
+          over cost situation, or further explanation about data associated
+          with the task.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_17">
+                <documentation>Segment group 17:
+          A group of segments to provide a responsible person's name and
+          communication numbers for the line item (task).</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+             A segment to provide a responsible person's name for the line
+             item (task).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+             A segment to identify the phone number, fax number, e-mail, or
+             other communication number of the responsible person for the
+             line item (task).</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_18">
+                <documentation>Segment group 18:
+          A group of segments to provide quantities and related unit of
+          measure associated with a line item with related dates. May be
+          used to convey planned, current, or progress durations when
+          expressed as a quantity of units of time or a total quantity such
+          as planned or budgeted hours for the task. Progress can also be
+          conveyed as a percentage (segment group PCD-DTM) or as dates
+          (independent DTM segment). All three methods can be used
+          independently to exchange progress data; typically one of these
+          three methods is preferred and agreed upon between trading
+          parties.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+             A segment to provide the unit of measure (such as hours) and
+             quantities (such as budget, actual, or earned) associated with
+             a line item (task). Also used to provide the duration of the
+             task when expressed as a quantity of time units such as 10
+             working days; lead time duration such as a lead of 5 working
+             days is required before the next task can start; and progress
+             information such as a remaining duration of 5 working days.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to provide a single pair of start and end dates or a
+             series of start and end dates (for example, to describe
+             monthly allocations) associated with hour quantities (budget,
+             actual, earned value) for the task.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_19">
+                <documentation>Segment group 19:
+          A group of segments to provide progress details about a line item
+          and any related dates when progress is expressed as a percentage.
+          Progress can also be conveyed as a duration quantity (segment
+          group QTY-DTM) or as dates (independent DTM segment). All three
+          methods can be used independently to exchange progress data;
+          typically one of these three methods is preferred and agreed upon
+          between trading parties.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                    <documentation>PCD,
+             A segment to provide the percent complete for the line item
+             (task).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to provide effective, or start and end dates for the
+             percent complete for the task.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_20">
+                <documentation>Segment group 20:
+          A group of segments to provide monetary amounts associated with a
+          line item and any related dates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                    <documentation>MOA,
+             A segment to provide monetary amounts (such as budget, actual,
+             or earned value costs) for the line item (task).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to provide a single pair of start and end dates or a
+             series of start and end dates (for example, to describe costs
+             broken down by month) monetary amounts for the task.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_21">
+                <documentation>Segment group 21:
+          A group of segments to identify a related interface activity,
+          constraint activity, assigned resources, or milestones events
+          (when the line item is an activity) assigned to the line item
+          (task) along with related structured index or reference numbers,
+          descriptions, work status, dates, and any associated quantity,
+          percent, monetary amounts, and rates.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                    <documentation>GIR,
+             A segment to identify a related constraint activity, interface
+             activity, assigned resource, or milestone event (when the line
+             item is an activity). For constraint activities, also used to
+             indicate if the cited constraint activity is a predecessor or
+             successor. For milestone events associated with a task, also
+             used to provide a work status indicator (work has begun, work
+             has been completed, or the milestone event has been revised).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                    <documentation>REL,
+             A segment to identify the type of relationship. Used for
+             constraint type of activities to describe finish to start,
+             start to start, start to finish, and finish to finish types of
+             relationships.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+                    <documentation>RCS,
+             A segment to identify an action (add, change, or delete) for
+             the interface activity, constraint activity, assigned
+             resource, or milestone event.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Structure identification" nodeTypeRef="UN:BII" segcode="BII" truncatable="true" xmltag="BII">
+                    <documentation>BII,
+             A segment to identify any structured index numbers such an
+             organization breakdown structure, or trade skill for an
+             assigned resource.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+             A segment to provide reference numbers associated with the
+             interface activity, constraint activity, assigned resource, or
+             milestone event such as a calendar or shift, department, work
+             package, charge number, or work order number.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                    <documentation>IMD,
+             A segment to provide a description of the interface activity,
+             constraint activity, assigned resource, or milestone event.
+             When an assigned resource, can also use this segment to
+             indicate the type of resource in coded form (such as a
+             consumable, recurring, or non-recurring resource).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+             A segment to provide start and finish dates, actual start and
+             finish dates, scheduled start and finish dates, planned or
+             revised dates for assigned resources or milestones.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_22">
+                    <documentation>Segment group 22:
+             A group of segments to provide quantity information for
+             assigned resources or milestones events and related dates.
+             Also used to provide the duration of lead or lag time for an
+             interface activity or constraint activity when the duration is
+             expressed as a quantity of time units such as a lead of 5
+             working days or a lag or 7 working days.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                A segment to provide quantity information about the
+                interface activity, constraint activity, assigned resource,
+                or milestone event. For activities, used to provide the
+                duration of lead or lag time when expressed as quantities
+                of time units. For assigned resources, can be used to
+                indicate the number of resources available for the task
+                (level per calendar unit or total for the duration of the
+                task). For assigned resources and milestone events, can be
+                used to provide associated budget, actual, or earned value
+                hour quantities.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment to provide an effective date, a pair of start and
+                end dates, or a series of start and end dates associated
+                with an interface activity, constraint activity, assigned
+                resource, or milestone quantity.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_23">
+                    <documentation>Segment group 23:
+             A group of segments to provide an earned value percentage for
+             milestone events or to provide availability or efficiency
+             factors for assigned resources and any related dates.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                A segment to provide availability or efficiency factors for
+                an assigned resource or to provide an earned value
+                percentage for a given milestone (used to calculate the
+                amount of value earned when a milestone is complete).</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment to provide an effective date, or start and end
+                dates associated with the availability, efficiency, or
+                earned value percentage.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_24">
+                    <documentation>Segment group 24:
+             A group of segments to provide monetary amounts for assigned
+             resources and milestone events and any related dates.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                A segment to provide monetary amounts (such as budget,
+                actual, or earned value) for the assigned resource or
+                milestone event.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment to provide an effective date, a pair of start and
+                finish dates, or a series of start and finish dates
+                associated with the budget, actual, or earned value
+                monetary amount for the assigned resource or milestone
+                event.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_25">
+                    <documentation>Segment group 25:
+             A group of segments to provide rate information for an
+             assigned resource and any related dates.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                        <documentation>RTE,
+                A segment to identify a rate for the assigned resource.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                A segment to provide the effective date, or start and end
+                dates for the assigned resource rate.
+
+4.1.3  Summary section
+
+       Information to be provided in the Summary section:</documentation>
+                    </segment>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Control total" nodeTypeRef="UN:CNT" segcode="CNT" truncatable="true" xmltag="CNT">
+            <documentation>CNT,
+       A segment to provide control totals for the message such as the
+       total number of activities, milestones, resources, or constraints.</documentation>
+        </segment>
+    </segments>
+</edimap>

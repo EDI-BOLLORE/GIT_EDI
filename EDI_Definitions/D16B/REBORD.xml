@@ -1,0 +1,248 @@
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="REBORD" namespace="urn:org.milyn.edi.unedifact:un:d16b:rebord" version="D:16B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="REBORD">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+            <medi:documentation>GEI,
+        A segment to give processing indicators relating to the whole
+        message.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="9" minOccurs="1" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
+        A group of segments to specify relevant parties for the whole
+        transaction.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
+           A segment to specify the name and address and the related
+           function of the party involved.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                <medi:documentation>CTA,
+           A segment to identify a person or a department to whom
+           communication should be directed.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                <medi:documentation>COM,
+           A segment to identify a communication number of a department, or
+           a person to whom communication should be directed.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment to specify the references of the party identified in
+           the leading NAD segment.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
+        A segment to specify dates, times and periods relating to the whole
+        message.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <medi:documentation>FTX,
+        A segment to provide free form text information regarding the
+        message and to give description relating to the references given in
+        the previous RFF segment.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_2">
+            <medi:documentation>Segment group 2:
+        A group of segments to allow the identification of the data which
+        will be used to group the information reported.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount function" nodeTypeRef="UN:ARD" segcode="ARD" truncatable="true" xmltag="ARD">
+                <medi:documentation>ARD,
+           A segment to identify the amounts which follow as relating to
+           losses, premiums or cessions.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                <medi:documentation>CUX,
+           A segment to identify the currency in which data will be
+           expressed.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                <medi:documentation>GEI,
+           A segment to transmit general indicators relating to the
+           section.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <medi:documentation>LOC,
+           A segment to allow for the grouping of details by the
+           geographical scope of the contract.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           A segment to specify dates and periods relating to the
+           information reported.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <medi:documentation>FTX,
+           A segment to provide free text information regarding a section
+           of the message, or the loss or event.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment to give technical account sub-account references, loss
+           references, layer or surplus number of the reinsurance contract,
+           or bordereau section sequence number.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_3">
+                <medi:documentation>Segment group 3:
+           A group of segments to report detailed information per bordereau
+           'lire' or to report a total for one specified bordereau section.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                    <medi:documentation>REL,
+              A segment to identify the direct relationship between the
+              data contained in the segment group 3.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
+              A segment to specify references associated with the bordereau
+              'line'.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="7" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <medi:documentation>GEI,
+              A segment to transmit processing indicators relating to a
+              bordereau 'line'.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                    <medi:documentation>LOC,
+              A segment to specify location details relating to a bordereau
+              'line'.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="7" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                    <medi:documentation>NAD,
+              A segment to specify the name and address and the related
+              function of the party involved in the policy or contract.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to specify dates and periods relating to the line
+              information reported.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="6" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <medi:documentation>FTX,
+              A segment to provide free text information regarding the loss
+              or risk insured, the name of the conveyance vessel or
+              aircraft associated with the reported policy or retroceded
+              contract.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_4">
+                    <medi:documentation>Segment group 4:
+              A group of segments to give the maximum loss percentages, and
+              the shares of co-insurers, leading insurer or ceding company
+              involved in the original policy.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <medi:documentation>PCD,
+                 A segment to specify percentages relating to the maximum
+                 loss, original policy and cedant's share.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <medi:documentation>NAD,
+                 A segment to specify the name and address of the co-
+                 insurer, leading insurer or ceding company.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+                <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_5">
+                    <medi:documentation>Segment group 5:
+              A group of segments to allow the specification of monetary
+              amounts, both in original and reporting currency.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <medi:documentation>MOA,
+                 A segment to specify monetary amounts relating to the
+                 policy or contract, or to totals of a single section of a
+                 message.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                        <medi:documentation>GEI,
+                 A segment to give general indicators relating to the
+                 processing of the amounts.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <medi:documentation>PCD,
+                 A segment to report percentages associated with the amount
+                 given in the leading MOA segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <medi:documentation>DTM,
+                 A segment to give the date on which settlement of the
+                 original policy amounts between insurer and client is due,
+                 or to give a date associated with the amount given in the
+                 leading MOA segment.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                        <medi:documentation>Segment group 6:
+                 A group of segments to give references, type of
+                 communication and date of an associated message relating
+                 to the section total.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                            <medi:documentation>RFF,
+                    A segment to specify references relating to the
+                    associated message.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <medi:documentation>DTM,
+                    A segment to give dates relating to the supported
+                    message or document, or to give the reinsurance
+                    accounting period and periodicity, if the supported
+                    message is a reinsurance account.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                            <medi:documentation>COM,
+                    A segment to specify the means by which the supported
+                    message or document has been or will be transmitted.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Currencies" nodeTypeRef="UN:CUX" segcode="CUX" truncatable="true" xmltag="CUX">
+                        <medi:documentation>CUX,
+                 A segment to specify the original currency and exchange
+                 rate used to convert an amount into the reference
+                 currency.</medi:documentation>
+                    </medi:segment>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Section control" nodeTypeRef="UN:UNS" segcode="UNS" truncatable="true" xmltag="UNS">
+            <medi:documentation>UNS,
+        A segment to separate detail and summary sections of the message.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+            <medi:documentation>Segment group 7:
+        A group of segments to allow 'roll-up' totals for multiple
+        bordereau sections to be given, and reference to the supported
+        message, sub-account or document to be made, if appropriate.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                <medi:documentation>MOA,
+           A segment to specify a monetary amount relating to the 'roll-up'
+           total.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                <medi:documentation>Segment group 8:
+           A group of segments to allow reference to the supported message,
+           sub-account or document to be made.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
+              A segment to specify references related to the 'roll-up'
+              totals and supported messages.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to give dates relating to the supported message or
+              document, or to give the reinsurance accounting period and
+              periodicity, if the supported message is a  reinsurance
+              account.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              A segment to specify the means by which the supported message
+              or document has been or will be transmitted.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="3" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                <medi:documentation>PCD,
+           A segment to report percentages associated with the amount given
+           in the leading MOA segment, or percentage shares of specified
+           parties, or other percentages that apply across message
+           sections.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>

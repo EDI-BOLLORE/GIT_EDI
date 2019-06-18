@@ -1,0 +1,418 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="IMPDEF" namespace="urn:org.milyn.edi.unedifact:un:d15b:impdef" version="D:15B:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="IMPDEF">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        A segment to indicate the beginning of the message and to transmit
+        function, type and number of the message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Message type identification" nodeTypeRef="UN:MSG" segcode="MSG" truncatable="true" xmltag="MSG">
+            <documentation>MSG,
+        A segment identifying a message type to which the implementation
+        details apply.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Requirements and conditions" nodeTypeRef="UN:RCS" segcode="RCS" truncatable="true" xmltag="RCS">
+            <documentation>RCS,
+        A segment specifying the distribution conditions for the
+        implementation.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Directory identification" nodeTypeRef="UN:DII" segcode="DII" truncatable="true" xmltag="DII">
+            <documentation>DII,
+        A segment specifying the identity of the source directory set and
+        giving its language and maintenance operation. This identifies the
+        underlying standard from which the standard message is drawn.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+            <documentation>RFF,
+        A segment carrying reference information for the implementation as
+        a whole. This may specify the unique registration identifier of
+        this implementation guide; it may carry references to graphical
+        information to be used or displayed whenever the implementation is
+        physically displayed.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        A segment specifying dates related to the implementation guide,
+        such as date of issue or date of approval.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="999" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+            <documentation>FTX,
+        A segment providing implementation guide notes which relate to the
+        implementation as a whole. It may also carry various legal or
+        contractual phrases which may apply to the ownership or copyright
+        of the implementation guide, or contractual terms which will be
+        incorporated by reference into any contract of which a data
+        transmission using this implementation is a part.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="5" minOccurs="0" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        A group of segments identifying the parties involved in the
+        transaction with associated information. For publicly available
+        implementation guides this includes details of the ownership and
+        origination of the guide.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+           A segment identifying the names of the parties involved in the
+           transaction, e.g., originator, requester, author or secretariat.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                <documentation>ADR,
+           A segment identifying the address of the party.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9999" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+           A group of segments identifying a person or a department and
+           identifying communication type and number.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              A segment identifying a person or a department for the party
+              to whom the communication should be directed.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              A segment identifying communication type and number of the
+              person.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        A group of segments to describe the usage of a segment, a segment
+        group, a composite or an element, an alias, or a constraint in a
+        MIG or IC. The iterations of this segment group form the bulk of
+        the MIG or IC.
+        
+        The MIG or IC consists of a series of iterations of this segment
+        group which describe the target message hierarchy. Within the
+        hierarchy, additional occurrences of this segment group may specify
+        the conditions or relationships between the components.
+        
+        Only the appropriate parts of this segment group should be used as
+        necessary on any particular iteration. The other contained segment
+        groups are ordered to minimise the number of iterations of this
+        segment group. The 'Alias' and 'Constraint' instances of this
+        segment group provide a mechanism for grouping or encapsulating
+        blocks of components. An 'Alias' has no context, and therefore
+        takes on the context of the point at which it is used. A
+        'Constraint' inherits the context in which it is defined, but may
+        redefine any part of its context by using the appropriate optional
+        segment groups within the main segment loop. 
+        
+        As well as its defining function, each component may also be used
+        in a constraining manner. For example, a repeating segment may not
+        only define its components, but also the number of times it is
+        allowed to repeat; then, within each instance, a different
+        combination of element requirements may be expressed. This
+        conditionality may be based on either ordering or content criteria.
+        
+        Once defined, an 'Alias' may be used throughout the MIG where
+        required, by "using" the definition which is identified by its
+        'name'. Similarly, in error reporting, an active constraint may be
+        identified by its 'name'.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Definition function" nodeTypeRef="UN:DFN" segcode="DFN" truncatable="true" xmltag="DFN">
+                <documentation>DFN,
+           A segment identifying the object of the definition, and
+           containing an optional 'name' or identifier.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                <documentation>FTX,
+           A segment providing implementation guide notes pertaining to the
+           preceding definition, or to carry the text of a constraint
+           expression.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           A group of segments identifying a segment group and providing
+           details about segment group usage. This segment group depends on
+           a segment context having been established by an instance of a
+           segment group describing segment usage.
+           
+           This segment group defines a segment group context for the
+           target message, and will immediately follow the definition of
+           the trigger segment context, preceding the constituent elements
+           within the trigger segment.
+           
+           Several instances of the same segment group may be described,
+           with the MEA segment group distinguishing which range or
+           instance of the target message segment is being described.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Segment group usage details" nodeTypeRef="UN:GRU" segcode="GRU" truncatable="true" xmltag="GRU">
+                    <documentation>GRU,
+              A segment specifying the usage of a segment group in a
+              definition. The segment may identify one or more instances of
+              a target segment group.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes or textual
+              information related to the specific group in the underlying
+              message.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_5">
+                <documentation>Segment group 5:
+           A group of segments specifying segment usage within the
+           definition. There will be at least one instance of this segment
+           group for each segment described in the implementation guide.
+           
+           This segment group defines a segment context, and all the
+           following components are deemed to be within the context of the
+           segment whose usage is being defined until a subsequent segment
+           context is defined.
+           
+           Several instances of the same segment may be described, with the
+           MEA segment group distinguishing which range or instance of the
+           target message segment is being described.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Segment usage details" nodeTypeRef="UN:SGU" segcode="SGU" truncatable="true" xmltag="SGU">
+                    <documentation>SGU,
+              A segment specifying the usage of a segment in a message type
+              structure for this definition. As well as defining the
+              specific usage of a particular target segment, this segment
+              also provides the segment context for the following element
+              usage details. The segment may identify one or more instances
+              of usage for any particular segment in the target data
+              message.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes, or textual
+              information relating to the specific segment in the
+              underlying message.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_6">
+                <documentation>Segment group 6:
+           A group of segments specifying formalised relationships among
+           the various components of this implementation at a particular
+           context, such as additional rules concerning syntax and
+           semantics which are specific to an implementation.
+           
+           The relationships may be both intra-component, such as between
+           elements in a segment, or inter-component, such as between
+           elements in different segments.
+           
+           Depending on the context in which this segment group is used, it
+           may specify relationships between segments or segment groups in
+           a message, between data elements in a segment, or between data
+           elements in a composite.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Footnote" nodeTypeRef="UN:FNT" segcode="FNT" truncatable="true" xmltag="FNT">
+                    <documentation>FNT,
+              A segment specifying a footnote identification number that
+              may place the relationship in the current context.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Relationship" nodeTypeRef="UN:REL" segcode="REL" truncatable="true" xmltag="REL">
+                    <documentation>REL,
+              A segment specifying a relationship between the various
+              components, typically data elements in a segment, in the
+              current context.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Related identification numbers" nodeTypeRef="UN:GIR" segcode="GIR" truncatable="true" xmltag="GIR">
+                    <documentation>GIR,
+              A segment identifying the various components in a
+              relationship, typically data elements in a segment, in the
+              current context.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment carrying text notes to the preceding relationship.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_7">
+                <documentation>Segment group 7:
+           A group of segments carrying references, or constraints whose
+           default context applies to the containing segment. This segment
+           group may be used to change the constraint mechanism at the
+           current and deeper levels in the message hierarchy.
+           Additionally, this segment group may be used to carry legal and
+           contractual terms which relate, either by way of explanation or
+           to be incorporated by reference, in the particular context at
+           which the group appears.
+           
+           Depending on the context, the references may be applied to the
+           target message as a whole, the current segment or element
+           context, or the current code value context.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              A segment identifying a reference document or a following
+              constraint expression.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment carrying the text of a constraint expression or
+              providing implementation guide notes pertaining to the
+              preceding constraint.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                <documentation>Segment group 8:
+           A group of segments specifying implementation requirements for
+           data elements in the current segment or composite context.
+           Multiple instances of this segment group will typically be used
+           to describe the usage of all the elements in any given segment
+           or composite context. There will be at least one instance of
+           this segment group for each element used, although a constraint
+           structure may override or further define the specification in
+           any particular context or sub-context. The MEA segment group may
+           be used to provide repeat range or specific instance information
+           for repeating data elements.
+           
+           This segment group defines an element or composite context which
+           will remain in force until the next element or composite context
+           is defined, or a new segment context is established.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Data element usage details" nodeTypeRef="UN:ELU" segcode="ELU" truncatable="true" xmltag="ELU">
+                    <documentation>ELU,
+              A segment identifying the usage of a simple or composite data
+              element in the current context. This segment starts a block
+              of information about any one particular contextualised usage
+              of a data element in a target data message.
+              
+              The data element usage determines whether this segment is
+              defining a composite context, a simple element context or a
+              component element context.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Simple data element details" nodeTypeRef="UN:ELM" segcode="ELM" truncatable="true" xmltag="ELM">
+                    <documentation>ELM,
+              A segment providing details of any variation or restriction
+              of the current data element as used in this context.
+              Typically this segment will convey details of restricted size
+              or character representation.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Editing details" nodeTypeRef="UN:EDT" segcode="EDT" truncatable="true" xmltag="EDT">
+                    <documentation>EDT,
+              A segment providing details of any editing information such
+              as maximum field length and status that would be used by a
+              screen-based editor, forms input or data output process when
+              physical representation of the data carried in a data message
+              using this implementation guide is required.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
+                    <documentation>IMD,
+              A segment providing further details of presentational
+              information such as text alignment and style that might be
+              used by a screen-based editor, forms input or data output
+              process when physical representation of the data carried in a
+              data message using this implementation guide is required.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                    <documentation>GEI,
+              A segment providing further details of processing information
+              such as data handling, positioning or control that might be
+              used by a screen-based editor, forms input or data output
+              process when data is carried, stored or collected by a data
+              message using this implementation guide is required.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes, or other
+              textual information relating to this element usage. The
+              segment will also be used to carry the final set of
+              information that would be used by a screen-based editor;
+              forms input or data output process; a legend or user-
+              recognisable description; and a help text.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="999" minOccurs="0" xmltag="Segment_group_9">
+                <documentation>Segment group 9:
+           A group of segments specifying implementation requirements for
+           the number of instances of repeating segments, segment groups or
+           elements in the current context. Multiple instances of this
+           segment group will typically be used to describe both the
+           overall limits of usage and to identify individual instances in
+           any given context.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <documentation>MEA,
+              A segment to measure the number of instances of usage of a
+              component in a message. The segment may specify minima,
+              maxima, range or instance criteria.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes, or other
+              textual information relating to this measurement.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_10">
+                <documentation>Segment group 10:
+           A group of segments specifying the usage of values for a non-
+           coded data element. Multiple instances of this segment group may
+           be used to provide a complete set of ranges or specific values,
+           including preferences. It can be used for any other type of data
+           element, such as strings, numerics, dates and times. It can also
+           specify a default value and associated implementation notes for
+           a specific element in a particular context. 
+           
+           A simple element or component element context must have been
+           established before this segment group is used.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Element value definition" nodeTypeRef="UN:ELV" segcode="ELV" truncatable="true" xmltag="ELV">
+                    <documentation>ELV,
+              A segment identifying one or more components of an element
+              value constraint series. It also may provide a default value
+              for the current element context. This is expressed in a
+              single text field so as to be used by or applicable to the
+              broadest range of applications.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes, or other
+              textual information related to the particular context. Such a
+              context may include implementation guide notes for the
+              default value.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_11">
+                <documentation>Segment group 11:
+           A group of segments specifying the usage of code values for a
+           coded data element. Multiple instances of this segment group may
+           be used to provide a complete set of code values, including
+           preferences.
+           
+           A simple element or component element context must have been
+           established before this segment group is used.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Code value definition" nodeTypeRef="UN:CDV" segcode="CDV" truncatable="true" xmltag="CDV">
+                    <documentation>CDV,
+              A segment identifying the code value, its source and usage
+              preference.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes, or other
+              textual information related to the particular context.</documentation>
+                </segment>
+            </segmentGroup>
+            <segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_12">
+                <documentation>Segment group 12:
+           A group of segments specifying data representation details for a
+           component of the message. This segment group may be used in a
+           segment, group, composite or simple data element context to
+           describe the data representation that the implementation guide
+           author intends to use to hold, store or represent the structure
+           or data in a non-EDI environment.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Data representation details" nodeTypeRef="UN:DRD" segcode="DRD" truncatable="true" xmltag="DRD">
+                    <documentation>DRD,
+              A segment identifying an underlying data representation by
+              tag, basic data type and size. This is the representation
+              itself, and not a pointer to an external document.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              A segment providing implementation guide notes, or other
+              relevant textual information.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="1" minOccurs="0" xmltag="Segment_group_13">
+            <documentation>Segment group 13:
+        A group of segments to provide authentication for the message.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Authentication result" nodeTypeRef="UN:AUT" segcode="AUT" truncatable="true" xmltag="AUT">
+                <documentation>AUT,
+           A segment specifying the details of any authentication
+           (validation) procedure applied to the IMPDEF message.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <documentation>DTM,
+           A segment specifying the date of authentication.</documentation>
+            </segment>
+        </segmentGroup>
+    </segments>
+</edimap>

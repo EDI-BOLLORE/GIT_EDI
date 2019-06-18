@@ -1,35 +1,47 @@
-<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.4.xsd">
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
     <import namespace="UN" resource="__modelset_definitions.xml"/>
-    <description name="QALITY" version="D:93A:UN"/>
+    <description name="QALITY" namespace="urn:org.milyn.edi.unedifact:un:d93a:qality" version="D:93A:UN"/>
     <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
     <segments xmltag="QALITY">
-        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="Beginning_of_message">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
             <documentation>BGM,
 A segment by which the sender uniquely identifies the Quality Data
 Message by means of its type and number.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
             <documentation>DTM,
 A segment specifying general dates and, when relevant, times related
 to the whole message. The segment must be specified at least once to
 identify the quality data message date.
+
 Example of the use of this DTM-segment is : date/time frame of
 reported data that apply to the whole quality data message.
+
+
+
+
+
+
+
+
+
+
+
 The Date/time/period segment within other segment groups should be
 used whenever the date/time/period requires to be logically related to
 another specified data item; e.g. date of measurement must be
 specified within the measurement segment group.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
             <documentation>IMD,
 A segment for describing the product involved.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
             <documentation>MEA,
 A segment to allow physical measurements and dimensions to be stated,
 where this is required for identification of the product.</documentation>
         </segment>
-        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+        <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
             <documentation>FTX,
 A segment with free text information, in coded or clear form, to give
 further clarification, when required, to the whole message. In
@@ -41,12 +53,12 @@ receiver to handle this segment manually.</documentation>
 A segment group for referencing documents and where necessary, their
 dates, relating to the whole message, e.g. purchase order,
 shipment/consignment number.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                 <documentation>RFF,
   A segment identifying the referenced document by its number and
   where appropriate, a line number within that document.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                 <documentation>DTM,
   A segment specifying the date/time of the referenced document. The
   specified date should be in 'yymmdd' format, unless all parties
@@ -58,7 +70,7 @@ shipment/consignment number.</documentation>
             <documentation>Segment Group 2:
 A group of segments identifying the parties relevant to the whole
 Quality Data Message, with associated information.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                 <documentation>NAD,
   A segment identifying names and addresses of parties, in coded or
   clear form, and their function relevant for the whole Quality Data
@@ -66,7 +78,7 @@ Quality Data Message, with associated information.</documentation>
   mandatory for the Quality Data Message. They are to be given in the
   NAD segment.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                 <documentation>LOC,
   A segment indicating more details regarding specific locations
   related to the party specified in the NAD- segment, e.g. internal
@@ -76,12 +88,12 @@ Quality Data Message, with associated information.</documentation>
                 <documentation>Segment Group 3:
   A segment group giving references and where necessary, date
   information only relevant to the specified party.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>RFF,
     A segment identifying the reference by its number and where
     appropriate a line number within a document.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>DTM,
     A segment specifying the date and/or time of the reference. The
     specified date should be in 'yymmdd' format unless all parties
@@ -93,12 +105,12 @@ Quality Data Message, with associated information.</documentation>
                 <documentation>Segment Group 4:
   A group of segments giving contact details of the specific person or
   department within the party identified in the NAD segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                     <documentation>CTA,
     A segment to identify a person or department, and their function,
     to whom communications should be directed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                     <documentation>COM,
     A segment to identify a communication type and number for the
     contact specified in the CTA segment.</documentation>
@@ -110,50 +122,50 @@ Quality Data Message, with associated information.</documentation>
 -SG20-SG30
 A group of segments providing the relevant quality data for the
 specified product.</documentation>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="Line_item">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Line item" nodeTypeRef="UN:LIN" segcode="LIN" truncatable="true" xmltag="LIN">
                 <documentation>LIN,
   A segment identifying the line item by its number and additionally,
   identifying the product involved by a product identification number.
   Other product identification numbers are specified in the following
   PIA segment, e.g. Customer part number, etc.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="Additional_product_id">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Additional product id" nodeTypeRef="UN:PIA" segcode="PIA" truncatable="true" xmltag="PIA">
                 <documentation>PIA,
   A segment providing additional product identification to that
   specified in the LIN segment, e.g. Buyer part number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="Item_description">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Item description" nodeTypeRef="UN:IMD" segcode="IMD" truncatable="true" xmltag="IMD">
                 <documentation>IMD,
   A segment for describing the product involved. This segment should
   be used for products that cannot be identified by a product code or
   article number.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                 <documentation>MEA,
   A segment to allow physical measurements and dimensions to be
   stated, where this is required for identification of the product.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="Physical_sample_description">
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Physical sample description" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="PSD">
                 <documentation>PSD,
   A segment to define the physical sample parameters, associated with
   a test, resulting in discrete measurements. If used in this
   position, the values apply to all following values of product
   properties.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="Sampling_parameters_for_summary_statiC______1__________________DTM__Date_time_period">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Sampling parameters for summary statiC      1                  DTM  Date/time/period" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="SPS">
                 <documentation>SPS,
   A segment to define the sampling parameters associated with summary
   statistics reported. If used in this position, the values apply to
   all following values of product properties.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="Quantity">
+            <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
                 <documentation>DTM,
   A segment specifying date/time/period details to the line item only.
   Any specified date should be in 'yymmdd' format unless all parties
   agree that there is a functional requirement for an alternative
   format.</documentation>
             </segment>
-            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+            <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                 <documentation>QTY,
   A segment to enable quantity information to be specified.</documentation>
             </segment>
@@ -163,12 +175,12 @@ specified product.</documentation>
   clarification, when required, for the line item. In computer to
   computer exchanges such text will normally require the receiver to
   handle this segment manually.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                     <documentation>Segment Group 6:
   A segment group for referencing documents relating to the line item
   and where necessary, their dates.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>RFF,
     A segment identifying the referenced document by its number and
     where appropriate, a line number within that document.</documentation>
@@ -180,12 +192,12 @@ specified product.</documentation>
     specified date should be in 'yymmdd' format, unless all parties
     agree that there is a functional requirement for an alternative
     format.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                     <documentation>Segment Group 7:
   A group of segments identifying the parties with associated
   information, relevant to the line item only.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                     <documentation>NAD,
     A segment identifying names and addresses of parties, in coded or
     clear form, and their function relevant for the line item.</documentation>
@@ -195,12 +207,12 @@ specified product.</documentation>
     A segment indicating more details regarding specific locations
     related to the party specified in the NAD- segment, e.g. internal
     site/building number.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>Segment Group 8:
     A segment group giving references and where necessary, date
     information only relevant to the specified party.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>RFF,
       A segment identifying the reference by its number and where
       appropriate a line number within a document.</documentation>
@@ -212,12 +224,12 @@ specified product.</documentation>
       specified date should be in 'yymmdd' format unless all parties
       agree that there is a functional requirement for an alternative
       format.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="Contact_information">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
                         <documentation>Segment Group 9:
     A group of segments giving contact details of the specific person
     or department within the party identified in the NAD segment.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="Communication_contact">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
                         <documentation>CTA,
       A segment to identify a person or department, and their
       function, to whom communications should be directed.</documentation>
@@ -228,16 +240,16 @@ specified product.</documentation>
                 <documentation>COM,
       A segment to identify a communication type and number for the
       contact specified in the CTA segment.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Test method" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="TEM">
                     <documentation>Segment Group 10:
   A group of segments to provide details of the test methods, employed
   including any circumstances, test devices, references and dates.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                     <documentation>TEM,
     A segment to describe the nature of the test performed.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>MEA,
     A segment to provide the necessary values of the various
     circumstances related to the tests, e.g. temperature reading when
@@ -248,12 +260,12 @@ specified product.</documentation>
     A segment specifying the date, and when relevant, the time of an
     activity identified by the date/time qualifier, e.g. test
     date/time.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>Segment Group 11:
     A segment group of referencing documents relating to the test
     method and where necessary, their dates, e.g. device number.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>RFF,
       A segment identifying the referenced document by its number and
       where appropriate, a line number within that document.</documentation>
@@ -266,7 +278,7 @@ specified product.</documentation>
       The specified date should be in 'yymmdd' format, unless all
       parties agree that there is a functional requirement for an
       alternative format.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                     <documentation>Segment Group 12:
   A group of segments to be used to define a class of properties, the
   individual properties within that class and the related data (e.g.
@@ -274,36 +286,40 @@ specified product.</documentation>
   segment group is used, the data is directly related to the product
   specified.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="Physical_sample_description">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Physical sample description" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="PSD">
                     <documentation>CCI,
     To specify the general class and/or the individual properties on
     which the Quality Data is being reported. Note: within the
     CCI-segment Property Class Identification (7769) or Measurement
     Dimension, coded (6313) or Characteristic identification (7751)
     must be present.
+
     If Property Class identification (7769) AND measurement Dimension,
     coded (6313) are present, then Characteristic identification
     (7751) is not allowed.
+
     If only Property Class identification is used within the
     CCI-segment, then the individual properties must be specified
     within the related STA/MEA-segments.
+
     The data element Characteristic Text (7750) should only be used to
     enhance the meaning of the code value (e.g. if no specific code
     available and code value ZZ (mutually defined) is used then
     Description can be used to further describe the Product
     Characteristics.
+
     NB: The Class identification element in this segment is only used
     to specify the product characteristic class, e.g. Chemistry or
     Physical Dimensions.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="Sampling_parameters_for_summary_statiC_____10__________________DTM__Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Sampling parameters for summary statiC     10                | DTM  Date/time/period" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="SPS">
                     <documentation>PSD,
     A segment to define the physical sample parameters associated with
     a test resulting in discrete measurements. If used in this
     position, the values only apply to data within the same analysis
     group.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                     <documentation>SPS,
     A segment to define the sampling parameters associated with
     summary statistics reported. If used in this position, the values
@@ -314,12 +330,12 @@ specified product.</documentation>
     A segment specifying the date, and when relevant, the time of an
     activity identified by the date/time qualifier, e.g. date/time,
     test performed.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>FTX,
     A segment with free text information to give further clarification
     within Segment group 12: the Analysis Group.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>Segment Group 13:
     A segment group of referencing documents relating to the Analysis
     Section and where necessary, their dates, e.g. Purchase order,
@@ -330,14 +346,14 @@ specified product.</documentation>
                     <documentation>RFF,
       A segment identifying the referenced document by its number and
       where appropriate, a line number within that document.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                         <documentation>DTM,
       A segment specifying the date/time of the referenced document.
       The specified date should be in 'yymmdd' format, unless all
       parties agree that there is a functional requirement for an
       alternative format.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>Segment Group 14:
     A group of segments to allow measurement values or specification
     values to be specified along with their associated references and
@@ -350,13 +366,13 @@ specified product.</documentation>
       or specification values. These values may be specified as a
       range and may be qualified by the significance and/or the
       attribute codes.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>DTM,
       A segment specifying the date, and when relevant, the time of an
       activity identified by the date/time qualifier, e.g. test
       date/time.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>Segment Group 15:
       A Segment group of referencing documents relating to the
       specifications and values and where necessary, their dates.</documentation>
@@ -367,14 +383,14 @@ specified product.</documentation>
                     <documentation>RFF,
         A segment identifying the referenced document by its number
         and where appropriate, a line number within that document.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STA" segcode="STA" truncatable="true" xmltag="Statistics">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Statistics" nodeTypeRef="UN:STA" segcode="STA" truncatable="true" xmltag="STA">
                         <documentation>DTM,
         A segment specifying the date/time of the referenced document.
         The specified date should be in 'yymmdd' format, unless all
         parties agree that there is a functional requirement for an
         alternative format.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>Segment Group 16:
     A group of segments to provide the necessary information for
     summary statistics with any related references and dates.</documentation>
@@ -384,13 +400,13 @@ specified product.</documentation>
       A segment to specify the values required for statistics
       including codes to define the type of statistics and the measure
       unit employed.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>DTM,
       A segment specifying the date, and when relevant, the time of an
       activity identified by the date/time qualifier, e.g. time frame
       of statistical period.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>Segment Group 17:
       A Segment group of referencing documents relating to the
       statistics and where necessary, their dates.</documentation>
@@ -401,20 +417,20 @@ specified product.</documentation>
                     <documentation>RFF,
         A segment identifying the referenced document by its number
         and where appropriate, a line number within that document.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Test method" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="TEM">
                         <documentation>DTM,
         A segment specifying the date/time of the referenced document.
         The specified date should be in 'yymmdd' format, unless all
         parties agree that there is a functional requirement for an
         alternative format.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                         <documentation>Segment Group 18:
     A group of segments to provide details of the test methods,
     employed including any circumstances, test devices, references and
     dates.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>TEM,
       A segment to describe the nature of the test performed.</documentation>
                     </segment>
@@ -423,12 +439,12 @@ specified product.</documentation>
       A segment to provide the necessary values of the various
       circumstances related to the tests, e.g. temperature reading
       when test performed.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>DTM,
       A segment specifying the date, and when relevant, the time of an
       activity identified by the date/time qualifier.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>Segment Group 19:
       A Segment group of referencing documents relating to the test
       method and where necessary, their dates.</documentation>
@@ -440,14 +456,14 @@ specified product.</documentation>
                 <documentation>RFF,
         A segment identifying the referenced document by its number
         and where appropriate, a line number within that document.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="Goods_identity_number">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Goods identity number" nodeTypeRef="UN:GIN" segcode="GIN" truncatable="true" xmltag="GIN">
                     <documentation>DTM,
         A segment specifying the date/time of the referenced document.
         The specified date should be in 'yymmdd' format, unless all
         parties agree that there is a functional requirement for an
         alternative format.</documentation>
                 </segment>
-                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                     <documentation>Segment Group 20:
   A group of segments to enable batch related information to be
   specified.</documentation>
@@ -457,13 +473,13 @@ specified product.</documentation>
     A segment providing specific serial or batch numbers, relating to
     the specified product. These may be single numbers or ranges of
     numbers.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                         <documentation>DTM,
     A segment specifying the date, and when relevant, the time of an
     activity identified by the date/time qualifier., e.g. batch
     process date.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                         <documentation>Segment Group 21:
     A Segment group of referencing documents relating to the batch and
     where necessary, their dates.</documentation>
@@ -473,14 +489,14 @@ specified product.</documentation>
                     <documentation>RFF,
       A segment identifying the referenced document by its number and
       where appropriate, a line number within that document.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>DTM,
       A segment specifying the date/time of the referenced document.
       The specified date should be in 'yymmdd' format, unless all
       parties agree that there is a functional requirement for an
       alternative format.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="Physical_sample_description">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Physical sample description" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="PSD">
                         <documentation>Segment Group 22:
     A group of segments to be used to define a class of properties,
     the individual properties within that class and the related data
@@ -488,29 +504,33 @@ specified product.</documentation>
     When this segment group is used, the data is directly related to
     the product specified.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="Sampling_parameters_for_summary_statiC_____10__________________DTM__Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Sampling parameters for summary statiC     10               || DTM  Date/time/period" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="SPS">
                         <documentation>CCI,
       To specify the general class and/or the individual properties on
       which the Quality Data is being reported. Note: within the
       CCI-segment Property Class Identification (7769) or Measurement
       Dimension, coded (6313) or Characteristic identification (7751)
       must be present.
+
       If Property Class identification (7769) AND measurement
       Dimension, coded (6313) are present, then Characteristic
       identification (7751) is not allowed.
+
       If only Property Class identification is used within the
       CCI-segment, then the individual properties must be specified
       within the related STA/MEA-segments.
+
       The data element Characteristic Text (7750) should only be used
       to enhance the meaning of the code value (e.g. if no specific
       code available and code value ZZ (mutually defined) is used then
       Description can be used to further describe the Product
       Characteristics.
+
       NB: The Class identification element in this segment is only
       used to specify the product characteristic class, e.g. Chemistry
       or Physical Dimensions.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>PSD,
       A segment to define the physical sample parameters associated
       with a test resulting in discrete measurements. If used in this
@@ -522,13 +542,13 @@ specified product.</documentation>
       A segment to define the sampling parameters associated with
       summary statistics reported. If used in this position, the
       values only apply to data within the same analysis group.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>DTM,
       A segment specifying the date, and when relevant, the time of an
       activity identified by the date/time qualifier, e.g. date/time,
       test performed.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>FTX,
       A segment with free text information to give further
       clarification within Segment group 22: the Analysis Group.</documentation>
@@ -539,12 +559,12 @@ specified product.</documentation>
       A segment group of referencing documents relating to the
       Analysis Section and where necessary, their dates, e.g. Purchase
       order, shipment note.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>RFF,
         A segment identifying the referenced document by its number
         and where appropriate, a line number within that document.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
         A segment specifying the date/time of the referenced document.
         The specified date should be in 'yymmdd' format, unless all
@@ -557,14 +577,14 @@ specified product.</documentation>
       values to be specified along with their associated references
       and dates. The data element Measurement Application Qualifier
       (6311) indicates the type of the values.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>MEA,
         A segment to specify discrete values, other measurement
         results or specification values. These values may be specified
         as a range and may be qualified by the significance and/or the
         attribute codes.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                                 <documentation>DTM,
         A segment specifying the date, and when relevant, the time of
         an activity identified by the date/time qualifier, e.g. test
@@ -576,12 +596,12 @@ specified product.</documentation>
                         <documentation>Segment Group 25:
         A Segment group of referencing documents relating to the
         specifications and values and where necessary, their dates.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STA" segcode="STA" truncatable="true" xmltag="Statistics">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Statistics" nodeTypeRef="UN:STA" segcode="STA" truncatable="true" xmltag="STA">
                             <documentation>RFF,
           A segment identifying the referenced document by its number
           and where appropriate, a line number within that document.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
           A segment specifying the date/time of the referenced
           document. The specified date should be in 'yymmdd' format,
@@ -592,13 +612,13 @@ specified product.</documentation>
                             <documentation>Segment Group 26:
       A group of segments to provide the necessary information for
       summary statistics with any related references and dates.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>STA,
         A segment to specify the values required for statistics
         including codes to define the type of statistics and the
         measure unit employed.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                                 <documentation>DTM,
         A segment specifying the date, and when relevant, the time of
         an activity identified by the date/time qualifier, e.g. time
@@ -610,19 +630,19 @@ specified product.</documentation>
                         <documentation>Segment Group 27:
         A Segment group of referencing documents relating to the
         statistics and where necessary, their dates.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Test method" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="TEM">
                             <documentation>RFF,
           A segment identifying the referenced document by its number
           and where appropriate, a line number within that document.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>DTM,
           A segment specifying the date/time of the referenced
           document. The specified date should be in 'yymmdd' format,
           unless all parties agree that there is a functional
           requirement for an alternative format.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>Segment Group 28:
       A group of segments to provide details of the test methods,
       employed including any circumstances, test devices, references
@@ -631,13 +651,13 @@ specified product.</documentation>
                         <segmentGroup maxOccurs="10" minOccurs="0" xmltag="Segment_Group_29">
                             <documentation>TEM,
         A segment to describe the nature of the test performed.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>MEA,
         A segment to provide the necessary values of the various
         circumstances related to the tests, e.g. temperature reading
         when test performed.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                                 <documentation>DTM,
         A segment specifying the date, and when relevant, the time of
         an activity identified by the date/time qualifier.</documentation>
@@ -650,7 +670,7 @@ specified product.</documentation>
                 <documentation>Segment Group 29:
         A Segment group of referencing documents relating to the test
         method and where necessary, their dates.</documentation>
-                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="Process_identification">
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Process identification" nodeTypeRef="UN:PRC" segcode="PRC" truncatable="true" xmltag="PRC">
                     <documentation>RFF,
           A segment identifying the referenced document by its number
           and where appropriate, a line number within that document.</documentation>
@@ -661,12 +681,12 @@ specified product.</documentation>
           document. The specified date should be in 'yymmdd' format,
           unless all parties agree that there is a functional
           requirement for an alternative format.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="Name_and_address">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
                         <documentation>Segment Group 30:
   A group of segments to allow process related quality data to be
   specified.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="Place_location_identification">
+                    <segment ignoreUnmappedFields="false" maxOccurs="5" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
                         <documentation>PRC,
     A segment to specify the process/sub-process type and description
     to which the data is related.</documentation>
@@ -676,18 +696,18 @@ specified product.</documentation>
                     <documentation>Segment Group 31:
     A group of segments identifying Names, Addresses and Locations
     relevant to the process.</documentation>
-                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="Characteristic_class_id">
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Characteristic/class id" nodeTypeRef="UN:CCI" segcode="CCI" truncatable="true" xmltag="CCI">
                         <documentation>NAD,
       A segment identifying names and addresses of parties, in coded
       or clear form, and their function relevant for the process.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="Physical_sample_description">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Physical sample description" nodeTypeRef="UN:PSD" segcode="PSD" truncatable="true" xmltag="PSD">
                         <documentation>LOC,
       A segment indicating more details regarding specific locations
       related to the party specified in the NAD- segment, e.g.
       internal site/building number.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="Sampling_parameters_for_summary_statiC_____10__________________DTM__Date_time_period">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Sampling parameters for summary statiC     10               || DTM  Date/time/period" nodeTypeRef="UN:SPS" segcode="SPS" truncatable="true" xmltag="SPS">
                         <documentation>Segment Group 32:
     A group of segments to be used to define a class of properties,
     the individual properties within that class and the related data
@@ -695,24 +715,28 @@ specified product.</documentation>
     When this segment group is used, the data is directly related to
     the product specified.</documentation>
                     </segment>
-                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="Free_text">
+                    <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
                         <documentation>CCI,
       To specify the general class and/or the individual properties on
       which the Quality Data is being reported. Note: within the
       CCI-segment Property Class Identification (7769) or Measurement
       Dimension, coded (6313) or Characteristic identification (7751)
       must be present.
+
       If Property Class identification (7769) AND measurement
       Dimension, coded (6313) are present, then Characteristic
       identification (7751) is not allowed.
+
       If only Property Class identification is used within the
       CCI-segment, then the individual properties must be specified
       within the related STA/MEA-segments.
+
       The data element Characteristic Text (7750) should only be used
       to enhance the meaning of the code value (e.g. if no specific
       code available and code value ZZ (mutually defined) is used then
       Description can be used to further describe the Product
       Characteristics.
+
       NB: The Class identification element in this segment is only
       used to specify the product characteristic class, e.g. Chemistry
       or Physical Dimensions.</documentation>
@@ -723,13 +747,13 @@ specified product.</documentation>
       with a test resulting in discrete measurements. If used in this
       position, the values only apply to data within the same analysis
       group.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                             <documentation>SPS,
       A segment to define the sampling parameters associated with
       summary statistics reported. If used in this position, the
       values only apply to data within the same analysis group.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
       A segment specifying the date, and when relevant, the time of an
       activity identified by the date/time qualifier, e.g. date/time,
@@ -740,13 +764,13 @@ specified product.</documentation>
                         <documentation>FTX,
       A segment with free text information to give further
       clarification within Segment group 32: the Analysis Group.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>Segment Group 33:
       A segment group of referencing documents relating to the
       Analysis Section and where necessary, their dates, e.g. Purchase
       order, shipment note.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>RFF,
         A segment identifying the referenced document by its number
         and where appropriate, a line number within that document.</documentation>
@@ -757,14 +781,14 @@ specified product.</documentation>
         The specified date should be in 'yymmdd' format, unless all
         parties agree that there is a functional requirement for an
         alternative format.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>Segment Group 34:
       A group of segments to allow measurement values or specification
       values to be specified along with their associated references
       and dates. The data element Measurement Application Qualifier
       (6311) indicates the type of the values.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                                 <documentation>MEA,
         A segment to specify discrete values, other measurement
         results or specification values. These values may be specified
@@ -778,12 +802,12 @@ specified product.</documentation>
         A segment specifying the date, and when relevant, the time of
         an activity identified by the date/time qualifier, e.g. test
         date/time.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:STA" segcode="STA" truncatable="true" xmltag="Statistics">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Statistics" nodeTypeRef="UN:STA" segcode="STA" truncatable="true" xmltag="STA">
                             <documentation>Segment Group 35:
         A Segment group of referencing documents relating to the
         specifications and values and where necessary, their dates.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>RFF,
           A segment identifying the referenced document by its number
           and where appropriate, a line number within that document.</documentation>
@@ -794,12 +818,12 @@ specified product.</documentation>
           document. The specified date should be in 'yymmdd' format,
           unless all parties agree that there is a functional
           requirement for an alternative format.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>Segment Group 36:
       A group of segments to provide the necessary information for
       summary statistics with any related references and dates.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                                 <documentation>STA,
         A segment to specify the values required for statistics
         including codes to define the type of statistics and the
@@ -812,17 +836,17 @@ specified product.</documentation>
         A segment specifying the date, and when relevant, the time of
         an activity identified by the date/time qualifier, e.g. time
         frame of statistical period.</documentation>
-                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="Test_method">
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Test method" nodeTypeRef="UN:TEM" segcode="TEM" truncatable="true" xmltag="TEM">
                             <documentation>Segment Group 37:
         A Segment group of referencing documents relating to the
         statistics and where necessary, their dates.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="Measurements">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
                             <documentation>RFF,
           A segment identifying the referenced document by its number
           and where appropriate, a line number within that document.</documentation>
                         </segment>
-                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                        <segment ignoreUnmappedFields="false" maxOccurs="10" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                             <documentation>DTM,
           A segment specifying the date/time of the referenced
           document. The specified date should be in 'yymmdd' format,
@@ -834,11 +858,11 @@ specified product.</documentation>
       A group of segments to provide details of the test methods,
       employed including any circumstances, test devices, references
       and dates.</documentation>
-                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="Reference">
+                            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
                                 <documentation>TEM,
         A segment to describe the nature of the test performed.</documentation>
                             </segment>
-                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="Date_time_period">
+                            <segment ignoreUnmappedFields="false" maxOccurs="2" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
                                 <documentation>MEA,
         A segment to provide the necessary values of the various
         circumstances related to the tests, e.g. temperature reading

@@ -1,0 +1,232 @@
+<edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <import namespace="UN" resource="__modelset_definitions.xml"/>
+    <description name="RELIST" namespace="urn:org.milyn.edi.unedifact:un:d12a:relist" version="D:12A:UN"/>
+    <delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <segments xmltag="RELIST">
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <documentation>BGM,
+        To specify name and reference of the message.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <documentation>DTM,
+        To specify dates relating to the transaction and the contract
+        version.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Agreement identification" nodeTypeRef="UN:AGR" segcode="AGR" truncatable="true" xmltag="AGR">
+            <documentation>AGR,
+        To specify the placing stage.</documentation>
+        </segment>
+        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+            <documentation>RFF,
+        To specify the risk reference.</documentation>
+        </segment>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_1">
+            <documentation>Segment group 1:
+        To specify parties related to the transaction, their references,
+        contacts and communication means.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                <documentation>PNA,
+           To specify the sender and receiver of the transaction, and
+           optionally the information originator (in case the message is
+           simply passed on) and third parties that will receive a courtesy
+           copy or to whom this message needs to be distributed by the
+           receiver.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                <documentation>ATT,
+           To describe the business function of the party named.</documentation>
+            </segment>
+            <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <documentation>RFF,
+           To specify party specific references to the contract.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+                <documentation>Segment group 2:
+           This group is used to specify contact persons or departments
+           within the named party.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <documentation>CTA,
+              To specify the contact within the named party.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <documentation>COM,
+              To specify the means of communicating with the named party
+              contact.</documentation>
+                </segment>
+            </segmentGroup>
+        </segmentGroup>
+        <segmentGroup maxOccurs="99" minOccurs="1" xmltag="Segment_group_3">
+            <documentation>Segment group 3:
+        To identify the contract or section to which the reinsured
+        object(s) pertain.</documentation>
+            <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Identity" nodeTypeRef="UN:IDE" segcode="IDE" truncatable="true" xmltag="IDE">
+                <documentation>IDE,
+           To identify the section that the reinsured object/person relates
+           to, or the contract.</documentation>
+            </segment>
+            <segmentGroup maxOccurs="999" minOccurs="1" xmltag="Segment_group_4">
+                <documentation>Segment group 4:
+           To identify the reinsured object and all its relevant
+           characteristics.</documentation>
+                <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Risk object type" nodeTypeRef="UN:ROD" segcode="ROD" truncatable="true" xmltag="ROD">
+                    <documentation>ROD,
+              To identify the type of reinsured object.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <documentation>RFF,
+              Identification of the reinsured object via one or more
+              references.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Free text" nodeTypeRef="UN:FTX" segcode="FTX" truncatable="true" xmltag="FTX">
+                    <documentation>FTX,
+              To give textual details regarding the reinsured object.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Party identification" nodeTypeRef="UN:PNA" segcode="PNA" truncatable="true" xmltag="PNA">
+                    <documentation>PNA,
+              To name the reinsured party and/or to specify parties related
+              to the reinsured object.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <documentation>DTM,
+              To express dates and time indications relating to the
+              reinsured object (including age).</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                    <documentation>QTY,
+              To express quantities relating to the reinsured object or
+              person.</documentation>
+                </segment>
+                <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Nationality" nodeTypeRef="UN:NAT" segcode="NAT" truncatable="true" xmltag="NAT">
+                    <documentation>NAT,
+              To express the nationality(ies) of a person or the flag of a
+              conveyance.</documentation>
+                </segment>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                    <documentation>Segment group 5:
+              This group is used to specify any period relating to the
+              reinsured object or person - in particular various coverage
+              periods.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Period related details" nodeTypeRef="UN:PER" segcode="PER" truncatable="true" xmltag="PER">
+                        <documentation>PER,
+                 To specify the main period details.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="2" minOccurs="0" xmltag="Segment_group_6">
+                        <documentation>Segment group 6:
+                 This group allows specification of dates or durations
+                 related to the coverage period.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                            <documentation>DTM,
+                    To indicate dates and/or duration for the contract
+                    coverage. One repeat of the date/time/period segment
+                    will typically be used to render the 'start date' of
+                    the period. It can however also be used to specify the
+                    period duration. The other repeat is typically to be
+                    used to render the end date of the period. In case one
+                    repeat was used to specify the duration, then the other
+                    one will be used to specify the (estimated) end
+                    date/time.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Processing information" nodeTypeRef="UN:GEI" segcode="GEI" truncatable="true" xmltag="GEI">
+                            <documentation>GEI,
+                    To give date or period related indicators such as 'date
+                    included', 'date not known' etc.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_7">
+                    <documentation>Segment group 7:
+              To express the address(es) of the reinsured person or object.
+              In case of cargo risks (including exhibitions and concerts),
+              each location may be linked to dates or periods.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Address" nodeTypeRef="UN:ADR" segcode="ADR" truncatable="true" xmltag="ADR">
+                        <documentation>ADR,
+                 To specify the location or address of the reinsured object
+                 or person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 To express dates and periods related to the location.</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="99" minOccurs="0" xmltag="Segment_group_8">
+                    <documentation>Segment group 8:
+              To specify the type of activity(-ies) the reinsured object or
+              person is involved in and its applicability. Per activity,
+              the time spent on a yearly basis can be expressed either as a
+              number of time units or as a percentage of the total.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                        <documentation>ATT,
+                 To describe the activity of the reinsured object or
+                 person.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Applicability" nodeTypeRef="UN:APP" segcode="APP" truncatable="true" xmltag="APP">
+                        <documentation>APP,
+                 To specify the applicability of this activity in relation
+                 to the contract, such as excluded.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 To express the activity as a number of time units per
+                 year.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Percentage details" nodeTypeRef="UN:PCD" segcode="PCD" truncatable="true" xmltag="PCD">
+                        <documentation>PCD,
+                 To express the activity as a percentage of the total per
+                 year (total = 100%).</documentation>
+                    </segment>
+                </segmentGroup>
+                <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                    <documentation>Segment group 9:
+              To express coverages, deductibles, deductions and premiums
+              related to a specific reinsured object or person.</documentation>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Proviso details" nodeTypeRef="UN:PRV" segcode="PRV" truncatable="true" xmltag="PRV">
+                        <documentation>PRV,
+                 To identify the proviso for which details will be
+                 specified.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Applicability" nodeTypeRef="UN:APP" segcode="APP" truncatable="true" xmltag="APP">
+                        <documentation>APP,
+                 To specify the applicability of the proviso in relation to
+                 the contract.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Monetary amount" nodeTypeRef="UN:MOA" segcode="MOA" truncatable="true" xmltag="MOA">
+                        <documentation>MOA,
+                 To express the proviso as an amount.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Rate details" nodeTypeRef="UN:RTE" segcode="RTE" truncatable="true" xmltag="RTE">
+                        <documentation>RTE,
+                 To express the proviso as a rate.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                        <documentation>DTM,
+                 To express dates, times and periods related to the
+                 proviso.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Quantity" nodeTypeRef="UN:QTY" segcode="QTY" truncatable="true" xmltag="QTY">
+                        <documentation>QTY,
+                 To express quantities related to the proviso.</documentation>
+                    </segment>
+                    <segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Attribute" nodeTypeRef="UN:ATT" segcode="ATT" truncatable="true" xmltag="ATT">
+                        <documentation>ATT,
+                 To specify attributes of the proviso, such as type of
+                 activity, origin of business and class of business.</documentation>
+                    </segment>
+                    <segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_10">
+                        <documentation>Segment group 10:
+                 A group of segments to specify the basis for the proviso
+                 and give details of how the basis is to be applied.</documentation>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Basis" nodeTypeRef="UN:BAS" segcode="BAS" truncatable="true" xmltag="BAS">
+                            <documentation>BAS,
+                    To specify one basis for the proviso, such as deduction
+                    basis, premium basis.</documentation>
+                        </segment>
+                        <segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="0" name="Applicability" nodeTypeRef="UN:APP" segcode="APP" truncatable="true" xmltag="APP">
+                            <documentation>APP,
+                    To specify how the basis has been applied.</documentation>
+                        </segment>
+                    </segmentGroup>
+                </segmentGroup>
+            </segmentGroup>
+        </segmentGroup>
+    </segments>
+</edimap>

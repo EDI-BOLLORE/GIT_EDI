@@ -1,0 +1,154 @@
+<medi:edimap xmlns:medi="http://www.milyn.org/schema/edi-message-mapping-1.5.xsd">
+    <medi:import namespace="UN" resource="__modelset_definitions.xml"/>
+    <medi:description name="VERMAS" namespace="urn:org.milyn.edi.unedifact:un:d16b:vermas" version="D:16B:UN"/>
+    <medi:delimiters component=":" escape="?" field="+" segment="'!$" sub-component="~"/>
+    <medi:segments xmltag="VERMAS">
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Beginning of message" nodeTypeRef="UN:BGM" segcode="BGM" truncatable="true" xmltag="BGM">
+            <medi:documentation>BGM,
+        A segment to indicate the type and function of the message and to
+        transmit the identifying number.</medi:documentation>
+        </medi:segment>
+        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+            <medi:documentation>DTM,
+        A segment to indicate dates and times for the entire message
+        including the date and time of the preparation of the message.</medi:documentation>
+        </medi:segment>
+        <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_1">
+            <medi:documentation>Segment group 1:
+        A group of segments to specify references relating to the message
+        and related dates and times.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment to identify a reference which applies to the entire
+           message, e.g. the reference to a previous message.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                <medi:documentation>DTM,
+           A segment to indicate dates and times relating to the reference.</medi:documentation>
+            </medi:segment>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_2">
+            <medi:documentation>Segment group 2:
+        A group of segments to identify a party for the entire message
+        including the message sender and related contacts.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                <medi:documentation>NAD,
+           A segment to specify the name/address of the party and to
+           identify the party role.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_3">
+                <medi:documentation>Segment group 3:
+           A group of segments to identify a contact and its communications
+           related to the party.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                    <medi:documentation>CTA,
+              A segment to identify a person or a department to whom
+              communication should be directed.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                    <medi:documentation>COM,
+              A segment to identify communication numbers or email
+              addresses for a person or department to whom communication
+              should be directed.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+        <medi:segmentGroup maxOccurs="99999" minOccurs="0" xmltag="Segment_group_4">
+            <medi:documentation>Segment group 4:
+        A group of segments containing information about an individual
+        piece of transport equipment.</medi:documentation>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Equipment details" nodeTypeRef="UN:EQD" segcode="EQD" truncatable="true" xmltag="EQD">
+                <medi:documentation>EQD,
+           A segment to identify the transport equipment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                <medi:documentation>RFF,
+           A segment to specify a reference to the transport equipment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Place/location identification" nodeTypeRef="UN:LOC" segcode="LOC" truncatable="true" xmltag="LOC">
+                <medi:documentation>LOC,
+           A segment to identify a place or a location related to the
+           transport equipment.</medi:documentation>
+            </medi:segment>
+            <medi:segment ignoreUnmappedFields="false" maxOccurs="99" minOccurs="0" name="Seal number" nodeTypeRef="UN:SEL" segcode="SEL" truncatable="true" xmltag="SEL">
+                <medi:documentation>SEL,
+           A segment to specify a seal number.</medi:documentation>
+            </medi:segment>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_5">
+                <medi:documentation>Segment group 5:
+           A group of segments to specify the gross mass of transport
+           equipment and date/time when it was determined.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Measurements" nodeTypeRef="UN:MEA" segcode="MEA" truncatable="true" xmltag="MEA">
+                    <medi:documentation>MEA,
+              A segment to specify the gross mass (gross weight) of the
+              transport equipment and to give the indication of whether the
+              gross mass has been verified, e.g. according to SOLAS
+              regulations.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to specify a date and/or time when the gross mass
+              was determined.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_6">
+                <medi:documentation>Segment group 6:
+           A group of segments identifying the means of transport and
+           related details for the transport movement.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Transport information" nodeTypeRef="UN:TDT" segcode="TDT" truncatable="true" xmltag="TDT">
+                    <medi:documentation>TDT,
+              A segment to specify information regarding the transport such
+              as mode of transport, means of transport, its conveyance
+              reference number and the identification of the means of
+              transport.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Reference" nodeTypeRef="UN:RFF" segcode="RFF" truncatable="true" xmltag="RFF">
+                    <medi:documentation>RFF,
+              A segment to specify a reference relating to the transport,
+              such as an additional voyage reference number.</medi:documentation>
+                </medi:segment>
+            </medi:segmentGroup>
+            <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_7">
+                <medi:documentation>Segment group 7:
+           A group of segments providing information about documentation
+           related to the gross mass verification.</medi:documentation>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Document/message details" nodeTypeRef="UN:DOC" segcode="DOC" truncatable="true" xmltag="DOC">
+                    <medi:documentation>DOC,
+              A segment to specify the type and identification of
+              documentation.</medi:documentation>
+                </medi:segment>
+                <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Date/time/period" nodeTypeRef="UN:DTM" segcode="DTM" truncatable="true" xmltag="DTM">
+                    <medi:documentation>DTM,
+              A segment to specify a date and/or time related to the
+              documentation.</medi:documentation>
+                </medi:segment>
+                <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_8">
+                    <medi:documentation>Segment group 8:
+              A group of segments to qualify and specify name and address
+              information related to the documentation.</medi:documentation>
+                    <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Name and address" nodeTypeRef="UN:NAD" segcode="NAD" truncatable="true" xmltag="NAD">
+                        <medi:documentation>NAD,
+                 A segment to specify the function and name/address of an
+                 organization or individual.</medi:documentation>
+                    </medi:segment>
+                    <medi:segmentGroup maxOccurs="9" minOccurs="0" xmltag="Segment_group_9">
+                        <medi:documentation>Segment group 9:
+                 A group of segments to specify a contact and related
+                 communication information.</medi:documentation>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="1" minOccurs="1" name="Contact information" nodeTypeRef="UN:CTA" segcode="CTA" truncatable="true" xmltag="CTA">
+                            <medi:documentation>CTA,
+                    A segment to specify the function and details of a
+                    contact person or department.</medi:documentation>
+                        </medi:segment>
+                        <medi:segment ignoreUnmappedFields="false" maxOccurs="9" minOccurs="0" name="Communication contact" nodeTypeRef="UN:COM" segcode="COM" truncatable="true" xmltag="COM">
+                            <medi:documentation>COM,
+                    A segment to identify communication numbers or email
+                    addresses for a person or department to whom a
+                    communication should be directed.</medi:documentation>
+                        </medi:segment>
+                    </medi:segmentGroup>
+                </medi:segmentGroup>
+            </medi:segmentGroup>
+        </medi:segmentGroup>
+    </medi:segments>
+</medi:edimap>
